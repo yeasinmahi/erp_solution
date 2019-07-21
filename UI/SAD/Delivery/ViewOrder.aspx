@@ -150,6 +150,13 @@
                     <asp:ListItem Value="2"> Unapproved</asp:ListItem>
                     </asp:RadioButtonList>
                 </td>
+
+            <td style="text-align:right;">Order Type</td>
+            <td>
+                <asp:DropDownList ID="ddlOrderType" runat="server" AutoPostBack="True" DataSourceID="OrderType" DataTextField="strType" DataValueField="intId"></asp:DropDownList>                 
+                <asp:ObjectDataSource ID="OrderType" runat="server" SelectMethod="OrderType" TypeName="SAD_BLL.Sales.Delivery_BLL"></asp:ObjectDataSource>
+            </td>
+
             <td align="right">From</td>
             <td><asp:TextBox ID="txtFrom" runat="server" Enabled="false" Width="120px"></asp:TextBox>
                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
@@ -268,6 +275,7 @@
     <asp:ControlParameter ControlID="rdoComplete" Name="intReportType" PropertyName="SelectedValue" Type="Int32" />
     <asp:ControlParameter ControlID="ddlShip" Name="shippingPoint" PropertyName="SelectedValue" Type="String" />
     <asp:ControlParameter ControlID="ddlSo" Name="salesOffice" PropertyName="SelectedValue" Type="String" />
+    <asp:ControlParameter ControlID="ddlOrderType" Name="ordertype" PropertyName="SelectedValue" Type="String" />
     </SelectParameters></asp:ObjectDataSource>
     <asp:CustomValidator ID="cvtCom" runat="server" ClientValidationFunction="ValidateComplete"
     ValidationGroup="valCom"></asp:CustomValidator>
