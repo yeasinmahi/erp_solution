@@ -202,6 +202,24 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.RadioButtonList rdoComplete;
         
         /// <summary>
+        /// ddlOrderType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlOrderType;
+        
+        /// <summary>
+        /// OrderType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource OrderType;
+        
+        /// <summary>
         /// txtFrom control.
         /// </summary>
         /// <remarks>

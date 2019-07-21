@@ -99,10 +99,10 @@ namespace HR_BLL.Payment
         }
 
         
-        public DataTable GetTreasuryForcastDataList(int intPart,int intUserId, int intVatAcc, int intUnit,DateTime dteVdate,decimal monDramount,decimal monCrAmount, int intBank, int intBankAcc, string Address, string strName, int intTreasuryId, int intCOA,string strAccName, string strPayTo, string strNarration)
+        public DataTable GetTreasuryForcastDataList(int intPart,int intUserId, int intVatAcc, int intUnit,DateTime dteVdate, decimal monCrAmount, decimal monDramount, int intBank, int intBankAcc, string Address, string strName, int intTreasuryId, int intCOA,string strAccName, string strPayTo, string strNarration)
         {
             sprTreasuryForecastTableAdapter adp = new sprTreasuryForecastTableAdapter();
-            return adp.InsertVoucharData(intPart, intUserId, intVatAcc, intUnit, dteVdate, monDramount, monCrAmount, intBank, intBankAcc, Address, strName, intTreasuryId, intCOA, strAccName, strPayTo, strNarration);
+            return adp.InsertVoucharData(intPart, intUserId, intVatAcc, intUnit, dteVdate,  monCrAmount, monDramount, intBank, intBankAcc, Address, strName, intTreasuryId, intCOA, strAccName, strPayTo, strNarration);
         }
 
 

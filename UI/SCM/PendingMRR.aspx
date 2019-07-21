@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PendingMRR.aspx.cs" Inherits="UI.SCM.PendingMRR" %>
+﻿           <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PendingMRR.aspx.cs" Inherits="UI.SCM.PendingMRR" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -33,6 +33,38 @@
                 return false;
             }
             return true;
+        }
+
+        $(document).ready(function () {
+            document.getElementById("approvedDiv").style.display = "none";
+        });
+        function ShowDetailsDiv(poid) {
+            document.getElementById("hdnpoid").value = poid;
+            document.getElementById("lblpo").innerText = "PO. No: " + poid;
+            $("#approvedDiv").fadeIn("slow");
+            $("#DetailsGrid").fadeOut("slow");
+        }
+        function HideReasonDiv(msg) {
+            $("#approvedDiv").fadeOut("slow");
+            $("#DetailsGrid").fadeIn("slow");
+            document.getElementById("hdnpoid").value = "";            
+            if (msg.length > 0)
+            { alert(msg); }
+        }
+        function ConfirmAll() {
+            document.getElementById("hdnconf").value = "0";
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you want to proceed?"))
+            {
+                confirm_value.value = "Yes";
+                document.getElementById("hdnconf").value = "1";
+            }
+            else {
+                confirm_value.value = "No";
+                document.getElementById("hdnconf").value = "0";
+            }
         }
 
     </script>
@@ -82,6 +114,7 @@
                                     <asp:ListItem>Fabrication</asp:ListItem>
                                     <asp:ListItem>Import</asp:ListItem>
                                 </asp:DropDownList></td>
+                            
                         </tr>
                         <tr>
                             <td style="text-align: right;">
@@ -105,12 +138,20 @@
                                 <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="MRR No: "></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txtMrrNo" runat="server" CssClass="txtBox"></asp:TextBox></td>
-                            <td style="text-align: left"></td>
+                            <td style="text-align: right">
+                                <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Type: "></asp:Label>
+                            </td>
+                            <td style="text-align: left;">
+                                <asp:DropDownList ID="ddlType" Enabled="true" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
+                                                <asp:ListItem Value="QC">QC</asp:ListItem>
+                                                <asp:ListItem Value="Costing">Costing</asp:ListItem>
+                                 </asp:DropDownList>
+                            </td>
                             <td style="text-align: right">
                                 <asp:Button ID="btnStatement" runat="server" Text="Show" OnClick="btnStatement_Click" OnClientClick="showLoader()" />
                             </td>
 
-                            <td></td>
+                           
                             <td></td>
                             <td></td>
                             <td></td>
@@ -119,6 +160,10 @@
                             </td>
                         </tr>
                     </table>
+
+                    <div id="DetailsGrid">
+
+                   
                     <table>
                         <tr>
                             <td>
@@ -241,11 +286,68 @@
                         </tr>
 
                     </table>
+                     </div>
+                </div> 
+                <%--ending leave container--%>
 
-                </div>
+                <div id="approvedDiv">
+                       <table border="0"; style="width:Auto"; >
+                        <tr><td><asp:Label ID="lblpo" runat="server" Font-Bold="true"></asp:Label><br />
+                        <asp:GridView ID="dgv" runat="server" AutoGenerateColumns="False" Font-Size="12px" BackColor="White" BorderColor="#999999" 
+                        BorderStyle="Solid" BorderWidth="0px" CellPadding="1" ForeColor="Black" GridLines="Vertical"><AlternatingRowStyle BackColor="#CCCCCC" />
+                        <Columns>
+                        <asp:TemplateField HeaderText="Item No." SortExpression="intItemID">
+                        <ItemTemplate><asp:Label ID="lblitmno" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+                                             
+                        <asp:TemplateField HeaderText="Item Name" SortExpression="strItem">
+                        <ItemTemplate><asp:Label ID="lblitem" runat="server" Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="250px" /></asp:TemplateField>
 
+                        <asp:BoundField DataField="strSpecificationDetail" HeaderText="Specification" ItemStyle-HorizontalAlign="Center" SortExpression="strSpecificationDetail">
+                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:BoundField>
 
-                </div>
+                        <asp:TemplateField HeaderText="PO Quantity" SortExpression="numQty">
+                        <ItemTemplate><asp:Label ID="lblpoqnty" runat="server" Text='<%# Bind("numPOQty", "{0:0}") %>'></asp:Label></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="95px" /></asp:TemplateField>
+                         
+                        <asp:TemplateField HeaderText="MRR Quantity" SortExpression="MrrQty">
+                        <ItemTemplate><asp:Label ID="lblmrrqnty" runat="server" Text='<%# Bind("MrrQty", "{0:0}") %>'></asp:Label></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="95px" /></asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Value" SortExpression="monBDTTotal">
+                        <ItemTemplate><asp:Label ID="lblmonBDTTotal" runat="server" Text='<%# Bind("monBDTTotal", "{0:00}") %>'></asp:Label></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="95px" /></asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Location ID." SortExpression="intLocationID" Visible="false">
+                        <ItemTemplate><asp:Label ID="lblLocationId" runat="server" Text='<%# Bind("intLocationID") %>'></asp:Label></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+                           
+                        <asp:TemplateField HeaderText="Unit ID." SortExpression="intUnitID" Visible="false">
+                        <ItemTemplate><asp:Label ID="lblintUnitID" runat="server" Text='<%# Bind("intUnitID") %>'></asp:Label></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Checking">
+                        <ItemTemplate><asp:TextBox ID="txtChkQuantity" CssClass="txtBox" runat="server" TextMode="Number" Width="100px"></asp:TextBox></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Remarks">
+                        <ItemTemplate><asp:TextBox ID="txtRemarks" CssClass="txtBox" runat="server" Width="100px"></asp:TextBox></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Proceed"><EditItemTemplate><asp:CheckBox ID="chkbx" runat="server" Checked="false"/></EditItemTemplate>
+                        <ItemTemplate><asp:CheckBox ID="chkbx" runat="server" Checked="false"/></ItemTemplate><ItemStyle HorizontalAlign="Center"/></asp:TemplateField>
+
+                        </Columns>
+                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        </asp:GridView>            
+                        </td></tr>
+                        <tr><td style="text-align:right;"><asp:HiddenField ID="hdnpoid" runat="server"/><asp:HiddenField ID="hdnmrrid" runat="server"/><asp:HiddenField ID="hdnItemId" runat="server"/><asp:HiddenField ID="hdnconf" runat="server"/><a class="nextclick" onclick="HideReasonDiv('')">Cancel</a>
+                        <asp:Button ID="btnSubmit" runat="server" CssClass="nextclick" Text="Submit" OnClientClick="ConfirmAll()" OnClick="btnSubmit_Click"/></td></tr>
+                        </table>
+                    </div>
+                <%--ending approve div--%>
+                
                 <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 0px solid red;"></iframe>
             </ContentTemplate>
         </asp:UpdatePanel>

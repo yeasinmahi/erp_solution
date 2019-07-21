@@ -25,48 +25,45 @@
     <script src="../../../../Content/JS/JQUERY/GridviewScroll.min.js"></script>
         <script>
             function sum() {
+                 var txtJuly = parseFloat(document.getElementById('txtJuly').value);
+             
+            var txtAugest = parseFloat(document.getElementById('txtAugest').value);
+            
+            var txtSpetmeber = parseFloat(document.getElementById('txtSpetmeber').value);
+             
+            var txtOctober = parseFloat(document.getElementById('txtOctober').value);
+             
+            var txtNovember = parseFloat(document.getElementById('txtNovember').value);
+             
+            var txtDecember = parseFloat(document.getElementById('txtDecember').value);
 
-            var txtjan =parseInt (document.getElementById('txtjan').value);
+            var txtjan =parseFloat (document.getElementById('txtjan').value);
           
-            var txtFeb = parseInt(document.getElementById('txtFeb').value);
+            var txtFeb = parseFloat(document.getElementById('txtFeb').value);
              
-            var txtMarch = parseInt(document.getElementById('txtMarch').value);
+            var txtMarch = parseFloat(document.getElementById('txtMarch').value);
             
            
-            var txtApril = parseInt(document.getElementById('txtApril').value);
+            var txtApril = parseFloat(document.getElementById('txtApril').value);
 
            
-            var txtMay = parseInt(document.getElementById('txtMay').value);
+            var txtMay = parseFloat(document.getElementById('txtMay').value);
              
-            var txtJune = parseInt(document.getElementById('txtJune').value);
+            var txtJune = parseFloat(document.getElementById('txtJune').value);
              
-            var txtJuly = parseInt(document.getElementById('txtJuly').value);
-             
-            var txtAugest = parseInt(document.getElementById('txtAugest').value);
-            
-            var txtSpetmeber = parseInt(document.getElementById('txtSpetmeber').value);
-             
-            var txtOctober = parseInt(document.getElementById('txtOctober').value);
-             
-            var txtNovember = parseInt(document.getElementById('txtNovember').value);
-             
-            var txtDecember = parseInt(document.getElementById('txtDecember').value);
+           
             
                 var tot = document.getElementById('txtTotal').value;
                 var prate=document.getElementById('txtProductRate').value;
 
-                var result = parseFloat(txtjan*prate) + parseFloat(txtFeb*prate) + parseFloat(txtMarch*prate) + parseFloat(txtApril*prate)
-                         + parseFloat(txtMay*prate) + parseFloat(txtJune*prate) + parseFloat(txtJuly*prate) + parseFloat(txtAugest*prate)
-                  + parseFloat(txtSpetmeber) + parseFloat(txtOctober)
-                  + parseFloat(txtNovember*prate)
-                    + parseFloat(txtDecember * prate)
+                var result =  parseFloat(txtJuly*prate) + parseFloat(txtAugest*prate)
+                  + parseFloat(txtSpetmeber) + parseFloat(txtOctober) + parseFloat(txtNovember*prate)+ parseFloat(txtDecember * prate)
+                  +  parseFloat(txtjan * prate) + parseFloat(txtFeb * prate) + parseFloat(txtMarch * prate) + parseFloat(txtApril * prate)
+                         + parseFloat(txtMay*prate) + parseFloat(txtJune*prate)
 
-                  var qnt = parseFloat(txtjan) + parseFloat(txtFeb) + parseFloat(txtMarch) + parseFloat(txtApril)
-                         + parseFloat(txtMay) + parseFloat(txtJune) + parseFloat(txtJuly) + parseFloat(txtAugest)
-                  + parseFloat(txtSpetmeber) + parseFloat(txtOctober)
-                  + parseFloat(txtNovember)
-                  + parseFloat(txtDecember)
-
+                var qnt = parseFloat(txtJuly) + parseFloat(txtAugest) + parseFloat(txtSpetmeber) + parseFloat(txtOctober)+ parseFloat(txtNovember)
+                  + parseFloat(txtDecember)+ parseFloat(txtjan) + parseFloat(txtFeb) + parseFloat(txtMarch) + parseFloat(txtApril)
+                         + parseFloat(txtMay) + parseFloat(txtJune) 
 
 
             //alert(result);
@@ -79,13 +76,70 @@
 
         }
     </script>
+
+      <script>
+            function sumPromotion() {
+                 var txtJulyPromo = parseFloat(document.getElementById('txtJulyPromo').value);
+             
+            var txtAugestPromo = parseFloat(document.getElementById('txtAugestPromo').value);
+            
+            var txtSpetmeberPromo = parseFloat(document.getElementById('txtSeptemberPromo').value);
+             
+            var txtOctoberPromo = parseFloat(document.getElementById('txtOctoberPromo').value);
+             
+            var txtNovemberPromo = parseFloat(document.getElementById('txtNovemberPromo').value);
+             
+            var txtDecemberPromo = parseFloat(document.getElementById('txtDecemberPromo').value);
+
+            var txtJanuaryPromo =parseFloat (document.getElementById('txtJanuaryPromo').value);
+          
+            var txtFebPromo = parseFloat(document.getElementById('txtFebruaryPromo').value);
+             
+            var txtMarchPromo = parseFloat(document.getElementById('txtMarchPromo').value);
+            
+           
+            var txtAprilPromo = parseFloat(document.getElementById('txtAprilPromo').value);
+
+           
+            var txtMayPromo = parseFloat(document.getElementById('txtMayPromo').value);
+             
+            var txtJunePromo = parseFloat(document.getElementById('txtJunePromo').value);
+             
+           
+            
+                var totPromo = document.getElementById('txtTotal').value;
+                var prate=document.getElementById('txtProductRate').value;
+
+                var result =  parseFloat(txtJulyPromo*prate) + parseFloat(txtAugestPromo*prate)
+                  + parseFloat(txtSpetmeberPromo*prate) + parseFloat(txtOctoberPromo*prate) + parseFloat(txtNovemberPromo*prate)+ parseFloat(txtDecemberPromo * prate)
+                  +  parseFloat(txtJanuaryPromo * prate) + parseFloat(txtFebPromo * prate) + parseFloat(txtMarchPromo * prate) + parseFloat(txtAprilPromo * prate)
+                         + parseFloat(txtMayPromo*prate) + parseFloat(txtJunePromo*prate)
+
+                var qnt = parseFloat(txtJulyPromo) + parseFloat(txtAugestPromo) + parseFloat(txtSpetmeberPromo) + parseFloat(txtOctoberPromo)+ parseFloat(txtNovemberPromo)
+                  + parseFloat(txtDecemberPromo)+ parseFloat(txtJanuaryPromo) + parseFloat(txtFebPromo) + parseFloat(txtMarchPromo) + parseFloat(txtAprilPromo)
+                         + parseFloat(txtMayPromo) + parseFloat(txtJunePromo) 
+
+
+            //alert(result);
+
+            if (!isNaN(result)) {
+                document.getElementById('txtTotalamntPromo').value = result;
+                 document.getElementById('txtQntPromo').value = qnt;
+            }
+
+
+        }
+    </script>
     
     
     <script>
            function Confirm() {
                document.getElementById("hdnconfirm").value = "0";
 
-            var txtProduct = document.getElementById("txtProduct").value;
+               var txtProduct = document.getElementById("txtProduct").value;
+                var txtJuly = document.getElementById("txtJuly").value;
+            var txtAugest= document.getElementById("txtAugest").value;
+
             var txtjan = document.getElementById("txtjan").value;
             var txtFeb= document.getElementById("txtFeb").value;
 
@@ -93,6 +147,19 @@
                    alert("Product can not be empty");
                    document.getElementById("txtProduct").focus();
                }
+                else if (txtJuly == null || txtJuly == '') {
+                   alert("July qnt can not be empty");
+                   document.getElementById("txtJuly").focus();
+               }
+
+                    else if (txtAugest == null || txtAugest == '') {
+                   alert("Augest qnt can not be empty");
+                   document.getElementById("txtAugest").focus();
+               }
+
+
+
+
                else if (txtjan == null || txtjan == '') {
                    alert("January qnt can not be empty");
                    document.getElementById("txtjan").focus();
@@ -138,6 +205,9 @@
     <script type="text/javascript">
         function Validation() {
             var txtProduct = document.getElementById("txtProduct").value;
+              var txtJuly = document.getElementById("txtJuly").value;
+            var txtAugest= document.getElementById("txtAugest").value;
+
             var txtjan = document.getElementById("txtjan").value;
             var txtFeb= document.getElementById("txtFeb").value;
 
@@ -145,6 +215,17 @@
                 alert("Product can not be empty");
                 return false;
             }
+
+             if (txtJuly == null || txtJuly == '') {
+                   alert("July qnt can not be empty");
+                   document.getElementById("txtJuly").focus();
+               }
+
+                     if (txtAugest == null || txtAugest == '') {
+                   alert("Augest qnt can not be empty");
+                   document.getElementById("txtAugest").focus();
+               }
+
             if (txtjan == null || txtjan == '') {
                 alert("January qnt can not be empty");
                 return false;
@@ -326,6 +407,20 @@
         <div id="content">
             <table>
                 <tr>
+                       <td><asp:Label ID="lblJuly" runat="server" CssClass="lbl" Text="July:"></asp:Label><br /> 
+                           <asp:TextBox ID="txtJuly" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></td>
+                <td></td>
+                <td><label> Augest<br /> <asp:TextBox ID="txtAugest" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox> </label></td>
+               <td></td>
+
+                <td> <label> September<br /> <asp:TextBox ID="txtSpetmeber" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
+                <td></td>
+                <td><label> October<br /><asp:TextBox ID="txtOctober" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox> </label></td>
+                    <td></td>
+                <td> <label> November<br /> <asp:TextBox ID="txtNovember" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
+                <td></td>
+                <td><label> December<br /> <asp:TextBox ID="txtDecember" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox> </label></td>
+                    <td></td>
 
                 <td> <label> January<br /> <asp:TextBox ID="txtjan" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
                 <td></td>
@@ -342,19 +437,7 @@
                     <td></td>
                 
 
-                <td> <label> July<br /> <asp:TextBox ID="txtJuly" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
-                <td></td>
-                <td><label> Augest<br /> <asp:TextBox ID="txtAugest" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox> </label></td>
-               <td></td>
-
-                <td> <label> September<br /> <asp:TextBox ID="txtSpetmeber" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
-                <td></td>
-                <td><label> October<br /><asp:TextBox ID="txtOctober" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox> </label></td>
-                    <td></td>
-                <td> <label> November<br /> <asp:TextBox ID="txtNovember" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
-                <td></td>
-                <td><label> December<br /> <asp:TextBox ID="txtDecember" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox> </label></td>
-                    <td></td>
+             
                 <td><label> Qnt<br /> <asp:TextBox ID="txtBudgetQnt" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();" Enabled="false"  CssClass="txtBox"></asp:TextBox> </label></td>
                     
                     <td></td>
@@ -362,20 +445,49 @@
                       
                 </tr>
 
+                   <tr>
+                       <td> <asp:Label ID="lblJulyProm" runat="server" CssClass="lbl" Text="July:"></asp:Label><br /> <asp:TextBox ID="txtJulyPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();"  CssClass="txtBox"></asp:TextBox></label> </td>
+                <td></td>
+                <td><asp:Label ID="lblAugprom" runat="server" CssClass="lbl" Text="Aug(Prom):"></asp:Label><br /> <asp:TextBox ID="txtAugestPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();"  CssClass="txtBox"></asp:TextBox> </label></td>
+               <td></td>
+
+                <td><asp:Label ID="lblSepprom" runat="server" CssClass="lbl" Text="Sep(Prom):"></asp:Label><br /> <asp:TextBox ID="txtSeptemberPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();"  CssClass="txtBox"></asp:TextBox></label> </td>
+                <td></td>
+                <td><asp:Label ID="lblOctprom" runat="server" CssClass="lbl" Text="Oct(Prom):"></asp:Label><br /><asp:TextBox ID="txtOctoberPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();"  CssClass="txtBox"></asp:TextBox> </label></td>
+                    <td></td>
+                <td> <asp:Label ID="lblNovprom" runat="server" CssClass="lbl" Text="Nov(Prom):"></asp:Label><br /> <asp:TextBox ID="txtNovemberPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();"  CssClass="txtBox"></asp:TextBox></label> </td>
+                <td></td>
+                <td><asp:Label ID="lblDecprom" runat="server" CssClass="lbl" Text="Dec(Prom):"></asp:Label><br /> <asp:TextBox ID="txtDecemberPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();"  CssClass="txtBox"></asp:TextBox> </label></td>
+                    <td></td>
+
+                <td> <asp:Label ID="lblJanuaryprom" runat="server" CssClass="lbl" Text="Jan(Prom):"></asp:Label><br /> <asp:TextBox ID="txtJanuaryPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();"  CssClass="txtBox"></asp:TextBox></label> </td>
+                <td></td>
+                <td><asp:Label ID="lblFebprom" runat="server" CssClass="lbl" Text="Feb(Prom):"></asp:Label><br /> <asp:TextBox ID="txtFebruaryPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();"   CssClass="txtBox"></asp:TextBox> </label></td>
+               <td></td>
+
+                <td><asp:Label ID="lblMarchprom" runat="server" CssClass="lbl" Text="March(Prom):"></asp:Label><br /> <asp:TextBox ID="txtMarchPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();"  CssClass="txtBox"></asp:TextBox></label> </td>
+                <td></td>
+                <td><asp:Label ID="lblAprilprom" runat="server" CssClass="lbl" Text="April(Prom):"></asp:Label><br /> <asp:TextBox ID="txtAprilPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"  onkeyup="sumPromotion();" CssClass="txtBox"></asp:TextBox> </label></td>
+                    <td></td>
+                     <td> <asp:Label ID="lblMayprom" runat="server" CssClass="lbl" Text="May(Prom):"></asp:Label><br /> <asp:TextBox ID="txtMayPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();"  CssClass="txtBox"></asp:TextBox></label> </td>
+                <td></td>
+                <td><asp:Label ID="lblJuneprom" runat="server" CssClass="lbl" Text="June(Prom):"></asp:Label><br /> <asp:TextBox ID="txtJunePromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();" CssClass="txtBox"></asp:TextBox> </label></td>
+                    <td></td>
+                
+
+             
+                <td><asp:Label ID="lblPromQnt" runat="server" CssClass="lbl" Text="Qnt(Prom):"></asp:Label><br /> <asp:TextBox ID="txtQntPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();" Enabled="false"  CssClass="txtBox"></asp:TextBox> </label></td>
+                    
+                    <td></td>
+                <td><asp:Label ID="lblPromTotal" runat="server" CssClass="lbl" Text="Amount(Prom):"></asp:Label><br /> <asp:TextBox ID="txtTotalamntPromo" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sumPromotion();" Enabled="false"  CssClass="txtBox"></asp:TextBox> </label></td>
+                      
+                </tr>
 
 
                     </table>
 </div>
         <div>
-           <%--   <tr>
-                    <td style="text-align:right;"><asp:Label ID="lblJan" runat="server" CssClass="lbl" Text="January:"></asp:Label></td>
-                     <td>  <asp:TextBox ID="txtJanurary" runat="server"></asp:TextBox> </td>  
-
-                   <td style="text-align:right;"><asp:Label ID="lblFeb" runat="server" CssClass="lbl" Text="February:"></asp:Label></td>
-                     <td>  <asp:TextBox ID="February" runat="server"></asp:TextBox> </td>  
-
-
-            </tr>--%>
+  
                  
             <tr>
                   <td colspan="4">
@@ -406,20 +518,40 @@
                                 <asp:HiddenField ID="hdncostcneteid" runat="server" Value='<%# Eval("costcneteid") %>' />
                                 <asp:HiddenField ID="hdnyrid" runat="server" Value='<%# Eval("yrid") %>' /></ItemTemplate></asp:TemplateField> 
                              <asp:BoundField DataField="prdname" HeaderText="ProductName" SortExpression="prdname" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                             <asp:BoundField DataField="january" HeaderText="January" SortExpression="january" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                             <asp:BoundField DataField="february" HeaderText="February" SortExpression="february" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                             <asp:BoundField DataField="march" HeaderText="March" SortExpression="march" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                             <asp:BoundField DataField="april" HeaderText="April"  SortExpression="april" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                             <asp:BoundField DataField="may" HeaderText="May" SortExpression="may" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
-                            <asp:BoundField DataField="june" HeaderText="June" SortExpression="june" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                            
                             <asp:BoundField DataField="july" HeaderText="July" SortExpression="july" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                               <asp:BoundField DataField="augest" HeaderText="Augest" SortExpression="augest" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="september" HeaderText="September" SortExpression="september" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="october" HeaderText="October" SortExpression="october" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="november" HeaderText="November" SortExpression="november" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="december" HeaderText="December" SortExpression="december" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
-                           <asp:BoundField DataField="totqnt" HeaderText="Qnt" SortExpression="totqnt" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
-                            <asp:BoundField DataField="totAmount" HeaderText="Amount" SortExpression="totAmount" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
+                            <asp:BoundField DataField="january" HeaderText="January" SortExpression="january" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="february" HeaderText="February" SortExpression="february" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="march" HeaderText="March" SortExpression="march" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="april" HeaderText="April"  SortExpression="april" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="may" HeaderText="May" SortExpression="may" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
+                            <asp:BoundField DataField="june" HeaderText="June" SortExpression="june" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                           
+
+                              <asp:BoundField DataField="julyPromotion" HeaderText="JulyProm" SortExpression="july" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                              <asp:BoundField DataField="augestPromotion" HeaderText="AugestProm" SortExpression="augest" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="septemberPromotion" HeaderText="SeptemberProm" SortExpression="september" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="octoberPromotion" HeaderText="OctoberProm" SortExpression="october" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="novemberPromotion" HeaderText="NovemberProm" SortExpression="november" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="decemberPromotion" HeaderText="DecemberProm" SortExpression="december" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
+                            <asp:BoundField DataField="januaryPromotion" HeaderText="JanuaryProm" SortExpression="january" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="februaryPromotion" HeaderText="FebruaryProm" SortExpression="february" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="marchPromotion" HeaderText="MarchProm" SortExpression="march" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="aprilPromotion" HeaderText="AprilProm"  SortExpression="april" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="mayPromotion" HeaderText="MayProm" SortExpression="may" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
+                            <asp:BoundField DataField="junePromotion" HeaderText="JuneProm" SortExpression="june" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                           
+
+
+
+
+                           <asp:BoundField DataField="totqnt" HeaderText="PromQnt" SortExpression="totqnt" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
+                            <asp:BoundField DataField="totAmount" HeaderText="PromAmount" SortExpression="totAmount" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
                             <asp:CommandField ControlStyle-BackColor="#ff9900" ShowDeleteButton="True"  />
                         
 

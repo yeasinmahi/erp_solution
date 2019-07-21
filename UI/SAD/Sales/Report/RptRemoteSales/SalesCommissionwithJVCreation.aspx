@@ -119,7 +119,7 @@
 
                 </tr>
             <tr>
-                <td style="text-align:right"><asp:Label ID="lblFactroyRate" CssClass="lbl" runat="server" Text="FactRate"></asp:Label></td> 
+                <td style="text-align:right"><asp:Label ID="lblFactroyRate" CssClass="lbl" runat="server" Text="Fact/Commission Rate"></asp:Label></td> 
                 <td>
                     <asp:TextBox ID="txtfactrate" runat="server" BackColor="#ffcc00"></asp:TextBox>
                 </td>
@@ -178,7 +178,10 @@
                     <asp:BoundField DataField="strArea1" HeaderText="Area" SortExpression="strArea" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                     <asp:BoundField DataField="strRegion1" HeaderText="Region" SortExpression="strRegion" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                        <asp:BoundField DataField="Narration1" HeaderText="Narration" SortExpression="Narration1" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                    </Columns>
+                  
+                      
+                  
+                  </Columns>
                     <FooterStyle BackColor="#CCCCCC" />
                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />

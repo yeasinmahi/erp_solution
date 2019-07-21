@@ -7,11 +7,11 @@ namespace HR_BLL.Employee
 {
     public class EmployeeFullInformationBll
     {
-        public string Insert(int intEnroll, string strEmpCardNo, string strEmpName, string strFathersName, string strMothersName, string strParmanentAddress, string strNIDNo, DateTime dteLastPromotionalDate, int intPresentDesignationID, string strPresentDesignation, int intPresentDepartmentID, string strPresentDepartment, decimal monPresentSalary, DateTime dteJoiningDate, int intJoiningDesignationID, string strJoiningDesignation, decimal monJoiningSalary, string strNameOfPreviousOrg, string strPreviousOrgDesignation, decimal monPreviousOrgSalary, int intActionBy)
+        public string Insert(int intEnroll, string strEmpCardNo, string strEmpName, string strFathersName, string strMothersName, string strParmanentAddress,string strPresentAddress, string strNIDNo, DateTime? dteLastPromotionalDate, int intPresentDesignationID, string strPresentDesignation, int intPresentDepartmentID, string strPresentDepartment, decimal monPresentSalary, DateTime dteJoiningDate, int intJoiningDesignationID, string strJoiningDesignation, decimal monJoiningSalary, string strResponsibilities, string strNameOfPreviousOrg, string strPreviousOrgDesignation, decimal monPreviousOrgSalary, int intActionBy)
         {
             string strMessage = string.Empty;
             sprPersonalInformationTableAdapter adp = new sprPersonalInformationTableAdapter();
-            adp.Insert1(intEnroll, strEmpCardNo, strEmpName, strFathersName, strMothersName, strParmanentAddress, strNIDNo, dteLastPromotionalDate, intPresentDesignationID, strPresentDesignation, intPresentDepartmentID, strPresentDepartment, monPresentSalary, dteJoiningDate, intJoiningDesignationID, strJoiningDesignation, monJoiningSalary, strNameOfPreviousOrg, strPreviousOrgDesignation, monPreviousOrgSalary, intActionBy, ref strMessage);
+            adp.Insert1(intEnroll, strEmpCardNo, strEmpName, strFathersName, strMothersName, strParmanentAddress,strPresentAddress, strNIDNo, dteLastPromotionalDate, intPresentDesignationID, strPresentDesignation, intPresentDepartmentID, strPresentDepartment, monPresentSalary, dteJoiningDate, intJoiningDesignationID, strJoiningDesignation, monJoiningSalary,strResponsibilities, strNameOfPreviousOrg, strPreviousOrgDesignation, monPreviousOrgSalary, intActionBy, ref strMessage);
             return strMessage;
         }
         public DataTable GetDesignation()
@@ -44,10 +44,10 @@ namespace HR_BLL.Employee
             tblResultGradeListTableAdapter adp = new tblResultGradeListTableAdapter();
             return adp.GetData();
         }
-        public DataTable GetExamList()
+        public DataTable GetExamList(int levelOfEducation)
         {
             tblExamListTableAdapter adp = new tblExamListTableAdapter();
-            return adp.GetData();
+            return adp.GetData(levelOfEducation);
         }
         public DataTable GetEducationBoard()
         {
@@ -61,7 +61,7 @@ namespace HR_BLL.Employee
             adp.Insert1(intPart, intEnroll, intEducationID, strEducationName, intResultID, strResult, intExamID, strExamName, numCGPAMarks, numScale, strConcentrationMajorGroup, intBoardID, strBoard, strInstituteName, intYearOfPassing, strDurationYear, strAchievement, intActionBy, ysnActive, intEducationInfoID, ref message);
             return message;
         }
-        public string InsertExperienceInfo(int intPart, int intEnroll, string strCompanyName, string strCompanyLocation, string strCompanyBusiness, string strDesignation, string strDepartment, string strResponsibilities, DateTime dteEmploymentPeriodFrom, DateTime dteEmploymentPeriodTo, string strCurrentlyWorking, string strExpertiseSkill, int intActionBy)
+        public string InsertExperienceInfo(int intPart, int intEnroll, string strCompanyName, string strCompanyLocation, string strCompanyBusiness, string strDesignation, string strDepartment, string strResponsibilities, DateTime dteEmploymentPeriodFrom, DateTime? dteEmploymentPeriodTo, string strCurrentlyWorking, string strExpertiseSkill, int intActionBy)
         {
             string message = string.Empty;
             sprEmploymentHistoryTableAdapter adp = new sprEmploymentHistoryTableAdapter();
@@ -117,7 +117,25 @@ namespace HR_BLL.Employee
             tblEducationInformationTableAdapter adp = new tblEducationInformationTableAdapter();
             return adp.GetData(enroll);
         }
-
-
+        public DataTable DeleteWorkTitle(int id)
+        {
+            tblOthersInformation1TableAdapter adp = new tblOthersInformation1TableAdapter();
+            return adp.Delete1(id);
+        }
+        public DataTable DeleteTraining(int id)
+        {
+            tblTrainingHistory1TableAdapter adp = new tblTrainingHistory1TableAdapter();
+            return adp.Delete1(id);
+        }
+        public DataTable DeleteExperience(int id)
+        {
+            tblEmploymentHistory1TableAdapter adp = new tblEmploymentHistory1TableAdapter();
+            return adp.Delete1(id);
+        }
+        public DataTable DeleteEducation(int id)
+        {
+            tblEducationInformation1TableAdapter adp = new tblEducationInformation1TableAdapter();
+            return adp.Delete1(id);
+        }
     }
 }

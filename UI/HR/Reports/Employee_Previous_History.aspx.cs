@@ -12,7 +12,7 @@ namespace UI.HR.Reports
 {
     public partial class Emp_Profile_Leave_Movement_Report : BasePage
     {
-        public static EmployeeBll employeeBll = new EmployeeBll();
+        public static EmployeeBll employeeBll;
         string[] arrayKey;
         char[] delimiterChars = { '[', ']' };
         int EmpID;
@@ -22,6 +22,7 @@ namespace UI.HR.Reports
             {
                 pnlUpperControl.DataBind();
                 DropDownYear(2000); //starting year = 2000
+                employeeBll = new EmployeeBll();
             }
             else
             {
