@@ -49,7 +49,7 @@ namespace UI.PaymentModule
         
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            LoadGrid()
+            LoadGrid();
         }
         public void LoadGrid()
         {
