@@ -1741,6 +1741,7 @@
     <Content Include="Transport\InternalTTripReport.aspx" />
     <Content Include="Transport\InternalTVehicleMovementDetails.aspx" />
     <Content Include="Transport\InternalTVehicleMovementReport.aspx" />
+    <Content Include="Transport\RemoteTADAUpdate.aspx" />
     <Content Include="Transport\RentedVehicleReg.aspx" />
     <Content Include="Transport\TransportVheicleInfoUpdate.aspx" />
     <Content Include="Transport\TripvsCost\PumpFoodingBill.aspx" />
@@ -9469,6 +9470,13 @@
     </Compile>
     <Compile Include="Transport\InternalTVehicleMovementReport.aspx.designer.cs">
       <DependentUpon>InternalTVehicleMovementReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\RemoteTADAUpdate.aspx.cs">
+      <DependentUpon>RemoteTADAUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\RemoteTADAUpdate.aspx.designer.cs">
+      <DependentUpon>RemoteTADAUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\RentedVehicleReg.aspx.cs">
       <DependentUpon>RentedVehicleReg.aspx</DependentUpon>
