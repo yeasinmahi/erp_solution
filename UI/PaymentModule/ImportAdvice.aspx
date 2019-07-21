@@ -76,9 +76,81 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                            <div class="box">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Import Advice Details</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <asp:GridView ID="gridview" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="Both">
+                                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="SL">
+                                                    <ItemTemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Request Type">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblType" runat="server" Text='<%# Bind("strType") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Description">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("strDescription") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left"/>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Debiting Amount">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("monAmount") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Request Id">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("intReqID") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Pay For">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("intPayFor") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Voucher">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("strVoucher") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle Width="100px"/>
+                                                </asp:TemplateField>
 
-                </div>
+                                            </Columns>
+                                            <EditRowStyle BackColor="#999999" />
+                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
+                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
+                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                        </asp:GridView>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>

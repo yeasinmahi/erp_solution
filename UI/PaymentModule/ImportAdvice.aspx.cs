@@ -55,7 +55,24 @@ namespace UI.PaymentModule
         {
             int unitId = ddlUnit.SelectedValue();
             int bankId = ddlbank.SelectedValue();
+           
             _dt = _bll.GetBankInfoForImport(unitId, bankId);
+            if (_dt.Rows.Count < 1)
+            {
+                Toaster("Bank account info for payment is not found.");
+                return;
+            }
+            DateTime date = Convert.ToDateTime(txtDate.Text);
+            string adviceGroupid = ddlAdvice.SelectedText();
+            _dt = _bll.GetAdviceInformation(unitId, bankId, date, adviceGroupid);
+            if (_dt.Rows.Count > 0)
+            {
+                gridview.Loads(_dt);
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString());
+            }
             
         }
 
