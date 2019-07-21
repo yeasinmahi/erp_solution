@@ -1,25 +1,27 @@
-﻿using Flogging.Core;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using Flogging.Core;
 using GLOBAL_BLL;
 using HR_BLL.Global;
 using SAD_BLL.Customer.Report;
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
-using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using LOGIS_BLL.Supplier;
 
-namespace UI.SAD.Order
+namespace UI.Transport
 {
-    public partial class RemoteTADAInformationUpdate : BasePage
+    public partial class RemoteTADAUpdate : BasePage
     {
         DeliverySupport objDeliverySupportBLL = new DeliverySupport();
-        char[] delimiterChars = { '[', ']' }; string[] arrayKey;
+        char[] delimiterChars = { '[', ']' };
+        string[] arrayKey;
         decimal petrolcost = 0; decimal octencost = 0; decimal cngcost = 0; decimal lubriantcost = 0;
         decimal busfare = 0; decimal Rickfare = 0; decimal cngfare = 0; decimal trainfare = 0; decimal airplance = 0; decimal othervhfare = 0;
         decimal mntcost = 0; decimal ferrytol = 0;
@@ -56,23 +58,17 @@ namespace UI.SAD.Order
                 hdnAreamanagerEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
                 hdnstation.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString();
                 HiddenUnit.Value = HttpContext.Current.Session[SessionParams.UNIT_ID].ToString();
-                txtEmployeeSearch.Attributes.Add("onkeyUp", "SearchText();");
+                //txtEmployeeSearch.Attributes.Add("onkeyUp", "SearchText();");
+                //txtVheicleName.Attributes.Add("onkeyUp", "SearchTextVheicleList();");
                 hdnAction.Value = "0";
                 ////---------xml----------
                 try { File.Delete(filePathForXML); }
                 catch { }
                 ////-----**----------//
-
-
             }
-            
-
-
         }
 
-
-        
-         [WebMethod]
+        [WebMethod]
         public static List<string> getemplontadasupervisor(string strSearchKey)
         {
             SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
@@ -80,8 +76,17 @@ namespace UI.SAD.Order
             result = bll.getemployeebaseTADASupervisor(
             int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), strSearchKey);
             return result;
-        }        
+        }
 
+        [WebMethod]
+        public static List<string> Getstationvhcllist(string strSearchKey)
+        {
+            VehicleSupplierST blst = new VehicleSupplierST();
+
+            List<string> result = new List<string>();
+            result = blst.AutoSearchStandVhclList(strSearchKey);
+            return result;
+        }
 
 
         private void showDataForUpdate()
@@ -95,61 +100,62 @@ namespace UI.SAD.Order
             try
             {
                 DateTime dtFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
-                    DateTime dtToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
-                    int deptid=  int.Parse( HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
-                    if (rdbUserOption.SelectedItem.Text == "Own")
+                DateTime dtToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
+                int deptid = int.Parse(HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
+
+                //if (rdbUserOption.SelectedItem.Text == "Own")
+                //{
+                //    int intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                //    dt = bll.getTADAApplicantDataForUpdate(dtFromDate, dtToDate, intTSOEnroll);
+
+                //    if (dt.Rows.Count > 0)
+                //    {
+
+                //        grdvForUpdateTADABikeCarUser.DataSource = dt;
+                //        grdvForUpdateTADABikeCarUser.DataBind();
+
+                //    }
+                //    else
+                //    {
+
+
+                //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data againist your query');", true);
+
+                //    }
+                //}
+                //else if (rdbUserOption.SelectedItem.Text == "Other")
+                //{
+
+                //if (deptid == 14 || deptid == 3 || deptid == 55 || deptid == 21 || deptid == 234)
+                if (CheckUserByDepartmentId(deptid)|| true) 
+                {
+
+                    //string strSearchKey = txtEmployeeSearch.Text;
+                    string strSearchKey = txtVheicleName.Text;
+                    arrayKey = strSearchKey.Split(delimiterChars);
+                    string code = arrayKey[1].ToString();
+
+                    string TSOName = strSearchKey;
+                    int vehicleID = int.Parse(code);
+                    Session["intTSOEnroll"] = intTSOEnroll;
+
+                    dt = objDeliverySupportBLL.getTADADataByVehicle(dtFromDate, dtToDate, vehicleID);
+
+                    if (dt.Rows.Count > 0)
                     {
-                        int intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                        dt = bll.getTADAApplicantDataForUpdate(dtFromDate, dtToDate, intTSOEnroll);
 
-                        if (dt.Rows.Count > 0)
-                        {
+                        grdvForUpdateTADABikeCarUser.DataSource = dt;
+                        grdvForUpdateTADABikeCarUser.DataBind();
 
-                            grdvForUpdateTADABikeCarUser.DataSource = dt;
-                            grdvForUpdateTADABikeCarUser.DataBind();
-
-                        }
-                        else
-                        {
-
-
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data againist your query');", true);
-
-                        }
                     }
-                    else if (rdbUserOption.SelectedItem.Text == "Other"  )
+                    else
                     {
-                    //if (deptid == 14 || deptid == 3 || deptid == 55 || deptid == 21 || deptid == 234)
-                    if (CheckUserByDepartmentId(deptid))
-                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data againist your query');", true);
 
-                            string strSearchKey = txtEmployeeSearch.Text;
-                        arrayKey = strSearchKey.Split(delimiterChars);
-                        string code = arrayKey[1].ToString();
-
-                        string TSOName = strSearchKey;
-                         intTSOEnroll = int.Parse(code);
-                         Session["intTSOEnroll"] = intTSOEnroll;
-
-                        dt = bll.getTADAApplicantDataForUpdate(dtFromDate, dtToDate, intTSOEnroll);
-
-                        if (dt.Rows.Count > 0)
-                        {
-
-                            grdvForUpdateTADABikeCarUser.DataSource = dt;
-                            grdvForUpdateTADABikeCarUser.DataBind();
-
-                        }
-                        else
-                        {
-
-
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data againist your query');", true);
-
-                        }
                     }
-                        else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! You are not permitted');", true); }
-                    }
+                }
+                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! You are not permitted');", true); }
+                //}
             }
             catch (Exception ex)
             {
@@ -162,9 +168,6 @@ namespace UI.SAD.Order
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
-
-
         }
 
         private bool CheckUserByDepartmentId(int deptId)
@@ -188,8 +191,6 @@ namespace UI.SAD.Order
         {
             showDataForUpdate();
         }
-
-
 
         private void calculateRowTotal(int RowIndex)
         {
@@ -256,8 +257,8 @@ namespace UI.SAD.Order
             {
                 cngfare = 0;
             }
-            
-           
+
+
 
             string strothervhfare = ((TextBox)grdvForUpdateTADABikeCarUser.Rows[RowIndex].FindControl("txtdecFareOtherVheicleAmountT")).Text;
             if (strothervhfare == "") { othervhfare = 0; }
@@ -427,7 +428,7 @@ namespace UI.SAD.Order
                 else
                     cngfare = cngfare + decimal.Parse(strcngfare);
 
-               
+
 
                 string strothervhfare = ((TextBox)grdvForUpdateTADABikeCarUser.Rows[RowIndex].FindControl("txtdecFareOtherVheicleAmountT")).Text;
                 if (strothervhfare == "") { othervhfare = 0; }
@@ -496,7 +497,7 @@ namespace UI.SAD.Order
 
             ((TextBox)grdvForUpdateTADABikeCarUser.Rows[cnt - 1].FindControl("txtdecFareRickshawAmountT")).Text = Rickfare.ToString();
             ((TextBox)grdvForUpdateTADABikeCarUser.Rows[cnt - 1].FindControl("txtdecFareCNGAmountT")).Text = cngfare.ToString();
-            
+
             ((TextBox)grdvForUpdateTADABikeCarUser.Rows[cnt - 1].FindControl("txtdecFareOtherVheicleAmountT")).Text = othervhfare.ToString();
 
             ((TextBox)grdvForUpdateTADABikeCarUser.Rows[cnt - 1].FindControl("txtdecCostAmountMaintenaceT")).Text = mntcost.ToString();
@@ -662,17 +663,17 @@ namespace UI.SAD.Order
 
         protected void txtdecSupplierCNG_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void txtdecSupplierGas_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void txtdecPersonalMilage_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void txtdecMlgRate_TextChanged(object sender, EventArgs e)
@@ -748,157 +749,157 @@ namespace UI.SAD.Order
             {
 
                 char[] delimiterChars = { ',' };
-            string temp = ((Button)sender).CommandArgument.ToString();
-            string[] searchKey = temp.Split(delimiterChars);
-            string intRowSl = searchKey[0].ToString();
-            int rowsl = int.Parse(intRowSl);
+                string temp = ((Button)sender).CommandArgument.ToString();
+                string[] searchKey = temp.Split(delimiterChars);
+                string intRowSl = searchKey[0].ToString();
+                int rowsl = int.Parse(intRowSl);
 
-            string intPKIDtbl = searchKey[1].ToString();
-            int intID = int.Parse(intPKIDtbl);
+                string intPKIDtbl = searchKey[1].ToString();
+                int intID = int.Parse(intPKIDtbl);
 
-            if (rdbUserOption.SelectedItem.Text == "Own")
-            { intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()); }
-            else
-            {
-                intTSOEnroll = int.Parse(Session["intTSOEnroll"].ToString());
-            }
-
-            //intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            int totalCount = grdvForUpdateTADABikeCarUser.Rows.Cast<GridViewRow>()
-                 .Count(r => ((CheckBox)r.FindControl("chkbx")).Checked);
-            if (totalCount > 0)
-            {
-                if (totalCount < 2)
+                if (rdbUserOption.SelectedItem.Text == "Own")
+                { intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()); }
+                else
                 {
-                    for (int rowIndex = 0; rowIndex < grdvForUpdateTADABikeCarUser.Rows.Count; rowIndex++)
+                    intTSOEnroll = int.Parse(Session["intTSOEnroll"].ToString());
+                }
+
+                //intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                int totalCount = grdvForUpdateTADABikeCarUser.Rows.Cast<GridViewRow>()
+                     .Count(r => ((CheckBox)r.FindControl("chkbx")).Checked);
+                if (totalCount > 0)
+                {
+                    if (totalCount < 2)
                     {
-                        bool ysnChecked = ((CheckBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[0].Controls[0]).Checked;
-                        if (ysnChecked)
+                        for (int rowIndex = 0; rowIndex < grdvForUpdateTADABikeCarUser.Rows.Count; rowIndex++)
                         {
-                            try
+                            bool ysnChecked = ((CheckBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[0].Controls[0]).Checked;
+                            if (ysnChecked)
                             {
+                                try
+                                {
 
-                                TextBox txtintid = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[1].FindControl("txtPkID");
-                                TextBox txtdteFromdateNoBikeDet = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[2].FindControl("dteFromdateNoBikeDet");
-                                TextBox txtstrNameT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[3].FindControl("strNamNoBikeDet");
-                                TextBox txtdecStartMilageT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[4].FindControl("txtdecStartMilageT");
-                                TextBox txtdecEndMilageT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[5].FindControl("txtdecEndMilageT");
-                                TextBox txtdecConsumedKmT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[6].FindControl("txtdecConsumedKmT");
-                                TextBox txtstrSupportingNoT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[7].FindControl("txtstrSupportingNoT");
-                                TextBox txtdecQntPetrolT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[8].FindControl("txtdecQntPetrolT");
-                                TextBox txtdecCostPetrolT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[9].FindControl("txtdecCostPetrolT");
-                                TextBox txtdecQntOctenT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[10].FindControl("txtdecQntOctenT");
-                                TextBox txtdecCostOctenT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[11].FindControl("txtdecCostOctenT");
-                                TextBox txtdecQntCarbonNitGasT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[12].FindControl("txtdecQntCarbonNitGasT");
-                                TextBox txtdecCostCarbonNitGasT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[13].FindControl("txtdecCostCarbonNitGasT");
-                                TextBox txtdecQntLubricant = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[14].FindControl("txtdecQntLubricant");
-                                TextBox txtdecCostLubricant = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[15].FindControl("txtdecCostLubricant");
-                                TextBox txtdecFareBusAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[16].FindControl("txtdecFareBusAmountT");
-                                TextBox txtdecFareRickshawAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[17].FindControl("txtdecFareRickshawAmountT");
-                                TextBox txtdecFareCNGAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[18].FindControl("txtdecFareCNGAmountT");
-                                TextBox txtdecFareOtherVheicleAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[19].FindControl("txtdecFareOtherVheicleAmountT");
-                                TextBox txtdecCostAmountMaintenaceT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[20].FindControl("txtdecCostAmountMaintenaceT");
-                                TextBox txtdecFeryTollCostT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[21].FindControl("txtdecFeryTollCostT");
-                                TextBox txtdecDAAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[22].FindControl("txtdecDAAmountT");
-                                TextBox txtdecDriverDACostT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[23].FindControl("txtdecDriverDACostT");
-                                TextBox txtdecHotelBillAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[24].FindControl("txtdecHotelBillAmountT");
-                                TextBox txtdecDriverHotelBillAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[25].FindControl("txtdecDriverHotelBillAmountT");
-                                TextBox txtdecPhotoCopyCostT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[26].FindControl("txtdecPhotoCopyCostT");
-                                TextBox txtdecCourierCostT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[27].FindControl("txtdecCourierCostT");
-                                TextBox txtdecOtherBillAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[28].FindControl("txtdecOtherBillAmountT");
-                                TextBox txtdecRowTotalT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[29].FindControl("txtdecRowTotalT");
-                                TextBox txtSl = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[30].FindControl("txtRowSl");
-                                TextBox txtdecCNGCredit1Amount = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[31].FindControl("txtdecSupplierCNG");
-                                string txtstrCreditSupplier1nAME = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[32].FindControl("ddlCreditFuelStation1List")).SelectedItem.Text.ToString();
-                                string updatecngCreditsupplierONEID = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[32].FindControl("ddlCreditFuelStation1List")).SelectedValue.ToString();
-                                TextBox txtdecCNGCredit2Amount = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[34].FindControl("txtCNGCredit2AMNT");
-                                string txtstrCreditSupplier2nAME = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[35].FindControl("ddlCreditFuelStation2List")).SelectedItem.Text.ToString();
-                                string updatecngCreditsupplierTWOID = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[35].FindControl("ddlCreditFuelStation2List")).SelectedValue.ToString();
-                                TextBox txtdecOilCreditAmount = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[37].FindControl("txtOilCreditAmnt");
-                                string txtdecOilCreditStation = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[38].FindControl("ddlCreditFuelStation3List")).SelectedItem.Text.ToString();
-                                string updateOilCreditsupplier3ID = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[38].FindControl("ddlCreditFuelStation3List")).SelectedValue.ToString();
-                                TextBox txtdecPersonalMilage = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[40].FindControl("txtdecPersonalMilage");
-                                TextBox txtdecMlgRate = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[41].FindControl("txtdecMlgRate");
-                                TextBox txtdecPersonalTotalcost = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[42].FindControl("txtdecPersonalTotalcost");
-                                //intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                                string strBillDate = txtdteFromdateNoBikeDet.Text;
-                                dtForm = DateTime.Parse(strBillDate.ToString());
-                                StartMilage = decimal.Parse(txtdecStartMilageT.Text);
-                                EndMilage = decimal.Parse(txtdecEndMilageT.Text);
-                                ConsumedKM = decimal.Parse(txtdecConsumedKmT.Text);
-                                strRemarks = txtstrSupportingNoT.Text;
-                                QntPetrol = decimal.Parse(txtdecQntPetrolT.Text);
-                                CostPetrol = decimal.Parse(txtdecCostPetrolT.Text);
-                                QntOcten = decimal.Parse(txtdecQntOctenT.Text);
-                                CostOcten = decimal.Parse(txtdecCostOctenT.Text);
-                                QntCarBonNitr = decimal.Parse(txtdecQntCarbonNitGasT.Text);
-                                CostCarbonNit = decimal.Parse(txtdecCostCarbonNitGasT.Text);
-                                QntLubricant = decimal.Parse(txtdecQntLubricant.Text);
-                                CostLubricant = decimal.Parse(txtdecCostLubricant.Text);
-                                BusFareTaka = decimal.Parse(txtdecFareBusAmountT.Text);
-                                RickFare = decimal.Parse(txtdecFareRickshawAmountT.Text);
-                                CNGFare = decimal.Parse(txtdecFareCNGAmountT.Text);
-                                OtherVhFare = decimal.Parse(txtdecFareOtherVheicleAmountT.Text);
-                                MntCost = decimal.Parse(txtdecCostAmountMaintenaceT.Text);
-                                FerryTol = decimal.Parse(txtdecFeryTollCostT.Text);
-                                OwnDA = decimal.Parse(txtdecDAAmountT.Text);
-                                OtherDA = decimal.Parse(txtdecDriverDACostT.Text);
-                                OwnHotel = decimal.Parse(txtdecHotelBillAmountT.Text);
-                                DriverHotel = decimal.Parse(txtdecDriverHotelBillAmountT.Text);
-                                Photocopy = decimal.Parse(txtdecPhotoCopyCostT.Text);
-                                Courier = decimal.Parse(txtdecCourierCostT.Text);
-                                OtherCost = decimal.Parse(txtdecOtherBillAmountT.Text);
-                                RowTotal = decimal.Parse(txtdecRowTotalT.Text);
-                                paymentType = int.Parse("0");
-                                cngCredit1Amount = decimal.Parse(txtdecCNGCredit1Amount.Text);
-                                cngCredit1Name = txtstrCreditSupplier1nAME;
-                                updatecngCreditsupplier1ID = int.Parse(updatecngCreditsupplierONEID.ToString());
-                                cngCredit2Amount = decimal.Parse(txtdecCNGCredit2Amount.Text);
-                                cngCredit2Name = txtstrCreditSupplier2nAME;
-                                updatecngCredits2id = int.Parse(updatecngCreditsupplierTWOID.ToString());
-                                OilCreditAmount = decimal.Parse(txtdecOilCreditAmount.Text);
+                                    TextBox txtintid = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[1].FindControl("txtPkID");
+                                    TextBox txtdteFromdateNoBikeDet = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[2].FindControl("dteFromdateNoBikeDet");
+                                    TextBox txtstrNameT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[3].FindControl("strNamNoBikeDet");
+                                    TextBox txtdecStartMilageT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[4].FindControl("txtdecStartMilageT");
+                                    TextBox txtdecEndMilageT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[5].FindControl("txtdecEndMilageT");
+                                    TextBox txtdecConsumedKmT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[6].FindControl("txtdecConsumedKmT");
+                                    TextBox txtstrSupportingNoT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[7].FindControl("txtstrSupportingNoT");
+                                    TextBox txtdecQntPetrolT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[8].FindControl("txtdecQntPetrolT");
+                                    TextBox txtdecCostPetrolT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[9].FindControl("txtdecCostPetrolT");
+                                    TextBox txtdecQntOctenT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[10].FindControl("txtdecQntOctenT");
+                                    TextBox txtdecCostOctenT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[11].FindControl("txtdecCostOctenT");
+                                    TextBox txtdecQntCarbonNitGasT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[12].FindControl("txtdecQntCarbonNitGasT");
+                                    TextBox txtdecCostCarbonNitGasT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[13].FindControl("txtdecCostCarbonNitGasT");
+                                    TextBox txtdecQntLubricant = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[14].FindControl("txtdecQntLubricant");
+                                    TextBox txtdecCostLubricant = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[15].FindControl("txtdecCostLubricant");
+                                    TextBox txtdecFareBusAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[16].FindControl("txtdecFareBusAmountT");
+                                    TextBox txtdecFareRickshawAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[17].FindControl("txtdecFareRickshawAmountT");
+                                    TextBox txtdecFareCNGAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[18].FindControl("txtdecFareCNGAmountT");
+                                    TextBox txtdecFareOtherVheicleAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[19].FindControl("txtdecFareOtherVheicleAmountT");
+                                    TextBox txtdecCostAmountMaintenaceT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[20].FindControl("txtdecCostAmountMaintenaceT");
+                                    TextBox txtdecFeryTollCostT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[21].FindControl("txtdecFeryTollCostT");
+                                    TextBox txtdecDAAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[22].FindControl("txtdecDAAmountT");
+                                    TextBox txtdecDriverDACostT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[23].FindControl("txtdecDriverDACostT");
+                                    TextBox txtdecHotelBillAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[24].FindControl("txtdecHotelBillAmountT");
+                                    TextBox txtdecDriverHotelBillAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[25].FindControl("txtdecDriverHotelBillAmountT");
+                                    TextBox txtdecPhotoCopyCostT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[26].FindControl("txtdecPhotoCopyCostT");
+                                    TextBox txtdecCourierCostT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[27].FindControl("txtdecCourierCostT");
+                                    TextBox txtdecOtherBillAmountT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[28].FindControl("txtdecOtherBillAmountT");
+                                    TextBox txtdecRowTotalT = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[29].FindControl("txtdecRowTotalT");
+                                    TextBox txtSl = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[30].FindControl("txtRowSl");
+                                    TextBox txtdecCNGCredit1Amount = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[31].FindControl("txtdecSupplierCNG");
+                                    string txtstrCreditSupplier1nAME = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[32].FindControl("ddlCreditFuelStation1List")).SelectedItem.Text.ToString();
+                                    string updatecngCreditsupplierONEID = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[32].FindControl("ddlCreditFuelStation1List")).SelectedValue.ToString();
+                                    TextBox txtdecCNGCredit2Amount = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[34].FindControl("txtCNGCredit2AMNT");
+                                    string txtstrCreditSupplier2nAME = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[35].FindControl("ddlCreditFuelStation2List")).SelectedItem.Text.ToString();
+                                    string updatecngCreditsupplierTWOID = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[35].FindControl("ddlCreditFuelStation2List")).SelectedValue.ToString();
+                                    TextBox txtdecOilCreditAmount = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[37].FindControl("txtOilCreditAmnt");
+                                    string txtdecOilCreditStation = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[38].FindControl("ddlCreditFuelStation3List")).SelectedItem.Text.ToString();
+                                    string updateOilCreditsupplier3ID = ((DropDownList)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[38].FindControl("ddlCreditFuelStation3List")).SelectedValue.ToString();
+                                    TextBox txtdecPersonalMilage = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[40].FindControl("txtdecPersonalMilage");
+                                    TextBox txtdecMlgRate = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[41].FindControl("txtdecMlgRate");
+                                    TextBox txtdecPersonalTotalcost = (TextBox)grdvForUpdateTADABikeCarUser.Rows[rowIndex].Cells[42].FindControl("txtdecPersonalTotalcost");
+                                    //intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                                    string strBillDate = txtdteFromdateNoBikeDet.Text;
+                                    dtForm = DateTime.Parse(strBillDate.ToString());
+                                    StartMilage = decimal.Parse(txtdecStartMilageT.Text);
+                                    EndMilage = decimal.Parse(txtdecEndMilageT.Text);
+                                    ConsumedKM = decimal.Parse(txtdecConsumedKmT.Text);
+                                    strRemarks = txtstrSupportingNoT.Text;
+                                    QntPetrol = decimal.Parse(txtdecQntPetrolT.Text);
+                                    CostPetrol = decimal.Parse(txtdecCostPetrolT.Text);
+                                    QntOcten = decimal.Parse(txtdecQntOctenT.Text);
+                                    CostOcten = decimal.Parse(txtdecCostOctenT.Text);
+                                    QntCarBonNitr = decimal.Parse(txtdecQntCarbonNitGasT.Text);
+                                    CostCarbonNit = decimal.Parse(txtdecCostCarbonNitGasT.Text);
+                                    QntLubricant = decimal.Parse(txtdecQntLubricant.Text);
+                                    CostLubricant = decimal.Parse(txtdecCostLubricant.Text);
+                                    BusFareTaka = decimal.Parse(txtdecFareBusAmountT.Text);
+                                    RickFare = decimal.Parse(txtdecFareRickshawAmountT.Text);
+                                    CNGFare = decimal.Parse(txtdecFareCNGAmountT.Text);
+                                    OtherVhFare = decimal.Parse(txtdecFareOtherVheicleAmountT.Text);
+                                    MntCost = decimal.Parse(txtdecCostAmountMaintenaceT.Text);
+                                    FerryTol = decimal.Parse(txtdecFeryTollCostT.Text);
+                                    OwnDA = decimal.Parse(txtdecDAAmountT.Text);
+                                    OtherDA = decimal.Parse(txtdecDriverDACostT.Text);
+                                    OwnHotel = decimal.Parse(txtdecHotelBillAmountT.Text);
+                                    DriverHotel = decimal.Parse(txtdecDriverHotelBillAmountT.Text);
+                                    Photocopy = decimal.Parse(txtdecPhotoCopyCostT.Text);
+                                    Courier = decimal.Parse(txtdecCourierCostT.Text);
+                                    OtherCost = decimal.Parse(txtdecOtherBillAmountT.Text);
+                                    RowTotal = decimal.Parse(txtdecRowTotalT.Text);
+                                    paymentType = int.Parse("0");
+                                    cngCredit1Amount = decimal.Parse(txtdecCNGCredit1Amount.Text);
+                                    cngCredit1Name = txtstrCreditSupplier1nAME;
+                                    updatecngCreditsupplier1ID = int.Parse(updatecngCreditsupplierONEID.ToString());
+                                    cngCredit2Amount = decimal.Parse(txtdecCNGCredit2Amount.Text);
+                                    cngCredit2Name = txtstrCreditSupplier2nAME;
+                                    updatecngCredits2id = int.Parse(updatecngCreditsupplierTWOID.ToString());
+                                    OilCreditAmount = decimal.Parse(txtdecOilCreditAmount.Text);
 
-                                oilCreditStationName = txtdecOilCreditStation;
-                                updateoilCreditsupplier3ID = int.Parse(updateOilCreditsupplier3ID.ToString());
+                                    oilCreditStationName = txtdecOilCreditStation;
+                                    updateoilCreditsupplier3ID = int.Parse(updateOilCreditsupplier3ID.ToString());
 
-                                PersonalMilaqnt = decimal.Parse(txtdecPersonalMilage.Text);
-                                PersonalRate = decimal.Parse(txtdecMlgRate.Text);
-                                PersonMlgTotal = decimal.Parse(txtdecPersonalTotalcost.Text);
-                                hdnAreamanagerEnrol.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.USER_ID].ToString();
-                                updateby = int.Parse(hdnAreamanagerEnrol.Value.ToString());
+                                    PersonalMilaqnt = decimal.Parse(txtdecPersonalMilage.Text);
+                                    PersonalRate = decimal.Parse(txtdecMlgRate.Text);
+                                    PersonMlgTotal = decimal.Parse(txtdecPersonalTotalcost.Text);
+                                    hdnAreamanagerEnrol.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.USER_ID].ToString();
+                                    updateby = int.Parse(hdnAreamanagerEnrol.Value.ToString());
 
-                                alermessageUpdate = bll.updateRemoteTADAInfo(intID, intTSOEnroll, dtForm, StartMilage, EndMilage, ConsumedKM, strRemarks, QntPetrol
-                                 , CostPetrol, QntOcten, CostOcten, QntCarBonNitr, CostCarbonNit, QntLubricant, CostLubricant, BusFareTaka, RickFare, CNGFare, OtherVhFare
-                                 , MntCost, FerryTol, OwnDA, OtherDA, OwnHotel, DriverHotel, Photocopy, Courier, OtherCost, RowTotal, rowsl, paymentType
-                                 , updatecngCreditsupplier1ID, cngCredit1Amount, cngCredit1Name, updatecngCredits2id, cngCredit2Amount, cngCredit2Name, updateoilCreditsupplier3ID, OilCreditAmount, oilCreditStationName
-                                 , PersonalMilaqnt, PersonalRate, PersonMlgTotal, updateby);
+                                    alermessageUpdate = bll.updateRemoteTADAInfo(intID, intTSOEnroll, dtForm, StartMilage, EndMilage, ConsumedKM, strRemarks, QntPetrol
+                                     , CostPetrol, QntOcten, CostOcten, QntCarBonNitr, CostCarbonNit, QntLubricant, CostLubricant, BusFareTaka, RickFare, CNGFare, OtherVhFare
+                                     , MntCost, FerryTol, OwnDA, OtherDA, OwnHotel, DriverHotel, Photocopy, Courier, OtherCost, RowTotal, rowsl, paymentType
+                                     , updatecngCreditsupplier1ID, cngCredit1Amount, cngCredit1Name, updatecngCredits2id, cngCredit2Amount, cngCredit2Name, updateoilCreditsupplier3ID, OilCreditAmount, oilCreditStationName
+                                     , PersonalMilaqnt, PersonalRate, PersonMlgTotal, updateby);
 
-                                //showDataForUpdate();
-                                break;
+                                    //showDataForUpdate();
+                                    break;
 
 
+                                }
+
+
+                                catch
+                                {
+
+                                }
                             }
 
-
-                            catch
-                            {
-
-                            }
                         }
-
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Successfully update your information ');", true);
                     }
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Successfully update your information ');", true);
+                    else
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('only check one row ');", true);
+                    }
+
                 }
                 else
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('only check one row ');", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('For Bill Update You must seleck one check box at left side of the row. ');", true);
                 }
-
-            }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('For Bill Update You must seleck one check box at left side of the row. ');", true);
-            }
             }
             catch (Exception ex)
             {
@@ -914,14 +915,4 @@ namespace UI.SAD.Order
 
         }
     }
-
-   }
-
-
-                                
-       
-
-        
-
-
-    
+}
