@@ -44,7 +44,7 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
-        public DataTable GetUnit(int unitId, int bankId)
+        public DataTable GetBankInfoForImport(int unitId, int bankId)
         {
             try
             {

@@ -49,11 +49,13 @@ namespace UI.PaymentModule
         
         protected void btnShow_Click(object sender, EventArgs e)
         {
-
+            LoadGrid()
         }
         public void LoadGrid()
         {
-            _dt = _bll.GetUnit();
+            int unitId = ddlUnit.SelectedValue();
+            int bankId = ddlbank.SelectedValue();
+            _dt = _bll.GetBankInfoForImport(unitId, bankId);
             
         }
 
