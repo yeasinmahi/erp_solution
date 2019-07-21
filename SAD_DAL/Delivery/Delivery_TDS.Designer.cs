@@ -4258,8 +4258,6 @@ namespace SAD_DAL.Delivery {
             
             private global::System.Data.DataColumn columndtedate;
             
-            private global::System.Data.DataColumn columnintunitid;
-            
             private global::System.Data.DataColumn columnstrCustaddress;
             
             private global::System.Data.DataColumn columnstrVehicleNameId;
@@ -4533,14 +4531,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intunitidColumn {
-                get {
-                    return this.columnintunitid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn strCustaddressColumn {
                 get {
                     return this.columnstrCustaddress;
@@ -4661,10 +4651,9 @@ namespace SAD_DAL.Delivery {
                         int intLogisticProvider, 
                         long intPickingId, 
                         System.DateTime dtedate, 
-                        int intunitid, 
                         string strCustaddress, 
                         string strVehicleNameId, 
-                        int intUnitid1, 
+                        int intUnitid, 
                         int intCurrencyId, 
                         string strCurrency, 
                         string intOrderType, 
@@ -4699,10 +4688,9 @@ namespace SAD_DAL.Delivery {
                         intLogisticProvider,
                         intPickingId,
                         dtedate,
-                        intunitid,
                         strCustaddress,
                         strVehicleNameId,
-                        intUnitid1,
+                        intUnitid,
                         intCurrencyId,
                         strCurrency,
                         intOrderType,
@@ -4757,7 +4745,6 @@ namespace SAD_DAL.Delivery {
                 this.columnintLogisticProvider = base.Columns["intLogisticProvider"];
                 this.columnintPickingId = base.Columns["intPickingId"];
                 this.columndtedate = base.Columns["dtedate"];
-                this.columnintunitid = base.Columns["intunitid"];
                 this.columnstrCustaddress = base.Columns["strCustaddress"];
                 this.columnstrVehicleNameId = base.Columns["strVehicleNameId"];
                 this.columnintUnitid = base.Columns["intUnitid"];
@@ -4826,8 +4813,6 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnintPickingId);
                 this.columndtedate = new global::System.Data.DataColumn("dtedate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndtedate);
-                this.columnintunitid = new global::System.Data.DataColumn("intunitid", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintunitid);
                 this.columnstrCustaddress = new global::System.Data.DataColumn("strCustaddress", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrCustaddress);
                 this.columnstrVehicleNameId = new global::System.Data.DataColumn("strVehicleNameId", typeof(string), null, global::System.Data.MappingType.Element);
@@ -12242,22 +12227,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intunitid {
-                get {
-                    try {
-                        return ((int)(this[this.tableqryPickingSummary.intunitidColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intunitid\' in table \'qryPickingSummary\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableqryPickingSummary.intunitidColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string strCustaddress {
                 get {
                     try {
@@ -12630,18 +12599,6 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetdtedateNull() {
                 this[this.tableqryPickingSummary.dtedateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintunitidNull() {
-                return this.IsNull(this.tableqryPickingSummary.intunitidColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintunitidNull() {
-                this[this.tableqryPickingSummary.intunitidColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17620,7 +17577,6 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             tableMapping.ColumnMappings.Add("intLogisticProvider", "intLogisticProvider");
             tableMapping.ColumnMappings.Add("intPickingId", "intPickingId");
             tableMapping.ColumnMappings.Add("dtedate", "dtedate");
-            tableMapping.ColumnMappings.Add("intunitid", "intunitid");
             tableMapping.ColumnMappings.Add("strCustaddress", "strCustaddress");
             tableMapping.ColumnMappings.Add("strVehicleNameId", "strVehicleNameId");
             tableMapping.ColumnMappings.Add("intUnitid", "intUnitid");
@@ -17644,7 +17600,7 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select *  FROM [ERP_SAD].[dbo].[qryPickingSummary] where intPickingId=@pickid";
+            this._commandCollection[0].CommandText = "SELECT *  FROM qryPickingSummary WHERE (intPickingId = @pickid)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pickid", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intPickingId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
