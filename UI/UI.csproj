@@ -618,6 +618,7 @@
     <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
     <Content Include="PaymentModule\MDApprovalSheet.aspx" />
+    <Content Include="PaymentModule\MD_Slip_Report.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
@@ -4133,6 +4134,13 @@
     </Compile>
     <Compile Include="PaymentModule\MDApprovalSheet.aspx.designer.cs">
       <DependentUpon>MDApprovalSheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\MD_Slip_Report.aspx.cs">
+      <DependentUpon>MD_Slip_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MD_Slip_Report.aspx.designer.cs">
+      <DependentUpon>MD_Slip_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
