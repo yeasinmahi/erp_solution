@@ -555,6 +555,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Property\PropertyTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PropertyTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1506,6 +1511,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Property\PropertyTDS.xsc">
+      <DependentUpon>PropertyTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Property\PropertyTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PropertyTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Property\PropertyTDS.xss">
+      <DependentUpon>PropertyTDS.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -334,6 +334,7 @@
     <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
+    <Content Include="Content\CSS\PropertyStyle.css" />
     <Content Include="Content\CSS\toastr.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -619,6 +620,7 @@
     <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
     <Content Include="PaymentModule\MDApprovalSheet.aspx" />
+    <Content Include="PaymentModule\MD_Slip_Report.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
@@ -638,6 +640,9 @@
     <Content Include="PaymentModule\VAT_Rebate.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="Personal\Test.aspx" />
+    <Content Include="Property\AGLandMouzaSetup.aspx" />
+    <Content Include="Property\AGLandPlotByMouzaSetup.aspx" />
+    <Content Include="Property\AGLandTrxGeneral.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
@@ -4142,6 +4147,13 @@
     <Compile Include="PaymentModule\MDApprovalSheet.aspx.designer.cs">
       <DependentUpon>MDApprovalSheet.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\MD_Slip_Report.aspx.cs">
+      <DependentUpon>MD_Slip_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MD_Slip_Report.aspx.designer.cs">
+      <DependentUpon>MD_Slip_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4274,6 +4286,27 @@
     </Compile>
     <Compile Include="Personal\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandMouzaSetup.aspx.cs">
+      <DependentUpon>AGLandMouzaSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandMouzaSetup.aspx.designer.cs">
+      <DependentUpon>AGLandMouzaSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandPlotByMouzaSetup.aspx.cs">
+      <DependentUpon>AGLandPlotByMouzaSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandPlotByMouzaSetup.aspx.designer.cs">
+      <DependentUpon>AGLandPlotByMouzaSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneral.aspx.cs">
+      <DependentUpon>AGLandTrxGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneral.aspx.designer.cs">
+      <DependentUpon>AGLandTrxGeneral.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReceiveChallanUpload.aspx.cs">
       <DependentUpon>ReceiveChallanUpload.aspx</DependentUpon>
@@ -10393,6 +10426,8 @@
     <Folder Include="Personal\Data\" />
     <Folder Include="Personal\Uploads\" />
     <Folder Include="Projects\Data\" />
+    <Folder Include="Property\Data\" />
+    <Folder Include="Property\Files\" />
     <Folder Include="SAD\Consumer\Data\" />
     <Folder Include="SAD\Corporate_sales\Data\" />
     <Folder Include="SAD\Delivery\Data\" />

@@ -87,6 +87,9 @@ namespace Utility
                 Path.GetFullPath(rootPath + "VAT_Management\\Data"),
                 Path.GetFullPath(rootPath + "Wastage\\Data"),
                 Path.GetFullPath(rootPath + "WoodPurchase\\Data"),
+
+                Path.GetFullPath(rootPath + "Property\\Data"),
+                Path.GetFullPath(rootPath + "Property\\Files"),
             };
 
             return folders;
