@@ -338,9 +338,9 @@
                         <ItemTemplate><asp:TextBox ID="txtChkQuantity" CssClass="txtBox" runat="server" TextMode="Number" Width="90px"></asp:TextBox></ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
                         
-                        <asp:TemplateField HeaderText="Reject Qty">
+                        <%--<asp:TemplateField HeaderText="Reject Qty">
                         <ItemTemplate><asp:TextBox ID="txtRejectQuantity" CssClass="txtBox" runat="server" TextMode="Number" Width="90px"></asp:TextBox></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
+                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>--%>
 
                         <asp:TemplateField HeaderText="Remarks">
                         <ItemTemplate><asp:TextBox ID="txtRemarks" CssClass="txtBox" runat="server" Width="100px"></asp:TextBox></ItemTemplate>
