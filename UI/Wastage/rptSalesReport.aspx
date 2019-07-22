@@ -76,7 +76,7 @@
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
     <asp:HiddenField ID="hdnRpt" runat="server" /> <asp:HiddenField ID="hdnOpening" runat="server" />     
     <div class="divbody" style="padding-right:10px;">
-    <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> TRANSFER SUMMARY REPORT<hr /></div>
+    <div class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> Sales &amp; Order Report<hr /></div>
     <table class="tbldecoration" style="width:auto; float:left;">
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblunit" runat="server" CssClass="lbl" Text="Transfer Date"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
