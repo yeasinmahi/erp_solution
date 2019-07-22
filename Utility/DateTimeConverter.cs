@@ -8,6 +8,10 @@ namespace Utility
         {
             return DateTime.ParseExact(date, format, System.Globalization.CultureInfo.InvariantCulture);
         }
+        public static DateTime ToDateTime(this string date)
+        {
+            return DateTime.Parse(date,System.Globalization.CultureInfo.InvariantCulture);
+        }
         public static TimeSpan ToTimeSpan(this double second)
         {
             return TimeSpan.FromSeconds(second);

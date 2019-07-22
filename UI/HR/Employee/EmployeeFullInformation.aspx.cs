@@ -1,7 +1,9 @@
-﻿using HR_BLL.Employee;
+﻿using BLL.AutoSearch;
+using HR_BLL.Employee;
 using System;
 using System.Data;
 using System.IO;
+using System.Web.Services;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
@@ -13,13 +15,20 @@ namespace UI.HR.Employee
         private EmployeeFullInformationBll _bll = new EmployeeFullInformationBll();
         private DataTable _dt = new DataTable();
 
+        public static EmployeeBll employeeBll;
+        //string[] arrayKey;
+        //char[] delimiterChars = { '[', ']' };
+        //int EmpID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Form.Attributes.Add("enctype", "multipart/form-data");
             if (!IsPostBack)
             {
+                LoadDashBoard();
+                employeeBll = new EmployeeBll();
                 txtEnroll.Text = Enroll.ToString();
-                txtCode.Text = Code;
+
                 LoadDepartment();
                 LoadDesignation();
                 LoadLevelOfEducation();
@@ -30,6 +39,8 @@ namespace UI.HR.Employee
                 LoadCountry();
                 LoadTrainigYear();
 
+                LoadFieldValue(Enroll);
+
                 LoadEducation();
                 LoadEmperience();
                 LoadTrainingInfo();
@@ -37,7 +48,21 @@ namespace UI.HR.Employee
                 LoadImage();
             }
         }
-        #region Tab 1: Education Info
+        public void LoadDashBoard()
+        {
+            lblName.Text = UserFullName;
+            lblUnit.Text = UnitName;
+            lblDesignation.Text = Designation;
+            lblDepartment.Text = Department;
+            lblJoiningDate.Text = JoiningDate;
+            lblEmail.Text = UserEmail;
+            lblContact.Text = ContactNumber;
+            lblJobType.Text = JobType;
+            lblSupervisor.Text = Supervisor;
+            lblEnroll.Text = Enroll.ToString();
+            lblCode.Text = Code;
+        }
+        #region Tab 1: Personal Info
         private void LoadDepartment()
         {
             _dt = _bll.GetDepartment();
@@ -61,12 +86,17 @@ namespace UI.HR.Employee
             string fathersName = txtFatherName.Text;
             string mothersName = txtMotherNmae.Text;
             string permanentAddress = txtPermanetAddress.Text;
+            string presentAddress = txtPresentAddress.Text;
             string nid = txtNidNo.Text;
             string mobileNo = txtMobileNo.Text;
-            if (!DateTime.TryParseExact(txtPromotionDate.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime promotionDate))
+            DateTime? promotionDate = null;
+            if (!DateTime.TryParseExact(txtPromotionDate.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime proDate))
             {
-                Toaster("Please Enter Promotion Date Format Properly");
-                return;
+                promotionDate = null;
+            }
+            else
+            {
+                promotionDate = proDate;
             }
             int presentDepartmentId = ddlPresentDepartment.SelectedValue();
             string presentDepartment = ddlPresentDepartment.SelectedText();
@@ -84,19 +114,17 @@ namespace UI.HR.Employee
             }
             int joiningDesignationId = ddlJoiningDesignation.SelectedValue();
             string joiningDesignation = ddlJoiningDesignation.SelectedText();
-            if (!decimal.TryParse(txtPresentSalary.Text, out decimal joiningSalary))
+            if (!decimal.TryParse(txtJoiningSalary.Text, out decimal joiningSalary))
             {
                 Toaster("Please Enter Joining Salary Properly");
                 return;
             }
+            string akijResponsibilities = txtAkijResponsibilities.Text;
             string previousOrganization = txtPreviousOrganization.Text;
             string previousDesignation = txtPreviousDesignation.Text;
-            if (!decimal.TryParse(txtPreviousSalary.Text, out decimal previousSalary))
-            {
-                Toaster("Please Enter Previous Salary Properly");
-                return;
-            }
-            string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, previousOrganization, previousDesignation, previousSalary, Enroll);
+            decimal.TryParse(txtPreviousSalary.Text, out decimal previousSalary);
+
+            string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, presentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, akijResponsibilities, previousOrganization, previousDesignation, previousSalary, Enroll);
             if (message.ToLower().Contains("success"))
             {
                 Toaster(message, Common.TosterType.Success);
@@ -107,53 +135,96 @@ namespace UI.HR.Employee
             }
         }
 
-        protected void btnShowEmployeeInformation_Click(object sender, EventArgs e)
+        //public void LoadEmployeeInfo()
+        //{
+        //    if (!String.IsNullOrEmpty(txtEmployeeName.Text))
+        //    {
+        //        arrayKey = txtEmployeeName.Text.Split(delimiterChars);
+
+        //        if (arrayKey.Length > 0)
+        //        {
+        //            EmpID = Convert.ToInt32(arrayKey[1].ToString());
+        //            LoadFieldValue(Convert.ToInt32(arrayKey[1].ToString()));
+        //        }
+        //        else
+        //        {
+        //            Toaster("Your Employee Name Format Error", Common.TosterType.Warning);
+        //        }
+        //    }
+        //}
+
+        private void LoadFieldValue(int enroll)
         {
-            string strEnroll = txtEnroll.Text;
-            string code = txtCode.Text;
-            if (string.IsNullOrWhiteSpace(strEnroll) && string.IsNullOrWhiteSpace(code))
+            try
             {
-                Toaster("Please input enroll or employee code");
-                return;
-            }
-            if (!string.IsNullOrWhiteSpace(strEnroll))
-            {
-                if (!int.TryParse(txtEnroll.Text, out int enroll))
+                if (enroll > 0)
                 {
-                    Toaster("Please Enter Enroll Properly");
-                    return;
-                }
-                _dt = _bll.GetEmployeeInfo(enroll);
-                if (_dt.Rows.Count > 0)
-                {
-                    txtCode.Text = _dt.GetValue<string>("strEmployeeCode");
-                }
-                else
-                {
-                    Toaster("No Employee Information Found Aginest This Enroll");
-                    return;
+                    _dt = _bll.GetEmployeeInfo(enroll);
+                    if (_dt.Rows.Count > 0)
+                    {
+                        txtCode.Text = _dt.GetValue<string>("strEmployeeCode");
+                        txtName.Text = _dt.GetValue<string>("strEmployeeName");
+                        txtEmail.Text = _dt.GetValue<string>("strOfficeEmail");
+                        txtPermanetAddress.Text = _dt.GetValue<string>("strPermanentAddress");
+                        txtPresentAddress.Text = _dt.GetValue<string>("strPresentAddress");
+                        txtMobileNo.Text = _dt.GetValue<string>("strContactNo1");
+                        txtNidNo.Text = _dt.GetValue<string>("strNationalId");
+                        ddlPresentDesignation.SetSelectedValue(_dt.GetValue<string>("intDesignationID"));
+                        ddlPresentDepartment.SetSelectedValue(_dt.GetValue<string>("intDepartmentID"));
+                        txtPresentSalary.Text = _dt.GetValue<string>("monSalary");
+                        txtJoiningDate.Text = _dt.GetValue<string>("dteJoiningDate").ToDateTime().ToString("dd/MM/yyyy");
+                    }
                 }
             }
-            else if (!string.IsNullOrWhiteSpace(code))
+            catch (Exception ex)
             {
-                _dt = _bll.GetEmployeeInfo(code);
-                if (_dt.Rows.Count > 0)
-                {
-                    txtEnroll.Text = _dt.GetValue<string>("intEmployeeID");
-                }
-                else
-                {
-                    Toaster("No Employee Information Found Aginest This Code");
-                    return;
-                }
+                Toaster(ex.Message, "Employee Information Update", Common.TosterType.Error);
             }
-            txtName.Text =  _dt.GetValue<string>("strEmployeeName");
-            txtPermanetAddress.Text =  _dt.GetValue<string>("strPermanentAddress");
-            txtMobileNo.Text = _dt.GetValue<string>("strContactNo1");
-            ddlPresentDesignation.SetSelectedValue(_dt.GetValue<string>("intDesignationID"));
-            ddlPresentDepartment.SetSelectedValue(_dt.GetValue<string>("intDepartmentID"));
-            txtPresentSalary.Text = _dt.GetValue<string>("monSalary");
         }
+
+        //protected void btnShowEmployeeInformation_Click(object sender, EventArgs e)
+        //{
+        //    LoadFieldValue(Enroll);
+        //    //string strEnroll = txtEmployeeName.Text;
+        //    //string code = txtCode.Text;
+        //    //if (string.IsNullOrWhiteSpace(strEnroll) && string.IsNullOrWhiteSpace(code))
+        //    //{
+        //    //    Toaster("Please input enroll or employee code");
+        //    //    return;
+        //    //}
+        //    //if (!string.IsNullOrWhiteSpace(strEnroll))
+        //    //{
+        //    //    if (!int.TryParse(txtEnroll.Text, out int enroll))
+        //    //    {
+        //    //        Toaster("Please Enter Enroll Properly");
+        //    //        return;
+        //    //    }
+        //    //    _dt = _bll.GetEmployeeInfo(enroll);
+        //    //    if (_dt.Rows.Count > 0)
+        //    //    {
+        //    //        txtCode.Text = _dt.GetValue<string>("strEmployeeCode");
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        Toaster("No Employee Information Found Aginest This Enroll");
+        //    //        return;
+        //    //    }
+        //    //}
+        //    //else if (!string.IsNullOrWhiteSpace(code))
+        //    //{
+        //    //    _dt = _bll.GetEmployeeInfo(code);
+        //    //    if (_dt.Rows.Count > 0)
+        //    //    {
+        //    //        txtEnroll.Text = _dt.GetValue<string>("intEmployeeID");
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        Toaster("No Employee Information Found Aginest This Code");
+        //    //        return;
+        //    //    }
+        //    //}
+
+        //}
         public void LoadEmpInfo(DataTable dt)
         {
             if (_dt.Rows.Count > 0)
@@ -166,6 +237,13 @@ namespace UI.HR.Employee
                 return;
             }
         }
+
+        [WebMethod]
+        public static string[] GetAutoCompleteData(string strSearchKey)
+        {
+            return employeeBll.GetAllEmployee(strSearchKey);
+        }
+
         #endregion
         #region Tab 2: Education
         private void LoadLevelOfEducation()
@@ -180,7 +258,7 @@ namespace UI.HR.Employee
         }
         private void LoadExam()
         {
-            _dt = _bll.GetExamList();
+            _dt = _bll.GetExamList(ddlLevelOfEducation.SelectedValue());
             ddlExam.LoadWithSelect(_dt, "intExamID", "strExamName");
         }
         private void LoadBoard()
@@ -234,6 +312,10 @@ namespace UI.HR.Employee
                 Toaster(message, Common.TosterType.Error);
             }
         }
+        protected void ddlLevelOfEducation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadExam();
+        }
         private void LoadEducation()
         {
             if (!int.TryParse(txtEnroll.Text, out int enroll))
@@ -244,7 +326,21 @@ namespace UI.HR.Employee
             _dt = _bll.GetEducationInfo(enroll);
             gridviewEducation.Loads(_dt);
         }
+        protected void btnDeleteEducation_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewEducation.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteEducation(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadEducation();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
 
+        }
         #endregion
         #region Tab 3: Experience
         protected void btnAddExperience_Click(object sender, EventArgs e)
@@ -262,8 +358,16 @@ namespace UI.HR.Employee
             string strDepartment = txtEmployementDepartment.Text;
             string strResponsibilities = txtResponsibilities.Text;
             DateTime dteEmploymentPeriodFrom = txtFromDate.Text.ToDateTime("dd/MM/yyyy");
-            DateTime dteEmploymentPeriodTo = txtToDate.Text.ToDateTime("dd/MM/yyyy"); ;
-            string strCurrentlyWorking = chkCurentlyWorking.Text;
+            DateTime? dteEmploymentPeriodTo = null;
+            if (!string.IsNullOrWhiteSpace(txtToDate.Text))
+            {
+                txtToDate.Text.ToDateTime("dd/MM/yyyy");
+            }
+            string strCurrentlyWorking = string.Empty;
+            if (chkCurentlyWorking.Checked)
+            {
+                strCurrentlyWorking = chkCurentlyWorking.Text;
+            }
             string strExpertiseSkill = txtAreaOfExperience.Text;
 
 
@@ -288,12 +392,28 @@ namespace UI.HR.Employee
             _dt = _bll.GetExperience(enroll);
             gridviewExperience.Loads(_dt);
         }
+        protected void btnDeleteExperience_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewExperience.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteExperience(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadEmperience();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+
+        }
         #endregion
         #region Tab 4: Training
         private void LoadCountry()
         {
             _dt = _bll.GetCountry();
             ddlCountry.Loads(_dt, "intCountryID", "strCountry");
+            ddlCountry.SetSelectedValue("22");
         }
         private void LoadTrainigYear()
         {
@@ -338,6 +458,21 @@ namespace UI.HR.Employee
             _dt = _bll.GetTrainigInfo(enroll);
             gridviewTraining.Loads(_dt);
         }
+        protected void btnDeleteTraining_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewTraining.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteTraining(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadTrainingInfo();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+
+        }
         #endregion
         #region Tab 5: Others
         protected void btnAddWorkTitle_Click(object sender, EventArgs e)
@@ -361,6 +496,21 @@ namespace UI.HR.Employee
             }
             _dt = _bll.GetWorkInfo(enroll);
             gridviewWorkTitle.Loads(_dt);
+        }
+        protected void btnDeleteWork_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewWorkTitle.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteWorkTitle(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadWorkInfo();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+
         }
         #endregion
         #region Tab 6: Photography
@@ -441,15 +591,15 @@ namespace UI.HR.Employee
                 if (!string.IsNullOrWhiteSpace(url))
                 {
                     string FtpUrl = ProjectConfig.Instance.GetFtpBaseUrl() + url;
-                    byte[]  image = FtpUrl.DownloadFromFtp();
+                    byte[] image = FtpUrl.DownloadFromFtp();
                     impPrev.SetImage(image);
 
                 }
-                
+
             }
         }
+
+
         #endregion
-
-
     }
 }

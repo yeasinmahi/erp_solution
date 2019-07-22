@@ -49,9 +49,11 @@ namespace UI.ClassFiles
                 "~/Content/JS/jquery-3.3.1.js",
                 "~/Content/JS/jquery-ui.min.js",
                 "~/Content/JS/bootstrap.min.js",
+                "~/Content/JS/adminlte.min.js",
                 "~/Content/JS/jquery.timepicker.js",
                 "~/Content/JS/toastr.min.js",
                 "~/Content/JS/ui-toastr.min.js",
+                "~/Content/JS/demo.js",
                 "~/Content/JS/StaticFunction.js"
             ));
 
@@ -87,8 +89,12 @@ namespace UI.ClassFiles
                 // yeasin new
                 "~/Content/CSS/bootstrap.min.css",
                 "~/Content/CSS/jquery-ui.min.css",
+                "~/Content/font-awesome.min.css",
+                "~/Content/ionicons.min.css",
+                "~/Content/CSS/AdminLTE.css",
                 "~/Content/CSS/toastr.min.css",
-                "~/Content/CSS/CommonStyle.css"
+                "~/Content/CSS/CommonStyle.css",
+                "~/Content/CSS/bootstrapCustomise.css"
 
             ));
 

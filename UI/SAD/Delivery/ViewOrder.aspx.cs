@@ -23,7 +23,9 @@ namespace UI.SAD.Delivery
         string start = "starting SAD\\Order\\DeliveryViewForPendingOrder";
         string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
 
+        DataTable dt;
         SalesOrderView obj = new SalesOrderView();
+        Delivery_BLL objOrder = new Delivery_BLL();
         int intActionType;
 
 
@@ -47,6 +49,12 @@ namespace UI.SAD.Delivery
                     dgvViewOrder.Columns[12].Visible = true;
                     dgvViewOrder.Columns[13].Visible = true;
                 }
+
+                //dt = objOrder.OrderType();
+                //ddlOrderType.DataTextField = "strType";
+                //ddlOrderType.DataValueField = "intId";
+                //ddlOrderType.DataSource = dt;
+                //ddlOrderType.DataBind();
             }
         }
 

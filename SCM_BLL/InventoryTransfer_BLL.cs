@@ -615,5 +615,69 @@ namespace SCM_BLL
 
             return WHType;
         }
+        #region MIR Insert
+
+        public string SaveMIR(string xml, int WhId, int actionby)
+        {
+            string message = "";
+            sprMIRInsertNewTableAdapter adp = new sprMIRInsertNewTableAdapter();
+            try
+            {
+                adp.SaveMIRData(actionby,WhId, xml, ref message);
+            }
+            catch
+            {
+
+            }
+            return message;
+        }
+
+        public DataTable GetItem(int MRRId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                tblFactoryReceiveMRRItemDetailTableAdapter adp = new tblFactoryReceiveMRRItemDetailTableAdapter();
+                dt = adp.GetItemDataByMRRID(MRRId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
+        public DataTable GetMIRDetails(int MRRId,int Itemid)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                tblMIRDetailTableAdapter adp = new tblMIRDetailTableAdapter();
+                dt = adp.GetMIRDetailByMRRId(MRRId, Itemid);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
+        public DataTable GetPermissionForQC(int Enroll, int WHId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                tblWearHouseOperatorTableAdapter adp = new tblWearHouseOperatorTableAdapter();
+                dt = adp.GetQCPermission(Enroll, WHId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
+        #endregion End Insert MIR
+
     }
 }

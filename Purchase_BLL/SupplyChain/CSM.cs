@@ -493,11 +493,10 @@ namespace Purchase_BLL.SupplyChain
          }        
 
          public DataTable GetRequisitionReport()
-         {
-           
-              GetRequisitionReportTableAdapter it = new GetRequisitionReportTableAdapter();
+         {           
+             GetRequisitionReportTableAdapter it = new GetRequisitionReportTableAdapter();
              return it.GetRequisitionReport();
-          }
+         }
         
          public List<string> AutoSearchItemData(string strSearchKeyemp)
          {

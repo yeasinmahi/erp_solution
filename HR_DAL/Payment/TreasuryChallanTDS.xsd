@@ -5,13 +5,13 @@
       <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_VATConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_VATConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.ERP_VATConnectionString" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_PaymentConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_PaymentConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.ERP_PaymentConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_PaymentConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_PaymentConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.ERP_PaymentConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_AccountsConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_AccountsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.ERP_AccountsConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprGetVATAccountByAccountsUserTableAdapter" GeneratorDataComponentClassName="sprGetVATAccountByAccountsUserTableAdapter" Name="sprGetVATAccountByAccountsUser" UserDataComponentName="sprGetVATAccountByAccountsUserTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.sprGetVATAccountByAccountsUser" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUnitByUserId" GetMethodModifier="Public" GetMethodName="GetUnitByUserId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUnitByUserId" UserSourceName="GetUnitByUserId">
+              <DbSource ConnectionRef="ERP_VATConnectionString (Settings)" DbObjectName="ERP_VAT.dbo.sprGetVATAccountByAccountsUser" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUnitByUserId" GetMethodModifier="Public" GetMethodName="GetUnitByUserId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetUnitByUserId" UserSourceName="GetUnitByUserId">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprGetVATAccountByAccountsUser</CommandText>
@@ -29,6 +29,8 @@
               <Mapping SourceColumn="unit" DataSetColumn="unit" />
               <Mapping SourceColumn="strVatAccountName" DataSetColumn="strVatAccountName" />
               <Mapping SourceColumn="strAddress" DataSetColumn="strAddress" />
+              <Mapping SourceColumn="OldstrVATRegNo" DataSetColumn="OldstrVATRegNo" />
+              <Mapping SourceColumn="strVATRegNo" DataSetColumn="strVATRegNo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -387,7 +389,7 @@ VALUES (@strVoucherCode,@intUnit,@intBank,@intBankAcc,@strInstrument,@dteVoucher
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprTreasuryForecastTableAdapter" GeneratorDataComponentClassName="sprTreasuryForecastTableAdapter" Name="sprTreasuryForecast" UserDataComponentName="sprTreasuryForecastTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprTreasuryForecast" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="InsertVoucharData" GetMethodModifier="Public" GetMethodName="InsertVoucharData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="InsertVoucharData" UserSourceName="InsertVoucharData">
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprTreasuryForecast" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="InsertVoucharData" GetMethodModifier="Public" GetMethodName="InsertVoucharData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="InsertVoucharData" UserSourceName="InsertVoucharData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprTreasuryForecast</CommandText>
@@ -402,13 +404,13 @@ VALUES (@strVoucherCode,@intUnit,@intBank,@intBankAcc,@strInstrument,@dteVoucher
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="money" DbType="Currency" Direction="Input" ParameterName="@monDrAmount" Precision="19" ProviderType="Money" Scale="4" Size="8" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBank" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBankAcc" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strAddress" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strName" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strAddress" Precision="0" ProviderType="VarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strName" Precision="0" ProviderType="VarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intTreasuryID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCOA" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strAccName" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strPayTo" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strNarration" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strAccName" Precision="0" ProviderType="VarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strPayTo" Precision="0" ProviderType="VarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strNarration" Precision="0" ProviderType="VarChar" Scale="0" Size="1000" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </SelectCommand>
@@ -448,6 +450,20 @@ VALUES (@strVoucherCode,@intUnit,@intBank,@intBankAcc,@strInstrument,@dteVoucher
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="515" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="OldstrVATRegNo" msprop:Generator_ColumnVarNameInTable="columnOldstrVATRegNo" msprop:Generator_ColumnPropNameInRow="OldstrVATRegNo" msprop:Generator_ColumnPropNameInTable="OldstrVATRegNoColumn" msprop:Generator_UserColumnName="OldstrVATRegNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strVATRegNo" msprop:Generator_ColumnVarNameInTable="columnstrVATRegNo" msprop:Generator_ColumnPropNameInRow="strVATRegNo" msprop:Generator_ColumnPropNameInTable="strVATRegNoColumn" msprop:Generator_UserColumnName="strVATRegNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

@@ -51,7 +51,7 @@ namespace UI.PaymentModule
         public void LoadUnit()
         {
             ddlUnit.Loads(_bll.getUnitByUser(Enroll), "intVatAccountID", "strVatAccountName");
-
+            LoadAccount();
         }
         public void LoadBank()
         {
@@ -75,6 +75,7 @@ namespace UI.PaymentModule
         {
             int vatAccountId = ddlUnit.SelectedValue();
             int unitId = _bll.getUnitByUser(Enroll).GetRows("intVatAccountID", vatAccountId).GetValue<int>("unit");
+            hdnunit.Value = unitId.ToString();
             int bankId = ddlBank.SelectedValue();
             DataTable dt = _bll.GetBankListData(unitId);
             if (dt.Rows.Count > 0)
@@ -166,13 +167,20 @@ namespace UI.PaymentModule
         #region ======== GridView RowCommand =============
         protected void GvDetails_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            string Address,vataccname;
+            int unitId = _bll.getUnitByUser(Enroll).GetRows("intVatAccountID", ddlUnit.SelectedValue()).GetValue<int>("unit");
+            Address = _bll.getUnitByUser(Enroll).GetRows("intVatAccountID", ddlUnit.SelectedValue()).GetValue<string>("strAddress");
+            vataccname = ddlUnit.SelectedItem.ToString();
+            Address = _bll.getUnitByUser(Enroll).GetRows("intVatAccountID", ddlUnit.SelectedValue()).GetValue<string>("strAddress");
+            Address = vataccname + " " + Address;
+
             int intType=1;
             if (e.CommandName != "DepositV") return;
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = GvDetails.Rows[index];
             intType = int.Parse((row.FindControl("lblIntType") as Label).Text);
             intVatAcc = int.Parse(ddlUnit.SelectedItem.Value);
-
+            /*
             if (intVatAcc == 3)
             {
                 intUnit = 4;
@@ -181,7 +189,7 @@ namespace UI.PaymentModule
             {
                 intUnit = 105;
             }
-            
+            */
             DateTime dteVdate = DateTime.Parse(txtVDate.Text);
             string strDrAmount = (row.FindControl("txtPay") as TextBox)?.Text;
             if (string.IsNullOrWhiteSpace(strDrAmount))
@@ -203,7 +211,7 @@ namespace UI.PaymentModule
             string strVatAcc = ddlUnit.SelectedItem.Text;
             DataTable dtAdd = new DataTable();
             dtAdd = _bll.getUnitByUser(Enroll);
-            string Address = strVatAcc + ',' + dtAdd.Rows[0]["strAddress"].ToString();
+           
             string strName = "Managing Director, " + strVatAcc + " Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon I/A, Dhaka-1208.";
             
             if(monDramount == 0)
@@ -249,8 +257,9 @@ namespace UI.PaymentModule
 
             if(btnRadioCheque.Checked == true){ intPart = 1; }
             else if(btnRadioAdvice.Checked == true) { intPart = 2; }
-            
-            _bll.GetTreasuryForcastDataList(intPart, Enroll, intVatAcc, intUnit, dteVdate, monDramount, monCrAmount, intBank, intBankAcc, Address, strName, intTreasuryId, intCOA, strAccName, strPayTo, strNarration);
+           
+           
+            _bll.GetTreasuryForcastDataList(intPart, Enroll, intVatAcc, unitId, dteVdate, monCrAmount, monDramount,  intBank, intBankAcc, Address, strName, intTreasuryId, intCOA, strAccName, strPayTo, strNarration);
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Treasury deposit voucher inserted successfully.');", true);
             
