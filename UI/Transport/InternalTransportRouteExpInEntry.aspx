@@ -826,7 +826,7 @@
                         </tr>
                         <tr style="background-color: lightgray">
                             <td colspan="10">
-                                <asp:Button ID="btnSubmit" runat="server" class="nextclick" Font-Bold="true" ForeColor="Green" OnClientClick="FTPUpload1()" Text="Submit" />
+                                <asp:Button ID="btnSubmit" runat="server" class="nextclick" Font-Bold="true" ForeColor="Green" OnClientClick="FTPUpload1()" Text="Submit"/>
                             </td>
                         </tr>
                         </tr> 

@@ -119,5 +119,16 @@ namespace DAL.Properties {
                 return ((string)(this["AFBLSMSServerConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_MIS;Persist Security Info=True;User ID=rNwUs" +
+            "@Ag;Password=a2sLs@Ag")]
+        public string ERP_MISConnectionString {
+            get {
+                return ((string)(this["ERP_MISConnectionString"]));
+            }
+        }
     }
 }

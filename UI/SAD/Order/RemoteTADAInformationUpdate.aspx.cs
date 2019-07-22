@@ -18,6 +18,7 @@ namespace UI.SAD.Order
 {
     public partial class RemoteTADAInformationUpdate : BasePage
     {
+        DeliverySupport objDeliverySupportBLL = new DeliverySupport();
         char[] delimiterChars = { '[', ']' }; string[] arrayKey;
         decimal petrolcost = 0; decimal octencost = 0; decimal cngcost = 0; decimal lubriantcost = 0;
         decimal busfare = 0; decimal Rickfare = 0; decimal cngfare = 0; decimal trainfare = 0; decimal airplance = 0; decimal othervhfare = 0;
@@ -118,8 +119,9 @@ namespace UI.SAD.Order
                     }
                     else if (rdbUserOption.SelectedItem.Text == "Other"  )
                     {
-                        if (deptid == 14 || deptid == 3 || deptid == 55 || deptid == 21 || deptid == 234)
-                        {
+                    //if (deptid == 14 || deptid == 3 || deptid == 55 || deptid == 21 || deptid == 234)
+                    if (CheckUserByDepartmentId(deptid))
+                    {
 
                             string strSearchKey = txtEmployeeSearch.Text;
                         arrayKey = strSearchKey.Split(delimiterChars);
@@ -164,8 +166,23 @@ namespace UI.SAD.Order
 
 
         }
-        
 
+        private bool CheckUserByDepartmentId(int deptId)
+        {
+            bool flag = false;
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = objDeliverySupportBLL.checkAllowDepatmentForUpdate(deptId);
+                if (dt.Rows.Count > 0)
+                    flag = true;
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.Message.ToString() + "');", true);
+            }
+            return flag;
+        }
 
         protected void btnApprTADAFoBikeCarUser_Click(object sender, EventArgs e)
         {

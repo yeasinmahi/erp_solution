@@ -327,12 +327,14 @@
     <Content Include="Content\CSS\AdminLTE.css" />
     <Content Include="Content\CSS\bootstrap-datepicker.min.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
+    <Content Include="Content\CSS\bootstrapCustomise.css" />
     <Content Include="Content\CSS\CommonStyle.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
     <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
+    <Content Include="Content\CSS\PropertyStyle.css" />
     <Content Include="Content\CSS\toastr.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
@@ -358,6 +360,8 @@
     <Content Include="Content\images\img\NotApproved1.png" />
     <Content Include="Content\images\img\R008.png" />
     <Content Include="Content\images\img\save.PNG" />
+    <Content Include="Content\ionicons.css" />
+    <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\JS\adminlte.min.js" />
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\BlueBird.min.js" />
@@ -607,12 +611,16 @@
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
     <Content Include="PaymentModule\FG_Cost_Update.aspx" />
+    <Content Include="PaymentModule\ImportAdvice.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\AITReport.aspx" />
+    <Content Include="PaymentModule\MDSlipDetails.aspx" />
     <Content Include="PaymentModule\InternalbillForBanking.aspx" />
     <Content Include="PaymentModule\Inventory_Summary_Report.aspx" />
     <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
     <Content Include="PaymentModule\MDApprovalSheet.aspx" />
+    <Content Include="PaymentModule\MD_Slip_Report.aspx" />
     <Content Include="PaymentModule\MRRDetailsView.aspx" />
     <Content Include="PaymentModule\PaymentVoucher.aspx" />
     <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
@@ -632,6 +640,10 @@
     <Content Include="PaymentModule\VAT_Rebate.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="Personal\Test.aspx" />
+    <Content Include="Property\AGLandMouzaSetup.aspx" />
+    <Content Include="Property\AGLandPlotByMouzaSetup.aspx" />
+    <Content Include="Property\AGLandTrxGeneral.aspx" />
+    <Content Include="Property\AGLandTrxGeneralNew.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
@@ -1748,6 +1760,7 @@
     <Content Include="Transport\InternalTTripReport.aspx" />
     <Content Include="Transport\InternalTVehicleMovementDetails.aspx" />
     <Content Include="Transport\InternalTVehicleMovementReport.aspx" />
+    <Content Include="Transport\RemoteTADAUpdate.aspx" />
     <Content Include="Transport\RentedVehicleReg.aspx" />
     <Content Include="Transport\TransportVheicleInfoUpdate.aspx" />
     <Content Include="Transport\TripvsCost\PumpFoodingBill.aspx" />
@@ -4072,12 +4085,33 @@
     <Compile Include="PaymentModule\FG_Cost_Update.aspx.designer.cs">
       <DependentUpon>FG_Cost_Update.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\ImportAdvice.aspx.cs">
+      <DependentUpon>ImportAdvice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\ImportAdvice.aspx.designer.cs">
+      <DependentUpon>ImportAdvice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\AITReport.aspx.cs">
+      <DependentUpon>AITReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\AITReport.aspx.designer.cs">
+      <DependentUpon>AITReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\MDSlipDetails.aspx.cs">
+      <DependentUpon>MDSlipDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MDSlipDetails.aspx.designer.cs">
+      <DependentUpon>MDSlipDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\InternalbillForBanking.aspx.cs">
       <DependentUpon>InternalbillForBanking.aspx</DependentUpon>
@@ -4113,6 +4147,13 @@
     </Compile>
     <Compile Include="PaymentModule\MDApprovalSheet.aspx.designer.cs">
       <DependentUpon>MDApprovalSheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\MD_Slip_Report.aspx.cs">
+      <DependentUpon>MD_Slip_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MD_Slip_Report.aspx.designer.cs">
+      <DependentUpon>MD_Slip_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\MRRDetailsView.aspx.cs">
       <DependentUpon>MRRDetailsView.aspx</DependentUpon>
@@ -4246,6 +4287,34 @@
     </Compile>
     <Compile Include="Personal\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandMouzaSetup.aspx.cs">
+      <DependentUpon>AGLandMouzaSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandMouzaSetup.aspx.designer.cs">
+      <DependentUpon>AGLandMouzaSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandPlotByMouzaSetup.aspx.cs">
+      <DependentUpon>AGLandPlotByMouzaSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandPlotByMouzaSetup.aspx.designer.cs">
+      <DependentUpon>AGLandPlotByMouzaSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneral.aspx.cs">
+      <DependentUpon>AGLandTrxGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneral.aspx.designer.cs">
+      <DependentUpon>AGLandTrxGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralNew.aspx.cs">
+      <DependentUpon>AGLandTrxGeneralNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralNew.aspx.designer.cs">
+      <DependentUpon>AGLandTrxGeneralNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReceiveChallanUpload.aspx.cs">
       <DependentUpon>ReceiveChallanUpload.aspx</DependentUpon>
@@ -9512,6 +9581,13 @@
     <Compile Include="Transport\InternalTVehicleMovementReport.aspx.designer.cs">
       <DependentUpon>InternalTVehicleMovementReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Transport\RemoteTADAUpdate.aspx.cs">
+      <DependentUpon>RemoteTADAUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\RemoteTADAUpdate.aspx.designer.cs">
+      <DependentUpon>RemoteTADAUpdate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Transport\RentedVehicleReg.aspx.cs">
       <DependentUpon>RentedVehicleReg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -10358,6 +10434,8 @@
     <Folder Include="Personal\Data\" />
     <Folder Include="Personal\Uploads\" />
     <Folder Include="Projects\Data\" />
+    <Folder Include="Property\Data\" />
+    <Folder Include="Property\Files\" />
     <Folder Include="SAD\Consumer\Data\" />
     <Folder Include="SAD\Corporate_sales\Data\" />
     <Folder Include="SAD\Delivery\Data\" />
