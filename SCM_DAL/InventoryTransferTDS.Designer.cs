@@ -30535,7 +30535,9 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
 FROM ERP_SAD.dbo.tblItem si LEFT JOIN ERP_Inventory.dbo.tblBillOfMaterialItemNsadItemBridge bi 
 ON si.intID=bi.intSADItemID  join ERP_SAD.dbo.tblItemType it on si.intTypeID=it.intID 
 left join ERP_Inventory.dbo.tblItemList itm on itm.intItemID=bi.intItemID
-WHERE  it.ysnFinishGoods=1 and si.ysnActive=1 and si.intUnitID=@intUnitID  and bi.intItemID is not null ";
+WHERE  it.ysnFinishGoods=1 and si.ysnActive=1 and si.intUnitID=@intUnitID  and bi.intItemID is not null 
+
+order by strProductName asc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
