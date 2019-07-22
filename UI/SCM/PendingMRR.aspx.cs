@@ -279,7 +279,7 @@ namespace UI.SCM
                 string MrrId = lblMrrId.Text;
                 hdnmrrid.Value = MrrId;
                 Session["MrrID"] = lblMrrId.Text;
-                
+
 
                 if (ddlType.SelectedValue == "Costing")
                 {
@@ -287,17 +287,19 @@ namespace UI.SCM
                 }
                 else if (ddlType.SelectedValue == "QC")
                 {
-                    //dt = mirObj.GetPermissionForQC(Enroll,Convert.ToInt32(ddlWH.SelectedValue));
-                    //string is_QC = "";
-                    //try
+                    dt = mirObj.GetPermissionForQC(Enroll, Convert.ToInt32(ddlWH.SelectedValue));
+                    string is_QC = "";
+                    try
+                    {
+                        is_QC = dt.Rows[0]["ysnQC"].ToString();
+                    }
+                    catch
+                    {
+                        is_QC = "False";
+                    }
+                    //if (intWh == 711 || intWh == 18 || intWh == 712 || intWh == 713)
                     //{
-                    //    is_QC= dt.Rows[0]["ysnQC"].ToString(); 
-                    //}
-                    //catch
-                    //{
-                    //    is_QC = "False";
-                    //}
-                    if (intWh == 711 || intWh == 18 || intWh == 712 || intWh == 713)
+                    if (is_QC == "True")
                     {
                         dt = mirObj.GetItem(int.Parse(MrrId));
                         if (dt.Rows.Count > 0)
@@ -313,9 +315,6 @@ namespace UI.SCM
                         message = "You dont have QC permission for " + ddlWH.SelectedItem.Text;
                         Toaster(message, "Pending MRR", Common.TosterType.Warning);
                     }
-
-
-
                 }
 
             }
