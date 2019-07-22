@@ -149,7 +149,7 @@ namespace UI.SAD.Delivery
                 else
                 {
 
-                    PickingPageloadDataBind(Request.QueryString["strReportType"], Request.QueryString["PopupType"]);
+                    PickingPageloadDataBind(Request.QueryString["strReportType"], Request.QueryString["PopupType"],int.Parse(ddlOrderType.SelectedValue));
                     txtCustomer.Enabled = false;
                     txtShipToParty.Enabled = false;
                     txtCustomerAddress.Enabled = false;
@@ -164,13 +164,14 @@ namespace UI.SAD.Delivery
             return(str == null || str == String.Empty) ? true : false;
         }
         
-        private void PickingPageloadDataBind(string strReportType,string strPopupType)
+        private void PickingPageloadDataBind(string strReportType,string strPopupType,int intOrderType)
         {
+            HeaderDataBind(strReportType);
             if (strReportType == "Order_Base" && strPopupType == "Picking")
             {
                 hdnDoId.Value = Request.QueryString["intid"];
                 txtDoNumber.Text= Request.QueryString["intid"];
-                dt = deliveryBLL.DeliveryHeaderDataByDo(hdnDoId.Value.ToString(), Request.QueryString["ShipPointID"],true);
+                dt = deliveryBLL.DeliveryHeaderDataByDo(hdnDoId.Value.ToString(), Request.QueryString["ShipPointID"], intOrderType);
                 if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnCompleted"]) == false)
                 {
                     btnSubmit.Visible = false;
@@ -188,7 +189,7 @@ namespace UI.SAD.Delivery
                 hdnCustomer.Value= Request.QueryString["intCusID"];
                 txtDoNumber.Text = Request.QueryString["intCusID"];
                 btnProductAddAlls.Visible = false;
-                dt = deliveryBLL.DeliveryHeaderDataByCustomer(hdnCustomer.Value, Request.QueryString["ShipPointID"],true);
+                dt = deliveryBLL.DeliveryHeaderDataByCustomer(hdnCustomer.Value, Request.QueryString["ShipPointID"], intOrderType);
                 //if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnCompleted"]) == false)
                 //{
                 //    btnSubmit.Visible = false;
@@ -209,7 +210,7 @@ namespace UI.SAD.Delivery
                 hdnPickingId.Value = Request.QueryString["intid"];
                 txtDoNumber.Text = Request.QueryString["intid"]; 
                
-                dt = deliveryBLL.PickingSummary(hdnPickingId.Value);
+                dt = deliveryBLL.PickingSummary(hdnPickingId.Value, intOrderType);
                 DropDownDataBindFromDoCustomer(dt);
                 RadioButtonListBindFromDoCustomer(dt);
                 CustomerChange();
@@ -222,7 +223,7 @@ namespace UI.SAD.Delivery
                 txtDoNumber.Text = Request.QueryString["intid"];
 
                
-                dt = deliveryBLL.DeliveryHeaderDataByDo(hdnDoId.Value.ToString(), Request.QueryString["ShipPointID"],false);
+                dt = deliveryBLL.DeliveryHeaderDataByDo(hdnDoId.Value.ToString(), Request.QueryString["ShipPointID"], intOrderType);
                 DropDownDataBindFromDoCustomer(dt);
 
                 RadioButtonListBindFromDoCustomer(dt); 
@@ -255,6 +256,11 @@ namespace UI.SAD.Delivery
             {
             }
              
+        }
+
+        private void HeaderDataBind(string strReportType)
+        {
+            
         }
 
         private void DoGridDataBind(string OrderId)
