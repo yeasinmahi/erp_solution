@@ -12,12 +12,21 @@ namespace SAD_BLL.Sales
   public  class Delivery_BLL
     {
         string msg = "";
-        public DataTable DeliveryHeaderDataByCustomer(string CustId,string shipmentId,bool complete)
+        public DataTable DeliveryHeaderDataByCustomer(string CustId,string shipmentId,int intOrderType)
         {
             try
             {
-                QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
-                return adp.GetDoProfileByCustomer(int.Parse(CustId), int.Parse(shipmentId));
+                if (intOrderType == 2)
+                {
+                    QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
+                    return adp.GetDoProfileByCustomerWhTransfer(int.Parse(CustId), int.Parse(shipmentId));
+                }
+                else
+                {
+                    QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
+                    return adp.GetDoProfileByCustomer(int.Parse(CustId), int.Parse(shipmentId));
+                }
+               
             }
             catch (Exception ex)
             {
@@ -25,12 +34,23 @@ namespace SAD_BLL.Sales
             }
            
         }
-        public DataTable DeliveryHeaderDataByDo(string doId, string ShipmentId,bool complete)
+        public DataTable DeliveryHeaderDataByDo(string doId, string ShipmentId,int intOrderType)
         {
             try
             {
-                QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
-                return adp.GetDoProfileByDo(int.Parse(doId), int.Parse(ShipmentId));
+                if (intOrderType == 2)//Wh FG Transfer Order
+                {
+                    QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
+                    return adp.GetDoProfileByDoWhTransfer(int.Parse(doId), int.Parse(ShipmentId));
+                }
+                else
+                {
+                     
+                        QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
+                        return adp.GetDoProfileByDo(int.Parse(doId), int.Parse(ShipmentId));
+                     
+                }
+                
             }
             catch (Exception ex)
             {
@@ -102,12 +122,22 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
-        public DataTable PickingSummary(string pickingId)
+        public DataTable PickingSummary(string pickingId,int intOrderType)
         {
             try
             {
-                qryPickingSummaryTableAdapter adp = new qryPickingSummaryTableAdapter();
-                return adp.GetPickingSummaryData(int.Parse(pickingId));
+                if (intOrderType == 2)
+                {
+                    qryPickingSummaryTableAdapter adp = new qryPickingSummaryTableAdapter();
+                    return adp.GetPicSummaryWhTransfer(int.Parse(pickingId));
+
+                }
+                else
+                {
+                    qryPickingSummaryTableAdapter adp = new qryPickingSummaryTableAdapter();
+                    return adp.GetPickingSummaryData(int.Parse(pickingId));
+                }
+               
             }
             catch (Exception ex)
             {

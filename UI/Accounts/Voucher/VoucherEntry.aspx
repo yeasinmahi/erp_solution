@@ -834,7 +834,7 @@
                                                                             <asp:TextBox ID="txtCheckNoR" runat="server" Width="130px"></asp:TextBox>
                                                                         </td>
                                                                         <td style="vertical-align: bottom;">
-                                                                            <asp:TextBox ID="txtChqDateR" runat="server" Enabled="false"></asp:TextBox>
+                                                                            <asp:TextBox ID="txtChqDateR" runat="server" Enabled="true"></asp:TextBox>
                                                                             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtChqDateR" Format="dd/MM/yyyy" PopupButtonID="imgCal_2"
                                                                                 ID="CalendarExtender2" runat="server">
                                                                             </cc1:CalendarExtender>
