@@ -115,9 +115,9 @@ namespace UI.PaymentModule
 
                 foreach (GridViewRow row in gridview.Rows)
                 {
-                    int reqId = int.Parse(((Label)row.FindControl("intReqID")).Text);
-                    int payFor = int.Parse(((Label)row.FindControl("intPayFor")).Text);
-                    string voucher = ((Label)row.FindControl("strVoucher")).Text;
+                    int reqId = int.Parse(((Label)row.FindControl("lblRequestId")).Text);
+                    int payFor = int.Parse(((Label)row.FindControl("lblPayFor")).Text);
+                    string voucher = ((Label)row.FindControl("lblVoucher")).Text;
                     if ((payFor == 4 || payFor == 6 || payFor == 6) && voucher == "")
                     {
                         _dt = _bll.CreateVoucherBenificiarry(reqId, payFor, Enroll);
@@ -128,7 +128,8 @@ namespace UI.PaymentModule
                     }
                     else if (!string.IsNullOrWhiteSpace(voucher))
                     {
-                        Toaster("Voucher already created.");
+                        //Toaster("Voucher already created.");
+                        continue;
                     }
                     if (_dt.Rows.Count > 0)
                     {
@@ -142,7 +143,6 @@ namespace UI.PaymentModule
                                 return;
                             }
                         }
-                        return;
                     }
                     else
                     {
@@ -151,6 +151,8 @@ namespace UI.PaymentModule
                     }
 
                 }
+                Toaster("Successfully Voucher Created",Common.TosterType.Success);
+                LoadGrid();
 
             }
             else
