@@ -71,6 +71,7 @@
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <asp:Button ID="btnShow" runat="server" Text="Show" CssClass="btn btn-primary" OnClientClick="return Validation()" OnClick="btnShow_Click" />
+                                            <asp:Button ID="btnCreateVoucher" runat="server" Text="Create" CssClass="btn btn-success" OnClick="btnCreateVoucher_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -106,28 +107,28 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Description">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("strDescription") %>'></asp:Label>
+                                                        <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("strDescription") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Left"/>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Debiting Amount">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("monAmount") %>'></asp:Label>
+                                                        <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("monAmount") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Request Id">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("intReqID") %>'></asp:Label>
+                                                        <asp:Label ID="lblRequestId" runat="server" Text='<%# Bind("intReqID") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Pay For">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("intPayFor") %>'></asp:Label>
+                                                        <asp:Label ID="lblPayFor" runat="server" Text='<%# Bind("intPayFor") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Voucher">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("strVoucher") %>'></asp:Label>
+                                                        <asp:Label ID="lblVoucher" runat="server" Text='<%# Bind("strVoucher") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <ItemStyle Width="100px"/>
                                                 </asp:TemplateField>

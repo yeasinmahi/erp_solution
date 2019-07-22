@@ -145,6 +145,7 @@ namespace UI.Property
         {
             int MouzaID = 0;
             DataTable dtSubOffice = new DataTable();
+            DataTable dtPlotArea = new DataTable();
             try
             {
                 if (ddlMouza.SelectedValue != "-1")
@@ -160,6 +161,18 @@ namespace UI.Property
                         ddlSubOffice.DataBind();
                     }
                     ddlSubOffice.Items.Insert(0, new ListItem("--- Select Sub-Office ---", "-1"));
+
+                    dtPlotArea = pbll.GetPlotAreaByMouza(MouzaID);
+                    if(dtPlotArea != null && dtPlotArea.Rows.Count > 0)
+                    {
+                        dgvExistPlotArea.DataSource = dtPlotArea;
+                        dgvExistPlotArea.DataBind();
+                    }
+                    else
+                    {
+                        dgvExistPlotArea.DataSource = null;
+                        dgvExistPlotArea.DataBind();
+                    }
                 }
             }
             catch (Exception ex)
