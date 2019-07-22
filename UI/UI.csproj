@@ -1816,6 +1816,7 @@
     <Content Include="Wastage\rptTransferReceive.aspx" />
     <Content Include="Wastage\rptTransferSummary.aspx" />
     <Content Include="Wastage\Sales.aspx" />
+    <Content Include="Wastage\SalesOrderConditionForReport.aspx" />
     <Content Include="Wastage\SO.aspx" />
     <Content Include="WoodPurchase\jquery-ui.css" />
     <Content Include="WoodPurchase\jquery-ui.min.js" />
@@ -10182,6 +10183,13 @@
     </Compile>
     <Compile Include="Wastage\Sales.aspx.designer.cs">
       <DependentUpon>Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Wastage\SalesOrderConditionForReport.aspx.cs">
+      <DependentUpon>SalesOrderConditionForReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Wastage\SalesOrderConditionForReport.aspx.designer.cs">
+      <DependentUpon>SalesOrderConditionForReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Wastage\SO.aspx.cs">
       <DependentUpon>SO.aspx</DependentUpon>
