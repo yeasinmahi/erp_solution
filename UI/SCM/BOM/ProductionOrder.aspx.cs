@@ -52,7 +52,7 @@ namespace UI.SCM.BOM
 
         public void LoadWh()
         {
-            dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, Enroll);
+            dt = objBom.GetBomData(20, xmlData, intwh, BomId, DateTime.Now, Enroll);
             if (dt.Rows.Count > 0)
             {
                 ddlWH.DataSource = dt;
