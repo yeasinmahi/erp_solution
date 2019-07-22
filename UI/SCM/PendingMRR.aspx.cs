@@ -55,13 +55,7 @@ namespace UI.SCM
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataBind();
 
-                //dt = obj.DataView(2, "", intWh, 0, DateTime.Now, enroll);
-                //ddlDept.DataSource = dt;
-                //ddlDept.DataTextField = "strName";
-                //ddlDept.DataValueField = "Id";
-                //ddlDept.DataBind();
-                ddlDept.Items.Clear();
-                ddlDept.Items.Insert(0, new ListItem("Import", "2"));
+                LoadDepartment();
 
                 HideShowGridColumn();
                 hdnpoid.Value = "0";
@@ -474,9 +468,25 @@ namespace UI.SCM
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadDepartment();
             HideShowGridColumn();
         }
 
+        public void LoadDepartment()
+        {
+            if (ddlType.SelectedItem.Text == "QC")
+            {
+                ddlDept.Items.Clear();
+                ddlDept.Items.Insert(0, new ListItem("Local", "1"));
+                ddlDept.Items.Insert(1, new ListItem("Import", "2"));
+                ddlDept.Items.Insert(2, new ListItem("Fabrication", "3"));
+            }
+            else if(ddlType.SelectedItem.Text == "Costing")
+            {
+                ddlDept.Items.Clear();
+                ddlDept.Items.Insert(0, new ListItem("Import", "2"));
+            }
+        }
         public void HideShowGridColumn()
         {
             if (ddlType.SelectedItem.Value == "QC")

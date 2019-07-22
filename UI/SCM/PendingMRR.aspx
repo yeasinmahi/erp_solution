@@ -105,15 +105,23 @@
                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
-
-                            <td style="text-align: right;">
+                            <td style="text-align: right">
+                                <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Type: "></asp:Label>
+                            </td>
+                            <td style="text-align: left;">
+                                <asp:DropDownList ID="ddlType" Enabled="true" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
+                                                <asp:ListItem Value="QC">QC</asp:ListItem>
+                                                <asp:ListItem Value="Costing">Costing</asp:ListItem>
+                                 </asp:DropDownList>
+                            </td>
+                           <%-- <td style="text-align: right;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlDept" Enabled="true" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
                                     <asp:ListItem>Local</asp:ListItem>
                                     <asp:ListItem>Fabrication</asp:ListItem>
                                     <asp:ListItem>Import</asp:ListItem>
-                                </asp:DropDownList></td>
+                                </asp:DropDownList></td>--%>
                             
                         </tr>
                         <tr>
@@ -138,15 +146,14 @@
                                 <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="MRR No: "></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txtMrrNo" runat="server" CssClass="txtBox"></asp:TextBox></td>
-                            <td style="text-align: right">
-                                <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Type: "></asp:Label>
-                            </td>
+                           <td style="text-align: right;">
+                                <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlType" Enabled="true" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
-                                                <asp:ListItem Value="QC">QC</asp:ListItem>
-                                                <asp:ListItem Value="Costing">Costing</asp:ListItem>
-                                 </asp:DropDownList>
-                            </td>
+                                <asp:DropDownList ID="ddlDept" Enabled="true" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
+                                    <asp:ListItem Value="1">Local</asp:ListItem>
+                                    <asp:ListItem Value="3">Fabrication</asp:ListItem>
+                                    <asp:ListItem Value="2">Import</asp:ListItem>
+                                </asp:DropDownList></td>
                             <td style="text-align: right">
                                 <asp:Button ID="btnStatement" runat="server" Text="Show" OnClick="btnStatement_Click" OnClientClick="showLoader()" />
                             </td>
@@ -315,7 +322,7 @@
                         <ItemTemplate><asp:Label ID="lblmrrqnty" runat="server" Text='<%# Bind("MrrQty", "{0:0}") %>'></asp:Label></ItemTemplate>
                         <ItemStyle HorizontalAlign="Right" Width="95px" /></asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Amount(BDT)" SortExpression="monBDTTotal">
+                        <asp:TemplateField HeaderText="Amount(BDT)" SortExpression="monBDTTotal" Visible="false">
                         <ItemTemplate><asp:Label ID="lblmonBDTTotal" runat="server" Text='<%# Bind("monBDTTotal", "{0:n2}") %>'></asp:Label></ItemTemplate>
                         <ItemStyle HorizontalAlign="Right" Width="95px" /></asp:TemplateField>
 
@@ -327,8 +334,12 @@
                         <ItemTemplate><asp:Label ID="lblintUnitID" runat="server" Text='<%# Bind("intUnitID") %>'></asp:Label></ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Checking">
-                        <ItemTemplate><asp:TextBox ID="txtChkQuantity" CssClass="txtBox" runat="server" TextMode="Number" Width="100px"></asp:TextBox></ItemTemplate>
+                        <asp:TemplateField HeaderText="Approved Qty">
+                        <ItemTemplate><asp:TextBox ID="txtChkQuantity" CssClass="txtBox" runat="server" TextMode="Number" Width="90px"></asp:TextBox></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
+                        
+                        <asp:TemplateField HeaderText="Reject Qty">
+                        <ItemTemplate><asp:TextBox ID="txtRejectQuantity" CssClass="txtBox" runat="server" TextMode="Number" Width="90px"></asp:TextBox></ItemTemplate>
                         <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Remarks">
