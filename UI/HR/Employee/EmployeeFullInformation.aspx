@@ -1153,7 +1153,6 @@
             return true;
         }
         function ShowPreview(input) {
-            debugger;
             if (input.files && input.files[0]) {
                 var ImageDir = new FileReader();
                 ImageDir.onload = function (e) {

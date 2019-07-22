@@ -256,7 +256,7 @@ namespace SAD_BLL.Customer.Report
             return dt;
         }
 
-        public DataTable getTADADataByVehicle(DateTime fDate, DateTime tDate,int vehicleId)
+        public DataTable getTADADataByVehicle(DateTime fDate, DateTime tDate, int vehicleId)
         {
             DataTable dt = new DataTable();
             try
@@ -266,6 +266,29 @@ namespace SAD_BLL.Customer.Report
             }
             catch { return dt; }
             return dt;
+        }
+
+        public string updateRemoteTADAInfoByVehiche(int intId, int vehicleID, DateTime dtForm, decimal StartMilage, decimal EndMilage, decimal ConsumedKM,             
+                decimal MntCost , decimal OtherDA, decimal DriverHotel, decimal OtherCost, decimal RowTotal, decimal intRowsl, int paymenttype, 
+                int intCNGCredit1Stationid, decimal cngcredit1Amount, string cngcredit1stationname, int intCNGCredit2Stationid, decimal cngcredit2Amount, string cngcredit2stationname,
+                int oilCreditStationid, decimal oilCreditAmount, string oilCreditstationname, 
+                decimal personalMilageuseQnt, decimal personalUseMilagRate, decimal personalUseTotalCOST, int intUpdatBy)
+        {
+            string rtnMessage = string.Empty;
+            sprUpdateTADAInfoByVehicleTableAdapter objDAL = new sprUpdateTADAInfoByVehicleTableAdapter();
+            try
+            {
+                objDAL.UpdateRemoteTADAByVehicle(intId, vehicleID, dtForm, StartMilage, EndMilage, ConsumedKM, MntCost
+                , OtherDA, DriverHotel, OtherCost, RowTotal, intRowsl, paymenttype
+                , intCNGCredit1Stationid, cngcredit1Amount, cngcredit1stationname, intCNGCredit2Stationid, cngcredit2Amount, cngcredit2stationname,
+                oilCreditStationid, oilCreditAmount, oilCreditstationname
+                , personalMilageuseQnt, personalUseMilagRate, personalUseTotalCOST, intUpdatBy, ref rtnMessage);
+            }
+            catch (Exception ex)
+            {
+                rtnMessage = ex.Message.ToString();
+            }            
+            return rtnMessage;
         }
 
     }

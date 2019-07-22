@@ -55,13 +55,7 @@ namespace UI.SCM
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataBind();
 
-                //dt = obj.DataView(2, "", intWh, 0, DateTime.Now, enroll);
-                //ddlDept.DataSource = dt;
-                //ddlDept.DataTextField = "strName";
-                //ddlDept.DataValueField = "Id";
-                //ddlDept.DataBind();
-                ddlDept.Items.Clear();
-                ddlDept.Items.Insert(0, new ListItem("Import", "2"));
+                LoadDepartment();
 
                 HideShowGridColumn();
                 hdnpoid.Value = "0";
@@ -219,23 +213,32 @@ namespace UI.SCM
                 //}
                 //dt = obj.DataView(12, xmlData, intWh, Mrrid, dteFrom, enroll);
                 dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh);
-                dt.Columns.Add(new DataColumn("missingCost", typeof(string)));
 
-                if (dt != null)
+                if(dt.Rows.Count>0)
                 {
-                    if (dt.Rows.Count > 0)
+                    dt.Columns.Add(new DataColumn("missingCost", typeof(string)));
+
+                    if (dt != null)
                     {
-                        for (int i = 0; i < dt.Rows.Count; i++)
+                        if (dt.Rows.Count > 0)
                         {
-                            int poid = !string.IsNullOrEmpty(dt.Rows[i]["intpoid"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intpoid"]) : 0;
-                            int shipid = !string.IsNullOrEmpty(dt.Rows[i]["intShipmentID"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intShipmentID"]) : 0;
-                            dt.Rows[i]["missingCost"] = GetMRRMissingCost(poid, shipid);
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                int poid = !string.IsNullOrEmpty(dt.Rows[i]["intpoid"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intpoid"]) : 0;
+                                int shipid = !string.IsNullOrEmpty(dt.Rows[i]["intShipmentID"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intShipmentID"]) : 0;
+                                dt.Rows[i]["missingCost"] = GetMRRMissingCost(poid, shipid);
+                            }
                         }
                     }
-                }
 
-                dgvIndent.DataSource = dt;
-                dgvIndent.DataBind();
+                    dgvIndent.DataSource = dt;
+                    dgvIndent.DataBind();
+                }
+                else
+                {
+                    Toaster("Sorry! There is no data exist.","Pending MRR", Common.TosterType.Warning);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -270,7 +273,7 @@ namespace UI.SCM
                 string MrrId = lblMrrId.Text;
                 hdnmrrid.Value = MrrId;
                 Session["MrrID"] = lblMrrId.Text;
-                
+
 
                 if (ddlType.SelectedValue == "Costing")
                 {
@@ -278,17 +281,19 @@ namespace UI.SCM
                 }
                 else if (ddlType.SelectedValue == "QC")
                 {
-                    dt = mirObj.GetPermissionForQC(Enroll,Convert.ToInt32(ddlWH.SelectedValue));
+                    dt = mirObj.GetPermissionForQC(Enroll, Convert.ToInt32(ddlWH.SelectedValue));
                     string is_QC = "";
                     try
                     {
-                        is_QC= dt.Rows[0]["ysnQC"].ToString(); ;
+                        is_QC = dt.Rows[0]["ysnQC"].ToString();
                     }
                     catch
                     {
                         is_QC = "False";
                     }
-                    if(is_QC=="True")
+                    //if (intWh == 711 || intWh == 18 || intWh == 712 || intWh == 713)
+                    //{
+                    if (is_QC == "True")
                     {
                         dt = mirObj.GetItem(int.Parse(MrrId));
                         if (dt.Rows.Count > 0)
@@ -301,12 +306,9 @@ namespace UI.SCM
                     }
                     else
                     {
-                        message = "You dont have QC permission for " +ddlWH.SelectedItem.Text;
+                        message = "You dont have QC permission for " + ddlWH.SelectedItem.Text;
                         Toaster(message, "Pending MRR", Common.TosterType.Warning);
                     }
-
-
-
                 }
 
             }
@@ -466,9 +468,25 @@ namespace UI.SCM
 
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadDepartment();
             HideShowGridColumn();
         }
 
+        public void LoadDepartment()
+        {
+            if (ddlType.SelectedItem.Text == "QC")
+            {
+                ddlDept.Items.Clear();
+                ddlDept.Items.Insert(0, new ListItem("Local", "1"));
+                ddlDept.Items.Insert(1, new ListItem("Import", "2"));
+                ddlDept.Items.Insert(2, new ListItem("Fabrication", "3"));
+            }
+            else if(ddlType.SelectedItem.Text == "Costing")
+            {
+                ddlDept.Items.Clear();
+                ddlDept.Items.Insert(0, new ListItem("Import", "2"));
+            }
+        }
         public void HideShowGridColumn()
         {
             if (ddlType.SelectedItem.Value == "QC")
