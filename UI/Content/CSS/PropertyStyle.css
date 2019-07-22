@@ -45,8 +45,26 @@
     float: left
 }
 
+.div-body-left2 {
+    width: 65%;
+    height: Auto;
+    margin: 0 auto;
+    font: bold 13px verdana;
+    background: #ffffff;
+    float: left
+}
+
 .div-body-right {
     width: 49%;
+    height: Auto;
+    margin: 0 auto;
+    font: bold 13px verdana;
+    background: #ffffff;
+    float: right
+}
+
+.div-body-right2 {
+    width: 35%;
     height: Auto;
     margin: 0 auto;
     font: bold 13px verdana;
@@ -124,6 +142,12 @@ tr {
     padding: 2px;
     border-radius: 5px;
     width: 100%
+}
+.table70 {
+    background: #ccc;
+    padding: 2px;
+    border-radius: 5px;
+    width: 70%
 }
 .btn {
     display: inline-block;

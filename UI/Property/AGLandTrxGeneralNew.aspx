@@ -127,31 +127,31 @@
             <div>
                 <asp:MultiView runat="server" ID="mainView">
                     <asp:View runat="server" ID="viewLMMaster">
-                        <table class="table2">
+                        <table class="table70">
                             <tr>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label1" runat="server" CssClass="lbl-txt" Text="Unit :"></asp:Label>
+                                    <span style="color:red">*</span><asp:Label ID="Label1" runat="server" CssClass="lbl-txt" Text="Unit :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
                                     <asp:DropDownList runat="server" ID="ddlUnit" CssClass="ddl-field">
                                     </asp:DropDownList>
                                 </td>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label2" CssClass="lbl-txt" runat="server" Text="Deed No :"></asp:Label></td>
+                                    <span style="color:red">*</span><asp:Label ID="Label2" CssClass="lbl-txt" runat="server" Text="Deed No :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
                                     <asp:TextBox ID="txtDeedNo" runat="server" CssClass="txt-field"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label3" runat="server" CssClass="lbl-txt" Text="Mouza :"></asp:Label>
+                                    <span style="color:red">*</span><asp:Label ID="Label3" runat="server" CssClass="lbl-txt" Text="Mouza :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
                                     <asp:DropDownList runat="server" ID="ddlMouza" CssClass="ddl-field" AutoPostBack="true" OnSelectedIndexChanged="ddlMouza_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </td>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label4" CssClass="lbl-txt" runat="server" Text="Deed Date :"></asp:Label></td>
+                                    <span style="color:red">*</span><asp:Label ID="Label4" CssClass="lbl-txt" runat="server" Text="Deed Date :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
                                     <asp:TextBox ID="txtDeedDate" runat="server" CssClass="txt-field"></asp:TextBox>
                                     <cc1:CalendarExtender runat="server" ID="CalendarExtender1" TargetControlID="txtDeedDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
@@ -159,35 +159,35 @@
                             </tr>
                             <tr>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label5" runat="server" CssClass="lbl-txt" Text="Sub-Office :"></asp:Label>
+                                    <span style="color:red">*</span><asp:Label ID="Label5" runat="server" CssClass="lbl-txt" Text="Sub-Office :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
                                     <asp:DropDownList runat="server" ID="ddlSubOffice" CssClass="ddl-field">
                                     </asp:DropDownList>
                                 </td>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label6" CssClass="lbl-txt" runat="server" Text="Seller Name :"></asp:Label></td>
+                                    <span style="color:red">*</span><asp:Label ID="Label6" CssClass="lbl-txt" runat="server" Text="Seller Name :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
                                     <asp:TextBox ID="txtSellerName" runat="server" CssClass="txt-field"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label7" runat="server" CssClass="lbl-txt" Text="Deed Type :"></asp:Label>
+                                    <span style="color:red">*</span><asp:Label ID="Label7" runat="server" CssClass="lbl-txt" Text="Deed Type :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
                                     <asp:DropDownList runat="server" ID="ddlDeedType" CssClass="ddl-field">
                                     </asp:DropDownList>
                                 </td>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label8" CssClass="lbl-txt" runat="server" Text="Purchase Land :"></asp:Label></td>
+                                    <span style="color:red">*</span><asp:Label ID="Label8" CssClass="lbl-txt" runat="server" Text="Purchase Land :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
                                     <asp:TextBox ID="txtPurchaseLand" runat="server" CssClass="txt-field"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label9" runat="server" CssClass="lbl-txt" Text="Complete :"></asp:Label>
+                                    <span style="color:red">*</span><asp:Label ID="Label9" runat="server" CssClass="lbl-txt" Text="Complete :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
                                     <asp:DropDownList runat="server" ID="ddlComplete" CssClass="ddl-field">
@@ -196,15 +196,15 @@
                                 <td class="td-lbl2">
                                     <asp:Label ID="Label10" CssClass="lbl-txt" runat="server" Text="Remarks :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtRemarks" runat="server" CssClass="txt-field" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:TextBox ID="txtRemarks" runat="server" CssClass="txt-field" TextMode="MultiLine" Text="N/A"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
                         <div style="margin-top: 5px"></div>
-                        <table class="table2">
+                        <table class="table70">
                             <tr>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label11" runat="server" CssClass="lbl-txt" Text="Deed Value :"></asp:Label>
+                                    <span style="color:red">*</span><asp:Label ID="Label11" runat="server" CssClass="lbl-txt" Text="Deed Value :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
                                     <asp:TextBox runat="server" ID="txtDeedValue" CssClass="txt-field"></asp:TextBox>
@@ -257,7 +257,7 @@
                             </tr>
                             <tr>
                                 <td class="td-lbl2">
-                                    <asp:Label ID="Label19" runat="server" CssClass="lbl-txt" Text="Registration Cost :"></asp:Label>
+                                    <span style="color:red">*</span><asp:Label ID="Label19" runat="server" CssClass="lbl-txt" Text="Registration Cost :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
                                     <asp:TextBox ID="txtRegistrationCost" runat="server" CssClass="txt-field"></asp:TextBox>
@@ -267,7 +267,7 @@
                             </tr>
                         </table>
                         <div style="margin-top: 5px"></div>
-                        <table class="table2">
+                        <table class="table70">
                             <tr>
                                 <td class="td-lbl2">
                                     <asp:Label ID="Label20" runat="server" CssClass="lbl-txt" Text="North :"></asp:Label>
@@ -299,7 +299,7 @@
                     </asp:View>
                     <asp:View runat="server" ID="viewDetail">
                         <div style="width: 100%">
-                            <div class="div-body-left">
+                            <div class="div-body-left2">
                                 <table class="table3">
                                     <tr>
                                         <td class="td-lbl2">
@@ -371,28 +371,28 @@
                                 <table class="table3">
                                     <tr>
                                         <td class="td-lbl2">
-                                            <asp:Label ID="Label34" runat="server" CssClass="lbl-txt" Text="Plot Type :"></asp:Label>
+                                            <span style="color:red">*</span><asp:Label ID="Label34" runat="server" CssClass="lbl-txt" Text="Plot Type :"></asp:Label>
                                         </td>
                                         <td class="td-txt-ddl2">
                                             <asp:DropDownList runat="server" ID="ddlPlotType" CssClass="ddl-field" AutoPostBack="true" OnSelectedIndexChanged="ddlPlotType_SelectedIndexChanged">
                                             </asp:DropDownList>
                                         </td>
                                         <td class="td-lbl2">
-                                            <asp:Label ID="Label35" CssClass="lbl-txt" runat="server" Text="Plot No :"></asp:Label></td>
+                                            <span style="color:red">*</span><asp:Label ID="Label35" CssClass="lbl-txt" runat="server" Text="Plot No :"></asp:Label></td>
                                         <td class="td-txt-ddl2">
                                             <asp:TextBox ID="txtPlotNo" runat="server" CssClass="txt-field"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="td-lbl2">
-                                            <asp:Label ID="Label36" runat="server" CssClass="lbl-txt" Text="Purchased Plot :"></asp:Label>
+                                            <span style="color:red">*</span><asp:Label ID="Label36" runat="server" CssClass="lbl-txt" Text="Purchased Plot :"></asp:Label>
                                         </td>
                                         <td class="td-txt-ddl2">
                                             <asp:TextBox ID="txtPurchasedPlot" runat="server" CssClass="txt-field" AutoPostBack="true" OnTextChanged="txtPurchasedPlot_TextChanged"></asp:TextBox>
                                             <asp:HiddenField runat="server" ID="hfPurshedPlot" />
                                         </td>
                                         <td class="td-lbl2">
-                                            <asp:Label ID="Label37" CssClass="lbl-txt" runat="server" Text="Updated LDTR:"></asp:Label></td>
+                                            <span style="color:red">*</span><asp:Label ID="Label37" CssClass="lbl-txt" runat="server" Text="Updated LDTR:"></asp:Label></td>
                                         <td class="td-txt-ddl2">
                                             <asp:DropDownList ID="ddlUpdatedLDTR" runat="server" CssClass="txt-field"></asp:DropDownList>
                                         </td>
@@ -444,7 +444,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <div class="div-body-right" style="height: 450px; overflow: scroll">
+                            <div class="div-body-right2" style="height: 450px; overflow: scroll">
                                 <asp:GridView ID="dgvExistPlotArea" runat="server" AutoGenerateColumns="False" 
                                     Font-Size="11px" BackColor="White"
                                     BorderColor="#999999" BorderStyle="Solid"
