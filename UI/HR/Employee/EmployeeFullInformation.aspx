@@ -10,8 +10,8 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
     <style>
-        body{
-            font-size:12px
+        body {
+            font-size: 12px
         }
     </style>
 </head>
@@ -161,15 +161,17 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+                                    <a href="../Reports/EmployeeAttendanceMonthWise.aspx">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
 
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Todays Attendance</span>
-                                            <span class="info-box-number">8:55 AM</span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Todays Attendance</span>
+                                                <span class="info-box-number">8:55 AM</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
                                         </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
+                                    </a>
                                     <!-- /.info-box -->
                                 </div>
                                 <!-- /.col -->
@@ -1153,7 +1155,6 @@
             return true;
         }
         function ShowPreview(input) {
-            debugger;
             if (input.files && input.files[0]) {
                 var ImageDir = new FileReader();
                 ImageDir.onload = function (e) {

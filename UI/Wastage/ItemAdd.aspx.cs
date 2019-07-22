@@ -86,7 +86,7 @@ namespace UI.Wastage
             custname = txtCustName.Text;
             CustAdd = txtCustName.Text;
             PhoneNo = txtPhone.Text;
-            objWastage.insertAG(ItemName, intItemid, intItemCategoryID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(Session[SessionParams.USER_ID].ToString()), dteinsertdate, true, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, Coaname, intCustid);
+            objWastage.insertAG(ItemName, intItemid, intItemCategoryID, int.Parse(ddlUnit.SelectedValue.ToString()), int.Parse(Session[SessionParams.USER_ID].ToString()), dteinsertdate, true, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, Coaname, intCustid);
 
             txtCustName.Text = "";
             txtPhone.Text = "";
