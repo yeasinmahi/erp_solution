@@ -70,5 +70,57 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
+        public DataTable GetrateCount(string fromDate, string toDate)
+        {
+            try
+            {
+                DataTable2TableAdapter adp = new DataTable2TableAdapter();
+                return adp.GetData(fromDate, toDate);
+
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable CreateVoucherBenificiarry(int intReqID, int intReqFor, int intUser)
+        {
+            try
+            {
+                sprImportFundRequisitionVoucherBenificiaryPayTableAdapter adp = new sprImportFundRequisitionVoucherBenificiaryPayTableAdapter();
+                return adp.GetData(intReqID, intReqFor, intUser);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable CreateVoucherRequsition(int intReqID, int intReqFor, int intUser)
+        {
+            try
+            {
+                sprImportFundRequisitionVoucherTableAdapter adp = new sprImportFundRequisitionVoucherTableAdapter();
+                return adp.GetData(intReqID, intReqFor, intUser);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
+        public DataTable UpdateVoucher(string voucher, int reqId)
+        {
+            try
+            {
+                tblImportFundRequisitionTableAdapter adp = new tblImportFundRequisitionTableAdapter();
+                return adp.GetData(voucher, reqId);
+
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
     }
 }

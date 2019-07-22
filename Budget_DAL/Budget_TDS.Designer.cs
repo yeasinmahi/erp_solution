@@ -6762,6 +6762,8 @@ namespace Budget_DAL {
             
             private global::System.Data.DataColumn columnintsl;
             
+            private global::System.Data.DataColumn columnmonprice;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprOperationalBudgetFGQntvsMaterialQntDataTable() {
@@ -6853,6 +6855,14 @@ namespace Budget_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monpriceColumn {
+                get {
+                    return this.columnmonprice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6888,7 +6898,7 @@ namespace Budget_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprOperationalBudgetFGQntvsMaterialQntRow AddSprOperationalBudgetFGQntvsMaterialQntRow(int intBudgetYear, int intMonth, decimal numFGQty, int intMatID, decimal numMatQty, int intyrid, int intsl) {
+            public SprOperationalBudgetFGQntvsMaterialQntRow AddSprOperationalBudgetFGQntvsMaterialQntRow(int intBudgetYear, int intMonth, decimal numFGQty, int intMatID, decimal numMatQty, int intyrid, int intsl, decimal monprice) {
                 SprOperationalBudgetFGQntvsMaterialQntRow rowSprOperationalBudgetFGQntvsMaterialQntRow = ((SprOperationalBudgetFGQntvsMaterialQntRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intBudgetYear,
@@ -6897,7 +6907,8 @@ namespace Budget_DAL {
                         intMatID,
                         numMatQty,
                         intyrid,
-                        intsl};
+                        intsl,
+                        monprice};
                 rowSprOperationalBudgetFGQntvsMaterialQntRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprOperationalBudgetFGQntvsMaterialQntRow);
                 return rowSprOperationalBudgetFGQntvsMaterialQntRow;
@@ -6927,6 +6938,7 @@ namespace Budget_DAL {
                 this.columnnumMatQty = base.Columns["numMatQty"];
                 this.columnintyrid = base.Columns["intyrid"];
                 this.columnintsl = base.Columns["intsl"];
+                this.columnmonprice = base.Columns["monprice"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6946,6 +6958,8 @@ namespace Budget_DAL {
                 base.Columns.Add(this.columnintyrid);
                 this.columnintsl = new global::System.Data.DataColumn("intsl", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintsl);
+                this.columnmonprice = new global::System.Data.DataColumn("monprice", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonprice);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10087,6 +10101,23 @@ namespace Budget_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monprice {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.monpriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monprice\' in table \'SprOperationalBudgetFGQntvsMaterialQnt\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.monpriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintBudgetYearNull() {
                 return this.IsNull(this.tableSprOperationalBudgetFGQntvsMaterialQnt.intBudgetYearColumn);
             }
@@ -10167,6 +10198,18 @@ namespace Budget_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetintslNull() {
                 this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intslColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonpriceNull() {
+                return this.IsNull(this.tableSprOperationalBudgetFGQntvsMaterialQnt.monpriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonpriceNull() {
+                this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.monpriceColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -14953,6 +14996,7 @@ SELECT strCCName, intCostCenterID FROM tblCostCenter WHERE (intCostCenterID = @i
             tableMapping.ColumnMappings.Add("numMatQty", "numMatQty");
             tableMapping.ColumnMappings.Add("intyrid", "intyrid");
             tableMapping.ColumnMappings.Add("intsl", "intsl");
+            tableMapping.ColumnMappings.Add("monprice", "monprice");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
