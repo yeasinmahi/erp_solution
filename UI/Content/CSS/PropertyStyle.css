@@ -119,6 +119,12 @@ tr {
     border-radius: 5px;
     width: 60%
 }
+.table3 {
+    background: #ccc;
+    padding: 2px;
+    border-radius: 5px;
+    width: 100%
+}
 .btn {
     display: inline-block;
     font-weight: 400;

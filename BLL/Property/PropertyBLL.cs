@@ -353,5 +353,20 @@ namespace BLL.Property
 
             return iii;
         }
+        public DataTable GetPlotAreaByMouza(int MouzaID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                PlotDetailsByMouzaTableAdapter adapter = new PlotDetailsByMouzaTableAdapter();
+                dt = adapter.GetPlotDetailsByMouza(MouzaID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
     }
 }
