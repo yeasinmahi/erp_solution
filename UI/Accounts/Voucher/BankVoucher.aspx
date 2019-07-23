@@ -12,8 +12,7 @@
     <title>Welcome to Akij Group</title>
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/defaultCSS" />
      <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />
-
-    
+        
 
     <script type="text/javascript">
     
