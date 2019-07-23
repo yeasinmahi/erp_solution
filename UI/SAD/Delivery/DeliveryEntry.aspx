@@ -575,7 +575,7 @@
                 <table>
                     <tr>
                         <td>Remarks</td>
-                        <td colspan="3"><asp:TextBox ID="txtRowRemarks" runat="server" Width="650px"></asp:TextBox></td>
+                        <td colspan="3"><asp:TextBox ID="txtRowRemarks" runat="server" Width="550px"></asp:TextBox></td>
                     </tr>
                 </table>
                     <table>

@@ -163,13 +163,11 @@
                       <asp:BoundField DataField="decTotalDelv1" HeaderText="TotalDelv" SortExpression="decTotalDelv" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                                       
                     <%--<asp:BoundField DataField="monCashCommission1" HeaderText="CashCommission" SortExpression="monCashCommission" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>--%>
-                     <asp:TemplateField HeaderText="monCashCommission1" HeaderStyle-HorizontalAlign="Center"  SortExpression="Quantity">
+                     <asp:TemplateField HeaderText="CommissionAmount" HeaderStyle-HorizontalAlign="Center"  SortExpression="Quantity">
                                     <ItemTemplate>
-                                     
                                         <asp:HiddenField ID="hdnmonCashCommission1" runat="server" Value='<%# Bind("monCashCommission1", "{0:0.0}") %>'></asp:HiddenField>  
-                                   <asp:Label ID="lblmonCashCommission1" runat="server" Visible="false" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monCashCommission1", "{0:0.00}"))) %>'></asp:Label>
-
-                                        <asp:TextBox ID="txtmonCashCommission1"  runat="server" onblur="" CssClass="txtBox" Width="75px" TextMode="Number" Text='<%# Bind("monCashCommission1", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
+                                       <asp:Label ID="lblmonCashCommission1" runat="server" Visible="false" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monCashCommission1", "{0:0.00}"))) %>'></asp:Label>
+                                      <asp:TextBox ID="txtmonCashCommission1"  runat="server" onblur="" CssClass="txtBox" Width="125px" TextMode="Number" Text='<%# Bind("monCashCommission1", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
                                      </ItemTemplate>
                                 
                                 </asp:TemplateField>
@@ -177,9 +175,16 @@
                       <asp:BoundField DataField="strTerritory1" HeaderText="Territory" SortExpression="strTerritory" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                     <asp:BoundField DataField="strArea1" HeaderText="Area" SortExpression="strArea" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                     <asp:BoundField DataField="strRegion1" HeaderText="Region" SortExpression="strRegion" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                       <asp:BoundField DataField="Narration1" HeaderText="Narration" SortExpression="Narration1" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                  
-                      
+                      <%-- <asp:BoundField DataField="Narration1" HeaderText="Narration" SortExpression="Narration1" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                  --%>
+                           <asp:TemplateField HeaderText="Narration" HeaderStyle-HorizontalAlign="Center"  SortExpression="Quantity">
+                                    <ItemTemplate>
+                                        <asp:HiddenField ID="hdnNarration1" runat="server" Value='<%# Bind("Narration1") %>'></asp:HiddenField>  
+                                       <asp:Label ID="lblNarration1" runat="server" Visible="false" Text='<%# (""+Eval("Narration1")) %>'></asp:Label>
+                                      <asp:TextBox ID="txtNarration1"  runat="server" onblur="" CssClass="txtBox" Width="225px"  Text='<%# Bind("Narration1") %>' AutoPostBack="false"></asp:TextBox>
+                                     </ItemTemplate>
+                                
+                                </asp:TemplateField>
                   
                   </Columns>
                     <FooterStyle BackColor="#CCCCCC" />
