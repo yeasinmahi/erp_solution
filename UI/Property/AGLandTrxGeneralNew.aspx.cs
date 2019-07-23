@@ -33,6 +33,12 @@ namespace UI.Property
         string filen;
         string filePathForXMLDocUpload; string xmlStringDocUpload = ""; string xmlDocUpload;
 
+        
+
+        int intCount = 0;
+
+        
+
         DateTime DeedDate;
         private decimal PurchasedLand, DeedValue, AIT, Vat, MutationFee, ExtendedValue, OtherCost, Broker, RegistrationCost,
             TotalExpense, AddPlotQty;
@@ -50,6 +56,7 @@ namespace UI.Property
                 tabLMMaster.CssClass = "Clicked";
                 tabLMDetails.CssClass = "Initial";
                 tabLMDocument.CssClass = "Initial";
+                tabShowData.CssClass = "Initial";
                 mainView.ActiveViewIndex = 0;
                 FillDropdown();
                 LoadCompleteDDL();
@@ -69,7 +76,7 @@ namespace UI.Property
                 tabLMMaster.CssClass = "Clicked";
                 tabLMDetails.CssClass = "Initial";
                 tabLMDocument.CssClass = "Initial";
-
+                tabShowData.CssClass = "Initial";
                 mainView.ActiveViewIndex = 0;
             }
             catch (Exception ex)
@@ -77,7 +84,6 @@ namespace UI.Property
                 //Toaster(ex.Message, "Indent", Common.TosterType.Error);
             }
         }
-
         protected void tabLMDetails_Click(object sender, EventArgs e)
         {
             try
@@ -87,24 +93,26 @@ namespace UI.Property
                     tabLMMaster.CssClass = "Initial";
                     tabLMDetails.CssClass = "Clicked";
                     tabLMDocument.CssClass = "Initial";
-
+                    tabShowData.CssClass = "Initial";
                     mainView.ActiveViewIndex = 1;
+                    lblqPurchaseLand.Text = !string.IsNullOrEmpty(txtPurchaseLand.Text) ? txtPurchaseLand.Text.ToString() : "0.00";
                 }
                 else
                 {
                     tabLMMaster.CssClass = "Clicked";
                     tabLMDetails.CssClass = "Initial";
                     tabLMDocument.CssClass = "Initial";
-
+                    tabShowData.CssClass = "Initial";
                     mainView.ActiveViewIndex = 0;
+                   
                 }
+                
             }
             catch (Exception ex)
             {
                 //Toaster(ex.Message, "Indent", Common.TosterType.Error);
             }
         }
-
         protected void tabLMDocument_Click(object sender, EventArgs e)
         {
             try
@@ -114,15 +122,16 @@ namespace UI.Property
                     tabLMMaster.CssClass = "Initial";
                     tabLMDetails.CssClass = "Initial";
                     tabLMDocument.CssClass = "Clicked";
-
+                    tabShowData.CssClass = "Initial";
                     mainView.ActiveViewIndex = 2;
+                    txtqDeedNo.Text = txtDeedNo.Text.ToString();
                 }
                 else if(MasterValidation() == false)
                 {
                     tabLMMaster.CssClass = "Clicked";
                     tabLMDetails.CssClass = "Initial";
                     tabLMDocument.CssClass = "Initial";
-
+                    tabShowData.CssClass = "Initial";
                     mainView.ActiveViewIndex = 0;
                 }
                 else
@@ -131,7 +140,7 @@ namespace UI.Property
                     tabLMMaster.CssClass = "Initial";
                     tabLMDetails.CssClass = "Clicked";
                     tabLMDocument.CssClass = "Initial";
-
+                    tabShowData.CssClass = "Initial";
                     mainView.ActiveViewIndex = 1;
                 }
                 
@@ -140,6 +149,15 @@ namespace UI.Property
             {
                 //Toaster(ex.Message, "Indent", Common.TosterType.Error);
             }
+        }
+        protected void tabShowData_Click(object sender, EventArgs e)
+        {
+            tabLMMaster.CssClass = "Initial";
+            tabLMDetails.CssClass = "Initial";
+            tabLMDocument.CssClass = "Initial";
+            tabShowData.CssClass = "Clicked";
+
+            mainView.ActiveViewIndex = 3;
         }
         protected void ddlMouza_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -232,19 +250,19 @@ namespace UI.Property
         }
         protected void txtPurchasedPlot_TextChanged(object sender, EventArgs e)
         {
+            decimal PlotArea = 0;
             try
             {
-                decimal PurchasePlot = !string.IsNullOrEmpty(txtPurchasedPlot.Text) ? Convert.ToDecimal(txtPurchasedPlot.Text) : 0;
-                if (!string.IsNullOrEmpty(hfPurshedPlot.Value) && Convert.ToDecimal(hfPurshedPlot.Value) >= 0)
+                if (gvLandTrxGeneral.Rows.Count > 0)
                 {
-                    hfPurshedPlot.Value = (Convert.ToDecimal(hfPurshedPlot.Value) + PurchasePlot).ToString();
+                    for (int i = 0; i < gvLandTrxGeneral.Rows.Count; i++)
+                    {
+                        Label lblPurchasePlotArea = (Label)gvLandTrxGeneral.Rows[i].FindControl("lblPurchasedPlotArea");
+                        PlotArea += decimal.Parse(lblPurchasePlotArea.Text.Trim());
+                    }
                 }
-                else
-                {
-                    hfPurshedPlot.Value = PurchasePlot.ToString();
-                }
-
-                LandCalculation(Convert.ToDecimal(hfPurshedPlot.Value));
+                hfPurshedPlot.Value = (decimal.Parse(txtPurchasedPlot.Text) +  PlotArea).ToString();
+                LandCalculation(decimal.Parse(hfPurshedPlot.Value));
             }
             catch (Exception ex)
             {
@@ -282,11 +300,23 @@ namespace UI.Property
                     checkXmlItemData(PlotNo);
                     if (CheckItem == 1)
                     {
-                        CreateXml(KahtianCS, KahtianSA, KahtianRS, KahtianBS, KahtianMutation, PlotCS, PlotSA, PlotRS, PlotBS, PlotMutation,
+                        decimal totalPlotArea = decimal.Parse(lblqPurchasePlot.Text) + decimal.Parse(PurchesedPlot);
+                        if (totalPlotArea <= decimal.Parse(txtPurchaseLand.Text))
+                        {
+                            CreateXml(KahtianCS, KahtianSA, KahtianRS, KahtianBS, KahtianMutation, PlotCS, PlotSA, PlotRS, PlotBS, PlotMutation,
                             LDTR, PlotTypeID.ToString(), PlotType, PlotNo, PurchesedPlot, MouzaName, PlotByMouza.ToString());
+                            lblqPurchasePlot.Text = !string.IsNullOrEmpty(lblqPurchasePlot.Text) ?
+                               (decimal.Parse(lblqPurchasePlot.Text) + decimal.Parse(PurchesedPlot)).ToString() : PurchesedPlot.ToString();
+                            LoadGridWithXml();
 
-                        LoadGridWithXml();
-                        DetailClear();
+                            DetailClear();
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Purchase Plot is Bigger then Purchase Land. Please Entered Correct Purchase Plot Area.');", true);
+                            //return;
+                        }
+                        
                     }
                     else
                     {
@@ -375,9 +405,35 @@ namespace UI.Property
             }
             catch { }
         }
+        protected void btnDeedDataShow_Click(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                DateTime FromDate = DateTime.ParseExact(txtFromDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                DateTime ToDate = DateTime.ParseExact(txtToDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                string DeedNo = !string.IsNullOrEmpty(txtShowDeedNo.Text) ? txtShowDeedNo.Text : "0";
+                dt = pbll.GetInsertedLandData(FromDate, ToDate, DeedNo);
+                if(dt != null && dt.Rows.Count > 0)
+                {
+                    dgvDeedDataShow.DataSource = dt;
+                    dgvDeedDataShow.DataBind();
+                }
+                else
+                {
+                    dgvDeedDataShow.DataSource = null;
+                    dgvDeedDataShow.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Data Load : " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
+        }
         #endregion
 
-        
+
 
         #region Method
         private void FillDropdown()
@@ -428,10 +484,10 @@ namespace UI.Property
                     ddlPlotType.DataValueField = "intPlotTypeId";
                     ddlPlotType.DataBind();
 
-                    ddlFilePlotType.DataSource = dtPlotType;
-                    ddlFilePlotType.DataTextField = "strPlotType";
-                    ddlFilePlotType.DataValueField = "intPlotTypeId";
-                    ddlFilePlotType.DataBind();
+                    //ddlFilePlotType.DataSource = dtPlotType;
+                    //ddlFilePlotType.DataTextField = "strPlotType";
+                    //ddlFilePlotType.DataValueField = "intPlotTypeId";
+                    //ddlFilePlotType.DataBind();
                 }
                 if (dtLDTR != null && dtLDTR.Rows.Count > 0)
                 {
@@ -448,7 +504,7 @@ namespace UI.Property
                 ddlSubOffice.Items.Insert(0, new ListItem("--- Select Sub-Office ---", "-1"));
                 ddlDeedType.Items.Insert(0, new ListItem("--- Select Deed Type ---", "-1"));
                 ddlPlotType.Items.Insert(0, new ListItem("--- Select Plot Type ---", "-1"));
-                ddlFilePlotType.Items.Insert(0, new ListItem("--- Select Plot Type ---", "-1"));
+               // ddlFilePlotType.Items.Insert(0, new ListItem("--- Select Plot Type ---", "-1"));
                 ddlUpdatedLDTR.Items.Insert(0, new ListItem("--- Select LDTR ---", "-1"));
 
             }
@@ -637,7 +693,7 @@ namespace UI.Property
             ddlPlotType.SelectedValue = "-1";
             txtPlotNo.Text = string.Empty;
             txtPurchasedPlot.Text = string.Empty;
-            ddlUpdatedLDTR.SelectedValue = "-1";
+            //ddlUpdatedLDTR.SelectedValue = "-1";
         }
         private bool Validation()
         {
@@ -723,7 +779,7 @@ namespace UI.Property
 
                 Message = pbll.InsertAGLandTrxGeneral(MainXml, DocXml, UnitId, MouzaId, SubOfficeId, DeedTypeID, DeedNo, DeedDate, SellerName, PurchasedLand,
                     Remarks, DeedValue, Vat, ExtendedValue, Broker, RegistrationCost, AIT, MutationFee, OtherCost, OtherCostRemarks,
-                    East, West, North, South);
+                    East, West, North, South, Enroll);
             }
             catch (Exception ex)
             {
@@ -880,11 +936,10 @@ namespace UI.Property
                 {
                     string Mouza = Convert.ToInt32(ddlMouza.SelectedValue) > 0 ? ddlMouza.SelectedItem.ToString() : "N/A";
                     string DeedNo = !string.IsNullOrEmpty(txtDeedNo.Text) ? txtDeedNo.Text : "";
-                    int PlotType = int.Parse(ddlFilePlotType.SelectedValue.ToString());
-                    string strPlotType = ddlFilePlotType.SelectedItem.ToString();
-                    string PlotNo = txtFilePlotNo.Text.ToString();
-
-                    int intCount = 0;
+                    //int PlotType = int.Parse(ddlFilePlotType.SelectedValue.ToString());
+                    //string strPlotType = ddlFilePlotType.SelectedItem.ToString();
+                    //string PlotNo = txtFilePlotNo.Text.ToString();
+                    
                     if (fuDocUpload.HasFiles)
                     {
                         foreach (HttpPostedFile uploadedFile in fuDocUpload.PostedFiles)
@@ -893,7 +948,7 @@ namespace UI.Property
                             Stream strm = uploadedFile.InputStream;
                             string strDocUploadPath = Path.GetFileName(uploadedFile.FileName);
 
-                            strDocUploadPath = "Land_" + DeedNo + "_" + strPlotType + "_" + PlotNo + "_00" + intCount.ToString() + "_" + strDocUploadPath;
+                            strDocUploadPath = "Land_" + DeedNo + "_00" + intCount.ToString() + "_" + strDocUploadPath;
 
 
                             fileName = strDocUploadPath.Replace(" ", "");
@@ -931,7 +986,7 @@ namespace UI.Property
                             //   // return;
                             //}
 
-                            CreateVoucherXmlDocUpload(fileName, Mouza, DeedNo, strPlotType, PlotNo);
+                            CreateVoucherXmlDocUpload(fileName, Mouza, DeedNo);
                         }
                     }
                 }
@@ -942,14 +997,14 @@ namespace UI.Property
 
             }
         }
-        private void CreateVoucherXmlDocUpload(string strFileName, string Mouza, string DeedNo, string strPlotType, string PlotNo)
+        private void CreateVoucherXmlDocUpload(string strFileName, string Mouza, string DeedNo)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXMLDocUpload))
             {
                 doc.Load(filePathForXMLDocUpload);
                 XmlNode rootNode = doc.SelectSingleNode("FileUpload");
-                XmlNode addItem = CreateItemNodeDocUpload(doc, strFileName, Mouza, DeedNo, strPlotType, PlotNo);
+                XmlNode addItem = CreateItemNodeDocUpload(doc, strFileName, Mouza, DeedNo);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -957,7 +1012,7 @@ namespace UI.Property
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("FileUpload");
-                XmlNode addItem = CreateItemNodeDocUpload(doc, strFileName, Mouza, DeedNo, strPlotType, PlotNo);
+                XmlNode addItem = CreateItemNodeDocUpload(doc, strFileName, Mouza, DeedNo);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -965,7 +1020,7 @@ namespace UI.Property
             LoadGridwithXmlDocUpload();
             //Clear(); 
         }
-        private XmlNode CreateItemNodeDocUpload(XmlDocument doc, string strFileName, string mouza, string deedNo, string strPlotType, string plotNo)
+        private XmlNode CreateItemNodeDocUpload(XmlDocument doc, string strFileName, string mouza, string deedNo)
         {
             XmlNode node = doc.CreateElement("FileUpload");
 
@@ -975,16 +1030,10 @@ namespace UI.Property
             Mouza.Value = mouza;
             XmlAttribute DeedNo = doc.CreateAttribute("deedNo");
             DeedNo.Value = deedNo;
-            XmlAttribute StrPlotType = doc.CreateAttribute("strPlotType");
-            StrPlotType.Value = strPlotType;
-            XmlAttribute PlotNo = doc.CreateAttribute("plotNo");
-            PlotNo.Value = plotNo;
 
             node.Attributes.Append(StrFileName);
             node.Attributes.Append(Mouza);
             node.Attributes.Append(DeedNo);
-            node.Attributes.Append(StrPlotType);
-            node.Attributes.Append(PlotNo);
             return node;
         }
         private void LoadGridwithXmlDocUpload()
