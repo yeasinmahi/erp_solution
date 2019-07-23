@@ -34,7 +34,7 @@
     <table><tr><td>
     <table  class="tbldecoration" style="width:auto; float:left;">                            
        <tr><td>Production Date</td>
-            <td><asp:TextBox ID="txtFrom" runat="server" Enabled="false"  Height="22px"></asp:TextBox>
+            <td><asp:TextBox ID="txtFrom" runat="server" Enabled="false"  Height="22px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
             ID="CalendarExtender1" runat="server" EnableViewState="true">
             </cc1:CalendarExtender>

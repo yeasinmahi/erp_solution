@@ -95,7 +95,7 @@
        
         <tr>
              <td><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Date:"></asp:Label></td>
-            <td><asp:TextBox ID="TextBox2" ReadOnly="true"  runat="server"></asp:TextBox></td>
+            <td><asp:TextBox ID="TextBox2" ReadOnly="true"  runat="server" autocomplete="off"></asp:TextBox></td>
             <td><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Naration:"></asp:Label></td>
             <td class="auto-style3"><asp:TextBox ID="TextBox3" ReadOnly="true"  Width="300" runat="server"></asp:TextBox></td>
         </tr>

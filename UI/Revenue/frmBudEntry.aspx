@@ -51,9 +51,9 @@
          <asp:ListItem Value="1">Local</asp:ListItem>
          <asp:ListItem Value="2">Import</asp:ListItem>
          </asp:DropDownList></td></tr>
-     <tr><td>From Date :</td><td><asp:TextBox ID="txtFrom" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+     <tr><td>From Date :</td><td><asp:TextBox ID="txtFrom" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
          <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFrom"></cc1:CalendarExtender></td></tr>
-     <tr><td>From Date :</td><td><asp:TextBox ID="txtTo" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+     <tr><td>From Date :</td><td><asp:TextBox ID="txtTo" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
          <cc1:CalendarExtender ID="tdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtTo"></cc1:CalendarExtender></td></tr>
      <tr><td>&nbsp;</td><td style="text-align:right"><asp:Button ID="btnShow" Text="Show" runat="server" OnClick="btnShow_Click" /></td></tr>
      <tr><td colspan="2"> 

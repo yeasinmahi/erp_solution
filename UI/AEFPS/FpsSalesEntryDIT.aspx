@@ -155,7 +155,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblQty" runat="server" CssClass="lbl" Text="Date :"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="TextBox1" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox></td>
+                                <asp:TextBox ID="TextBox1" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px" autocomplete="off"></asp:TextBox></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblVCNo" runat="server" CssClass="lbl" Text="Voucher No :"></asp:Label></td>
                             <td style="text-align: left;">

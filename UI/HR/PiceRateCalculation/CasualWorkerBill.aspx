@@ -48,7 +48,7 @@
                                         <div class="col-md-6 col-sm-6">
                                             <asp:Label ID="Label6" runat="server" Text="Date"></asp:Label>
                                             <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                            <asp:TextBox ID="txtDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Date"></asp:TextBox>
+                                            <asp:TextBox ID="txtDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Date" ></asp:TextBox>
                                         </div>
 
                                         <div class="col-md-12 col-sm-12" style="padding-top: 10px">

@@ -46,13 +46,13 @@
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
       <table style="width: 90%;background-color:#ede9e9;">
-        <tr><td>From Date</td><td><asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
+        <tr><td>From Date</td><td><asp:TextBox ID="txtFrom" runat="server" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy"
         PopupButtonID="imgCal_1" ID="CalendarExtender2" runat="server" EnableViewState="true">
         </cc1:CalendarExtender><img id="imgCal_1" src="../../../Content/images/img/calbtn.gif" style="border: 0px;
         width: 34px; height: 23px; vertical-align: bottom;" /></td>
 
-        <td>To Date</td><td><asp:TextBox ID="txtTo" runat="server"></asp:TextBox>
+        <td>To Date</td><td><asp:TextBox ID="txtTo" runat="server" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtTo" Format="dd/MM/yyyy"
         PopupButtonID="imgCal_2" ID="CalendarExtender1" runat="server" EnableViewState="true">
         </cc1:CalendarExtender><img id="imgCal_2" src="../../../Content/images/img/calbtn.gif" style="border: 0px;

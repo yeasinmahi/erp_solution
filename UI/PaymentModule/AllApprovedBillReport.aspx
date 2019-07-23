@@ -42,11 +42,11 @@
                 <td style="text-align:left;"><asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" runat="server" width="110px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList></td>
                 <td style="text-align:right; "><asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>  
                 <td style="text-align:right;"><asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="From"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>                
-                <td><asp:TextBox ID="txtFrom" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110"></asp:TextBox>
+                <td><asp:TextBox ID="txtFrom" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFrom"></cc1:CalendarExtender></td>
                 <td style="text-align:right; "><asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>  
                 <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="To"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>                
-                <td><asp:TextBox ID="txtTo" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px"></asp:TextBox>
+                <td><asp:TextBox ID="txtTo" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtTo"></cc1:CalendarExtender></td>
                 <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>  
                 <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click"/></td> 

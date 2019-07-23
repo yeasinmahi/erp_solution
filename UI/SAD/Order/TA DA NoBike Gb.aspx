@@ -192,10 +192,10 @@
 
         <tr class="tblroweven">
         <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date:  "></asp:Label></td>
-        <td><asp:TextBox ID="txtFromDate"  placeholder="Click for date" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox> <span style="color:red">*</span>
+        <td><asp:TextBox ID="txtFromDate"  placeholder="Click for date" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox> <span style="color:red">*</span>
         <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender></td>
         <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date:  "></asp:Label></td>
-        <td><asp:TextBox ID="txtToDate"  placeholder="Click For date" runat="server" CssClass="txtBox" AutoPostBack="false" Enabled="true"></asp:TextBox> <span style="color:red">*</span>
+        <td><asp:TextBox ID="txtToDate"  placeholder="Click For date" runat="server" CssClass="txtBox" AutoPostBack="false" Enabled="true" autocomplete="off"></asp:TextBox> <span style="color:red">*</span>
         <cc1:CalendarExtender ID="tdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>       
          
          <td style="text-align:right"><asp:Label ID="lblTotalMovementDuraion" CssClass="required"  runat="server" Text="Movement Duration(Hour) "  ></asp:Label> </td>

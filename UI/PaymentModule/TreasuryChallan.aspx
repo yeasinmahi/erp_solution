@@ -179,13 +179,13 @@
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Challan Date : "></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="dtCha" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox>
+                                    <asp:TextBox ID="dtCha" runat="server" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
                                     <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="dtCha"></cc1:CalendarExtender>
                                 </td>
                                 <td style="text-align: right;">
                                     <asp:Label ID="lbleffective" CssClass="lbl" runat="server" Text="VDate : "></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="dtVdate" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox>
+                                    <asp:TextBox ID="dtVdate" runat="server" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
                                     <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="dtVdate"></cc1:CalendarExtender>
                                 </td>
                             </tr>

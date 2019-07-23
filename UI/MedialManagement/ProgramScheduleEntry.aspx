@@ -69,11 +69,11 @@
             <tr>
                 
                 <td style="text-align:right;"><asp:Label ID="lblFromDate" runat="server" CssClass="label" Text="From Date :"></asp:Label></td>
-                <td style="text-align:left;"><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Width="220px" AutoPostBack="true" OnTextChanged="txtFromDate_TextChanged"></asp:TextBox>
+                <td style="text-align:left;"><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Width="220px" AutoPostBack="true" OnTextChanged="txtFromDate_TextChanged" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender></td>
             
                 <td style="text-align:right;"><asp:Label ID="lblToDate" runat="server" CssClass="label" Text="To Date :"></asp:Label></td>
-                <td style="text-align:left;"><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Width="220px"></asp:TextBox>
+                <td style="text-align:left;"><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Width="220px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="tdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>
             </tr>
             <tr>
