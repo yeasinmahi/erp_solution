@@ -208,7 +208,7 @@
                 var txtFDate = document.getElementById("txtFDate").value;
                  var txtTDate = document.getElementById("txtTDate").value;
                 if (txtEnroll === null || txtEnroll === "") {
-                    ShowNotification('Enroll can not be blank', 'Casual Worker Bill', 'warning');
+                    ShowNotification('Employee code can not be blank', 'Casual Worker Bill', 'warning');
                     return false;
                 }
                 if (txtFDate === null || txtFDate === "") {

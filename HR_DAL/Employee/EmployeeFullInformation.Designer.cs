@@ -18856,23 +18856,29 @@ SELECT intEducationInfoID, intEnroll, intEducationID, strEducationName, intResul
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = " select top(1) dteAttendanceTime from ERP_HR.dbo.tblEmployeeAttendance\r\n where in" +
-                "tEmployeeID=@enroll and dteAttendanceDate = GETDATE()\r\n order by dteAttendanceTi" +
-                "me";
+                "tEmployeeID=@enroll and dteAttendanceDate = @date\r\n order by dteAttendanceTime";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@date", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteAttendanceDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual EmployeeFullInformation.tblEmployeeAttendanceDataTable GetData(global::System.Nullable<int> enroll) {
+        public virtual EmployeeFullInformation.tblEmployeeAttendanceDataTable GetData(global::System.Nullable<int> enroll, string date) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((enroll.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(enroll.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((date == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(date));
             }
             EmployeeFullInformation.tblEmployeeAttendanceDataTable dataTable = new EmployeeFullInformation.tblEmployeeAttendanceDataTable();
             this.Adapter.Fill(dataTable);
