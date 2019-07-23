@@ -148,13 +148,22 @@ namespace UI.SAD.Setup {
         protected global::System.Web.UI.WebControls.Label lblCustomer;
         
         /// <summary>
-        /// ddlCustomer control.
+        /// txtCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCustomer;
+        protected global::System.Web.UI.WebControls.TextBox txtCustomer;
+        
+        /// <summary>
+        /// empsearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender empsearch;
         
         /// <summary>
         /// btnSubmit control.

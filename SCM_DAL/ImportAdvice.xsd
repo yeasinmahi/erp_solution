@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ImportAdvice" targetNamespace="http://tempuri.org/ImportAdvice.xsd" xmlns:mstns="http://tempuri.org/ImportAdvice.xsd" xmlns="http://tempuri.org/ImportAdvice.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_InventoryConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_InventoryConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_InventoryConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable1TableAdapter" GeneratorDataComponentClassName="DataTable1TableAdapter" Name="DataTable1" UserDataComponentName="DataTable1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT  u.strDescription, bi.intUnitID 
+FROM ERP_Inventory.dbo.tblBankInforForImportPayment bi 
+JOIN ERP_HR.dbo.tblUnit u ON bi.intUnitID=u.intUnitID 
+GROUP BY u.strDescription, bi.intUnitID 
+ORDER BY u.strDescription</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strDescription" DataSetColumn="strDescription" />
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblBankInforForImportPaymentTableAdapter" GeneratorDataComponentClassName="tblBankInforForImportPaymentTableAdapter" Name="tblBankInforForImportPayment" UserDataComponentName="tblBankInforForImportPaymentTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.tblBankInforForImportPayment" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT strBankName, intBankID 
+FROM ERP_Inventory.dbo.tblBankInforForImportPayment 
+GROUP BY strBankName, intBankID 
+ORDER BY strBankName </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strBankName" DataSetColumn="strBankName" />
+              <Mapping SourceColumn="intBankID" DataSetColumn="intBankID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="qryImportBankAdviceRequirementTableAdapter" GeneratorDataComponentClassName="qryImportBankAdviceRequirementTableAdapter" Name="qryImportBankAdviceRequirement" UserDataComponentName="qryImportBankAdviceRequirementTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.qryImportBankAdviceRequirement" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT strAdviceGroup
+FROM ERP_Inventory.dbo.qryImportBankAdviceRequirement 
+WHERE intUnitID=@unitId AND intPayBank=@bankId AND dteReqDate BETWEEN @fromDate AND @toDate
+GROUP BY strAdviceGroup</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="unitId" ColumnName="intUnitID" DataSourceName="ERP_Inventory.dbo.qryImportBankAdviceRequirement" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@unitId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="bankId" ColumnName="intPayBank" DataSourceName="ERP_Inventory.dbo.qryImportBankAdviceRequirement" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@bankId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intPayBank" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="fromDate" ColumnName="dteReqDate" DataSourceName="ERP_Inventory.dbo.qryImportBankAdviceRequirement" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@fromDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteReqDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="toDate" ColumnName="dteReqDate" DataSourceName="ERP_Inventory.dbo.qryImportBankAdviceRequirement" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@toDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteReqDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strAdviceGroup" DataSetColumn="strAdviceGroup" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblBankInforForImportPayment1TableAdapter" GeneratorDataComponentClassName="tblBankInforForImportPayment1TableAdapter" Name="tblBankInforForImportPayment1" UserDataComponentName="tblBankInforForImportPayment1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.tblBankInforForImportPayment" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT strBankName, strBranch, strAddress, strAccountNo 
+FROM ERP_Inventory.dbo.tblBankInforForImportPayment 
+WHERE intUnitID=@unitId AND intBankID=@bankId</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="unitId" ColumnName="intUnitID" DataSourceName="ERP_Inventory.dbo.tblBankInforForImportPayment" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@unitId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="bankId" ColumnName="intBankID" DataSourceName="ERP_Inventory.dbo.tblBankInforForImportPayment" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@bankId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intBankID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strBankName" DataSetColumn="strBankName" />
+              <Mapping SourceColumn="strBranch" DataSetColumn="strBranch" />
+              <Mapping SourceColumn="strAddress" DataSetColumn="strAddress" />
+              <Mapping SourceColumn="strAccountNo" DataSetColumn="strAccountNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprImportFundRequisitionAdviceDetailTableAdapter" GeneratorDataComponentClassName="sprImportFundRequisitionAdviceDetailTableAdapter" Name="sprImportFundRequisitionAdviceDetail" UserDataComponentName="sprImportFundRequisitionAdviceDetailTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprImportFundRequisitionAdviceDetail" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprImportFundRequisitionAdviceDetail</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnit" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intBank" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@ReqDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="varchar" DbType="AnsiString" Direction="Input" ParameterName="@strAdviceGroup" Precision="0" ProviderType="VarChar" Scale="0" Size="250" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intSL" DataSetColumn="intSL" />
+              <Mapping SourceColumn="strType" DataSetColumn="strType" />
+              <Mapping SourceColumn="strDescription" DataSetColumn="strDescription" />
+              <Mapping SourceColumn="monAmount" DataSetColumn="monAmount" />
+              <Mapping SourceColumn="intReqID" DataSetColumn="intReqID" />
+              <Mapping SourceColumn="intPayFor" DataSetColumn="intPayFor" />
+              <Mapping SourceColumn="strVoucher" DataSetColumn="strVoucher" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable2TableAdapter" GeneratorDataComponentClassName="DataTable2TableAdapter" Name="DataTable2" UserDataComponentName="DataTable2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText> SELECT COUNT(intAutoID) intId
+ FROM ERP_Inventory.dbo.tblImportFundRequisition 
+ WHERE dteReqDate BETWEEN @fromDate AND @toDate  AND ysnApprove=1 AND ysnAdvance=0 AND intCostGroupForAdvice NOT IN (8,9,10,11) AND ISNULL(numActualExcRate,0)=0
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="fromDate" ColumnName="dteReqDate" DataSourceName="ERP_Inventory.dbo.tblImportFundRequisition" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@fromDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteReqDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="toDate" ColumnName="dteReqDate" DataSourceName="ERP_Inventory.dbo.tblImportFundRequisition" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@toDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteReqDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intId" DataSetColumn="intId" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprImportFundRequisitionVoucherBenificiaryPayTableAdapter" GeneratorDataComponentClassName="sprImportFundRequisitionVoucherBenificiaryPayTableAdapter" Name="sprImportFundRequisitionVoucherBenificiaryPay" UserDataComponentName="sprImportFundRequisitionVoucherBenificiaryPayTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprImportFundRequisitionVoucherBenificiaryPay" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprImportFundRequisitionVoucherBenificiaryPay</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intReqID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intReqFor" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUser" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strVoucherNo" DataSetColumn="strVoucherNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblImportFundRequisitionTableAdapter" GeneratorDataComponentClassName="tblImportFundRequisitionTableAdapter" Name="tblImportFundRequisition" UserDataComponentName="tblImportFundRequisitionTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.tblImportFundRequisition" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText> UPDATE ERP_Inventory.dbo.tblImportFundRequisition SET strVoucherNo=@voucher output inserted.intAutoID WHERE intAutoID=@reqId
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="voucher" ColumnName="strVoucherNo" DataSourceName="ERP_Inventory.dbo.tblImportFundRequisition" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@voucher" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="strVoucherNo" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="reqId" ColumnName="intAutoID" DataSourceName="ERP_Inventory.dbo.tblImportFundRequisition" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@reqId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intAutoID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intAutoID" DataSetColumn="intAutoID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprImportFundRequisitionVoucherTableAdapter" GeneratorDataComponentClassName="sprImportFundRequisitionVoucherTableAdapter" Name="sprImportFundRequisitionVoucher" UserDataComponentName="sprImportFundRequisitionVoucherTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprImportFundRequisitionVoucher" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprImportFundRequisitionVoucher</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intReqID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intReqFor" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUser" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strVoucherNo" DataSetColumn="strVoucherNo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ImportAdvice" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ImportAdvice" msprop:Generator_UserDSName="ImportAdvice">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strDescription" msprop:Generator_ColumnVarNameInTable="columnstrDescription" msprop:Generator_ColumnPropNameInRow="strDescription" msprop:Generator_ColumnPropNameInTable="strDescriptionColumn" msprop:Generator_UserColumnName="strDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblBankInforForImportPayment" msprop:Generator_TableClassName="tblBankInforForImportPaymentDataTable" msprop:Generator_TableVarName="tabletblBankInforForImportPayment" msprop:Generator_RowChangedName="tblBankInforForImportPaymentRowChanged" msprop:Generator_TablePropName="tblBankInforForImportPayment" msprop:Generator_RowDeletingName="tblBankInforForImportPaymentRowDeleting" msprop:Generator_RowChangingName="tblBankInforForImportPaymentRowChanging" msprop:Generator_RowEvHandlerName="tblBankInforForImportPaymentRowChangeEventHandler" msprop:Generator_RowDeletedName="tblBankInforForImportPaymentRowDeleted" msprop:Generator_RowClassName="tblBankInforForImportPaymentRow" msprop:Generator_UserTableName="tblBankInforForImportPayment" msprop:Generator_RowEvArgName="tblBankInforForImportPaymentRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strBankName" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" msprop:Generator_UserColumnName="strBankName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intBankID" msprop:Generator_ColumnVarNameInTable="columnintBankID" msprop:Generator_ColumnPropNameInRow="intBankID" msprop:Generator_ColumnPropNameInTable="intBankIDColumn" msprop:Generator_UserColumnName="intBankID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="qryImportBankAdviceRequirement" msprop:Generator_TableClassName="qryImportBankAdviceRequirementDataTable" msprop:Generator_TableVarName="tableqryImportBankAdviceRequirement" msprop:Generator_RowChangedName="qryImportBankAdviceRequirementRowChanged" msprop:Generator_TablePropName="qryImportBankAdviceRequirement" msprop:Generator_RowDeletingName="qryImportBankAdviceRequirementRowDeleting" msprop:Generator_RowChangingName="qryImportBankAdviceRequirementRowChanging" msprop:Generator_RowEvHandlerName="qryImportBankAdviceRequirementRowChangeEventHandler" msprop:Generator_RowDeletedName="qryImportBankAdviceRequirementRowDeleted" msprop:Generator_RowClassName="qryImportBankAdviceRequirementRow" msprop:Generator_UserTableName="qryImportBankAdviceRequirement" msprop:Generator_RowEvArgName="qryImportBankAdviceRequirementRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strAdviceGroup" msprop:Generator_ColumnVarNameInTable="columnstrAdviceGroup" msprop:Generator_ColumnPropNameInRow="strAdviceGroup" msprop:Generator_ColumnPropNameInTable="strAdviceGroupColumn" msprop:Generator_UserColumnName="strAdviceGroup" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblBankInforForImportPayment1" msprop:Generator_TableClassName="tblBankInforForImportPayment1DataTable" msprop:Generator_TableVarName="tabletblBankInforForImportPayment1" msprop:Generator_RowChangedName="tblBankInforForImportPayment1RowChanged" msprop:Generator_TablePropName="tblBankInforForImportPayment1" msprop:Generator_RowDeletingName="tblBankInforForImportPayment1RowDeleting" msprop:Generator_RowChangingName="tblBankInforForImportPayment1RowChanging" msprop:Generator_RowEvHandlerName="tblBankInforForImportPayment1RowChangeEventHandler" msprop:Generator_RowDeletedName="tblBankInforForImportPayment1RowDeleted" msprop:Generator_RowClassName="tblBankInforForImportPayment1Row" msprop:Generator_UserTableName="tblBankInforForImportPayment1" msprop:Generator_RowEvArgName="tblBankInforForImportPayment1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strBankName" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" msprop:Generator_UserColumnName="strBankName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strBranch" msprop:Generator_ColumnVarNameInTable="columnstrBranch" msprop:Generator_ColumnPropNameInRow="strBranch" msprop:Generator_ColumnPropNameInTable="strBranchColumn" msprop:Generator_UserColumnName="strBranch" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strAddress" msprop:Generator_ColumnVarNameInTable="columnstrAddress" msprop:Generator_ColumnPropNameInRow="strAddress" msprop:Generator_ColumnPropNameInTable="strAddressColumn" msprop:Generator_UserColumnName="strAddress" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strAccountNo" msprop:Generator_ColumnVarNameInTable="columnstrAccountNo" msprop:Generator_ColumnPropNameInRow="strAccountNo" msprop:Generator_ColumnPropNameInTable="strAccountNoColumn" msprop:Generator_UserColumnName="strAccountNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sprImportFundRequisitionAdviceDetail" msprop:Generator_TableClassName="sprImportFundRequisitionAdviceDetailDataTable" msprop:Generator_TableVarName="tablesprImportFundRequisitionAdviceDetail" msprop:Generator_RowChangedName="sprImportFundRequisitionAdviceDetailRowChanged" msprop:Generator_TablePropName="sprImportFundRequisitionAdviceDetail" msprop:Generator_RowDeletingName="sprImportFundRequisitionAdviceDetailRowDeleting" msprop:Generator_RowChangingName="sprImportFundRequisitionAdviceDetailRowChanging" msprop:Generator_RowEvHandlerName="sprImportFundRequisitionAdviceDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="sprImportFundRequisitionAdviceDetailRowDeleted" msprop:Generator_RowClassName="sprImportFundRequisitionAdviceDetailRow" msprop:Generator_UserTableName="sprImportFundRequisitionAdviceDetail" msprop:Generator_RowEvArgName="sprImportFundRequisitionAdviceDetailRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intSL" msprop:Generator_ColumnVarNameInTable="columnintSL" msprop:Generator_ColumnPropNameInRow="intSL" msprop:Generator_ColumnPropNameInTable="intSLColumn" msprop:Generator_UserColumnName="intSL" type="xs:int" minOccurs="0" />
+              <xs:element name="strType" msprop:Generator_ColumnVarNameInTable="columnstrType" msprop:Generator_ColumnPropNameInRow="strType" msprop:Generator_ColumnPropNameInTable="strTypeColumn" msprop:Generator_UserColumnName="strType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strDescription" msprop:Generator_ColumnVarNameInTable="columnstrDescription" msprop:Generator_ColumnPropNameInRow="strDescription" msprop:Generator_ColumnPropNameInTable="strDescriptionColumn" msprop:Generator_UserColumnName="strDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="monAmount" msprop:Generator_ColumnVarNameInTable="columnmonAmount" msprop:Generator_ColumnPropNameInRow="monAmount" msprop:Generator_ColumnPropNameInTable="monAmountColumn" msprop:Generator_UserColumnName="monAmount" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intReqID" msprop:Generator_ColumnVarNameInTable="columnintReqID" msprop:Generator_ColumnPropNameInRow="intReqID" msprop:Generator_ColumnPropNameInTable="intReqIDColumn" msprop:Generator_UserColumnName="intReqID" type="xs:int" minOccurs="0" />
+              <xs:element name="intPayFor" msprop:Generator_ColumnVarNameInTable="columnintPayFor" msprop:Generator_ColumnPropNameInRow="intPayFor" msprop:Generator_ColumnPropNameInTable="intPayForColumn" msprop:Generator_UserColumnName="intPayFor" type="xs:int" minOccurs="0" />
+              <xs:element name="strVoucher" msprop:Generator_ColumnVarNameInTable="columnstrVoucher" msprop:Generator_ColumnPropNameInRow="strVoucher" msprop:Generator_ColumnPropNameInTable="strVoucherColumn" msprop:Generator_UserColumnName="strVoucher" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intId" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintId" msprop:Generator_ColumnPropNameInRow="intId" msprop:Generator_ColumnPropNameInTable="intIdColumn" msprop:Generator_UserColumnName="intId" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sprImportFundRequisitionVoucherBenificiaryPay" msprop:Generator_TableClassName="sprImportFundRequisitionVoucherBenificiaryPayDataTable" msprop:Generator_TableVarName="tablesprImportFundRequisitionVoucherBenificiaryPay" msprop:Generator_TablePropName="sprImportFundRequisitionVoucherBenificiaryPay" msprop:Generator_RowDeletingName="sprImportFundRequisitionVoucherBenificiaryPayRowDeleting" msprop:Generator_RowChangingName="sprImportFundRequisitionVoucherBenificiaryPayRowChanging" msprop:Generator_RowEvHandlerName="sprImportFundRequisitionVoucherBenificiaryPayRowChangeEventHandler" msprop:Generator_RowDeletedName="sprImportFundRequisitionVoucherBenificiaryPayRowDeleted" msprop:Generator_UserTableName="sprImportFundRequisitionVoucherBenificiaryPay" msprop:Generator_RowChangedName="sprImportFundRequisitionVoucherBenificiaryPayRowChanged" msprop:Generator_RowEvArgName="sprImportFundRequisitionVoucherBenificiaryPayRowChangeEvent" msprop:Generator_RowClassName="sprImportFundRequisitionVoucherBenificiaryPayRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strVoucherNo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrVoucherNo" msprop:Generator_ColumnPropNameInRow="strVoucherNo" msprop:Generator_ColumnPropNameInTable="strVoucherNoColumn" msprop:Generator_UserColumnName="strVoucherNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblImportFundRequisition" msprop:Generator_TableClassName="tblImportFundRequisitionDataTable" msprop:Generator_TableVarName="tabletblImportFundRequisition" msprop:Generator_TablePropName="tblImportFundRequisition" msprop:Generator_RowDeletingName="tblImportFundRequisitionRowDeleting" msprop:Generator_RowChangingName="tblImportFundRequisitionRowChanging" msprop:Generator_RowEvHandlerName="tblImportFundRequisitionRowChangeEventHandler" msprop:Generator_RowDeletedName="tblImportFundRequisitionRowDeleted" msprop:Generator_UserTableName="tblImportFundRequisition" msprop:Generator_RowChangedName="tblImportFundRequisitionRowChanged" msprop:Generator_RowEvArgName="tblImportFundRequisitionRowChangeEvent" msprop:Generator_RowClassName="tblImportFundRequisitionRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intAutoID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintAutoID" msprop:Generator_ColumnPropNameInRow="intAutoID" msprop:Generator_ColumnPropNameInTable="intAutoIDColumn" msprop:Generator_UserColumnName="intAutoID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sprImportFundRequisitionVoucher" msprop:Generator_TableClassName="sprImportFundRequisitionVoucherDataTable" msprop:Generator_TableVarName="tablesprImportFundRequisitionVoucher" msprop:Generator_TablePropName="sprImportFundRequisitionVoucher" msprop:Generator_RowDeletingName="sprImportFundRequisitionVoucherRowDeleting" msprop:Generator_RowChangingName="sprImportFundRequisitionVoucherRowChanging" msprop:Generator_RowEvHandlerName="sprImportFundRequisitionVoucherRowChangeEventHandler" msprop:Generator_RowDeletedName="sprImportFundRequisitionVoucherRowDeleted" msprop:Generator_UserTableName="sprImportFundRequisitionVoucher" msprop:Generator_RowChangedName="sprImportFundRequisitionVoucherRowChanged" msprop:Generator_RowEvArgName="sprImportFundRequisitionVoucherRowChangeEvent" msprop:Generator_RowClassName="sprImportFundRequisitionVoucherRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strVoucherNo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrVoucherNo" msprop:Generator_ColumnPropNameInRow="strVoucherNo" msprop:Generator_ColumnPropNameInTable="strVoucherNoColumn" msprop:Generator_UserColumnName="strVoucherNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

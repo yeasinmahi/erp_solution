@@ -125,15 +125,20 @@ namespace UI.Accounts.Voucher
             try
             {
                 BLL.Accounts.Voucher.ContraVoucher cv = new BLL.Accounts.Voucher.ContraVoucher();
-            //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-            string CompleteDate = txtCompleteDate.Text;
-            int ret = cv.CompleteContra(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
-
-            if (ret >= 1)
-            {
+                //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+                string CompleteDate = txtCompleteDate.Text;
                 cv.Save(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
-            }
-            GridView1.DataBind();
+
+                /* Below code omit by alamin@akij.net
+                int ret = cv.CompleteContra(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
+
+                if (ret >= 1)
+                {
+                    cv.Save(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                }
+                */
+
+                GridView1.DataBind();
             }
             catch (Exception ex)
             {
@@ -277,11 +282,14 @@ namespace UI.Accounts.Voucher
                 if (((CheckBox)GridView1.Rows[i].Cells[0].Controls[1]).Checked)
                 {
                     cvID = ((HiddenField)GridView1.Rows[i].FindControl("HiddenField1")).Value;
+                    cv.Save(cvID, ddlUnit.SelectedValue, Session["sesUserID"].ToString(), CompleteDate + " 09:00 AM");
+                    /*
                     ret = cv.CompleteContra(Session[SessionParams.USER_ID].ToString(), cvID);
                     if (ret >= 1)
                     {
                         cv.Save(cvID, ddlUnit.SelectedValue, Session["sesUserID"].ToString(), CompleteDate + " 09:00 AM");
                     }
+                    */
                 }
             }
 

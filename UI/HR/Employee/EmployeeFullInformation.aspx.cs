@@ -48,6 +48,15 @@ namespace UI.HR.Employee
                 LoadImage();
             }
         }
+        public void LoadTodaysAttendance()
+        {
+            _dt = _bll.GetTodatysAttendance(Enroll);
+            if (_dt.Rows.Count > 0)
+            {
+                spanTodaysAttendance.InnerText = _dt.GetValue<string>("dteAttendanceTime");
+            }
+           
+        }
         public void LoadDashBoard()
         {
             lblName.Text = UserFullName;
@@ -61,6 +70,8 @@ namespace UI.HR.Employee
             lblSupervisor.Text = Supervisor;
             lblEnroll.Text = Enroll.ToString();
             lblCode.Text = Code;
+
+            LoadTodaysAttendance();
         }
         #region Tab 1: Personal Info
         private void LoadDepartment()

@@ -250,11 +250,7 @@ namespace UI.BudgetPlan
                 budgettype = ddlBudgetType.SelectedValue.ToString();
                 if (budgettype.Length <= 0) { budgettype = "0.0"; }
 
-                if (int.Parse(budgettype)==3 || int.Parse(budgettype) == 5)
-                {
-                    txtProductRate.Enabled = true;
-                    txtProductRate.Text = "1";
-                }
+              
 
                 itemid = txtProduct.Text;
                 arrayKey = itemid.Split(delimiterChars);
@@ -330,6 +326,8 @@ namespace UI.BudgetPlan
                 string Productprice = txtProductRate.Text;
                 if (Productprice.Length <= 0) { Productprice = "0.0"; }
 
+
+
                 string totqnt = txtBudgetQnt.Text;
                 if (totqnt.Length <= 0) { totqnt = "0.0"; }
 
@@ -385,7 +383,10 @@ namespace UI.BudgetPlan
                 string totAmountProm = txtTotalamntPromo.Text;
                 if (totAmountProm.Length <= 0) { totAmountProm = "0.0"; }
 
-
+                if (int.Parse(budgettype) == 3 || int.Parse(budgettype) == 5)
+                {
+                    Productprice = "1";
+                }
 
                 Createxml(budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid, july, augest, september, october, november, december,
                 january, february, march, april, may, june,  prdname, budgyr, Productprice, totqnt, totAmount,regionname,areaname,linename

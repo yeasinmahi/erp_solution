@@ -798,7 +798,7 @@
                                                                             Drawn On
                                                                         </td>
                                                                         <td style="vertical-align: top;">
-                                                                            <asp:TextBox ID="txtDrawn" runat="server" Width="150px" autocomplete="off"></asp:TextBox>
+                                                                            <asp:TextBox ID="txtDrawn" runat="server" Width="150px"></asp:TextBox>
                                                                         </td>
                                                                         <td align="left" style="vertical-align: top;">
                                                                             <cc1:AutoCompleteExtender ID="AutoCompleteExtender5" runat="server" TargetControlID="txtDrawn"
@@ -834,7 +834,7 @@
                                                                             <asp:TextBox ID="txtCheckNoR" runat="server" Width="130px"></asp:TextBox>
                                                                         </td>
                                                                         <td style="vertical-align: bottom;">
-                                                                            <asp:TextBox ID="txtChqDateR" runat="server" Enabled="false" autocomplete="off"></asp:TextBox>
+                                                                            <asp:TextBox ID="txtChqDateR" runat="server" Enabled="true"></asp:TextBox>
                                                                             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtChqDateR" Format="dd/MM/yyyy" PopupButtonID="imgCal_2"
                                                                                 ID="CalendarExtender2" runat="server">
                                                                             </cc1:CalendarExtender>
@@ -1003,7 +1003,7 @@
                             </td>
                             <td>
                                 Complete Date: 
-                                &nbsp;<asp:TextBox ID="txtCompleteDate" runat="server" Enabled="false" autocomplete="off"></asp:TextBox>
+                                &nbsp;<asp:TextBox ID="txtCompleteDate" runat="server" Enabled="false"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtCompleteDate" Format="dd/MM/yyyy" PopupButtonID="imgCal_4"
                                     ID="CalendarExtender4" runat="server" EnableViewState="true">
                                 </cc1:CalendarExtender>
