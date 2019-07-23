@@ -623,7 +623,7 @@ namespace SCM_BLL
             sprMIRInsertNewTableAdapter adp = new sprMIRInsertNewTableAdapter();
             try
             {
-                adp.SaveMIRData(actionby,WhId, xml, ref message);
+                adp.SaveMIRData(actionby, WhId, xml, ref message);
             }
             catch
             {

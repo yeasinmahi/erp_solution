@@ -25,7 +25,7 @@ namespace UI.SCM
         private DataTable dt = new DataTable();
         private int enroll, intWh, Mrrid;
         string xmlpath;
-        string message="";
+        string message = "";
         PendingMRRTableAdapter adapter = new PendingMRRTableAdapter();
         FactoryReceiveMRRItemDetailTableAdapter fmrridtAdapter = new FactoryReceiveMRRItemDetailTableAdapter();
         sprInventoryGetMissingCostTableAdapter mcAdapter = new sprInventoryGetMissingCostTableAdapter();
@@ -60,10 +60,12 @@ namespace UI.SCM
                 HideShowGridColumn();
                 hdnpoid.Value = "0";
                 hdnmrrid.Value = "0";
-                try {
+                try
+                {
                     File.Delete(xmlpath);
                 }
-                catch {
+                catch
+                {
 
                 }
                 pnlUpperControl.DataBind();
@@ -214,7 +216,7 @@ namespace UI.SCM
                 //dt = obj.DataView(12, xmlData, intWh, Mrrid, dteFrom, enroll);
                 dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh);
 
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     dt.Columns.Add(new DataColumn("missingCost", typeof(string)));
 
@@ -236,9 +238,9 @@ namespace UI.SCM
                 }
                 else
                 {
-                    Toaster("Sorry! There is no data exist.","Pending MRR", Common.TosterType.Warning);
+                    Toaster("Sorry! There is no data exist.", "Pending MRR", Common.TosterType.Warning);
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -267,13 +269,15 @@ namespace UI.SCM
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
 
                 Label lblMrrId = row.FindControl("lblMrrId") as Label;
-                
+
                 Label lblPo = row.FindControl("lblPo") as Label;
                 string poid = lblPo.Text;
                 string MrrId = lblMrrId.Text;
                 hdnmrrid.Value = MrrId;
                 Session["MrrID"] = lblMrrId.Text;
 
+                Label mrrid = FindControl("lblMrr") as Label;
+                mrrid.Text = MrrId;
 
                 if (ddlType.SelectedValue == "Costing")
                 {
@@ -291,8 +295,6 @@ namespace UI.SCM
                     {
                         is_QC = "False";
                     }
-                    //if (intWh == 711 || intWh == 18 || intWh == 712 || intWh == 713)
-                    //{
                     if (is_QC == "True")
                     {
                         dt = mirObj.GetItem(int.Parse(MrrId));
@@ -325,45 +327,78 @@ namespace UI.SCM
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            int type = 0; string msg = "";
             if (hdnconf.Value == "1")
             {
                 try
                 {
-                     for (int index = 0; index < dgv.Rows.Count; index++)
+                    for (int index = 0; index < dgv.Rows.Count; index++)
+                    {
+                        bool ysnChecked = false;
+                        string proceed = "0";
+                        string quantity = "", Rejectquantity = "";
+                        int MIRQty = 0, RejectQty = 0, total = 0, mrrQty;
+                        string itemid = ((Label)dgv.Rows[index].FindControl("lblitmno")).Text.ToString();
+                        string poqnty = ((Label)dgv.Rows[index].FindControl("lblpoqnty")).Text.ToString();
+                        string mrrqnty = ((Label)dgv.Rows[index].FindControl("lblmrrqnty")).Text.ToString();
+                        mrrQty = int.Parse(mrrqnty);
+                        string remarks = ((TextBox)dgv.Rows[index].FindControl("txtRemarks")).Text.ToString();
+                        string unitid = ((Label)dgv.Rows[index].FindControl("lblintUnitID")).Text.ToString();
+                        string locationid = ((Label)dgv.Rows[index].FindControl("lblLocationId")).Text.ToString();
+                        string value = ((Label)dgv.Rows[index].FindControl("lblmonBDTTotal")).Text.ToString();
+
+                        ysnChecked = ((CheckBox)dgv.Rows[index].Cells[11].Controls[0]).Checked;
+
+                        try
                         {
-                            bool ysnChecked = false;
-                            string proceed = "0";
-                            string itemid = ((Label)dgv.Rows[index].FindControl("lblitmno")).Text.ToString();
-                            string poqnty = ((Label)dgv.Rows[index].FindControl("lblpoqnty")).Text.ToString();
-                            string mrrqnty = ((Label)dgv.Rows[index].FindControl("lblmrrqnty")).Text.ToString();
-                            string quantity = ((TextBox)dgv.Rows[index].FindControl("txtChkQuantity")).Text.ToString();
-                            string remarks = ((TextBox)dgv.Rows[index].FindControl("txtRemarks")).Text.ToString();
-
-                            string unitid = ((Label)dgv.Rows[index].FindControl("lblintUnitID")).Text.ToString();
-                            string locationid = ((Label)dgv.Rows[index].FindControl("lblLocationId")).Text.ToString();
-                            string value = ((Label)dgv.Rows[index].FindControl("lblmonBDTTotal")).Text.ToString();
-
-                            ysnChecked = ((CheckBox)dgv.Rows[index].Cells[10].Controls[0]).Checked;
-                            if (Convert.ToInt32(quantity) > Convert.ToInt32(mrrqnty))
+                            quantity = ((TextBox)dgv.Rows[index].FindControl("txtChkQuantity")).Text.ToString();
+                            MIRQty = int.Parse(quantity);
+                        }
+                        catch
+                        {
+                            MIRQty = 0;
+                        }
+                        try
+                        {
+                            Rejectquantity = ((TextBox)dgv.Rows[index].FindControl("txtRejectQuantity")).Text.ToString();
+                            RejectQty = int.Parse(Rejectquantity);
+                        }
+                        catch
+                        {
+                            RejectQty = 0;
+                        }
+                        if (MIRQty > mrrQty || RejectQty > mrrQty)
+                        {
+                            if(MIRQty > mrrQty)
                             {
                                 Toaster("MIR Qty cannot be greater than MRR Qty", "Pending MRR", Common.TosterType.Warning);
                             }
-                            else if (Convert.ToInt32(quantity) < Convert.ToInt32(mrrqnty))
+                            else if(RejectQty > mrrQty)
                             {
-                                Toaster("MIR Qty cannot be less than MRR Qty", "Pending MRR", Common.TosterType.Warning);
+                                Toaster("Reject Qty cannot be greater than MRR Qty", "Pending MRR", Common.TosterType.Warning);
                             }
-                            else if (Convert.ToInt32(quantity) == Convert.ToInt32(mrrqnty))
+                            
+                        }
+                        else
+                        {
+                            if (RejectQty == 0)
                             {
-                                if (ysnChecked)
-                                {
-                                    proceed = "1";
-                                }
+                                RejectQty = mrrQty - MIRQty;
+                            }
+
+                            total = MIRQty + RejectQty;
+
+                            if (ysnChecked)
+                            {
+                                proceed = "1";
+
                                 if (quantity.Length <= 0)
                                 {
                                     quantity = "0";
                                 }
-                                if (int.Parse(quantity) > 0)
+                                if (total == mrrQty)
                                 {
+
                                     dt = mirObj.GetMIRDetails(Convert.ToInt32(hdnmrrid.Value), Convert.ToInt32(itemid));
                                     if (dt.Rows.Count > 0)
                                     {
@@ -374,28 +409,36 @@ namespace UI.SCM
                                     }
                                     else
                                     {
-                                        CreateXml(hdnpoid.Value, hdnmrrid.Value, itemid, poqnty, quantity, remarks, proceed, unitid, locationid, value, mrrqnty);
+                                        CreateXml(hdnpoid.Value, hdnmrrid.Value, itemid, poqnty, MIRQty.ToString(), remarks, proceed, unitid, locationid, value, mrrqnty, RejectQty.ToString());
                                     }
-                                    
+
+
                                 }
+                            }
                             
 
                         }
 
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load(xmlpath); int actionby = Enroll;
-                        XmlNode nd = doc.SelectSingleNode("Inspection");
-                        string xmlString = nd.InnerXml;
-                        xmlString = "<Inspection>" + xmlString + "</Inspection>";
-                        string msg = mirObj.SaveMIR(xmlString, Convert.ToInt32(ddlWH.SelectedValue), actionby);
-                        File.Delete(xmlpath);
-                        //dgvlist.DataBind();
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "HideReasonDiv('" + msg + "');", true);
+                        
                     }
-                    
+
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(xmlpath); int actionby = Enroll;
+                    XmlNode nd = doc.SelectSingleNode("Inspection");
+                    string xmlString = nd.InnerXml;
+                    xmlString = "<Inspection>" + xmlString + "</Inspection>";
+                    msg = mirObj.SaveMIR(xmlString, Convert.ToInt32(ddlWH.SelectedValue), actionby);
+                    File.Delete(xmlpath);
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "HideReasonDiv('" + msg + "');", true);
+
 
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    string mg = ex.Message;
+                    Toaster(mg, "Pending MRR", Common.TosterType.Warning);
+                }
             }
         }
         #endregion
@@ -481,7 +524,7 @@ namespace UI.SCM
                 ddlDept.Items.Insert(1, new ListItem("Import", "2"));
                 ddlDept.Items.Insert(2, new ListItem("Fabrication", "3"));
             }
-            else if(ddlType.SelectedItem.Text == "Costing")
+            else if (ddlType.SelectedItem.Text == "Costing")
             {
                 ddlDept.Items.Clear();
                 ddlDept.Items.Insert(0, new ListItem("Import", "2"));
@@ -500,18 +543,18 @@ namespace UI.SCM
                 dgvIndent.Columns[9].Visible = true;
             }
         }
-       
+
         #endregion
 
         #region === XML Bind ========
-        private void CreateXml(string poid, string mrrid, string itemid, string poqnty, string quantity, string remarks, string proceed, string unitid, string locationid, string value,string mrrqnty)
+        private void CreateXml(string poid, string mrrid, string itemid, string poqnty, string quantity, string remarks, string proceed, string unitid, string locationid, string value, string mrrqnty, string Rejectquantity)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(xmlpath))
             {
                 doc.Load(xmlpath);
                 XmlNode rootNode = doc.SelectSingleNode("Inspection");
-                XmlNode addItem = CreateNode(doc, poid, mrrid, itemid, poqnty, quantity, remarks, proceed, unitid, locationid, value, mrrqnty);
+                XmlNode addItem = CreateNode(doc, poid, mrrid, itemid, poqnty, quantity, remarks, proceed, unitid, locationid, value, mrrqnty, Rejectquantity);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -519,13 +562,13 @@ namespace UI.SCM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("Inspection");
-                XmlNode addItem = CreateNode(doc, poid, mrrid, itemid, poqnty, quantity, remarks, proceed, unitid, locationid, value, mrrqnty);
+                XmlNode addItem = CreateNode(doc, poid, mrrid, itemid, poqnty, quantity, remarks, proceed, unitid, locationid, value, mrrqnty, Rejectquantity);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(xmlpath);
         }
-        private XmlNode CreateNode(XmlDocument doc, string poid, string mrrid, string itemid, string poqnty, string quantity, string remarks, string proceed, string unitid, string locationid, string value,string mrrqnty)
+        private XmlNode CreateNode(XmlDocument doc, string poid, string mrrid, string itemid, string poqnty, string quantity, string remarks, string proceed, string unitid, string locationid, string value, string mrrqnty, string Rejectquantity)
         {
             XmlNode node = doc.CreateElement("items");
             XmlAttribute POId = doc.CreateAttribute("poid");
@@ -551,6 +594,9 @@ namespace UI.SCM
             XmlAttribute MRRQty = doc.CreateAttribute("mrrqnty");
             MRRQty.Value = mrrqnty;
 
+            XmlAttribute RejectQuantity = doc.CreateAttribute("Rejectquantity");
+            RejectQuantity.Value = Rejectquantity;
+
             node.Attributes.Append(POId);
             node.Attributes.Append(MRRId);
             node.Attributes.Append(Itemid);
@@ -563,6 +609,7 @@ namespace UI.SCM
             node.Attributes.Append(LocationId);
             node.Attributes.Append(monValue);
             node.Attributes.Append(MRRQty);
+            node.Attributes.Append(RejectQuantity);
 
             return node;
         }

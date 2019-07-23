@@ -90,7 +90,14 @@ namespace UI.SCM.Transfer
                 hdnStockQty.Value = "0";
 
                 ddlToWh.Items.Clear();
-                dt = _storeIssueBll.GetWHByUnit(int.Parse(ddlWh.SelectedValue));
+                if (int.Parse(ddlWh.SelectedValue) == 2)
+                {
+                    dt = _storeIssueBll.GetWHByUnitAFBL(int.Parse(ddlWh.SelectedValue));
+                }
+                else
+                {
+                    dt = _storeIssueBll.GetWHByUnit(int.Parse(ddlWh.SelectedValue));
+                }
                 ddlToWh.LoadWithSelect(dt, "Id", "strName");
             }
             catch (Exception ex)

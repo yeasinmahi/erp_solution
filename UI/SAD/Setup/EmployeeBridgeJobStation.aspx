@@ -68,7 +68,13 @@
                                 <asp:Label ID="lblCustomer" runat="server" Text="Customer : "></asp:Label>
                             </td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlCustomer" CssClass="ddList" Font-Bold="False" runat="server" Width="250px" Height="23px" AutoPostBack="false"></asp:DropDownList>
+                                <%--<asp:DropDownList ID="ddlCustomer" CssClass="ddList" Font-Bold="False" runat="server" Width="250px" Height="23px" AutoPostBack="false"></asp:DropDownList>--%>
+                                <asp:TextBox ID="txtCustomer" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"></asp:TextBox>
+                                <cc1:AutoCompleteExtender ID="empsearch" runat="server" TargetControlID="txtCustomer"
+                                    ServiceMethod="CustomerSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                </cc1:AutoCompleteExtender>
                             </td>
                         </tr>
 
@@ -95,7 +101,7 @@
                                 <asp:GridView ID="dgvJSBridgeList" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
                                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" ShowFooter="true"
                                     HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-                                    FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White" 
+                                    FooterStyle-BackColor="#808080" FooterStyle-Height="25px" FooterStyle-ForeColor="White"
                                     FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
@@ -104,14 +110,14 @@
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Job Station Name" >
+                                        <asp:TemplateField HeaderText="Job Station Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblJobStationName" runat="server" Text='<%# Bind("strPName") %>' Width="180px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" Width="180px" />
                                         </asp:TemplateField>
 
-                                          <asp:TemplateField HeaderText="Job Station ID" >
+                                        <asp:TemplateField HeaderText="Job Station ID">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblJobStationID" runat="server" Text='<%# Bind("intPointId") %>' Width="80px"></asp:Label>
                                             </ItemTemplate>
@@ -123,7 +129,7 @@
                                                 <asp:Label ID="lblCustName" runat="server" Text='<%# Bind("strCName") %>' Width="300px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" Width="300px" />
-                                        </asp:TemplateField>                                       
+                                        </asp:TemplateField>
 
                                     </Columns>
                                     <HeaderStyle BackColor="#2eb8b8" Font-Bold="True" ForeColor="White" />

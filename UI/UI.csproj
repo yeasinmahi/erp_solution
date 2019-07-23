@@ -614,6 +614,8 @@
     <Content Include="PaymentModule\ImportAdvice.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\AITReport.aspx" />
+    <Content Include="PaymentModule\SisterConsernReportbyUnit.aspx" />
+    <Content Include="PaymentModule\SisterConsernReport.aspx" />
     <Content Include="PaymentModule\MDSlipDetails.aspx" />
     <Content Include="PaymentModule\InternalbillForBanking.aspx" />
     <Content Include="PaymentModule\Inventory_Summary_Report.aspx" />
@@ -1476,6 +1478,7 @@
     <Content Include="SAD\Sales\Report\Item_category_top_Sheet.aspx" />
     <Content Include="SAD\Sales\Report\Item_Category_vs_Sales.aspx" />
     <Content Include="SAD\Sales\Report\Item_Vs_SalesOffice_Challan_Qnty_Report.aspx" />
+    <Content Include="SAD\Sales\Report\Labour_Bill_Report.aspx" />
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx" />
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
@@ -1823,6 +1826,7 @@
     <Content Include="Wastage\rptTransferReceive.aspx" />
     <Content Include="Wastage\rptTransferSummary.aspx" />
     <Content Include="Wastage\Sales.aspx" />
+    <Content Include="Wastage\SalesOrderConditionForReport.aspx" />
     <Content Include="Wastage\SO.aspx" />
     <Content Include="WoodPurchase\jquery-ui.css" />
     <Content Include="WoodPurchase\jquery-ui.min.js" />
@@ -4105,6 +4109,20 @@
     </Compile>
     <Compile Include="PaymentModule\AITReport.aspx.designer.cs">
       <DependentUpon>AITReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\SisterConsernReportbyUnit.aspx.cs">
+      <DependentUpon>SisterConsernReportbyUnit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\SisterConsernReportbyUnit.aspx.designer.cs">
+      <DependentUpon>SisterConsernReportbyUnit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\SisterConsernReport.aspx.cs">
+      <DependentUpon>SisterConsernReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\SisterConsernReport.aspx.designer.cs">
+      <DependentUpon>SisterConsernReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\MDSlipDetails.aspx.cs">
       <DependentUpon>MDSlipDetails.aspx</DependentUpon>
@@ -7551,6 +7569,13 @@
     <Compile Include="SAD\Sales\Report\Item_Vs_SalesOffice_Challan_Qnty_Report.aspx.designer.cs">
       <DependentUpon>Item_Vs_SalesOffice_Challan_Qnty_Report.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Labour_Bill_Report.aspx.cs">
+      <DependentUpon>Labour_Bill_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Labour_Bill_Report.aspx.designer.cs">
+      <DependentUpon>Labour_Bill_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.cs">
       <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -10231,6 +10256,13 @@
     </Compile>
     <Compile Include="Wastage\Sales.aspx.designer.cs">
       <DependentUpon>Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Wastage\SalesOrderConditionForReport.aspx.cs">
+      <DependentUpon>SalesOrderConditionForReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Wastage\SalesOrderConditionForReport.aspx.designer.cs">
+      <DependentUpon>SalesOrderConditionForReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Wastage\SO.aspx.cs">
       <DependentUpon>SO.aspx</DependentUpon>
