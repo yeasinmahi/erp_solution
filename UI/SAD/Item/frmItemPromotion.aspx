@@ -9,6 +9,11 @@
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />  
+    <style type="text/css">
+        .auto-style1 {
+            height: 30px;
+        }
+    </style>
 </head>
 <body>
     <form id="frmItemPromotion" runat="server">
@@ -97,7 +102,10 @@
             <img id="imgCal_2" src="../../Content/images/img/calbtn.gif" style="border: 0px;
              width: 34px; height: 23px; vertical-align: bottom;" /></td></td>
         </tr>
-         <tr><td style="text-align:right" colspan="4"><asp:Button ID="btnSave" Font-Bold="true" runat="server" Text="Save" OnClick="btnSave_Click" /></td></tr>
+         <tr>
+             <td style="text-align:right" colspan="4" class="auto-style1">
+                  <asp:Button ID="btnshow" Font-Bold="true" runat="server" Text="Save" OnClick="btnshow_Click" />
+                 <asp:Button ID="btnSave" Font-Bold="true" runat="server" Text="Save" OnClick="btnSave_Click" /></td></tr>
          <tr><td colspan="4">Report<hr /></td></tr>
         <tr><td>Report Tyep</td>
             <td><asp:DropDownList ID="ddlReporType" CssClass="ddllist" runat="server">

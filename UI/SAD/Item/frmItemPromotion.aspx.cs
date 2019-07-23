@@ -31,7 +31,10 @@ namespace UI.SAD.Item
                 Datainitialization();               
             }
         }
+        protected void btnshow_Click(object sender, EventArgs e)
+        {
 
+        }
         private void Datainitialization()
         {
 
