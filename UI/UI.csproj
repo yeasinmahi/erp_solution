@@ -1478,6 +1478,7 @@
     <Content Include="SAD\Sales\Report\Item_category_top_Sheet.aspx" />
     <Content Include="SAD\Sales\Report\Item_Category_vs_Sales.aspx" />
     <Content Include="SAD\Sales\Report\Item_Vs_SalesOffice_Challan_Qnty_Report.aspx" />
+    <Content Include="SAD\Sales\Report\Labour_Bill_Report.aspx" />
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx" />
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
@@ -7567,6 +7568,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Item_Vs_SalesOffice_Challan_Qnty_Report.aspx.designer.cs">
       <DependentUpon>Item_Vs_SalesOffice_Challan_Qnty_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Labour_Bill_Report.aspx.cs">
+      <DependentUpon>Labour_Bill_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Labour_Bill_Report.aspx.designer.cs">
+      <DependentUpon>Labour_Bill_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx.cs">
       <DependentUpon>Masson_Program_Bill_Adjust.aspx</DependentUpon>
