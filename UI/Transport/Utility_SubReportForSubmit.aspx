@@ -91,24 +91,24 @@
             <td style="text-align:left;"><asp:TextBox ID="txtLicenseNo" runat="server" TextMode="MultiLine" CssClass="txtBox" Width="190px"></asp:TextBox></td>
 
             <td style="text-align:right;"><asp:Label ID="lblSubmitedDate" runat="server" CssClass="lbl" Text="Submite Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtSubmitedDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="110px"></asp:TextBox>
+            <td><asp:TextBox ID="txtSubmitedDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="110px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender4" runat="server" Format="yyyy-MM-dd" TargetControlID="txtSubmitedDate"></cc1:CalendarExtender></td>              
                    
             <td style="text-align:right;"><asp:Label ID="lblValidFromDate" runat="server" CssClass="lbl" Text="Valid From Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtValidFromDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="110px"></asp:TextBox>
+            <td><asp:TextBox ID="txtValidFromDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="110px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtValidFromDate"></cc1:CalendarExtender></td>               
         </tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblValidToDate" runat="server" CssClass="lbl" Text="Valid To Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtValidToDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox>
+            <td><asp:TextBox ID="txtValidToDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtValidToDate"></cc1:CalendarExtender></td>  
             
             <td style="text-align:right;"><asp:Label ID="lblExpireDate" runat="server" CssClass="lbl" Text="Expire Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtExpireDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="110px"></asp:TextBox>
+            <td><asp:TextBox ID="txtExpireDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="110px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtExpireDate"></cc1:CalendarExtender></td>                                
 
             <td style="text-align:right;"><asp:Label ID="lblNextSubmitedDate" runat="server" CssClass="lbl" Text="Next Submite Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtNextSubmitedDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="110px"></asp:TextBox>
+            <td><asp:TextBox ID="txtNextSubmitedDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="110px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtNextSubmitedDate"></cc1:CalendarExtender></td>                                
         </tr>
         <tr>

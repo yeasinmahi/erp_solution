@@ -243,7 +243,7 @@
                        <tr><td colspan="4" style="height:5px;"></td></tr>
                        <tr>
                           <td style="text-align:right;"><asp:Label ID="Label17" runat="server" Text="Last Shipment Date : " Font-Size="11px" /></td>
-                          <td><asp:TextBox ID="txtLastShipmentDate" CssClass="txtBox1" runat="server"></asp:TextBox><cc1:CalendarExtender ID="CalendarExtender4" runat="server"  Format="yyyy-MM-dd" TargetControlID="txtLastShipmentDate">
+                          <td><asp:TextBox ID="txtLastShipmentDate" CssClass="txtBox1" runat="server" autocomplete="off"></asp:TextBox><cc1:CalendarExtender ID="CalendarExtender4" runat="server"  Format="yyyy-MM-dd" TargetControlID="txtLastShipmentDate">
                           </cc1:CalendarExtender></td>
                           <td style="text-align:right;"><asp:Label ID="Label18" runat="server" Text="Payment terms" Font-Size="11px"/></td>
                           <td><asp:DropDownList ID="ddlPaymentTrams" AutoPostBack="false" CssClass="ddList" Height="24px" runat="server">

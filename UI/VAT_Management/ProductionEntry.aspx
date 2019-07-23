@@ -56,7 +56,7 @@
             <tr><td colspan="5"><hr /></td></tr> 
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="Production Date"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>                
-                <td><asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+                <td><asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender></td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>                
                 <td style="text-align:right; padding-left:30px"><asp:Label ID="lblstart" runat="server" CssClass="lbl" Text="Production Time"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
