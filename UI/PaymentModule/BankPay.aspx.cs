@@ -66,18 +66,21 @@ namespace UI.PaymentModule
         }
         public void LoadPayTo()
         {
-            dt = objBillApp.GetPayToList(int.Parse(hdnBillID.Value));
-            if (dt.Rows.Count > 0)
-            {
-                ddlPayTo.DataTextField = "strMasterAccName";
-                ddlPayTo.DataValueField = "intMasterAccID";
-                ddlPayTo.DataSource = dt;
-                ddlPayTo.DataBind();
-            }
-            else
-            {
-                ddlPayTo.SelectedValue = txtParty.Text;
-            }
+            txtPayTo.Text = txtParty.Text;
+            /* Below Code Omit by alamin@akij.net
+            //dt = objBillApp.GetPayToList(int.Parse(hdnBillID.Value));
+            //if (dt.Rows.Count > 0)
+            //{
+            //    ddlPayTo.DataTextField = "strMasterAccName";
+            //    ddlPayTo.DataValueField = "intMasterAccID";
+            //    ddlPayTo.DataSource = dt;
+            //    ddlPayTo.DataBind();
+            //}
+            //else
+            //{
+            //    ddlPayTo.SelectedValue = txtParty.Text;
+            //}
+            */
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -527,7 +530,12 @@ namespace UI.PaymentModule
                     strInstrument = txtNo.Text;
                     dteInstrumentDate = DateTime.Parse(txtDate.Text);
                     dteVoucherDate = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
+
+                    strPayTo = txtPayTo.Text;
+                    /* Below Code omit by alamin@akij.net
                     strPayTo = ddlPayTo.SelectedItem.ToString();
+                    */
+
                     intBillID = int.Parse(hdnBillID.Value);
                     strBillCode = txtEntryCode.Text;
                     monApproveAmount = decimal.Parse(txtApproveAmount.Text);

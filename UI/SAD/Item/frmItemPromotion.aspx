@@ -48,6 +48,7 @@
             <asp:ListItem Value="2">All Customer</asp:ListItem>
             <asp:ListItem Value="3">By Region</asp:ListItem>
             <asp:ListItem Value="4">By Area</asp:ListItem>
+                <asp:ListItem>Point Wise By Region</asp:ListItem>
             </asp:DropDownList></td>            
         </tr> 
         <tr><td>Sales :UOM Name</td>

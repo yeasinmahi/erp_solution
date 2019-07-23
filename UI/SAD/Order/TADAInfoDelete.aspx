@@ -96,7 +96,7 @@
                 </tr>
         <tr class="tblroweven">
         <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date:  "></asp:Label></td>
-        <td><asp:TextBox ID="txtEffectiveDate" runat="server" CssClass="txtBox" Width="350px" Enabled="true"></asp:TextBox>
+        <td><asp:TextBox ID="txtEffectiveDate" runat="server" CssClass="txtBox" Width="350px" Enabled="true" autocomplete="off"></asp:TextBox>
          <cc1:CalendarExtender ID="CFD" runat="server" Format="yyyy-MM-dd" TargetControlID="txtEffectiveDate"></cc1:CalendarExtender>  
         </tr>
                 

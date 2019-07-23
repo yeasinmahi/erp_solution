@@ -127,14 +127,9 @@ namespace UI.Accounts.Voucher
                 fd.Product, fd.Layer);
             try
             {
-
                 BLL.Accounts.Voucher.CashVoucher cv = new BLL.Accounts.Voucher.CashVoucher();
-            int ret = cv.FinishedVoucher(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
+                string CompleteDate = txtCompleteDate.Text;
 
-            //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-            string CompleteDate = txtCompleteDate.Text;
-            if (ret >= 1)
-            {
                 if (ddlDrCr.SelectedIndex == 0)
                 {
                     cv.SaveDr(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
@@ -143,9 +138,27 @@ namespace UI.Accounts.Voucher
                 {
                     cv.SaveCr(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
                 }
-            }
 
-            GridView1.DataBind();
+
+                /* Below Code omit by alamin@akij.net
+                int ret = cv.FinishedVoucher(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
+
+                //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+                
+                if (ret >= 1)
+                {
+                    if (ddlDrCr.SelectedIndex == 0)
+                    {
+                        cv.SaveDr(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                    }
+                    else
+                    {
+                        cv.SaveCr(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                    }
+                }
+                */
+
+                GridView1.DataBind();
             }
             catch (Exception ex)
             {
@@ -318,20 +331,31 @@ namespace UI.Accounts.Voucher
                 if (((CheckBox)GridView1.Rows[i].Cells[0].Controls[1]).Checked)
                 {
                     cvID = ((HiddenField)GridView1.Rows[i].FindControl("HiddenField1")).Value;
-                    ret = cv.FinishedVoucher(Session[SessionParams.USER_ID].ToString(), cvID);
-                    if (ret >= 1)
+                    if (ddlDrCr.SelectedIndex == 0)
                     {
-
-
-                        if (ddlDrCr.SelectedIndex == 0)
-                        {
-                            cv.SaveDr(cvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
-                        }
-                        else
-                        {
-                            cv.SaveCr(cvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
-                        }
+                        cv.SaveDr(cvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
                     }
+                    else
+                    {
+                        cv.SaveCr(cvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                    }
+
+                        /* Below code omit by alamin@akij.net
+                         * 
+                         ret = cv.FinishedVoucher(Session[SessionParams.USER_ID].ToString(), cvID);
+                         if (ret >= 1)
+                         {
+                             if (ddlDrCr.SelectedIndex == 0)
+                             {
+                                 cv.SaveDr(cvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                             }
+                             else
+                             {
+                                 cv.SaveCr(cvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                             }
+                         }
+                         */
+
                 }
             }
 

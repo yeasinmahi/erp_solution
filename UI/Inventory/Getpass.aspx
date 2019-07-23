@@ -79,7 +79,7 @@
                             </td>
 
                             <td>
-                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="dt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>
                             </td>
                             <td style="text-align: right;">

@@ -198,7 +198,7 @@ function SearchText() {
         <td>
           
 
-            <asp:TextBox ID="txtEffectiveDate" runat="server" CssClass="txtBox" Width="350px" Enabled="true"></asp:TextBox>
+            <asp:TextBox ID="txtEffectiveDate" runat="server" CssClass="txtBox" Width="350px" Enabled="true" autocomplete="off"></asp:TextBox>
          <cc1:CalendarExtender ID="CFD" runat="server" Format="yyyy-MM-dd" TargetControlID="txtEffectiveDate"></cc1:CalendarExtender>  
 
 

@@ -157,7 +157,7 @@
                             </td>
                             <td class="auto-style8">
                             <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="Date:  "></asp:Label><span style="color:red">*</span></td>
-                             <td><asp:TextBox ID="txtFrom" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+                             <td><asp:TextBox ID="txtFrom" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
                              <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFrom"></cc1:CalendarExtender>
                                 <%--<asp:TextBox ID="txtFrom" runat="server" Enabled="false" OnTextChanged="txtFrom_TextChanged" Height="22px"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"

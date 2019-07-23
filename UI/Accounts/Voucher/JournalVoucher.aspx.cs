@@ -126,16 +126,24 @@ namespace UI.Accounts.Voucher
             try
             {
                 BLL.Accounts.Voucher.JournalVoucher jv = new BLL.Accounts.Voucher.JournalVoucher();
-            int ret = jv.CompleteVoucher(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
-            //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
-            string CompleteDate = txtCompleteDate.Text;
-            if (ret >= 1)
-            {
-                jv.Save(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
-            }
 
-            GridView1.DataBind();
-            }
+                /* Below code omit by alamin@akij.net
+                int ret = jv.CompleteVoucher(Session[SessionParams.USER_ID].ToString(), ((Button)sender).CommandArgument);
+                */
+                //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
+                string CompleteDate = txtCompleteDate.Text;
+
+                jv.Save(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+
+                /* Below code omit by alamin@akij.net
+                if (ret >= 1)
+                {
+                    jv.Save(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                }
+                */
+
+                GridView1.DataBind();
+                }
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "Completed", ex);
@@ -248,11 +256,15 @@ namespace UI.Accounts.Voucher
                 if (((CheckBox)GridView1.Rows[i].Cells[0].Controls[1]).Checked)
                 {
                     jvID = ((HiddenField)GridView1.Rows[i].FindControl("HiddenField1")).Value;
+                    jv.Save(jvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+
+                    /* Below Code Omit by alamin@akij.net
                     ret = jv.CompleteVoucher(Session[SessionParams.USER_ID].ToString(), jvID);
                     if (ret >= 1)
                     {
                         jv.Save(jvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
                     }
+                    */
 
                 }
             }

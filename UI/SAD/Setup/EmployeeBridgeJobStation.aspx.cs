@@ -1,9 +1,12 @@
 ﻿using SAD_BLL.Global;
+using SAD_BLL.Item;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
@@ -15,6 +18,7 @@ namespace UI.SAD.Setup
         SetupBLL objSetupBll = new SetupBLL();
         DataTable dt = new DataTable();
         string msgErr = string.Empty;
+        string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -32,12 +36,12 @@ namespace UI.SAD.Setup
                     ddlJobStation.DataSource = dt;
                     ddlJobStation.DataBind();
 
-                    dt = new DataTable();
-                    dt = objSetupBll.GetCustomerList();
-                    ddlCustomer.DataTextField = "strName";
-                    ddlCustomer.DataValueField = "intCusID";
-                    ddlCustomer.DataSource = dt;
-                    ddlCustomer.DataBind();
+                    //dt = new DataTable();
+                    //dt = objSetupBll.GetCustomerList();
+                    //ddlCustomer.DataTextField = "strName";
+                    //ddlCustomer.DataValueField = "intCusID";
+                    //ddlCustomer.DataSource = dt;
+                    //ddlCustomer.DataBind();
                 }
                 catch (Exception ex)
                 {
@@ -52,8 +56,16 @@ namespace UI.SAD.Setup
             int stationID, custID;
             try
             {
+                char[] delimiterCharss = { '[', ']' };
+                if (txtCustomer.Text != "")
+                {
+                    arrayKeyItem = txtCustomer.Text.Split(delimiterCharss);
+                    custID = int.Parse(arrayKeyItem[1].ToString());
+                }
+                else { custID = int.Parse("0"); }
+
                 stationID = Convert.ToInt16(ddlJobStation.SelectedValue.ToString());
-                custID = Convert.ToInt16(ddlCustomer.SelectedValue.ToString());
+                //custID = Convert.ToInt16(ddlCustomer.SelectedValue.ToString());
                 objSetupBll.SaveEmpBridgeJobStation(stationID, custID);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Job Station Bridge Successfully');", true);
@@ -113,8 +125,16 @@ namespace UI.SAD.Setup
         {
             int custID;
             try
-            {               
-                custID = Convert.ToInt16(ddlCustomer.SelectedValue.ToString());
+            {
+                char[] delimiterCharss = { '[', ']' };
+                if (txtCustomer.Text != "")
+                {
+                    arrayKeyItem = txtCustomer.Text.Split(delimiterCharss);
+                    custID = int.Parse(arrayKeyItem[1].ToString());
+                }
+                else { custID = int.Parse("0"); }
+                //custID = Convert.ToInt16(ddlCustomer.SelectedValue.ToString());
+
                 objSetupBll.DelEmpBridgeJobStation(custID);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Delete Successfully');", true);
@@ -131,7 +151,15 @@ namespace UI.SAD.Setup
             int custID;
             try
             {
-                custID = Convert.ToInt16(ddlCustomer.SelectedValue.ToString());
+                char[] delimiterCharss = { '[', ']' };
+                if (txtCustomer.Text != "")
+                {
+                    arrayKeyItem = txtCustomer.Text.Split(delimiterCharss);
+                    custID = int.Parse(arrayKeyItem[1].ToString());
+                }
+                else { custID = int.Parse("0"); }
+                //custID = Convert.ToInt16(ddlCustomer.SelectedValue.ToString());
+
                 objSetupBll.DelAllEmpBridgeJobStation(custID);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Delete Successfully');", true);
@@ -147,5 +175,14 @@ namespace UI.SAD.Setup
         {
 
         }
+
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] CustomerSearch(string prefixText, int count = 0)
+        {
+            ItemPromotion objPromotion = new ItemPromotion();
+            return objPromotion.GetCstomer("2", prefixText);
+        }
+
     }
 }
