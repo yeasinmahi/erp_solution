@@ -114,14 +114,14 @@
                                  <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="From Date : "></asp:Label></td>
 
                              <td>
-                                 <asp:TextBox ID="txtFromDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                                 <asp:TextBox ID="txtFromDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px" autocomplete="off"></asp:TextBox>
                                  <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                              </td>
                                <td style="text-align: right;">
                                  <asp:Label ID="Label14" CssClass="lbl" runat="server" Text="To Date : "></asp:Label></td>
 
                              <td>
-                                 <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                                 <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px" autocomplete="off"></asp:TextBox>
                                  <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
 
                              </td>
@@ -129,7 +129,7 @@
                                  <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Audit Date : "></asp:Label></td>
 
                              <td>
-                                 <asp:TextBox ID="txtAuditDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px"></asp:TextBox>
+                                 <asp:TextBox ID="txtAuditDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="150px" autocomplete="off"></asp:TextBox>
                                  <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtAuditDate"></cc1:CalendarExtender>
                              </td>
                          </tr>

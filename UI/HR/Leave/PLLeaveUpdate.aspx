@@ -44,7 +44,7 @@
                                         <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="From Date : "></asp:Label>
                                     </td>
                                     <td>
-                                        <asp:TextBox ID="txtOldPLFromDate" runat="server" CssClass="txtBox" ReadOnly="true" style="height:27px;border-radius:5px;font-size:11pt;padding-left:5px" ></asp:TextBox>
+                                        <asp:TextBox ID="txtOldPLFromDate" runat="server" CssClass="txtBox" ReadOnly="true" style="height:27px;border-radius:5px;font-size:11pt;padding-left:5px"></asp:TextBox>
                                     </td>
                                     <td style="text-align: right;">
                                         <asp:Label ID="Label5" CssClass="lbl" runat="server" Text="To Date : "></asp:Label>

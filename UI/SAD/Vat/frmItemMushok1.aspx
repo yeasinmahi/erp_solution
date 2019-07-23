@@ -47,7 +47,7 @@
             <td class="auto-style1"><asp:DropDownList ID="ddlMType" runat="server"></asp:DropDownList>&nbsp<asp:Button ID="btnShow" class="myButton" runat="server" Text="Show" OnClick="btnShow_Click" /></td>
             <td class="auto-style2"> Valid From</td>
             <td class="auto-style1">
-            <asp:TextBox ID="txtFrom" runat="server" Enabled="false"  Height="22px"></asp:TextBox>
+            <asp:TextBox ID="txtFrom" runat="server" Enabled="false"  Height="22px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
             ID="CalendarExtender1" runat="server" EnableViewState="true">
             </cc1:CalendarExtender>

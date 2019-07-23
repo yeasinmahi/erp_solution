@@ -88,7 +88,7 @@
         </tr>
         <tr><td>Challan Paid Date & Time <br />
             (YYYY-MM-DD H:MM:SS) </td> <td>:</td>    
-            <td colspan="2"> <asp:TextBox ID="txtFrom" runat="server" Enabled="false"  Height="22px"></asp:TextBox>
+            <td colspan="2"> <asp:TextBox ID="txtFrom" runat="server" Enabled="false"  Height="22px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
             ID="CalendarExtender1" runat="server" EnableViewState="true">
             </cc1:CalendarExtender>
@@ -142,7 +142,7 @@
         </tr>
         <tr><td>Challan Paid Date & Time <br />
             (YYYY-MM-DD H:MM:SS) </td> <td>:</td>    
-            <td colspan="2"> <asp:TextBox ID="txtFromExp" runat="server" Enabled="false"  Height="22px"></asp:TextBox>
+            <td colspan="2"> <asp:TextBox ID="txtFromExp" runat="server" Enabled="false"  Height="22px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFromExp" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
             ID="CalendarExtender2" runat="server" EnableViewState="true">
             </cc1:CalendarExtender>

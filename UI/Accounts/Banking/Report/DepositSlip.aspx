@@ -126,7 +126,7 @@
                     </td>
                     <td align="left">
                         From
-                        <asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtFrom" runat="server" autocomplete="off"></asp:TextBox>
                         <cc1:CalendarExtender CssClass="cal_Theme1" ID="CalendarExtender1" runat="server" EnableViewState="true"
                             Format="dd/MM/yyyy" PopupButtonID="imgCal_1" TargetControlID="txtFrom">
                         </cc1:CalendarExtender>
@@ -135,7 +135,7 @@
                     </td>
                     <td>
                         To
-                        <asp:TextBox ID="txtTo" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtTo" runat="server" autocomplete="off"></asp:TextBox>
                         <cc1:CalendarExtender CssClass="cal_Theme1" ID="CalendarExtender2" runat="server" EnableViewState="true"
                             Format="dd/MM/yyyy" PopupButtonID="imgCal_2" TargetControlID="txtTo">
                         </cc1:CalendarExtender>

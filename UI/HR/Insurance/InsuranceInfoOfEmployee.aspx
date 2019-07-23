@@ -234,7 +234,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label3" Font-Bold="true" ForeColor="Green" CssClass="lbl" runat="server" Text="Date Of Birth : "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtDateOfB" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+                                <asp:TextBox ID="txtDateOfB" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDateOfB"></cc1:CalendarExtender>
                             </td>
 
@@ -273,7 +273,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblInDate" runat="server" CssClass="lbl" Text="Date Of Birth :"></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtDateOfBirthD" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+                                <asp:TextBox ID="txtDateOfBirthD" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDateOfBirthD"></cc1:CalendarExtender>
                             </td>
 

@@ -178,7 +178,7 @@
                                         </td>
                                         <td>
                                             <asp:HiddenField ID="hdnFrm" runat="server"/>
-                                            <asp:TextBox ID="txtFrom" runat="server" Enabled="false"></asp:TextBox>
+                                            <asp:TextBox ID="txtFrom" runat="server" Enabled="false" autocomplete="off"></asp:TextBox>
                                             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
                                                 ID="CalendarExtender1" runat="server" EnableViewState="true">
                                             </cc1:CalendarExtender>
@@ -190,7 +190,7 @@
                                         </td>
                                         <td>
                                             <asp:HiddenField ID="hdnTo" runat="server"/>
-                                            <asp:TextBox ID="txtTo" runat="server" Enabled="false"></asp:TextBox>
+                                            <asp:TextBox ID="txtTo" runat="server" Enabled="false" autocomplete="off"></asp:TextBox>
                                             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtTo" Format="dd/MM/yyyy" PopupButtonID="imgCal_2"
                                                 ID="CalendarExtender2" runat="server" EnableViewState="true">
                                             </cc1:CalendarExtender>

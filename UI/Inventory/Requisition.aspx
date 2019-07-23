@@ -99,7 +99,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lbldudt" CssClass="lbl" runat="server" Text="Due-Date : "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtDueDate" runat="server" CssClass="txtBox"></asp:TextBox><script type="text/javascript"> new datepickr('txtDueDate', { 'dateFormat': 'Y-m-d' });</script></td>
+                                <asp:TextBox ID="txtDueDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox><script type="text/javascript"> new datepickr('txtDueDate', { 'dateFormat': 'Y-m-d' });</script></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblquantity" CssClass="lbl" runat="server" Text="Quantity : "></asp:Label></td>
                             <td>

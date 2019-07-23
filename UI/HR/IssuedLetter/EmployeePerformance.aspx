@@ -192,10 +192,10 @@
     <tr class="tblrowodd"><td>
         <table style="width:100%; -moz-border-radius: 5px; border:1px double #666;-webkit-border-radius:5px; border-radius: 5px; padding:2px;"; >
         <tr><td style="text-align:right;"><asp:Label ID="Label15" CssClass="lbl" runat="server" Text="Period From:"></asp:Label></td>
-        <td><asp:TextBox ID="dtePeriodFrom" runat="server" CssClass="txtBox"></asp:TextBox>
+        <td><asp:TextBox ID="dtePeriodFrom" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="CPF" runat="server" Format="yyyy-MM-dd" TargetControlID="dtePeriodFrom"></cc1:CalendarExtender></td>
         <td style="text-align:right;"><asp:Label ID="Label20" CssClass="lbl" runat="server" Text="Period To : "></asp:Label></td>
-        <td><asp:TextBox ID="dtePeriodTo" runat="server" CssClass="txtBox"></asp:TextBox>
+        <td><asp:TextBox ID="dtePeriodTo" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="CPT" runat="server" Format="yyyy-MM-dd" TargetControlID="dtePeriodTo"></cc1:CalendarExtender></td>
         </tr>
     

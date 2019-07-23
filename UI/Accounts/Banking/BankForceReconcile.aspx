@@ -61,7 +61,7 @@
                             </td>                            
                             <td colspan="2">
                                 &nbsp;Date Up To&nbsp;
-                                <asp:TextBox ID="txtTo" runat="server" Enabled="false"></asp:TextBox>
+                                <asp:TextBox ID="txtTo" runat="server" Enabled="false" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" ID="CalendarExtender2" runat="server" 
                                     EnableViewState="true" Format="dd/MM/yyyy" PopupButtonID="imgCal_2" 
                                     TargetControlID="txtTo">

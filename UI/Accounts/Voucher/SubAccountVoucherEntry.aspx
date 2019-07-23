@@ -260,7 +260,7 @@
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Date : </asp:Label></td>
                                     <td>
-                                        <asp:TextBox runat="server" ID="txtBankPaymentDate" CssClass="txtstyle"></asp:TextBox>
+                                        <asp:TextBox runat="server" ID="txtBankPaymentDate" CssClass="txtstyle" autocomplete="off"></asp:TextBox>
                                         <cc1:CalendarExtender runat="server" ID="CalendarExtender1" TargetControlID="txtBankPaymentDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                     </td>
                                 </tr>

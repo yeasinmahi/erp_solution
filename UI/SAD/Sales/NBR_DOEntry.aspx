@@ -303,7 +303,7 @@
                                 Date
                             </td>
                             <td colspan="2">
-                                <asp:TextBox ID="txtDate" runat="server" OnTextChanged="txtDate_TextChanged" AutoPostBack="True"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" runat="server" OnTextChanged="txtDate_TextChanged" AutoPostBack="True" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtDate" Format="dd/MM/yyyy"
                                     PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server">
                                 </cc1:CalendarExtender>

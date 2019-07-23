@@ -196,7 +196,7 @@
                                     <asp:Label ID="Label9" runat="server" CssClass="lbl" Text="Enlishment Date :"></asp:Label></td>
                                 <td style="text-align: left;">
                                     <asp:TextBox ID="txtEnlishmentDate" runat="server" BackColor="white" BorderColor="Gray"
-                                        CssClass="txtBox" Font-Bold="True" ForeColor="#006600" Style="text-align: center" Width="190px"></asp:TextBox></td>
+                                        CssClass="txtBox" Font-Bold="True" ForeColor="#006600" Style="text-align: center" Width="190px" autocomplete="off" ></asp:TextBox></td>
                             </tr>
                             <tr>
                                 <td></td>

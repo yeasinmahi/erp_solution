@@ -202,7 +202,7 @@
 
                 <tr>
                     <td style="text-align:right;"><asp:Label ID="Label11" runat="server" CssClass="lbl" Text="Deadline Date :"></asp:Label></td>                
-                    <td><asp:TextBox ID="txtDChageReq" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="120px"></asp:TextBox>
+                    <td><asp:TextBox ID="txtDChageReq" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="120px" autocomplete="off"></asp:TextBox>
                     <cc1:CalendarExtender ID="CalendarExtender4" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDChageReq"></cc1:CalendarExtender></td>             
                    
                     <td style="text-align:right;"><asp:Label ID="Label12" runat="server" CssClass="lbl" Text="Time :"></asp:Label></td>
@@ -234,7 +234,7 @@
                 <td style="text-align:left;"><asp:TextBox ID="txtTaskDetailsOld" runat="server" BackColor="LightGray" CssClass="txtBox" TextMode="MultiLine" Width="210px"></asp:TextBox></td>                                                   
 
                 <td style="text-align:right;"><asp:Label ID="lblDeadline" runat="server" CssClass="lbl" Text="Deadline Date :"></asp:Label></td>                
-                <td><asp:TextBox ID="txtDeadline" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="120px"></asp:TextBox>
+                <td><asp:TextBox ID="txtDeadline" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="120px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDeadline"></cc1:CalendarExtender></td>             
 
                 <td style="text-align:right;"><asp:Label ID="LblTime" runat="server" CssClass="lbl" Text="Time :"></asp:Label></td>
@@ -341,7 +341,7 @@
                 </td>  
                 
                 <td style="text-align:right;"><asp:Label ID="lblStartDate" runat="server" CssClass="lbl" Text="Start Date :"></asp:Label></td>                
-                <td><asp:TextBox ID="txtStartDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px"></asp:TextBox>
+                <td><asp:TextBox ID="txtStartDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtStartDate"></cc1:CalendarExtender></td>                                             
             </tr>             
              <tr>   
@@ -354,7 +354,7 @@
                 </td>           
                 
                 <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Deadline Date:"></asp:Label></td>                
-                <td><asp:TextBox ID="txtDeadlineF" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px"></asp:TextBox>
+                <td><asp:TextBox ID="txtDeadlineF" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDeadlineF"></cc1:CalendarExtender></td>             
             </tr>
         

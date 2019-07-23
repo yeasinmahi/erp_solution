@@ -368,5 +368,20 @@ namespace BLL.Property
 
             return dt;
         }
+        public DataTable GetInsertedLandData(DateTime FromDate, DateTime ToDate, string DeedNo)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                ShowLandInsertedDataTableAdapter adapter = new ShowLandInsertedDataTableAdapter();
+                dt = adapter.ShowLandInsertedData(FromDate, ToDate, DeedNo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
     }
 }

@@ -57,7 +57,7 @@
     </cc1:AutoCompleteExtender></td>
             
     <td style="text-align:right;" colspan="1"><asp:Label ID="lblwhrcvdt" CssClass="lbl" runat="server" Text="WHR Date : "></asp:Label></td>
-    <td><asp:TextBox ID="txtwhrcvdte" runat="server" CssClass="txtBox" Width="80px"></asp:TextBox><cc1:CalendarExtender ID="tdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtwhrcvdte"></cc1:CalendarExtender></td>
+    <td><asp:TextBox ID="txtwhrcvdte" runat="server" CssClass="txtBox" Width="80px" autocomplete="off"></asp:TextBox><cc1:CalendarExtender ID="tdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtwhrcvdte"></cc1:CalendarExtender></td>
     </tr>
 
     <tr><td style="text-align:right;"><asp:Label ID="lblchalanno" CssClass="lbl" runat="server" Text="RTV No : "></asp:Label></td>

@@ -50,7 +50,7 @@
                 <tr>
                     <td>From Date</td>
                     <td>
-                        <asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtFrom" runat="server" autocomplete="off"></asp:TextBox>
                         <cc1:CalendarExtender ID="CalendarExtender2" runat="server" CssClass="cal_Theme1" EnableViewState="true" Format="dd/MM/yyyy" PopupButtonID="imgCal_1" TargetControlID="txtFrom">
                         </cc1:CalendarExtender>
                         <img id="imgCal_1" src="../../../Content/images/img/calbtn.gif" style="border: 0px;
@@ -58,7 +58,7 @@
                     </td>
                     <td>To Date</td>
                     <td>
-                        <asp:TextBox ID="txtTo" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtTo" runat="server" autocomplete="off"></asp:TextBox>
                         <cc1:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1" EnableViewState="true" Format="dd/MM/yyyy" PopupButtonID="imgCal_2" TargetControlID="txtTo">
                         </cc1:CalendarExtender>
                         <img id="imgCal_2" src="../../../Content/images/img/calbtn.gif" style="border: 0px;
