@@ -161,7 +161,7 @@ namespace BLL.Property
         public string InsertAGLandTrxGeneral(string Mainxml, string Docxml, int UnitID, int MouzaID,int subOfficeID, int DeedTypeID, string DeedNo,
             DateTime DeedDate,string sellerName,decimal purchaseArea, string Remark,decimal DeedValue, decimal Vat, decimal ExtendedValue,
             decimal BrokerValue,decimal RegistrationCost,decimal ait,decimal MutationCost,decimal OtherCost, string OtherCostRemark,
-            string East,string west,string North,string south)
+            string East,string west,string North,string south, int InsertBy)
         {
             string Message = string.Empty;
             try
@@ -169,7 +169,7 @@ namespace BLL.Property
                 AGLandTrxGeneralTableAdapter adapter = new AGLandTrxGeneralTableAdapter();
                 adapter.InsertAGLandTrxGeneralData(Mainxml, Docxml, UnitID, MouzaID, subOfficeID, DeedTypeID, DeedNo, DeedDate, sellerName,
                     purchaseArea, Remark, DeedValue, Vat, ExtendedValue, BrokerValue, RegistrationCost, ait, MutationCost, OtherCost,
-                    OtherCostRemark, East, west, North, south,ref Message);
+                    OtherCostRemark, East, west, North, south, InsertBy,ref Message);
             }
             catch (Exception ex)
             {

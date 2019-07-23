@@ -8755,6 +8755,7 @@ ORDER BY bg.strSubOffice";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@West", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@North", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@South", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intInsertBY", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Message", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -8787,6 +8788,7 @@ ORDER BY bg.strSubOffice";
                     string West, 
                     string North, 
                     string South, 
+                    global::System.Nullable<int> intInsertBY, 
                     ref string Message) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((xmlData == null)) {
@@ -8933,20 +8935,26 @@ ORDER BY bg.strSubOffice";
             else {
                 this.Adapter.SelectCommand.Parameters[24].Value = ((string)(South));
             }
-            if ((Message == null)) {
-                this.Adapter.SelectCommand.Parameters[25].Value = global::System.DBNull.Value;
+            if ((intInsertBY.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[25].Value = ((int)(intInsertBY.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[25].Value = ((string)(Message));
+                this.Adapter.SelectCommand.Parameters[25].Value = global::System.DBNull.Value;
+            }
+            if ((Message == null)) {
+                this.Adapter.SelectCommand.Parameters[26].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[26].Value = ((string)(Message));
             }
             PropertyTDS.AGLandTrxGeneralDataTable dataTable = new PropertyTDS.AGLandTrxGeneralDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[25].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[25].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[26].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[26].Value.GetType() == typeof(global::System.DBNull)))) {
                 Message = null;
             }
             else {
-                Message = ((string)(this.Adapter.SelectCommand.Parameters[25].Value));
+                Message = ((string)(this.Adapter.SelectCommand.Parameters[26].Value));
             }
             return dataTable;
         }

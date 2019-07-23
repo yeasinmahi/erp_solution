@@ -623,7 +623,7 @@
                     </asp:View>
                     <asp:View runat="server" ID="viewDataShow">
                         <div style="margin-top: 2px">
-                            <table class="table2" style="width: 50%">
+                            <table class="table2" style="width: 70%">
                                 <tr>
                                     <td class="td-lbl2">
                                         <asp:Label ID="Label45" CssClass="lbl-txt" runat="server" Text="From Date :"></asp:Label>
@@ -653,7 +653,7 @@
                                 
                             </table>
                             <div style="margin-top: 5px"></div>
-                            <div style="height: 450px; overflow: scroll">
+                            <div style="height: 400px; overflow: scroll">
                                 <asp:GridView ID="dgvDeedDataShow" runat="server" AutoGenerateColumns="False" Font-Size="11px" BackColor="White"
                                 BorderColor="#999999" BorderStyle="Solid"
                                 BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical">
@@ -706,6 +706,12 @@
                                             <asp:Label ID="lblgvInsertDate" runat="server" Text='<%# Bind("dteInsertDate") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Left"/>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Submit BY">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvqSubmitBY" runat="server" Text='<%# Bind("Employee") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Left" Width="200px"/>
                                     </asp:TemplateField>
 
                                 </Columns>
