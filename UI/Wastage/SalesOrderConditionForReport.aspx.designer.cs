@@ -121,15 +121,6 @@ namespace UI.Wastage {
         protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
         
         /// <summary>
-        /// hdnLoanID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnLoanID;
-        
-        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>
@@ -157,13 +148,13 @@ namespace UI.Wastage {
         protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// lblWH control.
+        /// lblSO control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWH;
+        protected global::System.Web.UI.WebControls.Label lblSO;
         
         /// <summary>
         /// ddlSO control.

@@ -46,12 +46,14 @@ namespace UI.Wastage
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if ((txtSOCondition.Text != ""))
+            if ((txtSOCondition.Text != "") && (!string.IsNullOrEmpty(ddlSO.SelectedValue)))
             {
                 CreateAddXml(ddlWHName.SelectedValue.ToString(), ddlSO.SelectedItem.ToString(), txtSOCondition.Text);
 
                 txtSOCondition.Text = "";               
             }
+            else
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Data Found To Add');", true);
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -203,15 +205,36 @@ namespace UI.Wastage
         {
             string msg = string.Empty;
             DateTime insertDate = DateTime.Now;
-
+            int insertBy = 0;
             try
             {
+                insertBy = int.Parse(hdnEnroll.Value);
                 if (dgvWOCond.Rows.Count > 0)
                 {
                     for (int index = 0; index < dgvWOCond.Rows.Count; index++)
                     {
+                        string condition = string.Empty;
+                        int salesOId = 0, whId = 0;
 
+                        string wareHouse = ((Label)dgvWOCond.Rows[index].FindControl("lblWHId")).Text.ToString();
+                        string salesOrder = ((Label)dgvWOCond.Rows[index].FindControl("lblSalesOrder")).Text.ToString();
+                        condition = ((Label)dgvWOCond.Rows[index].FindControl("lblCondition")).Text.ToString();
+
+                        salesOId = int.Parse(salesOrder);
+                        whId = int.Parse(wareHouse);
+
+                        objWastageBLL.SaveWOCondition(salesOId, whId, condition, insertBy, insertDate);
                     }
+
+                    msg = "Condition Save Successfully";
+                    dgvWOCond.DataSource = null;
+                    dgvWOCond.DataBind();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                }
+                else
+                {
+                    msg = "No Data Found To Save";
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 }
             }
             catch (Exception ex)

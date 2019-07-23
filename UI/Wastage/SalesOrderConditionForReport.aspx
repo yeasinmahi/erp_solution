@@ -46,7 +46,7 @@
                 <asp:HiddenField ID="hdnEnroll" runat="server" />
                 <asp:HiddenField ID="hdncustomerid" runat="server" />
                 <asp:HiddenField ID="hdnUnit" runat="server" />
-                <asp:HiddenField ID="hdnLoanID" runat="server" />
+              
                 <div class="divbody" style="padding-right: 10px;">
                     <div class="tabs_container" style="background-color: #dcdbdb; padding-top: 10px; padding-left: 5px; padding-right: -50px; border-radius: 5px;">
                         ISSUE FORM<hr />
@@ -60,7 +60,7 @@
                             <td style="text-align: right; width: 15px;">
                                 <asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblWH" runat="server" CssClass="lbl" Text="Sales Order NO"></asp:Label></td>
+                                <asp:Label ID="lblSO" runat="server" CssClass="lbl" Text="Sales Order NO"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlSO" CssClass="ddList" Font-Bold="False" runat="server" Width="220px" Height="23px" AutoPostBack="False"></asp:DropDownList></td>
                         </tr>
