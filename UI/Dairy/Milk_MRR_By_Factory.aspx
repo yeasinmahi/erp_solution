@@ -203,7 +203,7 @@
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="dteFrom" runat="server" CssClass="lbl" Text="Challan Date :"></asp:Label></td>
-                <td style="text-align:left"><asp:TextBox ID="txtFrom" runat="server" CssClass="txtBox1"></asp:TextBox>
+                <td style="text-align:left"><asp:TextBox ID="txtFrom" runat="server" CssClass="txtBox1" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="dtpFrom" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFrom"></cc1:CalendarExtender></td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
                 <td colspan="2" style="text-align:right; padding: 7px 0px 0px 0px"><asp:Button ID="btnShow" runat="server" class="myButtonGrey" Text="Show" Width="100px" OnClick="btnShow_Click"/></td>        
@@ -218,7 +218,7 @@
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="MRR Date"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td style="text-align:left"><asp:TextBox ID="txtMRRDate" runat="server" CssClass="txtBox1"></asp:TextBox>
+                <td style="text-align:left"><asp:TextBox ID="txtMRRDate" runat="server" CssClass="txtBox1" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtMRRDate"></cc1:CalendarExtender></td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label6" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label7" CssClass="lbl" runat="server" Text="CLR"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>

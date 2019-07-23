@@ -62,7 +62,7 @@
     <table class="tbldecoration" style="width:auto; float:left;">
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblunit" runat="server" CssClass="lbl" Text="Transfer Date"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtSODate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+            <td style="text-align:left;"><asp:TextBox ID="txtSODate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtSODate"></cc1:CalendarExtender></td>
             <td style="text-align:right; width:15px;"><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>
             <td style="text-align:right;"><asp:Label ID="lblDept" runat="server" CssClass="lbl" Text="Department"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>

@@ -144,7 +144,7 @@ namespace UI.Accounts.Voucher
             // ends
             tracker.Stop();
         }
-        protected void btnCompleted_Click(object sender, EventArgs e)
+        protected void btnCompleted_Click(object sender, EventArgs e) 
         { var fd = log.GetFlogDetail(start, location, "Complete", null);
             Flogger.WriteDiagnostic(fd);
 
@@ -153,26 +153,40 @@ namespace UI.Accounts.Voucher
                 fd.Product, fd.Layer);
             try
             {
+                /* Below Code omit by alamin@akij.net 
+                 * 
                 BLL.Accounts.Voucher.BankVoucher bv = new BLL.Accounts.Voucher.BankVoucher();
-            int ret = bv.VoucherFinished(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());
-
-
+                int ret = bv.VoucherFinished(((Button)sender).CommandArgument, Session[SessionParams.USER_ID].ToString());
+                */
+                
             //string CompleteDate = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year;
             string CompleteDate = txtCompleteDate.Text;
 
-            if (ret >= 1)
+            BLL.Accounts.Voucher.BankVoucher bv = new BLL.Accounts.Voucher.BankVoucher();
+            if (ddlDrCr.SelectedIndex == 0)
             {
-                if (ddlDrCr.SelectedIndex == 0)
-                {
-                    bv.SaveDr(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
-                }
-                else
-                {
-                    bv.SaveCr(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
-                }
+                bv.SaveDr(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+            }
+            else
+            {
+                bv.SaveCr(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
             }
 
-            GridView1.DataBind();
+                /* Below Code Omit by alamin@akij.net
+                if (ret >= 1)
+                {
+                    if (ddlDrCr.SelectedIndex == 0)
+                    {
+                        bv.SaveDr(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                    }
+                    else
+                    {
+                        bv.SaveCr(((Button)sender).CommandArgument, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                    }
+                }
+                */
+
+                GridView1.DataBind();
             }
             catch (Exception ex)
             {
@@ -367,6 +381,17 @@ namespace UI.Accounts.Voucher
                 if (ysnChecked)
                 {
                     bvID = ((HiddenField)GridView1.Rows[i].FindControl("HiddenField1")).Value;
+
+                    if (ddlDrCr.SelectedIndex == 0)
+                    {
+                        bv.SaveDr(bvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                    }
+                    else
+                    {
+                        bv.SaveCr(bvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
+                    }
+
+                    /* Below Code Omit by alamn@akij.net
                     ret = bv.VoucherFinished(bvID, Session[SessionParams.USER_ID].ToString());
                     if (ret >= 1)
                     {
@@ -379,6 +404,7 @@ namespace UI.Accounts.Voucher
                             bv.SaveCr(bvID, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), CompleteDate + " 09:00 AM");
                         }
                     }
+                    */
                 }
 
             }

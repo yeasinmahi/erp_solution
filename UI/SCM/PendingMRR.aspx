@@ -128,7 +128,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date: "></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtDteFrom" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtDteFrom" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtenderFrom" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
                                 </cc1:CalendarExtender>
                             </td>
@@ -136,7 +136,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lbldteTo" CssClass="lbl" runat="server" Text="To Date: "></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtdteTo" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtdteTo" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtenderTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteTo">
                                 </cc1:CalendarExtender>
                             </td>
@@ -299,7 +299,7 @@
 
                 <div id="approvedDiv">
                        <table border="0"; style="width:Auto"; >
-                        <tr><td><asp:Label ID="lblpo" runat="server" Font-Bold="true"></asp:Label><br />
+                        <tr><td><asp:Label ID="lblpo" runat="server" Font-Bold="true"></asp:Label> <asp:Label ID="lblMrr" runat="server" Font-Bold="true"></asp:Label><br />
                         <asp:GridView ID="dgv" runat="server" AutoGenerateColumns="False" Font-Size="12px" BackColor="White" BorderColor="#999999" 
                         BorderStyle="Solid" BorderWidth="0px" CellPadding="1" ForeColor="Black" GridLines="Vertical"><AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
@@ -332,15 +332,15 @@
                            
                         <asp:TemplateField HeaderText="Unit ID." SortExpression="intUnitID" Visible="false">
                         <ItemTemplate><asp:Label ID="lblintUnitID" runat="server" Text='<%# Bind("intUnitID") %>'></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
+                        <ItemStyle HorizontalAlign="Center" Width="90px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Approved Qty">
                         <ItemTemplate><asp:TextBox ID="txtChkQuantity" CssClass="txtBox" runat="server" TextMode="Number" Width="90px"></asp:TextBox></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
+                        <ItemStyle HorizontalAlign="Center" Width="90px" /></asp:TemplateField>
                         
-                        <%--<asp:TemplateField HeaderText="Reject Qty">
+                        <asp:TemplateField HeaderText="Reject Qty">
                         <ItemTemplate><asp:TextBox ID="txtRejectQuantity" CssClass="txtBox" runat="server" TextMode="Number" Width="90px"></asp:TextBox></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>--%>
+                        <ItemStyle HorizontalAlign="Center" Width="90px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Remarks">
                         <ItemTemplate><asp:TextBox ID="txtRemarks" CssClass="txtBox" runat="server" Width="100px"></asp:TextBox></ItemTemplate>

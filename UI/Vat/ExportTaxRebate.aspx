@@ -79,7 +79,7 @@
         <td style="text-align:right;"><asp:Label ID="Label2" CssClass="lbl" runat="server" Text="BOE No. : "></asp:Label></td>
         <td><asp:TextBox ID="txtBOENo" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox></td>
         <td style="text-align:right;"><asp:Label ID="lbldate" CssClass="lbl" runat="server" Text="BOE Date : "></asp:Label></td>
-        <td><asp:TextBox ID="txtboeDate" runat="server" CssClass="txtBox"></asp:TextBox>
+        <td><asp:TextBox ID="txtboeDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="CEA" runat="server" Format="yyyy-MM-dd" TargetControlID="txtboeDate"></cc1:CalendarExtender></td>        
         </tr>
         <tr>

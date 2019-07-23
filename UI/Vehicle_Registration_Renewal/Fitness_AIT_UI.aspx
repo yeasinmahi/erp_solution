@@ -112,7 +112,7 @@
              <td style="text-align:right;" class="auto-style1"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Misccelnewss:"></asp:Label></td>                  
             <td style="text-align:left;" class="auto-style1"><asp:TextBox ID="TxtMisccelnewss" runat="server" CssClass="txtBox" ReadOnly="true"  BorderColor="green" Width="190px"></asp:TextBox></td>                                                                                                              
         <td style="text-align:right;" class="auto-style1"><asp:Label ID="Label6" runat="server" CssClass="lbl" Text="ExpDate :"></asp:Label></td>                  
-            <td style="text-align:left;" class="auto-style1"><asp:TextBox ID="TextExpDate" runat="server" CssClass="txtBox"  BorderColor="green" Width="190px"></asp:TextBox> 
+            <td style="text-align:left;" class="auto-style1"><asp:TextBox ID="TextExpDate" runat="server" CssClass="txtBox"  BorderColor="green" Width="190px" autocomplete="off"></asp:TextBox> 
                    <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="TextExpDate">
                          </cc1:CalendarExtender>                                                                                                              
 
@@ -120,12 +120,12 @@
             <tr>
             
              <td style="text-align:right;"><asp:Label ID="Label7" runat="server" CssClass="lbl" Text="Renewal Date:"></asp:Label></td>                  
-            <td style="text-align:left;"><asp:TextBox ID="DteRenewalDate" runat="server" CssClass="txtBox" BorderColor="green" Width="190px"></asp:TextBox>
+            <td style="text-align:left;"><asp:TextBox ID="DteRenewalDate" runat="server" CssClass="txtBox" BorderColor="green" Width="190px" autocomplete="off"></asp:TextBox>
                  <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="DteRenewalDate">
                          </cc1:CalendarExtender>                                                                                                              
         
                  <td style="text-align:right;"><asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Next Exp Date:"></asp:Label></td>                  
-           <td style="text-align:left;"><asp:TextBox ID="TxtNextExpDate" runat="server" CssClass="txtBox" BorderColor="green" Width="190px"></asp:TextBox>
+           <td style="text-align:left;"><asp:TextBox ID="TxtNextExpDate" runat="server" CssClass="txtBox" BorderColor="green" Width="190px" autocomplete="off"></asp:TextBox>
                  <cc1:CalendarExtender ID="CalendarExtender12" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtNextExpDate"> </cc1:CalendarExtender> 
             </tr>
             <tr>

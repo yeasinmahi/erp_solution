@@ -110,7 +110,7 @@ namespace UI.HR.PiceRateCalculation
             DateTime dateTime = txtFDate.Text.ToDateTime("yyyy-MM-dd");
             lblHeader.Text = "Worker Bill All Report";
             string url;
-            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_ALL_Pice_Rate_Report" + "&unitId=" + unitId + "&month=" + txtFDate.Text +  "&rc:LinkTarget=_self";
+            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_ALL_Pice_Rate_Report" + "&unitId=" + unitId + "&dteStartDate=" + txtFDate.Text + "&dteEndDate=" + txtTDate.Text + "&rc:LinkTarget=_self";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
             HidePanel();
         }

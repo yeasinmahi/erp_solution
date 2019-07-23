@@ -271,10 +271,10 @@
            <tr class="tblroweven">
                <td style="text-align:right;" class="auto-style2"><asp:Label ID="Label6" Font-Bold="true" Font-Names="Calibri" runat="server" Text="From Date :" Font-Size="15px"></asp:Label></td>
                <td class="auto-style13">
-                   <asp:TextBox ID="txtfromdates" CssClass="txtBox" runat="server"></asp:TextBox>
+                   <asp:TextBox ID="txtfromdates" CssClass="txtBox" runat="server" autocomplete="off"></asp:TextBox>
                    <asp:ImageButton ID="ImageButton1" ImageUrl="~/Content/images/img/cal.png" runat="server" Height="22px" Width="40px" OnClick="ImageButton1_Click" /></td>
                <td style="text-align:right;" class="auto-style8"><asp:Label ID="Label9" Font-Bold="true" Font-Names="Calibri" runat="server" Text="To Date :" Font-Size="15px"></asp:Label></td>
-               <td class="auto-style5"><asp:TextBox ID="txttodate" Width="150px"  BackColor="#f2f2f2" CssClass="txtBox" runat="server" OnTextChanged="txtaddress_TextChanged"></asp:TextBox><asp:ImageButton ID="ImageButton2" ImageUrl="~/Content/images/img/cal.png" runat="server" Height="22px" Width="40px" OnClick="ImageButton2_Click"  /></td>
+               <td class="auto-style5"><asp:TextBox ID="txttodate" Width="150px"  BackColor="#f2f2f2" CssClass="txtBox" runat="server" OnTextChanged="txtaddress_TextChanged" autocomplete="off"></asp:TextBox><asp:ImageButton ID="ImageButton2" ImageUrl="~/Content/images/img/cal.png" runat="server" Height="22px" Width="40px" OnClick="ImageButton2_Click"  /></td>
            </tr>
             <tr class="tblroweven">
                <td style="text-align:right;" class="auto-style2">&nbsp;</td>

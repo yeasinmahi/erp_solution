@@ -89,7 +89,7 @@
                   </tr>
              <tr> 
            <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Renewal Date:"></asp:Label></td>                  
-            <td style="text-align:left;"><asp:TextBox ID="TxtRegistrationDate" runat="server" CssClass="txtBox"  ReadOnly="true" Width="190px" ></asp:TextBox>
+            <td style="text-align:left;"><asp:TextBox ID="TxtRegistrationDate" runat="server" CssClass="txtBox"  ReadOnly="true" Width="190px" autocomplete="off" ></asp:TextBox>
                 </td>
                   </tr>
              <%--<tr> 

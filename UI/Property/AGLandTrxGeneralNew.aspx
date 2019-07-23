@@ -122,6 +122,7 @@
                 <asp:Button Text="LM Master" ID="tabLMMaster" CssClass="Initial tabstyle" runat="server" OnClick="tabLMMaster_Click" />
                 <asp:Button Text="LM Detail" ID="tabLMDetails" CssClass="Initial tabstyle" runat="server" OnClick="tabLMDetails_Click" />
                 <asp:Button Text="LM Document" ID="tabLMDocument" CssClass="Initial tabstyle" runat="server" OnClick="tabLMDocument_Click" />
+                <asp:Button Text="Show Data" ID="tabShowData" CssClass="Initial tabstyle" runat="server" OnClick="tabShowData_Click" />
                 <asp:Label ID="lblLandManagement" runat="server" Font-Bold="true" Font-Size="Medium" ForeColor="#000099"></asp:Label>
             </div>
             <div>
@@ -431,10 +432,10 @@
                                 <table class="table3">
                                     <tr>
                                         <td class="td-lbl2">
-                                            <%--<asp:Label ID="Label40" runat="server" CssClass="lbl-txt" Text="Attachment :"></asp:Label>--%>
+                                            Purchase Land: <asp:Label runat="server" ID="lblqPurchaseLand" Font-Bold="true" Text="0.00"></asp:Label>
                                         </td>
                                         <td class="td-txt-ddl2">
-                                            <%--<asp:FileUpload ID="FileUpload1" runat="server" />--%>
+                                           Purchase Plot: <asp:Label runat="server" ID="lblqPurchasePlot" Font-Bold="true" Text="0.00"></asp:Label>
                                         </td>
                                         <td class="td-lbl2">
                                             <asp:Label ID="Label41" CssClass="lbl-txt" runat="server" Text="Total Cost :"></asp:Label></td>
@@ -471,7 +472,7 @@
 
                                     <asp:TemplateField HeaderText="Plot Area" SortExpression="strFileName">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvFileName" runat="server" Text='<%# Bind("numPlotArea") %>'></asp:Label>
+                                            <asp:Label ID="lblgvNumPlotArea" runat="server" Text='<%# Bind("numPlotArea") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Left"/>
                                     </asp:TemplateField>
@@ -538,6 +539,13 @@
                             <table class="table2" style="width: 30%">
                                 <tr>
                                     <td class="td-lbl2">
+                                        <asp:Label ID="Label44" CssClass="lbl-txt" runat="server" Text="Deed No :"></asp:Label></td>
+                                    <td class="td-txt-ddl2">
+                                        <asp:TextBox ID="txtqDeedNo" runat="server" CssClass="txt-field" Enabled="false"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <%--<tr>
+                                    <td class="td-lbl2">
                                         <asp:Label ID="Label43" runat="server" CssClass="lbl-txt" Text="Plot Type :"></asp:Label>
                                     </td>
                                     <td class="td-txt-ddl2">
@@ -551,7 +559,7 @@
                                     <td class="td-txt-ddl2">
                                         <asp:TextBox ID="txtFilePlotNo" runat="server" CssClass="txt-field"></asp:TextBox>
                                     </td>
-                                </tr>
+                                </tr>--%>
                                 <tr>
                                     <td class="td-lbl2">
                                         <asp:Label ID="Label42" runat="server" CssClass="lbl-txt" Text="Attachment :"></asp:Label>
@@ -580,17 +588,17 @@
                                         <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Plot Type">
+                                    <asp:TemplateField HeaderText="Deed No">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblgvFilePlotType" runat="server" Text='<%# Bind("strPlotType") %>'></asp:Label>
+                                            <asp:Label ID="lblgvDeedNo" runat="server" Text='<%# Bind("deedNo") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Plot No">
+                                    <%--<asp:TemplateField HeaderText="Plot No">
                                         <ItemTemplate>
                                             <asp:Label ID="lblgvFilePlotNo" runat="server" Text='<%# Bind("plotNo") %>'></asp:Label>
                                         </ItemTemplate>
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
 
                                     <asp:TemplateField HeaderText="File Name" SortExpression="strFileName">
                                         <ItemTemplate>
@@ -611,6 +619,107 @@
                                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                                 <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                             </asp:GridView>
+                        </div>
+                    </asp:View>
+                    <asp:View runat="server" ID="viewDataShow">
+                        <div style="margin-top: 2px">
+                            <table class="table2" style="width: 70%">
+                                <tr>
+                                    <td class="td-lbl2">
+                                        <asp:Label ID="Label45" CssClass="lbl-txt" runat="server" Text="From Date :"></asp:Label>
+                                    </td>
+                                    <td class="td-txt-ddl2">
+                                        <asp:TextBox ID="txtFromDate" runat="server" CssClass="txt-field"></asp:TextBox>
+                                        <cc1:CalendarExtender runat="server" ID="CalendarExtender11" TargetControlID="txtFromDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                    </td>
+                                    <td class="td-lbl2">
+                                        <asp:Label ID="Label46" CssClass="lbl-txt" runat="server" Text="To Date :"></asp:Label>
+                                    </td>
+                                    <td class="td-txt-ddl2">
+                                        <asp:TextBox ID="txtToDate" runat="server" CssClass="txt-field"></asp:TextBox>
+                                        <cc1:CalendarExtender runat="server" ID="CalendarExtender2" TargetControlID="txtToDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td-lbl2">
+                                        <asp:Label ID="Label40" CssClass="lbl-txt" runat="server" Text="Deed No :"></asp:Label></td>
+                                    <td class="td-txt-ddl2">
+                                        <asp:TextBox ID="txtShowDeedNo" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    </td>
+                                    <td colspan="2">
+                                        <asp:Button ID="btnDeedDataShow" runat="server" class="btn btn-add" Font-Bold="true" Style="float: right" Text="Show" OnClick="btnDeedDataShow_Click" />
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                            <div style="margin-top: 5px"></div>
+                            <div style="height: 400px; overflow: scroll">
+                                <asp:GridView ID="dgvDeedDataShow" runat="server" AutoGenerateColumns="False" Font-Size="11px" BackColor="White"
+                                BorderColor="#999999" BorderStyle="Solid"
+                                BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical">
+                                <AlternatingRowStyle BackColor="#CCCCCC" />
+                                <Columns>
+                                    <asp:TemplateField HeaderText="SL No.">
+                                        <ItemStyle HorizontalAlign="center" Width="15px" />
+                                        <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Mouza">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvMouza" runat="server" Text='<%# Bind("strMouza") %>'></asp:Label>
+                                        </ItemTemplate>
+                                         <ItemStyle HorizontalAlign="Left" Width="150px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Deed No">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvDeedNo" runat="server" Text='<%# Bind("strDeedNo") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Plot Type">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvPlotType" runat="server" Text='<%# Bind("strPlotType") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Plot No">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvPlotNo" runat="server" Text='<%# Bind("strPlotNo") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Purchase Plot">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvPurchasePlot" runat="server" Text='<%# Bind("numPurchasedPlotArea") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="LDTR">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvLDTR" runat="server" Text='<%# Bind("intBanglaYear") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="File Name" SortExpression="strFileName">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvFileName" runat="server" Text='<%# Bind("strFilePath") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Left" Width="250px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvInsertDate" runat="server" Text='<%# Bind("dteInsertDate") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Left"/>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Submit BY">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblgvqSubmitBY" runat="server" Text='<%# Bind("Employee") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Left" Width="200px"/>
+                                    </asp:TemplateField>
+
+                                </Columns>
+                                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                            </asp:GridView>
+                            </div>
+                            
                         </div>
                     </asp:View>
                 </asp:MultiView>

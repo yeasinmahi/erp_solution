@@ -1,6 +1,8 @@
 ﻿using SCM_DAL.ImportAdviceTableAdapters;
 using System;
 using System.Data;
+using SCM_BLL;
+using Utility;
 
 namespace SCM_BLL
 {
@@ -120,6 +122,21 @@ namespace SCM_BLL
             {
                 return new DataTable();
             }
+        }
+
+        public DataTable GetExchangeRate( string dteFDate, string dteTDate)
+        {
+            try
+            {
+                GetExchangeRateTableAdapter adp = new GetExchangeRateTableAdapter();
+                return adp.GetExchangeRate(dteFDate.ToString(), dteTDate.ToString());
+            }
+            catch
+            {
+
+                return new DataTable();
+            }
+
         }
 
     }

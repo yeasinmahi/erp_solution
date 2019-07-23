@@ -136,12 +136,12 @@
             </tr> 
             <tr>                 
             <td style="text-align:right;"><asp:Label ID="LblFromDte" runat="server" CssClass="lbl" Text="From Date:"></asp:Label> </td> 
-            <td> <asp:TextBox ID="txtDteFrom" runat="server" CssClass="txtBox"></asp:TextBox>
+            <td> <asp:TextBox ID="txtDteFrom" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="txtDteJobEntranc" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
             </cc1:CalendarExtender></td>                      
             <td style="text-align:right;">  <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="To Date:"></asp:Label>  </td>
                         
-            <td> <asp:TextBox ID="TxtdteTo" runat="server" CssClass="txtBox"></asp:TextBox>
+            <td> <asp:TextBox ID="TxtdteTo" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteTo">
             </cc1:CalendarExtender> </td> 
             <td><asp:Button ID="BtnShow" runat="server" Text="Show" OnClick="BtnShow_Click" /></td>  

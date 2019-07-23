@@ -102,7 +102,7 @@
             <td style="text-align:left;"><asp:TextBox ID="TxtInsuranceCompany" runat="server" CssClass="txtBox"  BorderColor="green" Width="190px"></asp:TextBox></td>                                                                                                              
     
              <td style="text-align:right;"><asp:Label ID="Label7" runat="server" CssClass="lbl" Text="Renewal Date:"></asp:Label></td>                  
-            <td style="text-align:left;"><asp:TextBox ID="TextRenwalDte" runat="server" CssClass="txtBox"  BorderColor="green" Width="190px"></asp:TextBox>
+            <td style="text-align:left;"><asp:TextBox ID="TextRenwalDte" runat="server" CssClass="txtBox"  BorderColor="green" Width="190px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TextRenwalDte">
                          </cc1:CalendarExtender>                                                                                                          
       

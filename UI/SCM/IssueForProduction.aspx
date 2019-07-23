@@ -97,7 +97,7 @@
             <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"  OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"   ></asp:DropDownList></td>                                                                                      
            <td style="text-align:right;"><asp:Label ID="lblFrom" runat="server" CssClass="lbl" Text="From Date :"></asp:Label></td>
-            <td style="text-align:left"><asp:TextBox ID="txtdteFrom" style="text-align:center" runat="server" Width="85px" autocomplete="off" CssClass="txtBox"></asp:TextBox>
+            <td style="text-align:left"><asp:TextBox ID="txtdteFrom" style="text-align:center" runat="server" Width="85px" autocomplete="off" CssClass="txtBox" ></asp:TextBox>
             <cc1:CalendarExtender ID="dteFrom" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteFrom"></cc1:CalendarExtender></td>
 
             <td style="text-align:right;"><asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="To Date :"></asp:Label></td>

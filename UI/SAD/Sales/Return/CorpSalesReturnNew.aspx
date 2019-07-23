@@ -88,7 +88,7 @@
                         <asp:ListItem Value="1">Damage</asp:ListItem>
                         </asp:DropDownList></td>
                     <%--<td style="text-align:right; "><asp:Label ID="Label6" runat="server" Text=""></asp:Label></td>--%>
-                    <td><asp:TextBox ID="txtWHRDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Width="300px"></asp:TextBox>
+                    <td><asp:TextBox ID="txtWHRDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Width="300px" autocomplete="off"></asp:TextBox>
                         <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtWHRDate"></cc1:CalendarExtender>
                     </td>
                       <td style="text-align:right; "><asp:Label ID="Label6" runat="server" Text=""></asp:Label></td>

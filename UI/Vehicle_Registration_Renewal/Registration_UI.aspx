@@ -95,7 +95,7 @@
           
                 
       <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Registration Date :"></asp:Label></td>                  
-            <td style="text-align:left;"><asp:TextBox ID="txtDteRegistration" runat="server" CssClass="txtBox"  BorderColor="Green" Width="190px"></asp:TextBox>
+            <td style="text-align:left;"><asp:TextBox ID="txtDteRegistration" runat="server" CssClass="txtBox"  BorderColor="Green" Width="190px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteRegistration">
                          </cc1:CalendarExtender> 
                                                                                                                

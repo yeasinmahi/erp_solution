@@ -147,7 +147,7 @@ function SearchText() {
             <tr>
                  <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date:  "></asp:Label></td>
                 <td>
-          <asp:TextBox ID="txtEffectiveDate" runat="server" CssClass="txtBox" Width="200px" Enabled="true"></asp:TextBox>
+          <asp:TextBox ID="txtEffectiveDate" runat="server" CssClass="txtBox" Width="200px" Enabled="true" autocomplete="off"></asp:TextBox>
          <cc1:CalendarExtender ID="CFD" runat="server" Format="yyyy-MM-dd" TargetControlID="txtEffectiveDate"></cc1:CalendarExtender>
             </td>
                  <td style="text-align:right"><asp:Label ID="lblVheicleNumber" CssClass="lbl" runat="server" Text="Vheicle No.:  "></asp:Label></td>

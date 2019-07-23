@@ -70,7 +70,7 @@
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="Date"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>                
-                <td><asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+                <td><asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender></td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>                
                 <td style="text-align:right;"><asp:Label ID="lblQuantity" runat="server" Text="Amount" CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
