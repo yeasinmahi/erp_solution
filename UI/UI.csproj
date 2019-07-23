@@ -610,6 +610,7 @@
     <Content Include="PaymentModule\Consumption_Report.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
+    <Content Include="PaymentModule\ExchangeRate.aspx" />
     <Content Include="PaymentModule\FG_Cost_Update.aspx" />
     <Content Include="PaymentModule\ImportAdvice.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
@@ -4084,6 +4085,13 @@
     </Compile>
     <Compile Include="PaymentModule\Duty_Summary_Report.aspx.designer.cs">
       <DependentUpon>Duty_Summary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\ExchangeRate.aspx.cs">
+      <DependentUpon>ExchangeRate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\ExchangeRate.aspx.designer.cs">
+      <DependentUpon>ExchangeRate.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\FG_Cost_Update.aspx.cs">
       <DependentUpon>FG_Cost_Update.aspx</DependentUpon>

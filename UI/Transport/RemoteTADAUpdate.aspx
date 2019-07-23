@@ -140,7 +140,7 @@
                                 <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date:  "></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CES" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                             </td>
                         </tr>

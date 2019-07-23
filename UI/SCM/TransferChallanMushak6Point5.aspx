@@ -57,7 +57,7 @@
             </td>       
             
             <td style="text-align:right;"><asp:Label ID="lblTransferDate" runat="server" CssClass="lbl" Text="Transfer Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtTransferDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px"></asp:TextBox>
+            <td><asp:TextBox ID="txtTransferDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtTransferDate"></cc1:CalendarExtender></td>  
             
             <td><asp:Button ID="btnShow" runat="server" ForeColor="Green" Font-Bold="true" class="nextclick" Text="Show" OnClick="btnShow_Click" /></td>
