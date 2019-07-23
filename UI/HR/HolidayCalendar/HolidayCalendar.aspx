@@ -75,14 +75,14 @@
             DataValueField="intHolidayID" DataTextField="strHolidayName"></asp:DropDownList><asp:ObjectDataSource ID="odsholidaylist" 
             runat="server" SelectMethod="GetHolidayList" TypeName="HR_BLL.Global.Holiday"></asp:ObjectDataSource></td>
             <td style="text-align:right;"><asp:Label ID="lblfrom" CssClass="lbl" runat="server" Text="From-Date : "></asp:Label></td>
-            <td><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox"></asp:TextBox>
+            <td><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="FRMDT" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate">
             </cc1:CalendarExtender> 
             </td>
             </tr>
             
             <tr><td style="text-align:right;"><asp:Label ID="ibltodate" CssClass="lbl" runat="server" Text="To-Date : "></asp:Label></td>
-            <td><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox"></asp:TextBox></td>
+            <td><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox></td>
             <cc1:CalendarExtender ID="TODT" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender> 
             <td colspan="2" style="text-align:right;"><asp:Button ID="btnAdd" runat="server" class="nextclick" style="font-size:11px;" 
             Text="ADD" OnClick="btnAdd_Click"  OnClientClick = "Confirm()"/> <asp:HiddenField ID="hdnconfirm" runat="server"/></td>

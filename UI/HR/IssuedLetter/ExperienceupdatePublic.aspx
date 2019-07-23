@@ -123,10 +123,10 @@
     <tr class='tblroweven'><td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Designation :"></asp:Label></td>
     <td><asp:TextBox ID="txtDesg" runat="server" CssClass="txtBox"></asp:TextBox></td>
     <td style="text-align:right;"><asp:Label ID="Label5" CssClass="lbl" runat="server" Text="From Date :"></asp:Label></td>
-    <td><asp:TextBox ID="txtFdate" runat="server" CssClass="txtBox"></asp:TextBox><script type="text/javascript"> new datepickr('txtFdate', { 'dateFormat': 'Y-m-d' });</script></td>
+    <td><asp:TextBox ID="txtFdate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox><script type="text/javascript"> new datepickr('txtFdate', { 'dateFormat': 'Y-m-d' });</script></td>
     </tr>
     <tr class='tblrowodd'><td style="text-align:right;"><asp:Label ID="Label6" CssClass="lbl" runat="server" Text="To Date : "></asp:Label></td>
-    <td><asp:TextBox ID="txtTdate" runat="server" CssClass="txtBox"></asp:TextBox><script type="text/javascript"> new datepickr('txtTdate', { 'dateFormat': 'Y-m-d' });</script></td>
+    <td><asp:TextBox ID="txtTdate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox><script type="text/javascript"> new datepickr('txtTdate', { 'dateFormat': 'Y-m-d' });</script></td>
     <td style="text-align:right;"><asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Total :"></asp:Label></td>
     <td><asp:TextBox ID="txtTotal" runat="server" CssClass="txtBox"></asp:TextBox></td>
     </tr>

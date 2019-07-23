@@ -103,11 +103,11 @@
     <tr class='tblroweven'><td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Designation :"></asp:Label></td>
     <td><asp:TextBox ID="txtDesg" runat="server" CssClass="txtBox"></asp:TextBox></td>
     <td style="text-align:right;"><asp:Label ID="Label5" CssClass="lbl" runat="server" Text="From Date :"></asp:Label></td>
-    <td><asp:TextBox ID="txtFdate" runat="server" CssClass="txtBox"></asp:TextBox><cc1:CalendarExtender ID="FD" runat="server" Format="yyyy-MM-dd" 
+    <td><asp:TextBox ID="txtFdate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox><cc1:CalendarExtender ID="FD" runat="server" Format="yyyy-MM-dd" 
     TargetControlID="txtFdate"></cc1:CalendarExtender></td>
     </tr>
     <tr class='tblrowodd'><td style="text-align:right;"><asp:Label ID="Label6" CssClass="lbl" runat="server" Text="To Date : "></asp:Label></td>
-    <td><asp:TextBox ID="txtTdate" runat="server" CssClass="txtBox"></asp:TextBox><cc1:CalendarExtender ID="TD" runat="server" Format="yyyy-MM-dd" 
+    <td><asp:TextBox ID="txtTdate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox><cc1:CalendarExtender ID="TD" runat="server" Format="yyyy-MM-dd" 
     TargetControlID="txtTdate"></cc1:CalendarExtender></td>
     <td style="text-align:right;"><asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Total :"></asp:Label></td>
     <td><asp:TextBox ID="txtTotal" runat="server" CssClass="txtBox"></asp:TextBox></td>

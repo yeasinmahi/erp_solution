@@ -110,7 +110,7 @@
                                             <asp:Label ID="Label1" runat="server" Text="Effected Date" CssClass="label"></asp:Label>
                                         </td>
                                         <td colspan="2">
-                                            <asp:TextBox ID="txtEffectedDate" runat="server" Width="100px" CssClass="txt"></asp:TextBox>
+                                            <asp:TextBox ID="txtEffectedDate" runat="server" Width="100px" CssClass="txt" autocomplete="off"></asp:TextBox>
                                             <ajaxToolkit:CalendarExtender ID="CDX" runat="server" TargetControlID="txtEffectedDate">
                                             </ajaxToolkit:CalendarExtender>
                                         </td>

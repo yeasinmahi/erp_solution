@@ -26,11 +26,11 @@
     <table style="width:Auto";>        
         <tr>
         <td style="text-align:right;"><asp:Label ID="lbldteFrom" CssClass="lbl" runat="server" Text="From-Date : "></asp:Label></td>
-        <td><asp:TextBox ID="txtDteFrom" runat="server" CssClass="txtBox"></asp:TextBox>
+        <td><asp:TextBox ID="txtDteFrom" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="CEJ" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteFrom"></cc1:CalendarExtender>                                                        
         </td>
         <td style="text-align:right;"><asp:Label ID="lbldteto" CssClass="lbl" runat="server" Text="To-Date : "></asp:Label></td>
-        <td><asp:TextBox ID="txtDteTo" runat="server" CssClass="txtBox"></asp:TextBox>
+        <td><asp:TextBox ID="txtDteTo" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="CEA" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteTo"></cc1:CalendarExtender>
         </td>
         </tr>

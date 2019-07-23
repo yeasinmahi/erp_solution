@@ -133,7 +133,7 @@
             <td style="text-align:left;"><asp:TextBox ID="txtPurpose" CssClass="txtBox" Font-Bold="False"   Width="300px" runat="server"></asp:TextBox> </td>                                                                                      
             <td style="text-align:left;" ><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Due Date"></asp:Label></td>
             <td style="text-align:left;">
-            <asp:TextBox ID="txtDueDate" runat="server"   CssClass="txtBox"></asp:TextBox>
+            <asp:TextBox ID="txtDueDate" runat="server"   CssClass="txtBox" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender3" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtDueDate">
             </cc1:CalendarExtender> 
             </td>  

@@ -116,7 +116,7 @@
                                 <asp:Label ID="Label3" runat="server" CssClass="label" Text="Date"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtDate" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" runat="server" autocomplete="off"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CE1" runat="server" TargetControlID="txtDate">
                                 </ajaxToolkit:CalendarExtender>
                             </td>

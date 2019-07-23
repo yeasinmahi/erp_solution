@@ -628,7 +628,7 @@ namespace UI.Property
 
                 Message = pbll.InsertAGLandTrxGeneral(MainXml, DocXml, UnitId, MouzaId, SubOfficeId, DeedTypeID, DeedNo, DeedDate, SellerName, PurchasedLand,
                     Remarks, DeedValue, Vat, ExtendedValue, Broker, RegistrationCost, AIT, MutationFee, OtherCost, OtherCostRemarks,
-                    East, West, North, South);
+                    East, West, North, South, Enroll);
             }
             catch (Exception ex)
             {

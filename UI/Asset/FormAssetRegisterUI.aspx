@@ -505,14 +505,14 @@
                <tr>
                   
                 <td style="text-align:right;"><asp:Label ID="LblDteLC" CssClass="lbl" runat="server" Text="LC Date : "></asp:Label></td>
-                 <td><asp:TextBox ID="TxtDteLC" runat="server" CssClass="txtBox"  ></asp:TextBox>
+                 <td><asp:TextBox ID="TxtDteLC" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDteLC">
                     </cc1:CalendarExtender> 
                    
                 <td style="text-align:right;"><asp:Label ID="LblPONo" CssClass="lbl" runat="server" Text="Po Number : "></asp:Label></td>
                 <td><asp:TextBox ID="TxtPONo" runat="server" CssClass="txtBox"  ></asp:TextBox></td>
                  <td style="text-align:right;"><asp:Label ID="LblDtePO" CssClass="lbl" runat="server" Text="Po Date : "></asp:Label></td>
-                  <td><asp:TextBox ID="TxtDtePo" runat="server" CssClass="txtBox"  ></asp:TextBox>
+                  <td><asp:TextBox ID="TxtDtePo" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDtePo">
                     </cc1:CalendarExtender> 
                 </tr>
@@ -521,7 +521,7 @@
                
             <td style="text-align:right;"><asp:Label ID="LblWarrintyPreoid" CssClass="lbl" runat="server" Text="Warranty Expiry Date : "></asp:Label></td>
                 
-              <td><asp:TextBox ID="TxtDteWarranty" runat="server" CssClass="txtBox"  ></asp:TextBox>
+              <td><asp:TextBox ID="TxtDteWarranty" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender4" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDteWarranty">
                     </cc1:CalendarExtender> 
               
@@ -1106,7 +1106,7 @@
                          </td>
                          <td>
 
-                             <asp:TextBox ID="TxtDteReg" runat="server" CssClass="txtBox"></asp:TextBox>
+                             <asp:TextBox ID="TxtDteReg" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                              <cc1:CalendarExtender ID="CalendarExtender14" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDteReg">
                              </cc1:CalendarExtender>
                          </td>
@@ -1115,7 +1115,7 @@
                          <asp:Label ID="Label44" runat="server" CssClass="lbl" Text="Tax Token Validity: "></asp:Label>
                      </td>
                      <td>
-                         <asp:TextBox ID="TxtDteToken" runat="server" CssClass="txtBox"></asp:TextBox>
+                         <asp:TextBox ID="TxtDteToken" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                          <cc1:CalendarExtender ID="CalendarExtender10" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDteToken">
                          </cc1:CalendarExtender>
                      </td>
@@ -1126,7 +1126,7 @@
                      </td>
                      <td>
 
-                         <asp:TextBox ID="TxtDteFitness" runat="server" CssClass="txtBox"></asp:TextBox>
+                         <asp:TextBox ID="TxtDteFitness" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                          <cc1:CalendarExtender ID="CalendarExtender11" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDteFitness">
                          </cc1:CalendarExtender>
                      </td>
@@ -1175,7 +1175,7 @@
                      </td>
                      <td>
 
-                         <asp:TextBox ID="TxtDteInsurance" runat="server" CssClass="txtBox"></asp:TextBox>
+                         <asp:TextBox ID="TxtDteInsurance" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                          <cc1:CalendarExtender ID="CalendarExtender12" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDteInsurance">
                          </cc1:CalendarExtender>
                      </td>
@@ -1185,7 +1185,7 @@
                      </td>
                      <td>
 
-                         <asp:TextBox ID="TxtDteRoot" runat="server" CssClass="txtBox"></asp:TextBox>
+                         <asp:TextBox ID="TxtDteRoot" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                          <cc1:CalendarExtender ID="CalendarExtender13" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDteRoot">
                          </cc1:CalendarExtender>
                      </td>
@@ -1475,7 +1475,7 @@
               
 
                              <td style="text-align:right;"><asp:Label ID="Label77" CssClass="lbl" runat="server" Text="Deed Certify receive date: "></asp:Label></td>
-               <td><asp:TextBox ID="dteDeedCertifyreceivedate" runat="server" CssClass="txtBox"  ></asp:TextBox>
+               <td><asp:TextBox ID="dteDeedCertifyreceivedate" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
                         <cc1:CalendarExtender ID="CalendarExtender17" runat="server" Format="yyyy-MM-dd" TargetControlID="dteDeedCertifyreceivedate">
                     </cc1:CalendarExtender> </td>
               
@@ -1483,7 +1483,7 @@
                                  <asp:Label ID="Label78" runat="server" CssClass="lbl" Text="Orginal Deed Receive Date: "></asp:Label>
                              </td>
                              <td>
-                                 <asp:TextBox ID="TxtOrginalDeedReceiveDate" runat="server" CssClass="txtBox"  ></asp:TextBox>
+                                 <asp:TextBox ID="TxtOrginalDeedReceiveDate" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
                         <cc1:CalendarExtender ID="CalendarExtender100" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtOrginalDeedReceiveDate">
                     </cc1:CalendarExtender> 
               
@@ -1827,13 +1827,13 @@
 
                  <td style="text-align: right;">
                      <asp:Label ID="Label121" CssClass="lbl" runat="server" Text="Po Date : "></asp:Label></td>
-              <td><asp:TextBox ID="TxtDteBPodate" runat="server" CssClass="txtBox"  ></asp:TextBox>
+              <td><asp:TextBox ID="TxtDteBPodate" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
                      <cc1:CalendarExtender ID="CalendarExtender19" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDteBPodate">
                      </cc1:CalendarExtender></td>
                 
                  <td style="text-align: right;">
                      <asp:Label ID="Label122" CssClass="lbl" runat="server" Text="Project start Date : "></asp:Label></td>
-                 <td><asp:TextBox ID="TxtdteProjectStart" runat="server" CssClass="txtBox"  ></asp:TextBox>
+                 <td><asp:TextBox ID="TxtdteProjectStart" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
                      <cc1:CalendarExtender ID="CalendarExtender18" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteProjectStart">
                      </cc1:CalendarExtender></td>
                   
@@ -1844,7 +1844,7 @@
                  <td style="text-align: right;">
                      <asp:Label ID="Label123" CssClass="lbl" runat="server" Text="Project Delivery Date: "></asp:Label></td>
                  <td>
-                     <asp:TextBox ID="TxtdteBDeliveryDate" runat="server" CssClass="txtBox"  ></asp:TextBox>
+                     <asp:TextBox ID="TxtdteBDeliveryDate" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
                      <cc1:CalendarExtender ID="CalendarExtender16" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteBDeliveryDate">
                      </cc1:CalendarExtender>
                  </td>
@@ -1959,7 +1959,7 @@
 
 
                     <td>
-                     <asp:TextBox ID="TxtdteApproximatly" runat="server" CssClass="txtBox"  ></asp:TextBox>
+                     <asp:TextBox ID="TxtdteApproximatly" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
                      <cc1:CalendarExtender ID="CalendarExtender20" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteApproximatly">
                      </cc1:CalendarExtender>
 

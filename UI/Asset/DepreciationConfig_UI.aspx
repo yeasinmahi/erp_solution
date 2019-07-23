@@ -82,14 +82,14 @@
                             <asp:Label ID="LblDtePO" runat="server" CssClass="lbl" Text="From Date"  Font-Bold="true"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="TxtDteStart" runat="server" Font-Bold="true"  AutoPostBack="true" Width="100px" CssClass="txtBox" OnTextChanged="TxtDteStart_TextChanged"></asp:TextBox>
+                            <asp:TextBox ID="TxtDteStart" runat="server" Font-Bold="true"  AutoPostBack="true" Width="100px" CssClass="txtBox" OnTextChanged="TxtDteStart_TextChanged" autocomplete="off"></asp:TextBox>
                             <cc1:CalendarExtender ID="CalendarExtender8" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDteStart">
                             </cc1:CalendarExtender>
                              <td style="text-align:right;">
                             <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="To Date"  Font-Bold="true"></asp:Label>
                         </td>
                         <td>
-                            <asp:TextBox ID="TxtDteEnd" runat="server" Font-Bold="true"  CssClass="txtBox"  Width="100px"></asp:TextBox>
+                            <asp:TextBox ID="TxtDteEnd" runat="server" Font-Bold="true"  CssClass="txtBox"  Width="100px" autocomplete="off"></asp:TextBox>
                             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDteEnd">
                             </cc1:CalendarExtender>
                   </tr>

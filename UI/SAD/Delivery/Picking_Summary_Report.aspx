@@ -53,7 +53,7 @@
                             <td style="width: 30px;"></td>
                             <td>Date:</td>
                             <td>
-                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox1" Enabled="true" placeholder="click here" AutoComplete="false"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox1" Enabled="true" placeholder="click here" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>
                             </td>
                             <td style="width: 30px;"></td>

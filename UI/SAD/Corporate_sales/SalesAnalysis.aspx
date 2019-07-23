@@ -387,7 +387,7 @@
    
                 <td style="text-align:right;" class="auto-style2">From date :</td>
                 <td class="auto-style2" >
-                    <asp:TextBox  CssClass="calendar" ID="TextBox3" runat="server" OnTextChanged="TextBox3_TextChanged"></asp:TextBox>
+                    <asp:TextBox  CssClass="calendar" ID="TextBox3" runat="server" OnTextChanged="TextBox3_TextChanged" autocomplete="off"></asp:TextBox>
                     <asp:ImageButton ID="ImageButton1" ImageUrl="~/Content/images/img/cal.png" runat="server" Height="21px" Width="46px" OnClick="ImageButton1_Click" />
                     &nbsp;
 
@@ -408,7 +408,7 @@
                 
                            
             <td class="auto-style2">
-                <asp:TextBox  CssClass="calendar" ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                <asp:TextBox  CssClass="calendar" ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" autocomplete="off"></asp:TextBox>
                 <asp:ImageButton ImageUrl="~/Content/images/img/cal.png" ID="ImageButton2" runat="server" Height="20px" Width="50px" OnClick="ImageButton2_Click" />
                 <asp:Button ID="Button2" runat="server" Text="Show" OnClick="Button1_Click1" />
                 </td>   
