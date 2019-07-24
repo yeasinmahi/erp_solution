@@ -35,7 +35,7 @@ namespace UI.Wastage
                     File.Delete(filePathForXML);
 
                     pnlUpperControl.DataBind();
-                    BindWarehouse();
+                    BindUnit();                    
                 }
                 catch (Exception ex)
                 {
@@ -64,6 +64,11 @@ namespace UI.Wastage
         protected void ddlWHName_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindSalesOrder();
+        }
+
+        protected void ddlUnitName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindWarehouse();
         }
 
         protected void dgvWOCond_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -107,13 +112,24 @@ namespace UI.Wastage
 
         #region UMethod
 
+        private void BindUnit()
+        {
+            DataTable dt = new DataTable();
+            dt = objWastageBLL.GetUnit();
+            ddlUnitName.DataTextField = "strUnit";
+            ddlUnitName.DataValueField = "intUnitID";
+            ddlUnitName.DataSource = dt;
+            ddlUnitName.DataBind();
+        }
+
         private void BindWarehouse()
         {
             DataTable dt = new DataTable();
+            ddlWHName.Items.Clear();
 
-            dt = objWastageBLL.getWHALL();
+            dt = objWastageBLL.getWHbyUnitList(int.Parse(ddlUnitName.SelectedValue.ToString()));
             ddlWHName.DataTextField = "strWastageWareHouseName";
-            ddlWHName.DataValueField = "intWastageWHID";
+            ddlWHName.DataValueField = "intWastageWareHouseID";
             ddlWHName.DataSource = dt;
             ddlWHName.DataBind();
         }
@@ -121,6 +137,7 @@ namespace UI.Wastage
         private void BindSalesOrder()
         {
             DataTable dt = new DataTable();
+            ddlSO.Items.Clear();
 
             dt = objWastageBLL.getSalesOrderList(int.Parse(ddlWHName.SelectedValue));
             if (dt.Rows.Count > 0)
@@ -200,6 +217,8 @@ namespace UI.Wastage
                 dgvWOCond.DataBind();
             }
         }
+
+       
 
         private void SaveData()
         {
