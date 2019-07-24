@@ -33,11 +33,11 @@ namespace UI.Property
         string filen;
         string filePathForXMLDocUpload; string xmlStringDocUpload = ""; string xmlDocUpload;
 
-        
+
 
         int intCount = 0;
 
-        
+
 
         DateTime DeedDate;
         private decimal PurchasedLand, DeedValue, AIT, Vat, MutationFee, ExtendedValue, OtherCost, Broker, RegistrationCost,
@@ -88,7 +88,7 @@ namespace UI.Property
         {
             try
             {
-                if(MasterValidation() == true)
+                if (MasterValidation() == true)
                 {
                     tabLMMaster.CssClass = "Initial";
                     tabLMDetails.CssClass = "Clicked";
@@ -104,9 +104,9 @@ namespace UI.Property
                     tabLMDocument.CssClass = "Initial";
                     tabShowData.CssClass = "Initial";
                     mainView.ActiveViewIndex = 0;
-                   
+
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace UI.Property
                     mainView.ActiveViewIndex = 2;
                     txtqDeedNo.Text = txtDeedNo.Text.ToString();
                 }
-                else if(MasterValidation() == false)
+                else if (MasterValidation() == false)
                 {
                     tabLMMaster.CssClass = "Clicked";
                     tabLMDetails.CssClass = "Initial";
@@ -143,7 +143,7 @@ namespace UI.Property
                     tabShowData.CssClass = "Initial";
                     mainView.ActiveViewIndex = 1;
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -181,7 +181,7 @@ namespace UI.Property
                     ddlSubOffice.Items.Insert(0, new ListItem("--- Select Sub-Office ---", "-1"));
 
                     dtPlotArea = pbll.GetPlotAreaByMouza(MouzaID);
-                    if(dtPlotArea != null && dtPlotArea.Rows.Count > 0)
+                    if (dtPlotArea != null && dtPlotArea.Rows.Count > 0)
                     {
                         dgvExistPlotArea.DataSource = dtPlotArea;
                         dgvExistPlotArea.DataBind();
@@ -261,7 +261,7 @@ namespace UI.Property
                         PlotArea += decimal.Parse(lblPurchasePlotArea.Text.Trim());
                     }
                 }
-                hfPurshedPlot.Value = (decimal.Parse(txtPurchasedPlot.Text) +  PlotArea).ToString();
+                hfPurshedPlot.Value = (decimal.Parse(txtPurchasedPlot.Text) + PlotArea).ToString();
                 LandCalculation(decimal.Parse(hfPurshedPlot.Value));
             }
             catch (Exception ex)
@@ -301,22 +301,22 @@ namespace UI.Property
                     if (CheckItem == 1)
                     {
                         decimal totalPlotArea = decimal.Parse(lblqPurchasePlot.Text) + decimal.Parse(PurchesedPlot);
-                        if (totalPlotArea <= decimal.Parse(txtPurchaseLand.Text))
-                        {
-                            CreateXml(KahtianCS, KahtianSA, KahtianRS, KahtianBS, KahtianMutation, PlotCS, PlotSA, PlotRS, PlotBS, PlotMutation,
-                            LDTR, PlotTypeID.ToString(), PlotType, PlotNo, PurchesedPlot, MouzaName, PlotByMouza.ToString());
-                            lblqPurchasePlot.Text = !string.IsNullOrEmpty(lblqPurchasePlot.Text) ?
-                               (decimal.Parse(lblqPurchasePlot.Text) + decimal.Parse(PurchesedPlot)).ToString() : PurchesedPlot.ToString();
-                            LoadGridWithXml();
+                        //if (totalPlotArea <= decimal.Parse(txtPurchaseLand.Text))
+                        //{
+                        CreateXml(KahtianCS, KahtianSA, KahtianRS, KahtianBS, KahtianMutation, PlotCS, PlotSA, PlotRS, PlotBS, PlotMutation,
+                        LDTR, PlotTypeID.ToString(), PlotType, PlotNo, PurchesedPlot, MouzaName, PlotByMouza.ToString());
+                        lblqPurchasePlot.Text = !string.IsNullOrEmpty(lblqPurchasePlot.Text) ?
+                           (decimal.Parse(lblqPurchasePlot.Text) + decimal.Parse(PurchesedPlot)).ToString() : PurchesedPlot.ToString();
+                        LoadGridWithXml();
 
-                            DetailClear();
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Purchase Plot is Bigger then Purchase Land. Please Entered Correct Purchase Plot Area.');", true);
-                            //return;
-                        }
-                        
+                        DetailClear();
+                        //}
+                        //else
+                        //{
+                        //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Purchase Plot is Bigger then Purchase Land. Please Entered Correct Purchase Plot Area.');", true);
+                        //    //return;
+                        //}
+
                     }
                     else
                     {
@@ -414,7 +414,7 @@ namespace UI.Property
                 DateTime ToDate = DateTime.ParseExact(txtToDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 string DeedNo = !string.IsNullOrEmpty(txtShowDeedNo.Text) ? txtShowDeedNo.Text : "0";
                 dt = pbll.GetInsertedLandData(FromDate, ToDate, DeedNo);
-                if(dt != null && dt.Rows.Count > 0)
+                if (dt != null && dt.Rows.Count > 0)
                 {
                     dgvDeedDataShow.DataSource = dt;
                     dgvDeedDataShow.DataBind();
@@ -504,7 +504,7 @@ namespace UI.Property
                 ddlSubOffice.Items.Insert(0, new ListItem("--- Select Sub-Office ---", "-1"));
                 ddlDeedType.Items.Insert(0, new ListItem("--- Select Deed Type ---", "-1"));
                 ddlPlotType.Items.Insert(0, new ListItem("--- Select Plot Type ---", "-1"));
-               // ddlFilePlotType.Items.Insert(0, new ListItem("--- Select Plot Type ---", "-1"));
+                // ddlFilePlotType.Items.Insert(0, new ListItem("--- Select Plot Type ---", "-1"));
                 ddlUpdatedLDTR.Items.Insert(0, new ListItem("--- Select LDTR ---", "-1"));
 
             }
@@ -939,7 +939,7 @@ namespace UI.Property
                     //int PlotType = int.Parse(ddlFilePlotType.SelectedValue.ToString());
                     //string strPlotType = ddlFilePlotType.SelectedItem.ToString();
                     //string PlotNo = txtFilePlotNo.Text.ToString();
-                    
+
                     if (fuDocUpload.HasFiles)
                     {
                         foreach (HttpPostedFile uploadedFile in fuDocUpload.PostedFiles)
@@ -1101,7 +1101,7 @@ namespace UI.Property
                             File.Delete(Server.MapPath("~/Property/Files/") + fileName);
                         }
                     }
-                    
+
                     if (MasterValidation() == true)
                     {
                         Message = FillSubmitData(xmlString, xmlStringDocUpload, Enroll);
