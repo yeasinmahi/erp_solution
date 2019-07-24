@@ -1790,6 +1790,8 @@
     <Content Include="UnderMaintanance.aspx" />
     <Content Include="Vat\CurrentRegisterM18.aspx" />
     <Content Include="Vat\ExportTaxRebate.aspx" />
+    <Content Include="Vat\M16_PurchaseRegister.aspx" />
+    <Content Include="Vat\M17_SalesRegister.aspx" />
     <Content Include="Vat\PriceDeclarationM1.aspx" />
     <Content Include="Vat\PrintBackSide19.aspx" />
     <Content Include="Vat\PrintM16.aspx" />
@@ -9803,6 +9805,20 @@
     </Compile>
     <Compile Include="Vat\ExportTaxRebate.aspx.designer.cs">
       <DependentUpon>ExportTaxRebate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\M16_PurchaseRegister.aspx.cs">
+      <DependentUpon>M16_PurchaseRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vat\M16_PurchaseRegister.aspx.designer.cs">
+      <DependentUpon>M16_PurchaseRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\M17_SalesRegister.aspx.cs">
+      <DependentUpon>M17_SalesRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vat\M17_SalesRegister.aspx.designer.cs">
+      <DependentUpon>M17_SalesRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vat\PriceDeclarationM1.aspx.cs">
       <DependentUpon>PriceDeclarationM1.aspx</DependentUpon>
