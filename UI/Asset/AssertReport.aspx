@@ -76,7 +76,7 @@
         </asp:Label>
       </td>
       <td>
-        <asp:TextBox ID="TxtdteFrom" runat="server" CssClass="txtBox">
+        <asp:TextBox ID="TxtdteFrom" runat="server" CssClass="txtBox" autocomplete="off"> 
         </asp:TextBox>
         <cc1:CalendarExtender ID="CEA" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteFrom">
         </cc1:CalendarExtender>
@@ -85,7 +85,7 @@
         </asp:Label>
       </td>
       <td>
-        <asp:TextBox ID="TxtdteTo" runat="server" CssClass="txtBox">
+        <asp:TextBox ID="TxtdteTo" runat="server" CssClass="txtBox" autocomplete="off">
         </asp:TextBox>
         <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteTo">
         </cc1:CalendarExtender>

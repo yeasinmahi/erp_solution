@@ -119,11 +119,11 @@
             </tr>
            <tr class="tblroweven">
                <td style="text-align:right;" class="auto-style2"><asp:Label ID="Label6" Font-Bold="true" Font-Names="Calibri" runat="server" Text="From Date :" Font-Size="15px"></asp:Label></td>
-               <td class="auto-style13"><asp:TextBox ID="txtfromdate" Font-Bold="true" Width="150px" BackColor="#f2f2f2" CssClass="txtBox" runat="server" ></asp:TextBox>
+               <td class="auto-style13"><asp:TextBox ID="txtfromdate" Font-Bold="true" Width="150px" BackColor="#f2f2f2" CssClass="txtBox" runat="server" autocomplete="off" ></asp:TextBox>
                    <script type="text/javascript"> new datepickr('txtfromdate', { 'dateFormat': 'Y-m-d' });</script>
                </td>
                <td style="text-align:right;" class="auto-style8"><asp:Label ID="Label9" Font-Bold="true" Font-Names="Calibri" runat="server" Text="To Date :" Font-Size="15px"></asp:Label></td>
-               <td class="auto-style5"><asp:TextBox ID="txttodate" Font-Bold="true" Width="150px"  BackColor="#f2f2f2" CssClass="txtBox" runat="server" ></asp:TextBox>
+               <td class="auto-style5"><asp:TextBox ID="txttodate" Font-Bold="true" Width="150px"  BackColor="#f2f2f2" CssClass="txtBox" runat="server" autocomplete="off" ></asp:TextBox>
                    <script type="text/javascript"> new datepickr('txttodate', { 'dateFormat': 'Y-m-d' });</script>
                </td>
            </tr>

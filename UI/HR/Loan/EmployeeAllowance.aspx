@@ -96,7 +96,7 @@
         <td style="text-align:right;"><asp:Label ID="lbldesignation" CssClass="lbl" runat="server" Text="Designation : "></asp:Label></td>
         <td><asp:TextBox ID="txtDesignation" runat="server" CssClass="txtBox" Enabled="false"></asp:TextBox></td>
         <td style="text-align:right;"><asp:Label ID="lbleffective" CssClass="lbl" runat="server" Text="Effective-Date : "></asp:Label></td>
-        <td><asp:TextBox ID="txtEffectiveDate" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox>
+        <td><asp:TextBox ID="txtEffectiveDate" runat="server" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
         <script type="text/javascript"> new datepickr('txtEffectiveDate', { 'dateFormat': 'Y-m-d' });</script></td>
         </tr>
         <tr class="tblroweven">

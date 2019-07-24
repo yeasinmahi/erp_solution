@@ -56,7 +56,7 @@
                                 <asp:Label ID="lbl1" CssClass="lbl" runat="server" Text="From Date"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="fromTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="fromTextBox" AutoPostBack="false" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                                 <script>$('#fromTextBox').datepicker();</script>
                             </td>
                             
@@ -64,7 +64,7 @@
                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="toTextBox" AutoPostBack="false" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="toTextBox" AutoPostBack="false" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                                 <script>$('#toTextBox').datepicker();</script>
                             </td>
                         </tr>

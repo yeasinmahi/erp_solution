@@ -74,7 +74,7 @@
                 <td style="text-align:right;"><asp:Label ID="Label14" runat="server" Text="Supplier/PO :" CssClass="lbl"></asp:Label></td>
                 <td><asp:DropDownList ID="ddlPOList" runat="server" CssClass="ddList"  width="220px" height="23px" BackColor="White" OnSelectedIndexChanged="ddlPOList_SelectedIndexChanged"></asp:DropDownList></td>
                 <td style="text-align:right;"><asp:Label ID="lblReceiveDate" runat="server" CssClass="lbl" Text="Receive Date :"></asp:Label></td>
-                <td style="text-align:left;"><asp:TextBox ID="txtReceiveDate" runat="server" CssClass="txtBox1" BackColor="White"></asp:TextBox>
+                <td style="text-align:left;"><asp:TextBox ID="txtReceiveDate" runat="server" CssClass="txtBox1" BackColor="White" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtReceiveDate"></cc1:CalendarExtender></td>
             </tr>
             

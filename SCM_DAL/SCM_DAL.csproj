@@ -86,6 +86,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DmageTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ImportAdvice.cs">
+      <DependentUpon>ImportAdvice.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ImportAdvice.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

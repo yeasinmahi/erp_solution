@@ -127,11 +127,11 @@
         </tr>             
          <tr>            
             <td style="text-align:right;"><asp:Label ID="lblStartDate" runat="server" CssClass="lbl" Text="Start Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtStartDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px"></asp:TextBox>
+            <td><asp:TextBox ID="txtStartDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtStartDate"></cc1:CalendarExtender></td>                          
 
             <td style="text-align:right;"><asp:Label ID="lblDeadline" runat="server" CssClass="lbl" Text="Deadline Date:"></asp:Label></td>                
-            <td><asp:TextBox ID="txtDeadline" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px"></asp:TextBox>
+            <td><asp:TextBox ID="txtDeadline" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDeadline"></cc1:CalendarExtender></td>             
         </tr>        
        <tr>

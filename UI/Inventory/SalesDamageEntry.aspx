@@ -86,7 +86,7 @@
                
             <td style="text-align:right;">
                   <asp:HiddenField ID="hdnconfirm" runat="server" />
-                <asp:TextBox ID="txtFDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                <asp:TextBox ID="txtFDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                     <cc1:CalendarExtender ID="FD" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFDate">
                     </cc1:CalendarExtender> 
                 </td>
@@ -95,7 +95,7 @@
             <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To-Date : "></asp:Label></td>
                 
             <td>
-                <asp:TextBox ID="txtTo" runat="server" CssClass="txtBox"></asp:TextBox>
+                <asp:TextBox ID="txtTo" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                     <cc1:CalendarExtender ID="TD" runat="server" Format="yyyy-MM-dd" TargetControlID="txtTo">
                     </cc1:CalendarExtender> 
                 </td>

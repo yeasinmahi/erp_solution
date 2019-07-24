@@ -53,7 +53,7 @@
                     </td>
                     <td align="left">
                         Date
-                        <asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtFrom" runat="server" autocomplete="off"></asp:TextBox>
                         <cc1:CalendarExtender CssClass="cal_Theme1" ID="CalendarExtender1" runat="server" EnableViewState="true"
                             Format="dd/MM/yyyy" PopupButtonID="imgCal_1" TargetControlID="txtFrom"></cc1:CalendarExtender>
                         <img id="imgCal_1" src="../../../Content/images/img/calbtn.gif" style="border: 0px;

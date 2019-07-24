@@ -49,7 +49,7 @@
             </tr>
             <tr><td colspan="8"><hr /></td></tr> 
             <tr><td colspan="8" style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblVatAccount" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
-            <tr><td colspan="8" style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Bandroll Receive Entry" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr>
+            <tr><td colspan="8" style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Bandroll Receive Entry" CssClass="lbl" Font-Size="16px" ></asp:Label></td></tr>
                
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Bandroll :"></asp:Label></td>
@@ -57,21 +57,21 @@
                 </td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label12" runat="server" Text="Dem. Order No :" CssClass="lbl"></asp:Label></td>
-                <td><asp:TextBox ID="txtDemOrderNo" runat="server" CssClass="txtBox1" Width="130px"></asp:TextBox></td>             
+                <td><asp:TextBox ID="txtDemOrderNo" runat="server" CssClass="txtBox1" Width="130px" autocomplete="off"></asp:TextBox></td>             
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Date :" CssClass="lbl"></asp:Label></td>               
-                <td><asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="130px"></asp:TextBox>
+                <td><asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="130px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label1" runat="server" Text="Delivery Order No :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtDeliveryOrderNo" runat="server" CssClass="txtBox1" Width="100px"></asp:TextBox>
                 <asp:Label ID="Label6" runat="server" Text="DO Date :" CssClass="lbl"></asp:Label>
-                <asp:TextBox ID="txtDODate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="130px"></asp:TextBox>
+                <asp:TextBox ID="txtDODate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="130px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDODate"></cc1:CalendarExtender></td> 
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label5" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="Receive Date :" CssClass="lbl"></asp:Label></td>               
-                <td><asp:TextBox ID="txtReceiveDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="130px"></asp:TextBox>
+                <td><asp:TextBox ID="txtReceiveDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="130px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtReceiveDate"></cc1:CalendarExtender></td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label8" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label7" runat="server" Text="Quantity :" CssClass="lbl"></asp:Label></td>

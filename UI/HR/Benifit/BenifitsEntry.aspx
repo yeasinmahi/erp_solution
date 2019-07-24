@@ -170,7 +170,7 @@
                             </td>
                             <td class="tdheight">
                                 <%--<asp:TextBox ID="txtAmount" runat="server" CssClass="txtBox1" Visible="false"></asp:TextBox>--%>
-                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox1"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox1" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate">
                                 </cc1:CalendarExtender>
                             </td>

@@ -654,7 +654,7 @@
                                 <td>
                                     <asp:Label ID="Label17" runat="server" Text="Last Shipment Date:" /></td>
                                 <td>
-                                    <asp:TextBox ID="txtLastShipmentDate" CssClass="txtBox" runat="server"></asp:TextBox><cc1:CalendarExtender ID="CalendarExtender4" runat="server" Format="yyyy-MM-dd" TargetControlID="txtLastShipmentDate">
+                                    <asp:TextBox ID="txtLastShipmentDate" CssClass="txtBox" runat="server" autocomplete="off"></asp:TextBox><cc1:CalendarExtender ID="CalendarExtender4" runat="server" Format="yyyy-MM-dd" TargetControlID="txtLastShipmentDate">
                                     </cc1:CalendarExtender>
                                 </td>
                                 <td>

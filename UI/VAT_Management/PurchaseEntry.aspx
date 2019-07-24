@@ -80,7 +80,7 @@
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Pur Date :" CssClass="lbl"></asp:Label></td>               
-                <td><asp:TextBox ID="txtPurDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+                <td><asp:TextBox ID="txtPurDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtPurDate"></cc1:CalendarExtender></td>
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label5" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="lblWastage" runat="server" Text="Challan :" CssClass="lbl"></asp:Label></td>
@@ -88,7 +88,7 @@
                 
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label6" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Cln Date :"></asp:Label></td>                
-                <td><asp:TextBox ID="txtClnDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="120"></asp:TextBox>
+                <td><asp:TextBox ID="txtClnDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="120" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtClnDate"></cc1:CalendarExtender></td>                
             </tr>
             <tr> 

@@ -4338,20 +4338,19 @@ SELECT ysnComplete, intPOID FROM tblPurchaseOrderMain WHERE (intPOID = @intPOID)
 From ERP_Inventory.dbo.tblFactoryReceiveMRR mrr 
 Join ERP_Inventory.dbo.tblSupplier s on mrr.intSupplierID=s.intSupplierID  
 join ERP_Inventory.dbo.tblPurchaseOrderMain po on mrr.intPOID = po.intPOID
-Where  cast(mrr.dteLastActionTime as Date) between @fDate  and @tDate  And mrr.intWHID = @wh  
-and mrr.ysninventory=0 and po.strPoFor = 'Import'
-GROUP BY mrr.intMRRID,mrr.intpoid,mrr.dteLastActionTime,  s.strSupplierName , mrr.strExtnlReff, mrr.dteChallanDate,mrr.intShipmentID,mrr.intUnitID";
+Where mrr.ysnFullQC is null and ysnInventory is null and  
+cast(mrr.dteLastActionTime as Date) between @fDate  and @tDate  And mrr.intWHID = @intWh";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fDate", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tDate", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@wh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MrrReceiveTDS.PendingMRRDataTable GetPendingMRRData(string fDate, string tDate, global::System.Nullable<int> wh) {
+        public virtual MrrReceiveTDS.PendingMRRDataTable GetPendingMRRData(string fDate, string tDate, global::System.Nullable<int> intWh) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((fDate == null)) {
                 throw new global::System.ArgumentNullException("fDate");
@@ -4365,8 +4364,8 @@ GROUP BY mrr.intMRRID,mrr.intpoid,mrr.dteLastActionTime,  s.strSupplierName , mr
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(tDate));
             }
-            if ((wh.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(wh.Value));
+            if ((intWh.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intWh.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;

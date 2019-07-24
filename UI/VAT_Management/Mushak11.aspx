@@ -69,7 +69,7 @@
                 <td style="padding-top:7px;"><asp:TextBox ID="txtCustomerName" runat="server" CssClass="txtBox1"></asp:TextBox></td> 
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right; padding-top:7px;"><asp:Label ID="Label1" runat="server" Text="Challan Paid Date & Time (YYYY-MM-DD H:MM:SS) :" CssClass="lbl" Width="180px"></asp:Label></td>
-                <td style="padding-top:7px;"><asp:TextBox ID="txtChallanPaidDateTime" runat="server" CssClass="txtBox1"></asp:TextBox></td>                                
+                <td style="padding-top:7px;"><asp:TextBox ID="txtChallanPaidDateTime" runat="server" CssClass="txtBox1" autocomplete="off"></asp:TextBox></td>                                
             </tr>
             <tr>
                 <td style="text-align:right; padding-top:7px;"><asp:Label ID="Label3" runat="server" Text="Vehicle No. :" CssClass="lbl"></asp:Label></td>
