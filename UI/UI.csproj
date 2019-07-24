@@ -3910,6 +3910,7 @@
     <Compile Include="Inventory\SupplierDocView.aspx.designer.cs">
       <DependentUpon>SupplierDocView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ManagementAccount.cs" />
     <Compile Include="MedialManagement\EntryForm.aspx.cs">
       <DependentUpon>EntryForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3952,6 +3953,7 @@
     <Compile Include="NewProject\pg_ProjectCreate.aspx.designer.cs">
       <DependentUpon>pg_ProjectCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="OrderType.cs" />
     <Compile Include="Other\DocumentView.aspx.cs">
       <DependentUpon>DocumentView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4306,6 +4308,7 @@
     <Compile Include="Personal\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PO.cs" />
     <Compile Include="Property\AGLandMouzaSetup.aspx.cs">
       <DependentUpon>AGLandMouzaSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9459,6 +9462,7 @@
     <Compile Include="CreativeSupportModule\HomeT.aspx.designer.cs">
       <DependentUpon>HomeT.aspx</DependentUpon>
     </Compile>
+    <Compile Include="TaxInOutType.cs" />
     <Compile Include="Transport\AccidentRegisterEntry.aspx.cs">
       <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -10173,6 +10177,7 @@
     <Compile Include="Vehicle_Registration_Renewal\VehicleRegistrationRenewalReport.aspx.designer.cs">
       <DependentUpon>VehicleRegistrationRenewalReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Voucher.cs" />
     <Compile Include="Wastage\frmAdjustment.aspx.cs">
       <DependentUpon>frmAdjustment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -10415,6 +10420,7 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Diagram\Tax.cd" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
