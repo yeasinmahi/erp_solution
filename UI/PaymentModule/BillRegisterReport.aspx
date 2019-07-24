@@ -115,7 +115,7 @@
                                     </tr>
                     </table>
                 </div>
-
+                 <div id="divExport">
                 <table>
                     <tr>
                         <td style='text-align: center;'>
@@ -277,6 +277,7 @@
                         </td>
                     </tr>
                 </table>
+                     </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>
