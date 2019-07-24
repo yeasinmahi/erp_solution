@@ -75,7 +75,7 @@
     </tr>
     <tr class="tblrowodd">
     <td style="text-align:right;"><asp:Label ID="lblfromdate" Font-Size="13px" CssClass="lbl" runat="server" Text="From Date : "></asp:Label></td>
-    <td style="text-align:left;"> <asp:TextBox ID="txtFrom" runat="server" Enabled="false"  Height="22px"></asp:TextBox>
+    <td style="text-align:left;"> <asp:TextBox ID="txtFrom" runat="server" Enabled="false"  Height="22px" autocomplete="off"></asp:TextBox>
     <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
     ID="CalendarExtender3" runat="server" EnableViewState="true">
     </cc1:CalendarExtender> <img id="imgCal_1" src="../Content/images/img/calbtn.gif" style="border: 0px;
@@ -83,7 +83,7 @@
     </tr>
     <tr class="tblrowodd">
     <td style="text-align:right;"><asp:Label ID="lblToDate" Font-Size="13px" CssClass="lbl" runat="server" Text="To Date :"></asp:Label></td>
-    <td style="text-align:left;"><asp:TextBox ID="txtto" runat="server" Enabled="false"  Height="22px"></asp:TextBox>
+    <td style="text-align:left;"><asp:TextBox ID="txtto" runat="server" Enabled="false"  Height="22px" autocomplete="off"></asp:TextBox>
     <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtTo" Format="dd/MM/yyyy"
     PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server" EnableViewState="true">
     </cc1:CalendarExtender> <img id="imgCal_2" src="../Content/images/img/calbtn.gif" style="border: 0px;

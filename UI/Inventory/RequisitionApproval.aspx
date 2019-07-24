@@ -63,13 +63,13 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblfdt" CssClass="lbl" runat="server" Text="From Date : "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtFDate" runat="server" CssClass="txtBox" Width="100px"></asp:TextBox>
+                                <asp:TextBox ID="txtFDate" runat="server" CssClass="txtBox" Width="100px" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFDate"></cc1:CalendarExtender>
                             </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lbltdt" CssClass="lbl" runat="server" Text="To Date : "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtTDate" runat="server" CssClass="txtBox" Width="100px"></asp:TextBox>
+                                <asp:TextBox ID="txtTDate" runat="server" CssClass="txtBox" Width="100px" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="tdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtTDate"></cc1:CalendarExtender>
                             </td>
                         </tr>

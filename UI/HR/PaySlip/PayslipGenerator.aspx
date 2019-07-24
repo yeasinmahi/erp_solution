@@ -103,7 +103,7 @@
                         <asp:Label ID="lblUnit1" runat="server" CssClass="label" Text="Payroll Date"></asp:Label>
                     </td>
                     <td>
-                        <asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" Width="60px"></asp:TextBox>
+                        <asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" Width="60px" autocomplete="off"></asp:TextBox>
                         <ajaxToolkit:CalendarExtender ID="CE1" runat="server" CssClass="cal_Theme1" Format="MM/dd/yyyy"
                             TargetControlID="txtDate">
                         </ajaxToolkit:CalendarExtender>

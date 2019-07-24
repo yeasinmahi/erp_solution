@@ -72,10 +72,10 @@
            <tr >
                <td style="text-align:right;"><asp:Label ID="lblFromDate" runat="server" Text="From Date:"></asp:Label></td>
                <td class="auto-style1">
-                    <asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                    <asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                     <cc1:CalendarExtender ID="dtpFromDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                 </td>
-               <td style="text-align:right;"><asp:Label ID="lblToDate" runat="server" Text="To Date:"></asp:Label></td>
+               <td style="text-align:right;"><asp:Label ID="lblToDate" runat="server" Text="To Date:" autocomplete="off"></asp:Label></td>
                <td class="auto-style1">
                     <asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox"></asp:TextBox>
                     <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>

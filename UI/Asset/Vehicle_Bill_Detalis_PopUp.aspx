@@ -116,7 +116,7 @@
   <td style="text-align:right;"> <asp:Label ID="Label3" font-size="small" runat="server" CssClass="lbl" Text="Nature of Vehicle:"></asp:Label></td>
           <td style="text-align:left;"> <asp:TextBox ID="txtNature" runat="server" CssClass="txtBox" ReadOnly="true" Font-Bold="False"></asp:TextBox>
        <td style="text-align:right;"> <asp:Label ID="LblStation" runat="server" font-size="small"  CssClass="lbl" Text="Job Entrance Date:"></asp:Label></td>
-       <td><asp:TextBox ID="TxtEntanceDate" runat="server" CssClass="txtBox" ReadOnly="true" Font-Bold="False"></asp:TextBox>
+       <td><asp:TextBox ID="TxtEntanceDate" runat="server" CssClass="txtBox" ReadOnly="true" Font-Bold="False" autocomplete="off"></asp:TextBox>
               <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtEntanceDate"></cc1:CalendarExtender> 
        
            </tr>
@@ -125,7 +125,7 @@
           <td style="text-align:left;"> <asp:TextBox ID="TxtModel" runat="server" ReadOnly="true" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
             </td>
        <td style="text-align:right;"> <asp:Label ID="Label6" runat="server" font-size="small" CssClass="lbl" Text="Delivery Date:"></asp:Label></td>
-         <td><asp:TextBox ID="TxtDeliveyDate" runat="server" CssClass="txtBox" ReadOnly="true"  Font-Bold="False"></asp:TextBox>
+         <td><asp:TextBox ID="TxtDeliveyDate" runat="server" CssClass="txtBox" ReadOnly="true"  Font-Bold="False" autocomplete="off"></asp:TextBox>
               <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtDeliveyDate"></cc1:CalendarExtender> 
 
            </tr>

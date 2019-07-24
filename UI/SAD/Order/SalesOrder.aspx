@@ -404,7 +404,7 @@
                                             Date
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="txtDate" runat="server" AutoPostBack="True"></asp:TextBox>
+                                            <asp:TextBox ID="txtDate" runat="server" AutoPostBack="True" autocomplete="off"></asp:TextBox>
                                             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtDate" Format="dd/MM/yyyy"
                                                 PopupButtonID="imgCal_1" ID="CalendarExtender1" runat="server">
                                             </cc1:CalendarExtender>
@@ -415,7 +415,7 @@
                                             Appr. Delivery Time
                                         </td>
                                         <td style="width:170px;">
-                                            <asp:TextBox ID="txtDelDate" runat="server" AutoPostBack="True"></asp:TextBox>
+                                            <asp:TextBox ID="txtDelDate" runat="server" AutoPostBack="True" autocomplete="off"></asp:TextBox>
                                             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtDelDate" Format="dd/MM/yyyy"
                                                 PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server">
                                             </cc1:CalendarExtender>

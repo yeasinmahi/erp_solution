@@ -148,11 +148,11 @@
             <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
             </td>
             <td style="text-align:right;"><asp:Label ID="lbldate" CssClass="lbl" runat="server" Text="From Date : "></asp:Label></td>
-             <td><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+             <td><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox1" Enabled="true" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>                                                        
              </td>
              <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date : "></asp:Label></td>
-             <td><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+             <td><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox1" Enabled="true" autocomplete="off"></asp:TextBox>
                   <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>                                                        
             </td>
             <td> 

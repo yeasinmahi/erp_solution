@@ -194,14 +194,14 @@ namespace HR_BLL.Employee
         }
 
         public string EmployeePromotionAction(int NewEnroll, DateTime PromotionDate, int NewDesignation, int NewChannel, int OldChannel,
-            int NewGeoID, int OldGeoId, int UserId)
+            int NewGeoID, int OldGeoId, int UserId, int LevelID)
         {
             string result = string.Empty;
             try
             {
                 EmployeeTransferNpromotionActionTableAdapter adapter = new EmployeeTransferNpromotionActionTableAdapter();
                 adapter.EmployeeTransferNpromotionUpdate(2, NewEnroll, PromotionDate, NewDesignation, NewChannel, OldChannel,
-                    NewGeoID, OldGeoId, UserId,ref result);
+                    NewGeoID, OldGeoId, UserId, LevelID,ref result);
             }
             catch (Exception ex)
             {
@@ -212,14 +212,14 @@ namespace HR_BLL.Employee
         }
 
         public string OldEmployeeTransferAction(int NewEnroll, DateTime TransferDate, int NewDesignation, int NewChannel, int OldChannel,
-            int NewGeoID, int OldGeoId, int UserId)
+            int NewGeoID, int OldGeoId, int UserId, int LevelID)
         {
             string result = string.Empty;
             try
             {
                 EmployeeTransferNpromotionActionTableAdapter adapter = new EmployeeTransferNpromotionActionTableAdapter();
                 adapter.EmployeeTransferNpromotionUpdate(3, NewEnroll, TransferDate, NewDesignation, NewChannel, OldChannel,
-                    NewGeoID, OldGeoId, UserId, ref result);
+                    NewGeoID, OldGeoId, UserId, LevelID, ref result);
             }
             catch (Exception ex)
             {
@@ -229,14 +229,14 @@ namespace HR_BLL.Employee
             return result;
         }
         public string OldEmployeeResignAction(int Enroll, DateTime ResignDate, int Designation, int Channel,
-            int GeoID, int UserId)
+            int GeoID, int UserId, int LevelID)
         {
             string result = string.Empty;
             try
             {
                 EmployeeTransferNpromotionActionTableAdapter adapter = new EmployeeTransferNpromotionActionTableAdapter();
                 adapter.EmployeeTransferNpromotionUpdate(4, Enroll, ResignDate, Designation, Channel, null,
-                    GeoID, null, UserId, ref result);
+                    GeoID, null, UserId, LevelID, ref result);
             }
             catch (Exception ex)
             {

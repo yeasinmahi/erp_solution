@@ -180,7 +180,7 @@
             </tr>
             <tr> 
             <td style="text-align:right;"><asp:Label ID="LbldteStarted" runat="server" CssClass="lbl" Text="Start Date:"></asp:Label></td>
-            <td><asp:TextBox ID="TxtdteStarted" runat="server" CssClass="txtBox"></asp:TextBox>
+            <td><asp:TextBox ID="TxtdteStarted" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteStarted"></cc1:CalendarExtender>  
 
             <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Priority:"></asp:Label> </td>
@@ -390,7 +390,7 @@
                   
                    
              <td style="text-align:right;"> <asp:Label ID="LblDueDate" runat="server" font-size="small" CssClass="lbl" Text="Due Date:"></asp:Label></td>
-           <td><asp:TextBox ID="Txtdte" runat="server" backColor="WhiteSmoke" CssClass="txtBox"></asp:TextBox>
+           <td><asp:TextBox ID="Txtdte" runat="server" backColor="WhiteSmoke" CssClass="txtBox" autocomplete="off"></asp:TextBox>
            <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="Txtdte"></cc1:CalendarExtender></td> 
          
            <td style="text-align:right;"> <asp:Label ID="LblPurpose" runat="server" font-size="small" CssClass="lbl" Text="Purpose:"></asp:Label></td>

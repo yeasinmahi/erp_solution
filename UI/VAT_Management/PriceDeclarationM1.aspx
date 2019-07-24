@@ -68,7 +68,7 @@
                 <asp:ListItem Value="2">Musok 1(Ga)</asp:ListItem></asp:DropDownList></td>              
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Valid From :" CssClass="lbl"></asp:Label></td>               
-                <td><asp:TextBox ID="txtValidFromDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+                <td><asp:TextBox ID="txtValidFromDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtValidFromDate"></cc1:CalendarExtender></td>
             </tr>
             <tr>

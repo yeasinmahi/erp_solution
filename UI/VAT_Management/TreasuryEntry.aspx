@@ -61,21 +61,21 @@
                 <td><asp:TextBox ID="txtAmount" runat="server" CssClass="txtBox1" Width="100px"></asp:TextBox></td>             
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label11" runat="server" Text="Deposit Date :" CssClass="lbl"></asp:Label></td>               
-                <td><asp:TextBox ID="txtDepositDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="130px"></asp:TextBox>
+                <td><asp:TextBox ID="txtDepositDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="130px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDepositDate"></cc1:CalendarExtender></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label1" runat="server" Text="Challan No :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtChallanNo" runat="server" CssClass="txtBox1" Width="100px"></asp:TextBox>
                 <asp:Label ID="Label6" runat="server" Text="Challan Date :" CssClass="lbl"></asp:Label>
-                <asp:TextBox ID="txtChallanDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px"></asp:TextBox>
+                <asp:TextBox ID="txtChallanDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtChallanDate"></cc1:CalendarExtender></td> 
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label5" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label7" runat="server" Text="Instrument No :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtInstrumentNo" runat="server" CssClass="txtBox1" Width="100px"></asp:TextBox></td>             
                 <td style="text-align:right; width:15px;"><asp:Label ID="Label8" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="Instrument Date :" CssClass="lbl"></asp:Label></td>               
-                <td><asp:TextBox ID="txtInstrumentDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="130px"></asp:TextBox>
+                <td><asp:TextBox ID="txtInstrumentDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="130px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtInstrumentDate"></cc1:CalendarExtender></td>
             </tr>
             <tr>

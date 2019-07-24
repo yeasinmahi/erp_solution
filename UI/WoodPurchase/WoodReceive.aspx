@@ -74,14 +74,14 @@
                 <td style="text-align:right;"><asp:Label ID="Label14" runat="server" Text="Supplier/PO :" CssClass="lbl"></asp:Label></td>
                 <td><asp:DropDownList ID="ddlPOList" runat="server" CssClass="ddList"  width="220px" height="23px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlPOList_SelectedIndexChanged"></asp:DropDownList></td>
                 <td style="text-align:right;"><asp:Label ID="lblReceiveDate" runat="server" CssClass="lbl" Text="Receive Date :"></asp:Label></td>
-                <td style="text-align:left;"><asp:TextBox ID="txtReceiveDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox>
+                <td style="text-align:left;"><asp:TextBox ID="txtReceiveDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtReceiveDate"></cc1:CalendarExtender></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label2" runat="server" Text="Item Name :" CssClass="lbl"></asp:Label></td>
                 <td><asp:DropDownList ID="ddlItemList" runat="server" CssClass="ddList"  width="220px" height="23px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlItemList_SelectedIndexChanged"></asp:DropDownList></td>
                 <td style="text-align:right;"><asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Challan Date :"></asp:Label></td>
-                <td style="text-align:left;"><asp:TextBox ID="txtChallanDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke"></asp:TextBox>
+                <td style="text-align:left;"><asp:TextBox ID="txtChallanDate" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtChallanDate"></cc1:CalendarExtender></td>
             </tr>
             <tr>

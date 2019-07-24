@@ -610,6 +610,7 @@
     <Content Include="PaymentModule\Consumption_Report.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
+    <Content Include="PaymentModule\ExchangeRate.aspx" />
     <Content Include="PaymentModule\FG_Cost_Update.aspx" />
     <Content Include="PaymentModule\ImportAdvice.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
@@ -1458,6 +1459,9 @@
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\BudgetForFG.aspx" />
+    <Content Include="SAD\Sales\Report\BudgetForMaterial.aspx" />
+    <Content Include="SAD\Sales\Report\BudgetForPromotion.aspx" />
     <Content Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx" />
     <Content Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx" />
     <Content Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx" />
@@ -4083,6 +4087,13 @@
     </Compile>
     <Compile Include="PaymentModule\Duty_Summary_Report.aspx.designer.cs">
       <DependentUpon>Duty_Summary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\ExchangeRate.aspx.cs">
+      <DependentUpon>ExchangeRate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\ExchangeRate.aspx.designer.cs">
+      <DependentUpon>ExchangeRate.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\FG_Cost_Update.aspx.cs">
       <DependentUpon>FG_Cost_Update.aspx</DependentUpon>
@@ -7431,6 +7442,27 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.designer.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\BudgetForFG.aspx.cs">
+      <DependentUpon>BudgetForFG.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\BudgetForFG.aspx.designer.cs">
+      <DependentUpon>BudgetForFG.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\BudgetForMaterial.aspx.cs">
+      <DependentUpon>BudgetForMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\BudgetForMaterial.aspx.designer.cs">
+      <DependentUpon>BudgetForMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\BudgetForPromotion.aspx.cs">
+      <DependentUpon>BudgetForPromotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\BudgetForPromotion.aspx.designer.cs">
+      <DependentUpon>BudgetForPromotion.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx.cs">
       <DependentUpon>CustomerWiseSalesReport.aspx</DependentUpon>

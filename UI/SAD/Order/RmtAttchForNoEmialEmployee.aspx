@@ -83,10 +83,10 @@
     <table border="0px"; style="width:Auto"; align="center" >
         <tr class="tblroweven">
         <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date:  "></asp:Label></td>
-        <td><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" Enabled="true" Width="100"></asp:TextBox>
+        <td><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" Enabled="true" Width="100" autocomplete="off"></asp:TextBox>
         <script type="text/javascript"> new datepickr('txtFromDate', { 'dateFormat': 'Y-m-d' });</script></td>
         <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date:  "></asp:Label></td>
-        <td><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox" Enabled="true" Width="100"></asp:TextBox>
+        <td><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox" Enabled="true" Width="100" autocomplete="off"></asp:TextBox>
         <script type="text/javascript"> new datepickr('txtToDate', { 'dateFormat': 'Y-m-d' });</script></td>          
         </tr>
         <tr class="tblrowodd">

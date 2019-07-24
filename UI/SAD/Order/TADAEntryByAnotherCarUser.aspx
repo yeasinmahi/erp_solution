@@ -275,7 +275,7 @@
 
         <tr class="tblroweven">
                         <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="Date:  "></asp:Label><span style="color:red">*</span></td>
-                        <td><asp:TextBox ID="txtEffectiveDate" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+                        <td><asp:TextBox ID="txtEffectiveDate" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
                         <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtEffectiveDate"></cc1:CalendarExtender></td>
                         <td style="text-align:right"><asp:Label ID="lblStartTime" CssClass="lbl" runat="server" Text="StartTime"></asp:Label><span style="color:red">*</span></td>
                         <td> <asp:TextBox ID="txtStarTime" runat="server" onkeyup="sub();" Width="200px"   CssClass="txtBox"></asp:TextBox></td>            

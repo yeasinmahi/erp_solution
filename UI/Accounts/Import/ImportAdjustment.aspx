@@ -49,13 +49,13 @@
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label13" runat="server" Text="From Date :"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="txtFromDate" runat="server" CssClass="lbl" style="text-align:left;font-size:12px"></asp:TextBox>
+                                    <asp:TextBox ID="txtFromDate" runat="server" CssClass="lbl" style="text-align:left;font-size:12px" autocomplete="off"></asp:TextBox>
                                     <cc1:CalendarExtender runat="server" ID="CalendarExtender1" TargetControlID="txtFromDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                 </td>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label2" runat="server" Text="To date : "></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="txtToDate" runat="server" CssClass="lbl" style="text-align:left;font-size:12px"></asp:TextBox>
+                                    <asp:TextBox ID="txtToDate" runat="server" CssClass="lbl" style="text-align:left;font-size:12px" autocomplete="off"></asp:TextBox>
                                     <cc1:CalendarExtender runat="server" ID="CalendarExtender2" TargetControlID="txtToDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                 </td>
                                 <td style="text-align: right;">
@@ -63,7 +63,6 @@
                                     <asp:Button runat="server" ID="btnSubmit" Text="Update" CssClass="btnstyle-sm" OnClientClick = "ConfirmAll()" OnClick="btnSubmit_Click"  />
                                 </td>
                             </tr>
-                            <tr></tr>
                         </table>
                         <table>
                             <tr>

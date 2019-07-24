@@ -126,7 +126,7 @@
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1"
                                     EnableViewState="true" Format="yyyy/MM/dd" PopupButtonID="img133" TargetControlID="txtFrmDate">
                                 </ajaxToolkit:CalendarExtender>
-                                <asp:TextBox ID="txtFrmDate" runat="server" CssClass="dte" BackColor="White"></asp:TextBox>
+                                <asp:TextBox ID="txtFrmDate" runat="server" CssClass="dte" BackColor="White" autocomplete="off"></asp:TextBox>
                                 <img id="img133" src="../../App_Themes/Default/images/calbtn.gif" style="border: 0px;
                                     width: 25px; height: 25px; vertical-align: top;" />
                                 &nbsp; To-Date :

@@ -227,7 +227,7 @@
                                 <asp:TextBox ID="txtChallan" runat="server" CssClass="txtBox"></asp:TextBox></td>
                             <td style="text-align: right">Challan Date:</td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtdteChallan" Width="300px" runat="server" CssClass="txtBox" Font-Bold="False">
+                                <asp:TextBox ID="txtdteChallan" Width="300px" runat="server" CssClass="txtBox" Font-Bold="False" autocomplete="off">
                                 </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteChallan"></cc1:CalendarExtender>
                             </td>
                             <td>VAT Challan:</td>

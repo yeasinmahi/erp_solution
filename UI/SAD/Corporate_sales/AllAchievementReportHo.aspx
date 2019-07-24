@@ -328,7 +328,7 @@
                     </td>
                 <td style="text-align:right;" >From date :</td>
    
-                <td style="text-align:right;" class="auto-style2"><asp:TextBox CssClass="calendar" ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox><asp:ImageButton ID="ImageButton1" ImageUrl="~/Content/images/img/cal.png" runat="server" Height="17px" Width="35px" OnClick="ImageButton1_Click" />&nbsp;</td>
+                <td style="text-align:right;" class="auto-style2"><asp:TextBox CssClass="calendar" ID="TextBox1" runat="server" OnTextChanged="TextBox1_TextChanged" autocomplete="off"></asp:TextBox><asp:ImageButton ID="ImageButton1" ImageUrl="~/Content/images/img/cal.png" runat="server" Height="17px" Width="35px" OnClick="ImageButton1_Click" />&nbsp;</td>
                 <td class="auto-style3" >
                     
                     
@@ -339,7 +339,7 @@
                 </td>
                 
                 <td style="text-align:right" width:15%" class="auto-style2" >
-                    <asp:TextBox CssClass="calendar"  ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+                    <asp:TextBox CssClass="calendar"  ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged" autocomplete="off"></asp:TextBox>
                 <asp:ImageButton ID="ImageButton2" ImageUrl="~/Content/images/img/cal.png" runat="server" Height="16px" Width="38px" OnClick="ImageButton2_Click" />
                 <asp:Button ID="Button1" runat="server" Text="Show" OnClick="Button1_Click1" style="height: 29px" />
                

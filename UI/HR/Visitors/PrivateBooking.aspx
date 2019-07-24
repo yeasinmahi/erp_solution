@@ -90,7 +90,7 @@
         <td style="text-align:right;"><asp:Label ID="lblContactno" CssClass="lbl" runat="server" Text="Contact No. : "></asp:Label></td>
         <td><asp:TextBox ID="txtContact" runat="server" CssClass="txtBox"></asp:TextBox></td>
         <td style="text-align:right;"><asp:Label ID="lblvstdate" CssClass="lbl" runat="server" Text="Visit Date : "></asp:Label></td>
-        <td><asp:TextBox ID="txtVDate" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox>
+        <td><asp:TextBox ID="txtVDate" runat="server" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
         <script type="text/javascript"> new datepickr('txtVDate', { 'dateFormat': 'Y-m-d' });</script></td>   
         </tr> 
         <tr class="tblrowodd">

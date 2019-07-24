@@ -198,7 +198,7 @@
             <td style="text-align: right;">
             <asp:Label ID="LbldteStart" runat="server" CssClass="lbl" font-size="small"  Text="Fixed Date:"></asp:Label></td>
             <td>
-            <asp:TextBox ID="TxtdteFixed" runat="server" CssClass="txtBox"></asp:TextBox>
+            <asp:TextBox ID="TxtdteFixed" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CEA" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteFixed"></cc1:CalendarExtender>
 
 
@@ -213,7 +213,7 @@
         </asp:DropDownList><asp:Button ID="btnRepair" BackColor="Wheat" ForeColor="red" runat="server" Text="+" OnClick="btnRepair_Click" /> 
              
         <td style="text-align:right;"><asp:Label ID="LbldteRepair" runat="server" font-size="small"  CssClass="lbl" Text="Repair Date:"></asp:Label></td>
-        <td><asp:TextBox ID="TxtdteRepair" runat="server" CssClass="txtBox" ></asp:TextBox>
+        <td><asp:TextBox ID="TxtdteRepair" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteRepair"></cc1:CalendarExtender> 
             
         </tr>

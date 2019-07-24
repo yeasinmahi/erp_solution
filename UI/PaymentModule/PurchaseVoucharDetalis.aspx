@@ -192,7 +192,7 @@
                 <td  colspan="5"> </td>
                 <td  > </td>
                 <td style="text-align:right">Date 
-                 <asp:TextBox ID="txtdteDate"  runat="server" ></asp:TextBox></td>
+                 <asp:TextBox ID="txtdteDate"  runat="server" autocomplete="off"></asp:TextBox></td>
                 <td style="text-align:left"><asp:Button ID="btnSave" runat="server" Text="Save" /></td>
             </tr>
         </table>

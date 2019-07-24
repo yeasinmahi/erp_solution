@@ -53,7 +53,7 @@
                     </asp:DropDownList> 
 
                  <td style="text-align:right;"><asp:Label ID="LblJobEntranceDte" runat="server" CssClass="lbl" Text="Job Entrance Date:"></asp:Label></td>
-               <td><asp:TextBox ID="txtDteJobEntrance" runat="server" CssClass="txtBox"></asp:TextBox>
+               <td><asp:TextBox ID="txtDteJobEntrance" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                <cc1:CalendarExtender ID="CEJ" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteJobEntrance"></cc1:CalendarExtender> </td>                                                       
         
        
@@ -64,7 +64,7 @@
                  <td style="text-align:left;" ><asp:Textbox ID="TxtNature" CssClass="Textbox" Font-Bold="False" runat="server" ></asp:Textbox> 
  
                   <td style="text-align:right;"><asp:Label ID="LblDeliveryDate" runat="server" CssClass="lbl" Text="Delivery Date:"></asp:Label></td>
-        <td><asp:TextBox ID="TxtdteDelivery" runat="server" CssClass="txtBox"></asp:TextBox>
+        <td><asp:TextBox ID="TxtdteDelivery" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="CEA" runat="server" Format="yyyy-MM-dd" TargetControlID="TxtdteDelivery"></cc1:CalendarExtender> 
 
              </tr>

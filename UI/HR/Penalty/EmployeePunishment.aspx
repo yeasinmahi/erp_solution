@@ -120,7 +120,7 @@
 
          <tr>
          <td style="text-align:right;"><asp:Label ID="lblfdate" CssClass="lbl" runat="server" Text="Effective Date : "></asp:Label></td>
-         <td><asp:TextBox ID="txtEffectiveDate" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox>
+         <td><asp:TextBox ID="txtEffectiveDate" runat="server" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
          <cc1:CalendarExtender ID="CFD" runat="server" Format="yyyy-MM-dd" TargetControlID="txtEffectiveDate"></cc1:CalendarExtender>                                                        
          </td>
          <td style="text-align:right;"><asp:Label ID="lbltdate" CssClass="lbl" runat="server" Text="Amount : "></asp:Label></td>

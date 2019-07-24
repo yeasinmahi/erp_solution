@@ -185,11 +185,11 @@
 
      <tr>
             <td style="text-align:right;"><asp:Label ID="lblchkdte" CssClass="lbl" runat="server" Text="Cheq. Date : "></asp:Label></td>
-            <td><asp:TextBox ID="dteCheque" runat="server" CssClass="txtBox"></asp:TextBox>
+            <td><asp:TextBox ID="dteCheque" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="chequedate" runat="server" Format="yyyy-MM-dd" TargetControlID="dteCheque"></cc1:CalendarExtender>  
             </td>
             <td style="text-align:right;"><asp:Label ID="lblactpaydte" CssClass="lbl" runat="server" Text="ActualPay-Date : "></asp:Label></td>
-            <td><asp:TextBox ID="dteActualPay" runat="server" CssClass="txtBox"></asp:TextBox> 
+            <td><asp:TextBox ID="dteActualPay" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox> 
             <cc1:CalendarExtender ID="actualpaydate" runat="server" Format="yyyy-MM-dd" TargetControlID="dteActualPay"></cc1:CalendarExtender>                                                     
             </td>
             </tr>

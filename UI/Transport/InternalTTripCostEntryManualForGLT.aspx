@@ -207,7 +207,7 @@
         </tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblOutDate" runat="server" CssClass="lbl" Text="Challa/Gate Pass Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtOutDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox>
+            <td><asp:TextBox ID="txtOutDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtOutDate"></cc1:CalendarExtender></td>                                
                       
             <td style="text-align:right;"><asp:Label ID="lblChallanNo" runat="server" CssClass="lbl" Text="Challa/Gate Pass No.:"></asp:Label></td>
@@ -335,7 +335,7 @@
         
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblFuelPurchaeDate" runat="server" CssClass="lbl" Text="Fuel Purchae Date :"></asp:Label></td>                
-            <td colspan="9"><asp:TextBox ID="txtFuelPurchaeDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="90px"></asp:TextBox>
+            <td colspan="9"><asp:TextBox ID="txtFuelPurchaeDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="90px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFuelPurchaeDate"></cc1:CalendarExtender>
 
             <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="  "></asp:Label>

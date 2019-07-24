@@ -87,7 +87,7 @@
         
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblReceiveDate" runat="server" CssClass="lbl" Text="Receive Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtReceiveDate" runat="server" AutoPostBack="false" CssClass="txtBox" BorderColor="DimGray" Enabled="true" Width="210px"></asp:TextBox>
+            <td><asp:TextBox ID="txtReceiveDate" runat="server" AutoPostBack="false" CssClass="txtBox" BorderColor="DimGray" Enabled="true" Width="210px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtReceiveDate"></cc1:CalendarExtender></td> 
 
             <td style="text-align:right;"><asp:Label ID="lblPONo" runat="server" CssClass="lbl" Text="PO No.:"></asp:Label></td>

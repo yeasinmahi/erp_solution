@@ -59,7 +59,7 @@
                                  </div>
                                 <div class="col-md-3 hidden">
                                     <asp:Label ID="Label5" runat="server" Text="Actual Delivery Date"></asp:Label>
-                                    <asp:TextBox runat="server" ID="txtActualDeliveryDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Actual Delivery Date"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtActualDeliveryDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Actual Delivery Date" autocomplete="off"></asp:TextBox>
                                 </div>
                                 <div class="col-md-3 hidden">
                                     <asp:Label ID="Label6" runat="server" Text="Customer BIN No"></asp:Label>
