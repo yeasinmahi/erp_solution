@@ -33,6 +33,8 @@ namespace UI.Accounts.Voucher
                 File.Delete(filePathForXML);
                 tabBankReceive.CssClass = "Clicked";
                 tabBankPayment.CssClass = "Initial";
+                tabCashReceive.CssClass = "Initial";
+                tabCashPay.CssClass = "Initial";
                 tabJournalVoucher.CssClass = "Initial";
                 tabContra.CssClass = "Initial";
 
@@ -53,6 +55,8 @@ namespace UI.Accounts.Voucher
             {
                 tabBankReceive.CssClass = "Clicked";
                 tabBankPayment.CssClass = "Initial";
+                tabCashReceive.CssClass = "Initial";
+                tabCashPay.CssClass = "Initial";
                 tabJournalVoucher.CssClass = "Initial";
                 tabContra.CssClass = "Initial";
 
@@ -71,6 +75,8 @@ namespace UI.Accounts.Voucher
             {
                 tabBankReceive.CssClass = "Initial";
                 tabBankPayment.CssClass = "Clicked";
+                tabCashReceive.CssClass = "Initial";
+                tabCashPay.CssClass = "Initial";
                 tabJournalVoucher.CssClass = "Initial";
                 tabContra.CssClass = "Initial";
 
@@ -83,18 +89,60 @@ namespace UI.Accounts.Voucher
                 //Toaster(ex.Message, "Indent", Common.TosterType.Error);
             }
         }
+        protected void tabCashReceive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tabBankReceive.CssClass = "Initial";
+                tabBankPayment.CssClass = "Initial";
+                tabCashReceive.CssClass = "Clicked";
+                tabCashPay.CssClass = "Initial";
+                tabJournalVoucher.CssClass = "Initial";
+                tabContra.CssClass = "Initial";
+
+                mainView.ActiveViewIndex = 2;
+
+                TabClear(3);
+            }
+            catch (Exception ex)
+            {
+                //Toaster(ex.Message, "Indent", Common.TosterType.Error);
+            }
+        }
+        protected void tabCashPay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                tabBankReceive.CssClass = "Initial";
+                tabBankPayment.CssClass = "Initial";
+                tabCashReceive.CssClass = "Initial";
+                tabCashPay.CssClass = "Clicked";
+                tabJournalVoucher.CssClass = "Initial";
+                tabContra.CssClass = "Initial";
+
+                mainView.ActiveViewIndex = 3;
+
+                TabClear(4);
+            }
+            catch (Exception ex)
+            {
+                //Toaster(ex.Message, "Indent", Common.TosterType.Error);
+            }
+        }
         protected void tabJournalVoucher_Click(object sender, EventArgs e)
         {
             try
             {
                 tabBankReceive.CssClass = "Initial";
                 tabBankPayment.CssClass = "Initial";
+                tabCashReceive.CssClass = "Initial";
+                tabCashPay.CssClass = "Initial";
                 tabJournalVoucher.CssClass = "Clicked";
                 tabContra.CssClass = "Initial";
                 rbJVDebit.Checked = true;
-                mainView.ActiveViewIndex = 2;
+                mainView.ActiveViewIndex = 4;
 
-                TabClear(3);
+                TabClear(5);
             }
             catch (Exception ex)
             {
@@ -107,12 +155,14 @@ namespace UI.Accounts.Voucher
             {
                 tabBankReceive.CssClass = "Initial";
                 tabBankPayment.CssClass = "Initial";
+                tabCashReceive.CssClass = "Initial";
+                tabCashPay.CssClass = "Initial";
                 tabJournalVoucher.CssClass = "Initial";
                 tabContra.CssClass = "Clicked";
                 rbContraBanktoCash.Checked = true;
-                mainView.ActiveViewIndex = 3;
+                mainView.ActiveViewIndex = 5;
 
-                TabClear(4);
+                TabClear(6);
             }
             catch (Exception ex)
             {
@@ -396,6 +446,36 @@ namespace UI.Accounts.Voucher
                 string sms = "Bank Payment Submit Button : " + ex.ToString();
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
             }
+        }
+        #endregion
+
+        #region Cash Receive
+        protected void btnCRAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnCRDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnSaveCR_Click(object sender, EventArgs e)
+        {
+
+        }
+        #endregion
+
+        #region Cash Pay
+        protected void btnCPAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnCPDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected void btnCPSave_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
@@ -1020,6 +1100,10 @@ namespace UI.Accounts.Voucher
             hfTotalBRDebitAmount.Value = string.Empty;
             hfBRNarration.Value = string.Empty;
         }
+
+       
+
+        
 
         private void BPClear()
         {

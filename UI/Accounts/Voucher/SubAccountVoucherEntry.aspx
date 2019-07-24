@@ -118,6 +118,8 @@
                 <div class="leaveApplication_container">
                     <asp:Button Text="Bank Receive" ID="tabBankReceive" CssClass="Initial tabstyle" runat="server" OnClick="tabBankReceive_Click" />
                     <asp:Button Text="Bank Payment" ID="tabBankPayment" CssClass="Initial tabstyle" runat="server" OnClick="tabBankPayment_Click" />
+                    <asp:Button Text="Cash Receive" ID="tabCashReceive" CssClass="Initial tabstyle" runat="server" OnClick="tabCashReceive_Click" />
+                    <asp:Button Text="Cash Pay" ID="tabCashPay" CssClass="Initial tabstyle" runat="server" OnClick="tabCashPay_Click" />
                     <asp:Button Text="Journal Voucher" ID="tabJournalVoucher" CssClass="Initial tabstyle" runat="server" OnClick="tabJournalVoucher_Click" />
                     <asp:Button Text="Contra" ID="tabContra" CssClass="Initial tabstyle" runat="server" OnClick="tabContra_Click" />
                     <asp:Label ID="lblBankBoucher" runat="server" Font-Bold="true" Font-Size="Medium" ForeColor="#000099"></asp:Label>
@@ -351,6 +353,218 @@
                                     </td>
                                     <td colspan="2" class="tdstyle-btn">
                                         <asp:Button runat="server" ID="btnBankPaymentSubmit" Text="Save BP" CssClass="btnstyle-lg" OnClick="btnBankPaymentSubmit_Click" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </asp:View>
+                        <asp:View runat="server" ID="viewCashReceive">
+                            <table class="tablestyle">
+                                <tr>
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Credit A/C : </asp:Label></td>
+                                    <td colspan="3">
+                                        <asp:DropDownList runat="server" ID="ddlCRCreditAccount" CssClass="ddlstyle"></asp:DropDownList>
+                                    </td>
+
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Amount : </asp:Label></td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtCRCreditAmount" CssClass="txtstyle"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Narration : </asp:Label></td>
+                                    <td colspan="4">
+                                        <asp:TextBox runat="server" ID="TextBox1" CssClass="txtstyle"></asp:TextBox>
+                                    </td>
+                                    <td class="tdstyle">
+                                        <asp:Button runat="server" ID="btnCRAdd" Text="ADD" CssClass="btnstyle-sm" OnClick="btnCRAdd_Click" />
+                                        <asp:Button runat="server" ID="btnCRDelete" Text="Delete" CssClass="btnstyle-sm" OnClick="btnCRDelete_Click" />
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Cost Centre : </asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:DropDownList runat="server" ID="ddlCRCostCentre" CssClass="ddlstyle"></asp:DropDownList>
+                                    </td>
+
+                                    <td></td>
+                                    <td></td>
+
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8">
+                                        <asp:GridView ID="dgvCashReceive" runat="server" AutoGenerateColumns="False" Width="100%"
+                                            BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"
+                                            CellPadding="5" Font-Size="11px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true"
+                                            FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
+                                            <AlternatingRowStyle BackColor="#CCCCCC" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="SL No.">
+                                                    <ItemStyle HorizontalAlign="center" Width="60px" />
+                                                    <ItemTemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="A/C ID">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCRAccountId" runat="server" Text='<%# Bind("debitaccountid") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left" Width="45px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="A/C Name" SortExpression="debitaccountname">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCRAccountName" runat="server" Text='<%# Bind("debitaccountname") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left" Width="250px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Narration" ItemStyle-HorizontalAlign="right">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCRNarration" runat="server" Text='<%# Bind("narration") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="left" Width="500px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Debit" ItemStyle-HorizontalAlign="Right">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCRDebit" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("debitamount") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Right" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Credit" ItemStyle-HorizontalAlign="Right">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCRCredit" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("creditamount") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Right" />
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
+                                            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                        </asp:GridView>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Receive From : </asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtCRReceiveFrom" CssClass="txtstyle"></asp:TextBox>
+                                    </td>
+                                    <td colspan="2" class="tdstyle-btn">
+                                        <asp:Button runat="server" ID="btnSaveCR" Text="Save CR" CssClass="btnstyle-lg" OnClick="btnSaveCR_Click" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </asp:View>
+                         <asp:View runat="server" ID="viewCashPay">
+                             <table class="tablestyle">
+                                <tr>
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Debit A/C : </asp:Label></td>
+                                    <td colspan="3">
+                                        <asp:DropDownList runat="server" ID="ddlCPDebitAccount" CssClass="ddlstyle"></asp:DropDownList>
+                                    </td>
+
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Amount : </asp:Label></td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtCPDebitAmount" CssClass="txtstyle"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Narration : </asp:Label></td>
+                                    <td colspan="4">
+                                        <asp:TextBox runat="server" ID="txtCPNarration" CssClass="txtstyle"></asp:TextBox>
+                                    </td>
+                                    <td class="tdstyle">
+                                        <asp:Button runat="server" ID="btnCPAdd" Text="ADD" CssClass="btnstyle-sm" OnClick="btnCPAdd_Click" />
+                                        <asp:Button runat="server" ID="btnCPDelete" Text="Delete" CssClass="btnstyle-sm" OnClick="btnCPDelete_Click" />
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Cost Centre : </asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:DropDownList runat="server" ID="ddlCPCostCentre" CssClass="ddlstyle"></asp:DropDownList>
+                                    </td>
+
+                                    <td></td>
+                                    <td></td>
+
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="8">
+                                        <asp:GridView ID="dgvCPCostCentre" runat="server" AutoGenerateColumns="False" Width="100%"
+                                            BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"
+                                            CellPadding="5" Font-Size="11px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true"
+                                            FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
+                                            <AlternatingRowStyle BackColor="#CCCCCC" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="SL No.">
+                                                    <ItemStyle HorizontalAlign="center" Width="60px" />
+                                                    <ItemTemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="A/C ID">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCRAccountId" runat="server" Text='<%# Bind("debitaccountid") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left" Width="45px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="A/C Name" SortExpression="debitaccountname">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCRAccountName" runat="server" Text='<%# Bind("debitaccountname") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Left" Width="250px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Narration" ItemStyle-HorizontalAlign="right">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCRNarration" runat="server" Text='<%# Bind("narration") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="left" Width="500px" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Debit" ItemStyle-HorizontalAlign="Right">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCRDebit" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("debitamount") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Right" />
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Credit" ItemStyle-HorizontalAlign="Right">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCRCredit" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("creditamount") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <ItemStyle HorizontalAlign="Right" />
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
+                                            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                        </asp:GridView>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Pay To : </asp:Label>
+                                    </td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtCPPayTo" CssClass="txtstyle"></asp:TextBox>
+                                    </td>
+                                    <td colspan="2" class="tdstyle-btn">
+                                        <asp:Button runat="server" ID="btnCPSave" Text="Save CP" CssClass="btnstyle-lg" OnClick="btnCPSave_Click" />
                                     </td>
                                 </tr>
                             </table>
