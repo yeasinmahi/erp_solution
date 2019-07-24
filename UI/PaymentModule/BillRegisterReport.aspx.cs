@@ -54,20 +54,10 @@ namespace UI.PaymentModule
             }
         }
 
-        protected void btnExport_Click(object sender, EventArgs e)
-        {
-            string html = HdnValue.Value;
-            ExportToExcel(ref html, "MyReport");
-        }
+       
         public void ExportToExcel(ref string html, string fileName)
         {
-            html = html.Replace("&gt;", ">");
-            html = html.Replace("&lt;", "<");
-            HttpContext.Current.Response.ClearContent();
-            HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename=" + fileName + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss") + ".xls");
-            HttpContext.Current.Response.ContentType = "application/xls";
-            HttpContext.Current.Response.Write(html);
-            HttpContext.Current.Response.End();
+         
         }
         protected void btnGo_Click(object sender, EventArgs e)
         {

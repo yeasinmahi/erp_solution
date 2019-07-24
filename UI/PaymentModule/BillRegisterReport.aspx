@@ -41,6 +41,11 @@
             $("input[id$='HdnValue']").val(html);
         }
  </script>
+    <style type="text/css">
+        .auto-style1 {
+            height: 36px;
+        }
+    </style>
 </head>
 <body>
 
@@ -110,7 +115,6 @@
                                         <td style="text-align: right; padding: 0px 0px 10px 0px">
                                             <asp:Button ID="btnGo" runat="server" class="myButton" Text="Go" OnClick="btnGo_Click" /></td>
                                         <td style="text-align: right; padding: 0px 0px 10px 0px">
-                                            <asp:Button ID="btnExport" runat="server" class="myButton" Text="Export To Excel" Height="30px" Width="145px" OnClick="btnExport_Click" OnClientClick="ExportDivDataToExcel()"/>
                                             &nbsp;</td>
                                     </tr>
                     </table>
@@ -118,7 +122,7 @@
                  <div id="divExport">
                 <table>
                     <tr>
-                        <td style='text-align: center;'>
+                        <td style='text-align: center;' class="auto-style1">
                             <asp:Label ID="lblUnitName" runat="server" Font-Bold="true" Font-Size="20px"></asp:Label></td>
                     </tr>
                     <tr>
