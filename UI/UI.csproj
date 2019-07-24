@@ -536,6 +536,7 @@
     <Content Include="HR\Reports\Overall_Status_Report.aspx" />
     <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\Roster\RosterAdd.aspx" />
+    <Content Include="HR\Salary\EmpSalaryAdditionDeduction.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
@@ -3703,6 +3704,13 @@
     </Compile>
     <Compile Include="HR\Roster\RosterAdd.aspx.designer.cs">
       <DependentUpon>RosterAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Salary\EmpSalaryAdditionDeduction.aspx.cs">
+      <DependentUpon>EmpSalaryAdditionDeduction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Salary\EmpSalaryAdditionDeduction.aspx.designer.cs">
+      <DependentUpon>EmpSalaryAdditionDeduction.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx.cs">
       <DependentUpon>CustomerBankGuaranteeReport.aspx</DependentUpon>
