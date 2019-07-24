@@ -31,8 +31,16 @@
             if (window.focus) { newwindow.focus() }
         }
     </script>
-
-
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+     <script language="javascript" type="text/javascript">
+        function ExportDivDataToExcel() {
+            var html = $("#divExport").html();
+            html = $.trim(html);
+            html = html.replace(/>/g, '&gt;');
+            html = html.replace(/</g, '&lt;');
+            $("input[id$='HdnValue']").val(html);
+        }
+ </script>
 </head>
 <body>
 
@@ -60,7 +68,7 @@
                 <asp:HiddenField ID="hdnysnPay" runat="server" />
                 <asp:HiddenField ID="hdnysnDutyVoucher" runat="server" />
                 <asp:HiddenField ID="hdnEmail" runat="server" />
-
+                 <asp:HiddenField ID="HdnValue" runat="server" />
                 <div class="divbody" style="padding-right: 10px;">
                     <div id="divLevel1" class="tabs_container" style="background-color: #dcdbdb; padding-top: 10px; padding-left: 5px; padding-right: -50px; border-radius: 5px;">
                         <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Bill Register" Font-Bold="true" Font-Size="16px"></asp:Label><hr />
@@ -102,6 +110,7 @@
                                         <td style="text-align: right; padding: 0px 0px 10px 0px">
                                             <asp:Button ID="btnGo" runat="server" class="myButton" Text="Go" OnClick="btnGo_Click" /></td>
                                         <td style="text-align: right; padding: 0px 0px 10px 0px">
+                                            <asp:Button ID="btnExport" runat="server" class="myButton" Text="Export To Excel" Height="30px" Width="145px" OnClick="btnExport_Click" OnClientClick="ExportDivDataToExcel()"/>
                                             &nbsp;</td>
                                     </tr>
                     </table>
