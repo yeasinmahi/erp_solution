@@ -294,22 +294,28 @@
                 minLength:1
             });
         }
-        function validation() {
-            var item = document.getElementById("txtItem").value;
-            if (item === null || item === "") {
-                ShowNotification('Item search can not be blank', 'Product Cost Sheet', 'warning');
-                return false;
-            }
-        }
+       
         function Validation() {
+           
+
             var effectdate = document.getElementById("txtEffectDate").value;
             var value = document.getElementById("txtValue").value;
-            if (effectdate === null || effectdate === "") {
+            var item = document.getElementById("txtItem").value;
+            if (document.getElementById('<%=ddlGL.ClientID%>').selectedIndex == 0) {
+                ShowNotification('Please Select GL', 'Product Cost Sheet', 'warning');
+                return false;
+            }
+            else if (effectdate === null || effectdate === "") {
                 ShowNotification('Date can not be blank', 'Product Cost', 'warning');
                 return false;
             }
             else if (value === null || value === "") {
                 ShowNotification('Value can not be blank', 'Product Cost', 'warning');
+                return false;
+            }
+            
+            else if (item === null || item === "") {
+                ShowNotification('Item search can not be blank', 'Product Cost Sheet', 'warning');
                 return false;
             }
             return true;

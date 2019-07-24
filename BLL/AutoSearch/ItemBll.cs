@@ -30,7 +30,7 @@ namespace BLL.AutoSearch
                         items = new string[dt.Rows.Count];
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
-                            items[i] = dt.Rows[i]["strProductName"] + " [" + dt.Rows[i]["intItemID"] + "][" + dt.Rows[i]["strUoM"] + "]";
+                            items[i] = dt.Rows[i]["strProductName"] + "[" + dt.Rows[i]["intItemID"] + "][" + dt.Rows[i]["strUoM"] + "]";
                         }
                     }
                     results = Array.FindAll(items, x => x.ToLower().Contains(prefix));

@@ -64,6 +64,8 @@ namespace UI.PaymentModule
         {
             dt = unitObj.GetUnits(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             ddlUnit.Loads(dt, "intUnitID", "strUnit");
+            UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
+            Session["UnitId"] = UnitID.ToString();
         }
         private void LoadItemType()
         {
