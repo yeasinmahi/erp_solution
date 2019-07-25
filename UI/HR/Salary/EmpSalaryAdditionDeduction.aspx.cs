@@ -19,7 +19,7 @@ namespace UI.HR.Salary
         DataTable dt = new DataTable();
 
         SalaryInfo objSal = new SalaryInfo();
-        string filePathForXML, path, msg;
+        string filePathForXML, path, msg="";
         private readonly string ftp = "ftp://ftp.akij.net/ExcelUpload/Benifit.xlsx";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -144,7 +144,7 @@ namespace UI.HR.Salary
                 string xmlString = node.InnerXml;
                 xmlString = "<SalaryEntry>" + xmlString + "</SalaryEntry>";
                 string msg =  objSal.SubmitSalaryAdditionDeduction(Convert.ToInt32(ddlType.SelectedItem.Value), xmlString);
-                Toaster(msg, "Employee Salary", Common.TosterType.Success);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 try
                 {
                     File.Delete(filePathForXML);
