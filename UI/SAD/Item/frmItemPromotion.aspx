@@ -14,6 +14,65 @@
             height: 30px;
         }
     </style>
+    <script type="text/javascript">
+$(function () {
+    //Enable Disable all TextBoxes when Header Row CheckBox is checked.
+    $("[id*=chkHeader]").bind("click", function () {
+        var chkHeader = $(this);
+ 
+        //Find and reference the GridView.
+        var grid = $(this).closest("table");
+ 
+        //Loop through the CheckBoxes in each Row.
+        $("td", grid).find("input[type=checkbox]").each(function () {
+ 
+            //If Header CheckBox is checked.
+            //Then check all CheckBoxes and enable the TextBoxes.
+            if (chkHeader.is(":checked")) {
+                $(this).attr("checked", "checked");
+                var td = $("td", $(this).closest("tr"));
+                td.css({ "background-color": "#D8EBF2" });
+                $("input[type=text]", td).removeAttr("disabled");
+            } else {
+                $(this).removeAttr("checked");
+                var td = $("td", $(this).closest("tr"));
+                td.css({ "background-color": "#FFFF" });
+                $("input[type=text]", td).attr("disabled", "disabled");
+            }
+        });
+    });
+ 
+    //Enable Disable TextBoxes in a Row when the Row CheckBox is checked.
+    $("[id*=chkRow]").bind("click", function () {
+ 
+        //Find and reference the GridView.
+        var grid = $(this).closest("table");
+ 
+        //Find and reference the Header CheckBox.
+        var chkHeader = $("[id*=chkHeader]", grid);
+ 
+        //If the CheckBox is Checked then enable the TextBoxes in thr Row.
+        if (!$(this).is(":checked")) {
+            var td = $("td", $(this).closest("tr"));
+            td.css({ "background-color": "#FFFF" });
+            $("input[type=text]", td).attr("disabled", "disabled");
+        } else {
+            var td = $("td", $(this).closest("tr"));
+            td.css({ "background-color": "#D8EBF2" });
+            $("input[type=text]", td).removeAttr("disabled");
+        }
+ 
+        //Enable Header Row CheckBox if all the Row CheckBoxes are checked and vice versa.
+        if ($("[id*=chkRow]", grid).length == $("[id*=chkRow]:checked", grid).length) {
+            chkHeader.attr("checked", "checked");
+        } else {
+            chkHeader.removeAttr("checked");
+        }
+    });
+});
+</script>
+
+
 </head>
 <body>
     <form id="frmItemPromotion" runat="server">
@@ -53,7 +112,7 @@
             <asp:ListItem Value="2">All Customer</asp:ListItem>
             <asp:ListItem Value="3">By Region</asp:ListItem>
             <asp:ListItem Value="4">By Area</asp:ListItem>
-                <asp:ListItem>Point Wise By Region</asp:ListItem>
+                <asp:ListItem Value="8">Point Wise By Region</asp:ListItem>
             </asp:DropDownList></td>            
         </tr> 
         <tr><td>Sales :UOM Name</td>
@@ -104,8 +163,10 @@
         </tr>
          <tr>
              <td style="text-align:right" colspan="4" class="auto-style1">
-                  <asp:Button ID="btnshow" Font-Bold="true" runat="server" Text="Save" OnClick="btnshow_Click" />
-                 <asp:Button ID="btnSave" Font-Bold="true" runat="server" Text="Save" OnClick="btnSave_Click" /></td></tr>
+                  <asp:Button ID="btnshow" Font-Bold="true" runat="server" Text="Show" OnClick="btnshow_Click" />
+                 <asp:Button ID="btnSave" Font-Bold="true" runat="server" Text="Save" OnClick="btnSave_Click" />
+                 <asp:Button ID="btnPointWiseSave" Font-Bold="true" runat="server" Text="Point Wise Save" OnClick="btnPointWiseSave_Click" />
+             </td></tr>
          <tr><td colspan="4">Report<hr /></td></tr>
         <tr><td>Report Tyep</td>
             <td><asp:DropDownList ID="ddlReporType" CssClass="ddllist" runat="server">
@@ -137,7 +198,44 @@
             
             </td></tr>          
         </table>
-        <table><tr><td><asp:GridView ID="dgvPromotionReport" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small"  ShowFooter="True">
+        <table><tr><td><asp:GridView ID="dglCustomerList" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small"  ShowFooter="True">
+            <AlternatingRowStyle BackColor="#CCCCCC" />
+            <Columns> 
+                 
+            <asp:TemplateField>
+            <HeaderTemplate>
+            <asp:CheckBox ID="chkHeader" runat="server" />
+            </HeaderTemplate>
+            <ItemTemplate>
+            <asp:CheckBox ID="chkRow" runat="server" />
+            </ItemTemplate>
+            </asp:TemplateField>
+
+          
+                         
+             <asp:TemplateField HeaderText="Customer Id" SortExpression="itemid"><ItemTemplate>
+            <asp:Label ID="intCusID" runat="server" Text='<%# Bind("intCusID") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Left" Width="80px"/></asp:TemplateField> 
+
+            <asp:BoundField DataField="strRegion" HeaderText="Region" ReadOnly="True" SortExpression="strline"/>
+            <asp:BoundField DataField="strArea" HeaderText="Area" ReadOnly="True" SortExpression="strregion"/>
+            <asp:BoundField DataField="strTerritory" HeaderText="Territory" ReadOnly="True" SortExpression="strarea"/>
+            <asp:BoundField DataField="strPoint" HeaderText="Point" ReadOnly="True" SortExpression="strTerritory"/>
+            <asp:BoundField DataField="strName" HeaderText="Name" ReadOnly="True" SortExpression="Point"/>
+           
+           
+            </Columns>
+            <FooterStyle BackColor="#F3CCC2" BorderStyle="None" />
+            <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#F1F1F1" />
+            <SortedAscendingHeaderStyle BackColor="#808080" />
+            <SortedDescendingCellStyle BackColor="#CAC9C9" />
+            <SortedDescendingHeaderStyle BackColor="#383838" />
+            </asp:GridView>
+
+            <asp:GridView ID="dgvPromotionReport" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" AutoGenerateColumns="False" Font-Names="Calibri" Font-Size="Small"  ShowFooter="True">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns> 
                  
@@ -168,7 +266,9 @@
             <SortedAscendingHeaderStyle BackColor="#808080" />
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#383838" />
-            </asp:GridView></td></tr></table>
+            </asp:GridView>
+
+                   </td></tr></table>
         </div>
 
 <%--=========================================End My Code From Here=================================================--%>

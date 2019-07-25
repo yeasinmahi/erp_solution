@@ -1,1 +1,3 @@
-﻿
+﻿namespace DAL.Accounts.Advice
+{
+}

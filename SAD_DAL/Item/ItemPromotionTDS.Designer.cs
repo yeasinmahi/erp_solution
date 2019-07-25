@@ -52,7 +52,7 @@ namespace SAD_DAL.Item {
         
         private sprFreeReportSecondaryDataTable tablesprFreeReportSecondary;
         
-        private DataTable1DataTable tableDataTable1;
+        private RegionWisePointCustomerListDataTable tableRegionWisePointCustomerList;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -124,8 +124,8 @@ namespace SAD_DAL.Item {
                 if ((ds.Tables["sprFreeReportSecondary"] != null)) {
                     base.Tables.Add(new sprFreeReportSecondaryDataTable(ds.Tables["sprFreeReportSecondary"]));
                 }
-                if ((ds.Tables["DataTable1"] != null)) {
-                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
+                if ((ds.Tables["RegionWisePointCustomerList"] != null)) {
+                    base.Tables.Add(new RegionWisePointCustomerListDataTable(ds.Tables["RegionWisePointCustomerList"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -289,9 +289,9 @@ namespace SAD_DAL.Item {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DataTable1DataTable DataTable1 {
+        public RegionWisePointCustomerListDataTable RegionWisePointCustomerList {
             get {
-                return this.tableDataTable1;
+                return this.tableRegionWisePointCustomerList;
             }
         }
         
@@ -404,8 +404,8 @@ namespace SAD_DAL.Item {
                 if ((ds.Tables["sprFreeReportSecondary"] != null)) {
                     base.Tables.Add(new sprFreeReportSecondaryDataTable(ds.Tables["sprFreeReportSecondary"]));
                 }
-                if ((ds.Tables["DataTable1"] != null)) {
-                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
+                if ((ds.Tables["RegionWisePointCustomerList"] != null)) {
+                    base.Tables.Add(new RegionWisePointCustomerListDataTable(ds.Tables["RegionWisePointCustomerList"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -524,10 +524,10 @@ namespace SAD_DAL.Item {
                     this.tablesprFreeReportSecondary.InitVars();
                 }
             }
-            this.tableDataTable1 = ((DataTable1DataTable)(base.Tables["DataTable1"]));
+            this.tableRegionWisePointCustomerList = ((RegionWisePointCustomerListDataTable)(base.Tables["RegionWisePointCustomerList"]));
             if ((initTable == true)) {
-                if ((this.tableDataTable1 != null)) {
-                    this.tableDataTable1.InitVars();
+                if ((this.tableRegionWisePointCustomerList != null)) {
+                    this.tableRegionWisePointCustomerList.InitVars();
                 }
             }
         }
@@ -568,8 +568,8 @@ namespace SAD_DAL.Item {
             base.Tables.Add(this.tablesprCustomerStatementSummary);
             this.tablesprFreeReportSecondary = new sprFreeReportSecondaryDataTable();
             base.Tables.Add(this.tablesprFreeReportSecondary);
-            this.tableDataTable1 = new DataTable1DataTable();
-            base.Tables.Add(this.tableDataTable1);
+            this.tableRegionWisePointCustomerList = new RegionWisePointCustomerListDataTable();
+            base.Tables.Add(this.tableRegionWisePointCustomerList);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -658,7 +658,7 @@ namespace SAD_DAL.Item {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeDataTable1() {
+        private bool ShouldSerializeRegionWisePointCustomerList() {
             return false;
         }
         
@@ -760,7 +760,7 @@ namespace SAD_DAL.Item {
         public delegate void sprFreeReportSecondaryRowChangeEventHandler(object sender, sprFreeReportSecondaryRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void DataTable1RowChangeEventHandler(object sender, DataTable1RowChangeEvent e);
+        public delegate void RegionWisePointCustomerListRowChangeEventHandler(object sender, RegionWisePointCustomerListRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -4700,7 +4700,7 @@ namespace SAD_DAL.Item {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DataTable1DataTable : global::System.Data.TypedTableBase<DataTable1Row> {
+        public partial class RegionWisePointCustomerListDataTable : global::System.Data.TypedTableBase<RegionWisePointCustomerListRow> {
             
             private global::System.Data.DataColumn columnstrRegion;
             
@@ -4716,8 +4716,8 @@ namespace SAD_DAL.Item {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable1DataTable() {
-                this.TableName = "DataTable1";
+            public RegionWisePointCustomerListDataTable() {
+                this.TableName = "RegionWisePointCustomerList";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -4725,7 +4725,7 @@ namespace SAD_DAL.Item {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal DataTable1DataTable(global::System.Data.DataTable table) {
+            internal RegionWisePointCustomerListDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -4742,7 +4742,7 @@ namespace SAD_DAL.Item {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected DataTable1DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected RegionWisePointCustomerListDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -4806,34 +4806,34 @@ namespace SAD_DAL.Item {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable1Row this[int index] {
+            public RegionWisePointCustomerListRow this[int index] {
                 get {
-                    return ((DataTable1Row)(this.Rows[index]));
+                    return ((RegionWisePointCustomerListRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowChanging;
+            public event RegionWisePointCustomerListRowChangeEventHandler RegionWisePointCustomerListRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowChanged;
+            public event RegionWisePointCustomerListRowChangeEventHandler RegionWisePointCustomerListRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowDeleting;
+            public event RegionWisePointCustomerListRowChangeEventHandler RegionWisePointCustomerListRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowDeleted;
+            public event RegionWisePointCustomerListRowChangeEventHandler RegionWisePointCustomerListRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddDataTable1Row(DataTable1Row row) {
+            public void AddRegionWisePointCustomerListRow(RegionWisePointCustomerListRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string strRegion, string strArea, string strTerritory, string strPoint, string strName) {
-                DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
+            public RegionWisePointCustomerListRow AddRegionWisePointCustomerListRow(string strRegion, string strArea, string strTerritory, string strPoint, string strName) {
+                RegionWisePointCustomerListRow rowRegionWisePointCustomerListRow = ((RegionWisePointCustomerListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strRegion,
                         strArea,
@@ -4841,22 +4841,22 @@ namespace SAD_DAL.Item {
                         strPoint,
                         strName,
                         null};
-                rowDataTable1Row.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDataTable1Row);
-                return rowDataTable1Row;
+                rowRegionWisePointCustomerListRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowRegionWisePointCustomerListRow);
+                return rowRegionWisePointCustomerListRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable1Row FindByintCusID(int intCusID) {
-                return ((DataTable1Row)(this.Rows.Find(new object[] {
+            public RegionWisePointCustomerListRow FindByintCusID(int intCusID) {
+                return ((RegionWisePointCustomerListRow)(this.Rows.Find(new object[] {
                             intCusID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DataTable1DataTable cln = ((DataTable1DataTable)(base.Clone()));
+                RegionWisePointCustomerListDataTable cln = ((RegionWisePointCustomerListDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -4864,7 +4864,7 @@ namespace SAD_DAL.Item {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DataTable1DataTable();
+                return new RegionWisePointCustomerListDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4910,28 +4910,28 @@ namespace SAD_DAL.Item {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable1Row NewDataTable1Row() {
-                return ((DataTable1Row)(this.NewRow()));
+            public RegionWisePointCustomerListRow NewRegionWisePointCustomerListRow() {
+                return ((RegionWisePointCustomerListRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DataTable1Row(builder);
+                return new RegionWisePointCustomerListRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DataTable1Row);
+                return typeof(RegionWisePointCustomerListRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DataTable1RowChanged != null)) {
-                    this.DataTable1RowChanged(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.RegionWisePointCustomerListRowChanged != null)) {
+                    this.RegionWisePointCustomerListRowChanged(this, new RegionWisePointCustomerListRowChangeEvent(((RegionWisePointCustomerListRow)(e.Row)), e.Action));
                 }
             }
             
@@ -4939,8 +4939,8 @@ namespace SAD_DAL.Item {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DataTable1RowChanging != null)) {
-                    this.DataTable1RowChanging(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.RegionWisePointCustomerListRowChanging != null)) {
+                    this.RegionWisePointCustomerListRowChanging(this, new RegionWisePointCustomerListRowChangeEvent(((RegionWisePointCustomerListRow)(e.Row)), e.Action));
                 }
             }
             
@@ -4948,8 +4948,8 @@ namespace SAD_DAL.Item {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DataTable1RowDeleted != null)) {
-                    this.DataTable1RowDeleted(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.RegionWisePointCustomerListRowDeleted != null)) {
+                    this.RegionWisePointCustomerListRowDeleted(this, new RegionWisePointCustomerListRowChangeEvent(((RegionWisePointCustomerListRow)(e.Row)), e.Action));
                 }
             }
             
@@ -4957,14 +4957,14 @@ namespace SAD_DAL.Item {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DataTable1RowDeleting != null)) {
-                    this.DataTable1RowDeleting(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.RegionWisePointCustomerListRowDeleting != null)) {
+                    this.RegionWisePointCustomerListRowDeleting(this, new RegionWisePointCustomerListRowChangeEvent(((RegionWisePointCustomerListRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveDataTable1Row(DataTable1Row row) {
+            public void RemoveRegionWisePointCustomerListRow(RegionWisePointCustomerListRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -4991,7 +4991,7 @@ namespace SAD_DAL.Item {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DataTable1DataTable";
+                attribute2.FixedValue = "RegionWisePointCustomerListDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -6245,15 +6245,15 @@ namespace SAD_DAL.Item {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DataTable1Row : global::System.Data.DataRow {
+        public partial class RegionWisePointCustomerListRow : global::System.Data.DataRow {
             
-            private DataTable1DataTable tableDataTable1;
+            private RegionWisePointCustomerListDataTable tableRegionWisePointCustomerList;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal DataTable1Row(global::System.Data.DataRowBuilder rb) : 
+            internal RegionWisePointCustomerListRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDataTable1 = ((DataTable1DataTable)(this.Table));
+                this.tableRegionWisePointCustomerList = ((RegionWisePointCustomerListDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6261,14 +6261,15 @@ namespace SAD_DAL.Item {
             public string strRegion {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.strRegionColumn]));
+                        return ((string)(this[this.tableRegionWisePointCustomerList.strRegionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strRegion\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strRegion\' in table \'RegionWisePointCustomerList\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.strRegionColumn] = value;
+                    this[this.tableRegionWisePointCustomerList.strRegionColumn] = value;
                 }
             }
             
@@ -6277,14 +6278,14 @@ namespace SAD_DAL.Item {
             public string strArea {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.strAreaColumn]));
+                        return ((string)(this[this.tableRegionWisePointCustomerList.strAreaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strArea\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strArea\' in table \'RegionWisePointCustomerList\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.strAreaColumn] = value;
+                    this[this.tableRegionWisePointCustomerList.strAreaColumn] = value;
                 }
             }
             
@@ -6293,14 +6294,15 @@ namespace SAD_DAL.Item {
             public string strTerritory {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.strTerritoryColumn]));
+                        return ((string)(this[this.tableRegionWisePointCustomerList.strTerritoryColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strTerritory\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strTerritory\' in table \'RegionWisePointCustomerList\' is DBN" +
+                                "ull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.strTerritoryColumn] = value;
+                    this[this.tableRegionWisePointCustomerList.strTerritoryColumn] = value;
                 }
             }
             
@@ -6309,14 +6311,15 @@ namespace SAD_DAL.Item {
             public string strPoint {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.strPointColumn]));
+                        return ((string)(this[this.tableRegionWisePointCustomerList.strPointColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strPoint\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strPoint\' in table \'RegionWisePointCustomerList\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.strPointColumn] = value;
+                    this[this.tableRegionWisePointCustomerList.strPointColumn] = value;
                 }
             }
             
@@ -6325,14 +6328,14 @@ namespace SAD_DAL.Item {
             public string strName {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.strNameColumn]));
+                        return ((string)(this[this.tableRegionWisePointCustomerList.strNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strName\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strName\' in table \'RegionWisePointCustomerList\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.strNameColumn] = value;
+                    this[this.tableRegionWisePointCustomerList.strNameColumn] = value;
                 }
             }
             
@@ -6340,71 +6343,71 @@ namespace SAD_DAL.Item {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int intCusID {
                 get {
-                    return ((int)(this[this.tableDataTable1.intCusIDColumn]));
+                    return ((int)(this[this.tableRegionWisePointCustomerList.intCusIDColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.intCusIDColumn] = value;
+                    this[this.tableRegionWisePointCustomerList.intCusIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrRegionNull() {
-                return this.IsNull(this.tableDataTable1.strRegionColumn);
+                return this.IsNull(this.tableRegionWisePointCustomerList.strRegionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrRegionNull() {
-                this[this.tableDataTable1.strRegionColumn] = global::System.Convert.DBNull;
+                this[this.tableRegionWisePointCustomerList.strRegionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrAreaNull() {
-                return this.IsNull(this.tableDataTable1.strAreaColumn);
+                return this.IsNull(this.tableRegionWisePointCustomerList.strAreaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrAreaNull() {
-                this[this.tableDataTable1.strAreaColumn] = global::System.Convert.DBNull;
+                this[this.tableRegionWisePointCustomerList.strAreaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrTerritoryNull() {
-                return this.IsNull(this.tableDataTable1.strTerritoryColumn);
+                return this.IsNull(this.tableRegionWisePointCustomerList.strTerritoryColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrTerritoryNull() {
-                this[this.tableDataTable1.strTerritoryColumn] = global::System.Convert.DBNull;
+                this[this.tableRegionWisePointCustomerList.strTerritoryColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrPointNull() {
-                return this.IsNull(this.tableDataTable1.strPointColumn);
+                return this.IsNull(this.tableRegionWisePointCustomerList.strPointColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrPointNull() {
-                this[this.tableDataTable1.strPointColumn] = global::System.Convert.DBNull;
+                this[this.tableRegionWisePointCustomerList.strPointColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrNameNull() {
-                return this.IsNull(this.tableDataTable1.strNameColumn);
+                return this.IsNull(this.tableRegionWisePointCustomerList.strNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrNameNull() {
-                this[this.tableDataTable1.strNameColumn] = global::System.Convert.DBNull;
+                this[this.tableRegionWisePointCustomerList.strNameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6888,22 +6891,22 @@ namespace SAD_DAL.Item {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class DataTable1RowChangeEvent : global::System.EventArgs {
+        public class RegionWisePointCustomerListRowChangeEvent : global::System.EventArgs {
             
-            private DataTable1Row eventRow;
+            private RegionWisePointCustomerListRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable1RowChangeEvent(DataTable1Row row, global::System.Data.DataRowAction action) {
+            public RegionWisePointCustomerListRowChangeEvent(RegionWisePointCustomerListRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable1Row Row {
+            public RegionWisePointCustomerListRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -10048,7 +10051,7 @@ SELECT strName, intCusID FROM tblCustomer WHERE (intCusID = @intCusID) GROUP BY 
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class DataTable1TableAdapter : global::System.ComponentModel.Component {
+    public partial class RegionWisePointCustomerListTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -10062,7 +10065,7 @@ SELECT strName, intCusID FROM tblCustomer WHERE (intCusID = @intCusID) GROUP BY 
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public DataTable1TableAdapter() {
+        public RegionWisePointCustomerListTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -10159,7 +10162,7 @@ SELECT strName, intCusID FROM tblCustomer WHERE (intCusID = @intCusID) GROUP BY 
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "DataTable1";
+            tableMapping.DataSetTable = "RegionWisePointCustomerList";
             tableMapping.ColumnMappings.Add("strRegion", "strRegion");
             tableMapping.ColumnMappings.Add("strArea", "strArea");
             tableMapping.ColumnMappings.Add("strTerritory", "strTerritory");
@@ -10194,7 +10197,7 @@ where intRegionId=@Region and intFGGroupID=@fggroupid group by strRegion,strArea
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ItemPromotionTDS.DataTable1DataTable GetData(global::System.Nullable<int> Region, global::System.Nullable<int> fggroupid) {
+        public virtual ItemPromotionTDS.RegionWisePointCustomerListDataTable GetData(global::System.Nullable<int> Region, global::System.Nullable<int> fggroupid) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((Region.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(Region.Value));
@@ -10208,7 +10211,7 @@ where intRegionId=@Region and intFGGroupID=@fggroupid group by strRegion,strArea
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            ItemPromotionTDS.DataTable1DataTable dataTable = new ItemPromotionTDS.DataTable1DataTable();
+            ItemPromotionTDS.RegionWisePointCustomerListDataTable dataTable = new ItemPromotionTDS.RegionWisePointCustomerListDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
