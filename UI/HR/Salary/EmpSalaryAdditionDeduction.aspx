@@ -15,7 +15,7 @@
             var confirm_value = document.createElement("input");
             
             if (document.getElementById('<%=ddlType.ClientID%>').selectedIndex == 0) {
-                ShowNotification('Please Select GL', 'Product Cost Sheet', 'warning');
+                ShowNotification('Please Select Type', 'Product Cost Sheet', 'warning');
                 return false;
             }
             else {
