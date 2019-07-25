@@ -1463,6 +1463,7 @@
     <Content Include="SAD\Sales\Report\BudgetForFG.aspx" />
     <Content Include="SAD\Sales\Report\BudgetForMaterial.aspx" />
     <Content Include="SAD\Sales\Report\BudgetForPromotion.aspx" />
+    <Content Include="SAD\Sales\Report\CustomerGEORegRpt.aspx" />
     <Content Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx" />
     <Content Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx" />
     <Content Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx" />
@@ -7474,6 +7475,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\BudgetForPromotion.aspx.designer.cs">
       <DependentUpon>BudgetForPromotion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CustomerGEORegRpt.aspx.cs">
+      <DependentUpon>CustomerGEORegRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CustomerGEORegRpt.aspx.designer.cs">
+      <DependentUpon>CustomerGEORegRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx.cs">
       <DependentUpon>CustomerWiseSalesReport.aspx</DependentUpon>
