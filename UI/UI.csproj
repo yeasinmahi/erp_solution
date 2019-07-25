@@ -536,6 +536,7 @@
     <Content Include="HR\Reports\Overall_Status_Report.aspx" />
     <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\Roster\RosterAdd.aspx" />
+    <Content Include="HR\Salary\EmpSalaryAdditionDeduction.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
@@ -1789,6 +1790,8 @@
     <Content Include="UnderMaintanance.aspx" />
     <Content Include="Vat\CurrentRegisterM18.aspx" />
     <Content Include="Vat\ExportTaxRebate.aspx" />
+    <Content Include="Vat\M16_PurchaseRegister.aspx" />
+    <Content Include="Vat\M17_SalesRegister.aspx" />
     <Content Include="Vat\PriceDeclarationM1.aspx" />
     <Content Include="Vat\PrintBackSide19.aspx" />
     <Content Include="Vat\PrintM16.aspx" />
@@ -1832,6 +1835,7 @@
     <Content Include="Wastage\Sales.aspx" />
     <Content Include="Wastage\SalesOrderConditionForReport.aspx" />
     <Content Include="Wastage\SO.aspx" />
+    <Content Include="Wastage\WastageSOPrint.aspx" />
     <Content Include="WoodPurchase\jquery-ui.css" />
     <Content Include="WoodPurchase\jquery-ui.min.js" />
     <Content Include="WoodPurchase\jquery.min.js" />
@@ -3703,6 +3707,13 @@
     </Compile>
     <Compile Include="HR\Roster\RosterAdd.aspx.designer.cs">
       <DependentUpon>RosterAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Salary\EmpSalaryAdditionDeduction.aspx.cs">
+      <DependentUpon>EmpSalaryAdditionDeduction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Salary\EmpSalaryAdditionDeduction.aspx.designer.cs">
+      <DependentUpon>EmpSalaryAdditionDeduction.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx.cs">
       <DependentUpon>CustomerBankGuaranteeReport.aspx</DependentUpon>
@@ -9796,6 +9807,20 @@
     <Compile Include="Vat\ExportTaxRebate.aspx.designer.cs">
       <DependentUpon>ExportTaxRebate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vat\M16_PurchaseRegister.aspx.cs">
+      <DependentUpon>M16_PurchaseRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vat\M16_PurchaseRegister.aspx.designer.cs">
+      <DependentUpon>M16_PurchaseRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\M17_SalesRegister.aspx.cs">
+      <DependentUpon>M17_SalesRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vat\M17_SalesRegister.aspx.designer.cs">
+      <DependentUpon>M17_SalesRegister.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vat\PriceDeclarationM1.aspx.cs">
       <DependentUpon>PriceDeclarationM1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -10307,6 +10332,13 @@
     </Compile>
     <Compile Include="Wastage\SO.aspx.designer.cs">
       <DependentUpon>SO.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Wastage\WastageSOPrint.aspx.cs">
+      <DependentUpon>WastageSOPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Wastage\WastageSOPrint.aspx.designer.cs">
+      <DependentUpon>WastageSOPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="WoodPurchase\MRDetailsReport.aspx.cs">
       <DependentUpon>MRDetailsReport.aspx</DependentUpon>

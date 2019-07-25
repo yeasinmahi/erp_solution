@@ -428,6 +428,11 @@
     <Compile Include="AutoSearch\EmployeeTds.Designer.cs">
       <DependentUpon>EmployeeTds.cs</DependentUpon>
     </Compile>
+    <Compile Include="AutoSearch\ItemTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Currency.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1254,6 +1259,17 @@
     <None Include="AutoSearch\EmployeeTds.xsd" />
     <None Include="AutoSearch\EmployeeTds.xss">
       <DependentUpon>EmployeeTds.xsd</DependentUpon>
+    </None>
+    <None Include="AutoSearch\ItemTds.xsc">
+      <DependentUpon>ItemTds.xsd</DependentUpon>
+    </None>
+    <None Include="AutoSearch\ItemTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AutoSearch\ItemTds.xss">
+      <DependentUpon>ItemTds.xsd</DependentUpon>
     </None>
     <None Include="Currency.xsc">
       <DependentUpon>Currency.xsd</DependentUpon>
