@@ -49,7 +49,7 @@ namespace UI.SAD.Setup
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + vMsg + "');", true);
             }
         }
-               
+
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -77,7 +77,7 @@ namespace UI.SAD.Setup
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + vMsg + "');", true);
             }
         }
-        
+
         protected void btnClear_Click(object sender, EventArgs e)
         {
             ClearAll();
@@ -205,6 +205,9 @@ namespace UI.SAD.Setup
             DataTable dt = new DataTable();
             string phoneNo = string.Empty;
             string custName = string.Empty;
+            int custId = 0;
+            string desc = string.Empty;
+
             int lineId = 0;
             try
             {
@@ -214,20 +217,28 @@ namespace UI.SAD.Setup
                     lineId = Convert.ToInt32(ddlExPointName.SelectedValue.ToString());
                     dt = objAfblDistributionBll.GetAFBLExistGeoInfo(lineId, part);
                     if (dt.Rows.Count > 0)
+                    {
                         custName = dt.Rows[0].Field<string>(4);
+                        custId = dt.Rows[0].Field<int>(5);
+                    }
 
                     part = 14;
                     dt = objAfblDistributionBll.GetAFBLExistGeoInfo(lineId, part);
                     if (dt.Rows.Count > 0)
+                    {
                         phoneNo = dt.Rows[0].Field<string>(3);
-
+                        desc = dt.Rows[0].Field<string>(4);
+                    }
                     btnCreate.Visible = false;
                 }
-                else 
+                else
                     btnCreate.Visible = true;
 
+                txtDisPointName.Text = desc;
                 txtExistCust.Text = custName;
                 txtPhoneNo.Text = phoneNo;
+
+                ddlCust.SelectedValue = custId.ToString();
             }
             catch (Exception Ex)
             {
@@ -282,6 +293,7 @@ namespace UI.SAD.Setup
             ddlExPointName.Items.Clear();
             ddlCust.Items.Clear();
             BindCombo();
+            ddlComputer.SelectedValue = "False";
             btnCreate.Visible = true;
         }
 
@@ -302,7 +314,7 @@ namespace UI.SAD.Setup
                 if (!string.IsNullOrEmpty(ddlComputer.SelectedValue))
                     computerFlag = Convert.ToBoolean(ddlComputer.SelectedValue.ToString());
 
-                objAfblDistributionBll.SaveAFBLDistributionInfo(desc, officePhone, parentId, lvlId, part, activeEnroll, custID, null, null, null,computerFlag);
+                objAfblDistributionBll.SaveAFBLDistributionInfo(desc, officePhone, parentId, lvlId, part, activeEnroll, custID, null, null, null, computerFlag);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Create Successfully.');", true);
                 ClearAll();
@@ -330,7 +342,7 @@ namespace UI.SAD.Setup
                 if (!string.IsNullOrEmpty(ddlComputer.SelectedValue))
                     computerFlag = Convert.ToBoolean(ddlComputer.SelectedValue.ToString());
 
-                objAfblDistributionBll.UpdateAFBLDistributionInfo(desc, officePhone, lineId, part, null, null,null, custID, null, null, computerFlag);
+                objAfblDistributionBll.UpdateAFBLDistributionInfo(desc, officePhone, lineId, part, null, null, null, custID, null, null, computerFlag);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update Successfully.');", true);
                 ClearAll();
             }
