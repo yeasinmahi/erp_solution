@@ -236,7 +236,30 @@ namespace UI.Accounts.Voucher
         }
         protected void btnBankReceiveDelete_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                LoadBRGridwithXml();
+                DataSet dsGrid = (DataSet)gvBankReceive.DataSource;
+                int i = gvBankReceive.Rows.Count;
+                dsGrid.Tables[0].Rows[i - 1].Delete();
+                dsGrid.WriteXml(filePathForXML);
+                DataSet dsGridAfterDelete = (DataSet)gvBankReceive.DataSource;
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                {
+                    File.Delete(filePathForXML);
+                    gvBankReceive.DataSource = "";
+                    gvBankReceive.DataBind();
+                }
+                else
+                {
+                    LoadBRGridwithXml();
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Gridview Delete : " + ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         protected void btnBankReceiveSubmit_Click(object sender, EventArgs e)
         {
@@ -377,7 +400,30 @@ namespace UI.Accounts.Voucher
         }
         protected void btnBankPaymentDelete_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                LoadBPGridwithXml();
+                DataSet dsGrid = (DataSet)gvBankPayment.DataSource;
+                int i = gvBankPayment.Rows.Count;
+                dsGrid.Tables[0].Rows[i - 1].Delete();
+                dsGrid.WriteXml(filePathForXML);
+                DataSet dsGridAfterDelete = (DataSet)gvBankPayment.DataSource;
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                {
+                    File.Delete(filePathForXML);
+                    gvBankPayment.DataSource = "";
+                    gvBankPayment.DataBind();
+                }
+                else
+                {
+                    LoadBPGridwithXml();
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Gridview Delete : " + ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         protected void btnBankPaymentSubmit_Click(object sender, EventArgs e)
         {
@@ -452,30 +498,263 @@ namespace UI.Accounts.Voucher
         #region Cash Receive
         protected void btnCRAdd_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (CRValidation() == true)
+                {
+                    string creditAccountNo = ddlCRCreditAccount.SelectedItem.ToString();
+                    int creditAccountId = int.Parse(ddlCRCreditAccount.SelectedValue);
+                    string debitAccountNo = string.Empty;
+                    int debitAccountId = 0;
 
+                    decimal DebitAmount = 0;
+                    hfCRDebitAmount.Value = "0";
+                    decimal CreditAmount = decimal.Parse(txtCRCreditAmount.Text.Trim());
+                    hfCRCreditAmount.Value = !string.IsNullOrEmpty(hfCRCreditAmount.Value) ?
+                        (decimal.Parse(hfCRCreditAmount.Value) + CreditAmount).ToString() : CreditAmount.ToString();
+                    string costCenter = ddlCRCostCentre.SelectedItem.ToString();
+                    int costCenterID = int.Parse(ddlCRCostCentre.SelectedValue);
+
+                    string Narration = txtCRNarration.Text + ". [" + costCenter + " ^" + costCenterID.ToString() + "]";
+                    hfCRNarration.Value = !string.IsNullOrEmpty(hfCRNarration.Value) ? (hfCRNarration.Value + ", " + Narration) : Narration;
+
+                    checkXmlItemData(creditAccountId.ToString());
+                    if (CheckItem == 1)
+                    {
+                        CreateXml(creditAccountId.ToString(), creditAccountNo, debitAccountId.ToString(), debitAccountNo, DebitAmount.ToString(),
+                            CreditAmount.ToString(), Narration);
+                        LoadCRGridwithXml();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This Accounts already added.');", true);
+                    }
+
+                    CRClear();
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                string sms = "Cash Receive Add Button : " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         protected void btnCRDelete_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                LoadCRGridwithXml();
+                DataSet dsGrid = (DataSet)dgvCRVoucher.DataSource;
+                int i = dgvCRVoucher.Rows.Count;
+                dsGrid.Tables[0].Rows[i-1].Delete();
+                dsGrid.WriteXml(filePathForXML);
+                DataSet dsGridAfterDelete = (DataSet)dgvCRVoucher.DataSource;
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                {
+                    File.Delete(filePathForXML);
+                    dgvCRVoucher.DataSource = "";
+                    dgvCRVoucher.DataBind();
+                }
+                else
+                {
+                    LoadCRGridwithXml();
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Gridview Delete : " + ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         protected void btnSaveCR_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (CRMasterValidation() == true)
+                {
+                    XmlDocument doc = new XmlDocument();
+                    int UnitID = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+                    int Enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                    LoadAccounts(Enroll, UnitID);
+                   
+                    DateTime Date = DateTime.ParseExact(DateTime.Now.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    decimal TotalCRDebitAmount = decimal.Parse(hfCRDebitAmount.Value);
+                    decimal TotalCRCreditAmount = decimal.Parse(hfCRCreditAmount.Value);
+                    string CRNarration = hfCRNarration.Value;
+                    string ReceiveFrom = txtCRReceiveFrom.Text;
+                    int AccountID = Convert.ToInt32(hfCRCPAccountID.Value);
+                    string AccountName = ddlCRCostCentre.SelectedItem.ToString();
 
+                    doc.Load(filePathForXML);
+                    XmlNode dSftTm = doc.SelectSingleNode("SubAcc");
+                    xmlString = dSftTm.InnerXml;
+                    xmlString = "<SubAcc>" + xmlString + "</SubAcc>";
+                    try
+                    {
+                        File.Delete(filePathForXML);
+                    }
+                    catch
+                    {
+                    }
+
+                    string voucherno = acsacbll.InsertBankReceiveVoucher(5, UnitID, xmlString, AccountID, AccountName, "000", Date, ysnCheque, ysnDemandDraft,
+                         ysnPayOrder, ysnDepositSlip, ysnAdvance, ysnAdjustment, ysnOnline, CRNarration, TotalCRDebitAmount,
+                         TotalCRCreditAmount, ReceiveFrom, Enroll);
+                    if (!string.IsNullOrEmpty(voucherno))
+                    {
+                        CRMClear();
+                        string MsgBox = "Cash Receive Voucher Inserted Successfully. Voucher Number: " + voucherno;
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + MsgBox + "');", true);
+                    }
+                    else
+                    {
+                        string MsgBox = "Cash Receive Voucher Insert Failed. Voucher Number: " + voucherno;
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + MsgBox + "');", true);
+                    }
+                }
+                else
+                {
+                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Receive From');", true);
+                    //ddlBankReceiveFrom.Focus();
+                    //return;
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Cash Receive Submit Button : " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         #endregion
 
         #region Cash Pay
         protected void btnCPAdd_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (CPValidation() == true)
+                {
+                    string creditAccountNo = string.Empty;
+                    int creditAccountId = 0;
+                    string debitAccountNo = ddlCPDebitAccount.SelectedItem.ToString();
+                    int debitAccountId = int.Parse(ddlCPDebitAccount.SelectedValue);
+                    decimal DebitAmount = decimal.Parse(txtCPDebitAmount.Text.Trim());
+                    hfCPDebitAmount.Value = !string.IsNullOrEmpty(hfCPDebitAmount.Value) ?
+                            (decimal.Parse(hfCPDebitAmount.Value) + DebitAmount).ToString() : DebitAmount.ToString();
+                    decimal CreditAmount = 0;
+                    hfCPCreditAmount.Value = "0";
+                    string Narration = txtCPNarration.Text;
+                    hfCPNarration.Value = !string.IsNullOrEmpty(hfCPNarration.Value) ? (hfCPNarration.Value + ", " + Narration) : Narration;
 
+                    checkXmlItemData(debitAccountId.ToString());
+                    if (CheckItem == 1)
+                    {
+                        CreateXml(creditAccountId.ToString(), creditAccountNo, debitAccountId.ToString(), debitAccountNo, DebitAmount.ToString(), CreditAmount.ToString(), Narration);
+                        LoadCPGridwithXml();
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This Accounts already added.');", true);
+                    }
+
+                    CPClear();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string sms = "Cash Pay Add Button : " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         protected void btnCPDelete_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                LoadCPGridwithXml();
+                DataSet dsGrid = (DataSet)dgvCPVoucher.DataSource;
+                int i = dgvCPVoucher.Rows.Count;
+                dsGrid.Tables[0].Rows[i - 1].Delete();
+                dsGrid.WriteXml(filePathForXML);
+                DataSet dsGridAfterDelete = (DataSet)dgvCPVoucher.DataSource;
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                {
+                    File.Delete(filePathForXML);
+                    dgvCPVoucher.DataSource = "";
+                    dgvCPVoucher.DataBind();
+                }
+                else
+                {
+                    LoadCPGridwithXml();
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Gridview Delete : " + ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         protected void btnCPSave_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (CPMasterValidation() == true)
+                {
+                    XmlDocument doc = new XmlDocument();
+                    int UnitID = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+                    int Enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                    LoadAccounts(Enroll, UnitID);
+                    string costCenter = ddlCPCostCentre.SelectedItem.ToString();
+                    int costCenterID = int.Parse(ddlCPCostCentre.SelectedValue);
+                    DateTime Date = DateTime.ParseExact(DateTime.Now.ToString("dd/MM/yyyy"), "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                    decimal TotalCPDebitAmount = decimal.Parse(hfCPDebitAmount.Value);
+                    decimal TotalCPCreditAmount = decimal.Parse(hfCPCreditAmount.Value);
+                    string CPNarration = hfCPNarration.Value + ". [" + costCenter + " ^" + costCenterID.ToString() + "]";
+                    string PayTo = txtCPPayTo.Text;
+                    int AccountID = Convert.ToInt32(hfCRCPAccountID.Value);
+                    string AccountName = ddlCRCostCentre.SelectedItem.ToString();
 
+                    doc.Load(filePathForXML);
+                    XmlNode dSftTm = doc.SelectSingleNode("SubAcc");
+                    xmlString = dSftTm.InnerXml;
+                    xmlString = "<SubAcc>" + xmlString + "</SubAcc>";
+                    try
+                    {
+                        File.Delete(filePathForXML);
+                    }
+                    catch
+                    {
+                    }
+
+                    string voucherno = acsacbll.InsertBankReceiveVoucher(6, UnitID, xmlString, AccountID, AccountName, "000", Date, ysnCheque, ysnDemandDraft,
+                         ysnPayOrder, ysnDepositSlip, ysnAdvance, ysnAdjustment, ysnOnline, CPNarration, TotalCPDebitAmount,
+                         TotalCPCreditAmount, PayTo, Enroll);
+                    if (!string.IsNullOrEmpty(voucherno))
+                    {
+                        CPMClear();
+                        string MsgBox = "Cash Payment Voucher Inserted Successfully. Voucher Number: " + voucherno;
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + MsgBox + "');", true);
+                    }
+                    else
+                    {
+                        string MsgBox = "Cash Payment Voucher Insert Failed. Voucher Number: " + voucherno;
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + MsgBox + "');", true);
+                    }
+                }
+                else
+                {
+                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Receive From');", true);
+                    //ddlBankReceiveFrom.Focus();
+                    //return;
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Cash Payment Submit Button : " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         #endregion
 
@@ -546,7 +825,30 @@ namespace UI.Accounts.Voucher
         }
         protected void btnJVDelete_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                LoadJVGridwithXml();
+                DataSet dsGrid = (DataSet)gvJurnalVoucher.DataSource;
+                int i = gvJurnalVoucher.Rows.Count;
+                dsGrid.Tables[0].Rows[i - 1].Delete();
+                dsGrid.WriteXml(filePathForXML);
+                DataSet dsGridAfterDelete = (DataSet)gvJurnalVoucher.DataSource;
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                {
+                    File.Delete(filePathForXML);
+                    gvJurnalVoucher.DataSource = "";
+                    gvJurnalVoucher.DataBind();
+                }
+                else
+                {
+                    LoadJVGridwithXml();
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Gridview Delete : " + ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         protected void btnJVSubmit_Click(object sender, EventArgs e)
         {
@@ -714,7 +1016,30 @@ namespace UI.Accounts.Voucher
         }
         protected void btnContraDelete_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                LoadContraGridwithXml();
+                DataSet dsGrid = (DataSet)gvContra.DataSource;
+                int i = gvContra.Rows.Count;
+                dsGrid.Tables[0].Rows[i - 1].Delete();
+                dsGrid.WriteXml(filePathForXML);
+                DataSet dsGridAfterDelete = (DataSet)gvContra.DataSource;
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                {
+                    File.Delete(filePathForXML);
+                    gvContra.DataSource = "";
+                    gvContra.DataBind();
+                }
+                else
+                {
+                    LoadContraGridwithXml();
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Gridview Delete : " + ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         protected void btnContraSubmit_Click(object sender, EventArgs e)
         {
@@ -802,6 +1127,10 @@ namespace UI.Accounts.Voucher
             DataTable dtBRCA = new DataTable();
             DataTable dtBPDA = new DataTable();
             DataTable dtJVAH = new DataTable();
+            DataTable dtCRCA = new DataTable();
+            DataTable dtCRCC = new DataTable();
+            DataTable dtCPDA = new DataTable();
+            DataTable dtCPCC = new DataTable();
             ArrayList allInstrumentList = new ArrayList();
             ArrayList someInstrumentList = new ArrayList();
             try
@@ -875,6 +1204,40 @@ namespace UI.Accounts.Voucher
                     ddlJVAccountHead.DataBind();
                 }
 
+                dtCRCA = acsacbll.GetCRAccountsNumber(UnitId, Enroll);
+                if (dtCRCA != null && dtCRCA.Rows.Count > 0)
+                {
+                    ddlCRCreditAccount.DataSource = dtCRCA;
+                    ddlCRCreditAccount.DataTextField = "strAccName";
+                    ddlCRCreditAccount.DataValueField = "intAccID";
+                    ddlCRCreditAccount.DataBind();
+                }
+
+                dtCPDA = acsacbll.GetCPAccountsNumber(UnitId, Enroll);
+                if (dtCPDA != null && dtCPDA.Rows.Count > 0)
+                {
+                    ddlCPDebitAccount.DataSource = dtCPDA;
+                    ddlCPDebitAccount.DataTextField = "strAccName";
+                    ddlCPDebitAccount.DataValueField = "intAccID";
+                    ddlCPDebitAccount.DataBind();
+                }
+                dtCRCC = acsacbll.GetCRCostCentre();
+                if (dtCRCC != null && dtCRCC.Rows.Count > 0)
+                {
+                    ddlCRCostCentre.DataSource = dtCRCC;
+                    ddlCRCostCentre.DataTextField = "strCCName";
+                    ddlCRCostCentre.DataValueField = "intCostCenterID";
+                    ddlCRCostCentre.DataBind();
+                }
+                dtCPCC = acsacbll.GetCRCostCentre();
+                if (dtCPCC != null && dtCPCC.Rows.Count > 0)
+                {
+                    ddlCPCostCentre.DataSource = dtCPCC;
+                    ddlCPCostCentre.DataTextField = "strCCName";
+                    ddlCPCostCentre.DataValueField = "intCostCenterID";
+                    ddlCPCostCentre.DataBind();
+                }
+
                 ddlBRInstrument.DataSource = allInstrumentList;
                 ddlBRInstrument.DataBind();
                 ddlBRInstrument.Items.Insert(0, new ListItem("--- Select Instrument---", "-1"));
@@ -891,7 +1254,10 @@ namespace UI.Accounts.Voucher
                 ddlBRCreditAccount.Items.Insert(0, new ListItem("--- Select Credit A/C No---", "-1"));
                 ddlBankPaymentDebitAC.Items.Insert(0, new ListItem("--- Select Debit A/C No---", "-1"));
                 ddlJVAccountHead.Items.Insert(0, new ListItem("--- Select A/C Head---", "-1"));
-
+                ddlCRCreditAccount.Items.Insert(0, new ListItem("--- Select A/C No---", "-1"));
+                ddlCPDebitAccount.Items.Insert(0, new ListItem("--- Select A/C No---", "-1"));
+                ddlCRCostCentre.Items.Insert(0, new ListItem("--- Select Cost Centre ---", "-1"));
+                ddlCPCostCentre.Items.Insert(0, new ListItem("--- Select Cost Centre ---", "-1"));
                 //ddlBankReceiveFrom.Items.Insert(0, new ListItem("--- Select Receive From ---", "-1"));
                 //ddlBankPaymentPayTo.Items.Insert(0, new ListItem("--- Select Pay To ---", "-1"));
 
@@ -981,7 +1347,29 @@ namespace UI.Accounts.Voucher
             catch { }
         }
 
-        
+        private bool BRValidation()
+        {
+            if (ddlBRCreditAccount.SelectedValue == "-1")
+            {
+                ddlBRCreditAccount.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select Credit A/C. ');", true);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtBankReceiveAmount.Text) && txtBankReceiveAmount.Text.Length > 0)
+            {
+                txtBankReceiveAmount.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Credit Amount');", true);
+                return false;
+            }
+
+            return true;
+        }
+        private void BRClear()
+        {
+            ddlBRCreditAccount.SelectedValue = "-1";
+            txtBankReceiveAmount.Text = string.Empty;
+            txtBankReceiveNarration.Text = string.Empty;
+        }
         private void LoadBRGridwithXml()
         {
             try
@@ -1006,153 +1394,6 @@ namespace UI.Accounts.Voucher
             }
             catch { }
         }
-        private void LoadBPGridwithXml()
-        {
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
-                XmlNode dSftTm = doc.SelectSingleNode("SubAcc");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<SubAcc>" + xmlString + "</SubAcc>";
-                StringReader sr = new StringReader(xmlString);
-                DataSet ds = new DataSet();
-                ds.ReadXml(sr);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    gvBankPayment.DataSource = ds;
-                }
-                else
-                {
-                    gvBankPayment.DataSource = "";
-                }
-                gvBankPayment.DataBind();
-            }
-            catch { }
-        }
-       
-        private void LoadJVGridwithXml()
-        {
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
-                XmlNode dSftTm = doc.SelectSingleNode("SubAcc");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<SubAcc>" + xmlString + "</SubAcc>";
-                StringReader sr = new StringReader(xmlString);
-                DataSet ds = new DataSet();
-                ds.ReadXml(sr);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    gvJurnalVoucher.DataSource = ds;
-                }
-                else
-                {
-                    gvJurnalVoucher.DataSource = "";
-                }
-                gvJurnalVoucher.DataBind();
-            }
-            catch { }
-        }
-        private void LoadContraGridwithXml()
-        {
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
-                XmlNode dSftTm = doc.SelectSingleNode("SubAcc");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<SubAcc>" + xmlString + "</SubAcc>";
-                StringReader sr = new StringReader(xmlString);
-                DataSet ds = new DataSet();
-                ds.ReadXml(sr);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    gvContra.DataSource = ds;
-                }
-                else
-                {
-                    gvContra.DataSource = "";
-                }
-                gvContra.DataBind();
-            }
-            catch { }
-        }
-
-        private void BRClear()
-        {
-            ddlBRCreditAccount.SelectedValue = "-1";
-            txtBankReceiveAmount.Text = string.Empty;
-            txtBankReceiveNarration.Text = string.Empty;
-        }
-
-        
-
-        private void BRMasterClear()
-        {
-            ddlBRAccountNo.SelectedValue = "-1";
-            ddlBRInstrument.SelectedValue = "-1";
-            txtBRNo.Text = string.Empty;
-            txtBankReceiveDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            txtBankReceiveFrom.Text = string.Empty;
-            hfTotalBRCreditAmount.Value = string.Empty;
-            hfTotalBRDebitAmount.Value = string.Empty;
-            hfBRNarration.Value = string.Empty;
-        }
-
-       
-
-        
-
-        private void BPClear()
-        {
-            
-            ddlBankPaymentDebitAC.SelectedValue = "-1";
-            txtBankPaymentAmount.Text = string.Empty;
-            txtBankPaymentNarration.Text = string.Empty;
-        }
-        private void BPMasterClear()
-        {
-            ddlBankPaymentACNo.SelectedValue = "-1";
-            ddlBankPaymentInstrument.SelectedValue = "-1";
-            txtBankPaymentNo.Text = string.Empty;
-            txtBankPaymentDate.Text = string.Empty;
-            txtBankPaymentPayTo.Text = string.Empty;
-            txtBankPaymentAmount.Text = string.Empty;
-            hfBPDebitAmount.Value = string.Empty;
-            hfBPCreditAmount.Value = string.Empty;
-            hfBPNarration.Value = string.Empty;
-        }
-
-        private void JVClear()
-        {
-            //ddlJVAccountHead.SelectedValue = "-1";
-            txtJVAmount.Text = string.Empty;
-            txtJVNarration.Text = string.Empty;
-        }
-
-
-        private void ContraClear()
-        {
-           // ddlContraACNo.SelectedValue = "-1";
-            //ddlContraInstrument.SelectedValue = "-1";
-           // txtContraNo.Text = string.Empty;
-            //txtContraDate.Text = string.Empty;
-            txtContraAmount.Text = string.Empty;
-            txtContraNarration.Text = string.Empty;
-        }
-        private void ContraMasterClear()
-        {
-            ddlContraACNo.SelectedValue = "-1";
-            ddlContraInstrument.SelectedValue = "-1";
-            txtContraNo.Text = string.Empty;
-            txtContraDate.Text = string.Empty;
-
-            gvContra.DataSource = null;
-            gvContra.DataBind();
-        }
-
         private bool BRMasterValidation()
         {
             if (ddlBRAccountNo.SelectedValue == "-1")
@@ -1187,22 +1428,16 @@ namespace UI.Accounts.Voucher
             }
             return true;
         }
-        private bool BRValidation()
+        private void BRMasterClear()
         {
-            if (ddlBRCreditAccount.SelectedValue == "-1")
-            {
-                ddlBRCreditAccount.Focus();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select Credit A/C. ');", true);
-                return false;
-            }
-            if (string.IsNullOrEmpty(txtBankReceiveAmount.Text) && txtBankReceiveAmount.Text.Length > 0)
-            {
-                txtBankReceiveAmount.Focus();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Credit Amount');", true);
-                return false;
-            }
-            
-            return true;
+            ddlBRAccountNo.SelectedValue = "-1";
+            ddlBRInstrument.SelectedValue = "-1";
+            txtBRNo.Text = string.Empty;
+            txtBankReceiveDate.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            txtBankReceiveFrom.Text = string.Empty;
+            hfTotalBRCreditAmount.Value = string.Empty;
+            hfTotalBRDebitAmount.Value = string.Empty;
+            hfBRNarration.Value = string.Empty;
         }
 
         private bool BPMasterValidation()
@@ -1256,6 +1491,225 @@ namespace UI.Accounts.Voucher
 
             return true;
         }
+        private void LoadBPGridwithXml()
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("SubAcc");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<SubAcc>" + xmlString + "</SubAcc>";
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    gvBankPayment.DataSource = ds;
+                }
+                else
+                {
+                    gvBankPayment.DataSource = "";
+                }
+                gvBankPayment.DataBind();
+            }
+            catch { }
+        }
+        private void BPClear()
+        {
+
+            ddlBankPaymentDebitAC.SelectedValue = "-1";
+            txtBankPaymentAmount.Text = string.Empty;
+            txtBankPaymentNarration.Text = string.Empty;
+        }
+        private void BPMasterClear()
+        {
+            ddlBankPaymentACNo.SelectedValue = "-1";
+            ddlBankPaymentInstrument.SelectedValue = "-1";
+            txtBankPaymentNo.Text = string.Empty;
+            txtBankPaymentDate.Text = string.Empty;
+            txtBankPaymentPayTo.Text = string.Empty;
+            txtBankPaymentAmount.Text = string.Empty;
+            hfBPDebitAmount.Value = string.Empty;
+            hfBPCreditAmount.Value = string.Empty;
+            hfBPNarration.Value = string.Empty;
+        }
+
+        private bool CRValidation()
+        {
+            if (ddlCRCreditAccount.SelectedValue == "-1")
+            {
+                ddlCRCreditAccount.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select Credit A/C. ');", true);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtCRCreditAmount.Text) && txtCRCreditAmount.Text.Length > 0)
+            {
+                txtCRCreditAmount.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Credit Amount');", true);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtCRNarration.Text) && txtCRNarration.Text.Length > 0)
+            {
+                txtCRNarration.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Narration. ');", true);
+                return false;
+            }
+            if (ddlCRCostCentre.SelectedValue == "-1")
+            {
+                ddlCRCostCentre.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select Cost Centre');", true);
+                return false;
+            }
+            return true;
+        }
+        private void CRClear()
+        {
+            ddlBRCreditAccount.SelectedValue = "-1";
+            txtCRCreditAmount.Text = string.Empty;
+            txtCRNarration.Text = string.Empty;
+        }
+        private void LoadCRGridwithXml()
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("SubAcc");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<SubAcc>" + xmlString + "</SubAcc>";
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    dgvCRVoucher.DataSource = ds;
+                }
+                else
+                {
+                    dgvCRVoucher.DataSource = "";
+                }
+                dgvCRVoucher.DataBind();
+            }
+            catch
+            {
+            }
+        }
+        private bool CRMasterValidation()
+        {
+            
+           
+            if (string.IsNullOrEmpty(txtCRReceiveFrom.Text) && txtCRReceiveFrom.Text.Length > 0)
+            {
+                txtCRReceiveFrom.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Receive From Box.');", true);
+                return false;
+            }
+            if(dgvCRVoucher.Rows.Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Details Data First.');", true);
+                return false;
+            }
+            return true;
+        }
+        private void CRMClear()
+        {
+            hfCRNarration.Value = string.Empty;
+            hfCRDebitAmount.Value = string.Empty;
+            hfCRCreditAmount.Value = string.Empty;
+            ddlCRCostCentre.SelectedValue = "-1";
+            txtCRReceiveFrom.Text = string.Empty;
+            dgvCRVoucher.DataSource = null;
+            dgvCRVoucher.DataBind();
+        }
+
+        private bool CPValidation()
+        {
+            if (ddlCPDebitAccount.SelectedValue == "-1")
+            {
+                ddlCPDebitAccount.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select Debit A/C. ');", true);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtCPDebitAmount.Text) && txtCPDebitAmount.Text.Length > 0)
+            {
+                txtCPDebitAmount.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Debit Amount');", true);
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtCPNarration.Text) && txtCPNarration.Text.Length > 0)
+            {
+                txtCPNarration.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Narration. ');", true);
+                return false;
+            }
+            return true;
+        }
+        private void CPClear()
+        {
+            ddlBRCreditAccount.SelectedValue = "-1";
+            txtCRCreditAmount.Text = string.Empty;
+            txtCRNarration.Text = string.Empty;
+        }
+        private void LoadCPGridwithXml()
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("SubAcc");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<SubAcc>" + xmlString + "</SubAcc>";
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    dgvCPVoucher.DataSource = ds;
+                }
+                else
+                {
+                    dgvCPVoucher.DataSource = "";
+                }
+                dgvCPVoucher.DataBind();
+            }
+            catch
+            {
+            }
+        }
+        private bool CPMasterValidation()
+        {
+            if (ddlCPCostCentre.SelectedValue == "-1")
+            {
+                ddlCPCostCentre.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select Cost Centre');", true);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(txtCPPayTo.Text) && txtCPPayTo.Text.Length > 0)
+            {
+                txtCPPayTo.Focus();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Pay To Box.');", true);
+                return false;
+            }
+            if (dgvCPVoucher.Rows.Count == 0)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Enter Details Data First.');", true);
+                return false;
+            }
+            return true;
+        }
+        private void CPMClear()
+        {
+            hfCPNarration.Value = string.Empty;
+            hfCPDebitAmount.Value = string.Empty;
+            hfCPCreditAmount.Value = string.Empty;
+            ddlCPCostCentre.SelectedValue = "-1";
+            txtCPPayTo.Text = string.Empty;
+            dgvCPVoucher.DataSource = null;
+            dgvCPVoucher.DataBind();
+        }
+
         private bool JVValidation()
         {
             if (ddlJVAccountHead.SelectedValue == "-1")
@@ -1273,7 +1727,104 @@ namespace UI.Accounts.Voucher
 
             return true;
         }
+        private void JVClear()
+        {
+            //ddlJVAccountHead.SelectedValue = "-1";
+            txtJVAmount.Text = string.Empty;
+            txtJVNarration.Text = string.Empty;
+        }
+        private void LoadJVGridwithXml()
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("SubAcc");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<SubAcc>" + xmlString + "</SubAcc>";
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    gvJurnalVoucher.DataSource = ds;
+                }
+                else
+                {
+                    gvJurnalVoucher.DataSource = "";
+                }
+                gvJurnalVoucher.DataBind();
+            }
+            catch { }
+        }
 
+
+        private void LoadContraGridwithXml()
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("SubAcc");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<SubAcc>" + xmlString + "</SubAcc>";
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    gvContra.DataSource = ds;
+                }
+                else
+                {
+                    gvContra.DataSource = "";
+                }
+                gvContra.DataBind();
+            }
+            catch { }
+        }
+        private void ContraClear()
+        {
+           // ddlContraACNo.SelectedValue = "-1";
+            //ddlContraInstrument.SelectedValue = "-1";
+           // txtContraNo.Text = string.Empty;
+            //txtContraDate.Text = string.Empty;
+            txtContraAmount.Text = string.Empty;
+            txtContraNarration.Text = string.Empty;
+        }
+        private void ContraMasterClear()
+        {
+            ddlContraACNo.SelectedValue = "-1";
+            ddlContraInstrument.SelectedValue = "-1";
+            txtContraNo.Text = string.Empty;
+            txtContraDate.Text = string.Empty;
+
+            gvContra.DataSource = null;
+            gvContra.DataBind();
+        }
+
+        private void LoadAccounts(int Enroll, int UnitID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = acsacbll.GetCOAByUnitNenroll(UnitID, Enroll);
+                if(dt != null && dt.Rows.Count > 0)
+                {
+                    hfCRCPAccountID.Value = dt.Rows[0]["intAccID"].ToString();
+                    hfCRCPAccountNo.Value = dt.Rows[0]["strAccName"].ToString();
+                }
+                else
+                {
+                    hfCRCPAccountID.Value = "0";
+                    hfCRCPAccountNo.Value = "N/A";
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
         private void TabClear(int tab)
         {
             if (tab == 1)
@@ -1288,6 +1839,10 @@ namespace UI.Accounts.Voucher
                 ContraClear();
                 gvContra.DataSource = null;
                 gvContra.DataBind();
+                CRClear();
+                CRMClear();
+                CPClear();
+                CPMClear();
             }
             else if (tab == 2)
             {
@@ -1301,6 +1856,10 @@ namespace UI.Accounts.Voucher
                 ContraClear();
                 gvContra.DataSource = null;
                 gvContra.DataBind();
+                CRClear();
+                CRMClear();
+                CPClear();
+                CPMClear();
             }
             else if (tab == 3)
             {
@@ -1315,6 +1874,11 @@ namespace UI.Accounts.Voucher
                 ContraClear();
                 gvContra.DataSource = null;
                 gvContra.DataBind();
+                JVClear();
+                gvJurnalVoucher.DataSource = null;
+                gvJurnalVoucher.DataBind();
+                CPClear();
+                CPMClear();
             }
             else if (tab == 4)
             {
@@ -1329,6 +1893,53 @@ namespace UI.Accounts.Voucher
                 JVClear();
                 gvJurnalVoucher.DataSource = null;
                 gvJurnalVoucher.DataBind();
+                ContraClear();
+                gvContra.DataSource = null;
+                gvContra.DataBind();
+                CRClear();
+                CRMClear();
+            }
+            else if (tab == 5)
+            {
+                BRClear();
+                BRMasterClear();
+                gvBankReceive.DataSource = null;
+                gvBankReceive.DataBind();
+                BPClear();
+                BPMasterClear();
+                gvBankPayment.DataSource = null;
+                gvBankPayment.DataBind();
+                //JVClear();
+                //gvJurnalVoucher.DataSource = null;
+                //gvJurnalVoucher.DataBind();
+                ContraClear();
+                gvContra.DataSource = null;
+                gvContra.DataBind();
+                CRClear();
+                CRMClear();
+                CPMClear();
+                CPClear();
+            }
+            else if (tab == 6)
+            {
+                BRClear();
+                BRMasterClear();
+                gvBankReceive.DataSource = null;
+                gvBankReceive.DataBind();
+                BPClear();
+                BPMasterClear();
+                gvBankPayment.DataSource = null;
+                gvBankPayment.DataBind();
+                JVClear();
+                gvJurnalVoucher.DataSource = null;
+                gvJurnalVoucher.DataBind();
+                //ContraClear();
+                //gvContra.DataSource = null;
+                //gvContra.DataBind();
+                CRClear();
+                CRMClear();
+                CPMClear();
+                CPClear();
             }
             File.Delete(filePathForXML);
         }

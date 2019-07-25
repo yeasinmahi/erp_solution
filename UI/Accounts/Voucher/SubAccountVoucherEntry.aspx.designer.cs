@@ -85,6 +85,24 @@ namespace UI.Accounts.Voucher {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
+        /// hfCRCPAccountID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCRCPAccountID;
+        
+        /// <summary>
+        /// hfCRCPAccountNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCRCPAccountNo;
+        
+        /// <summary>
         /// tabBankReceive control.
         /// </summary>
         /// <remarks>
@@ -490,13 +508,49 @@ namespace UI.Accounts.Voucher {
         protected global::System.Web.UI.WebControls.TextBox txtCRCreditAmount;
         
         /// <summary>
-        /// TextBox1 control.
+        /// hfCRCreditAmount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.HiddenField hfCRCreditAmount;
+        
+        /// <summary>
+        /// hfCRDebitAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCRDebitAmount;
+        
+        /// <summary>
+        /// txtCRNarration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCRNarration;
+        
+        /// <summary>
+        /// hfCRNarration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCRNarration;
+        
+        /// <summary>
+        /// ddlCRCostCentre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCRCostCentre;
         
         /// <summary>
         /// btnCRAdd control.
@@ -517,22 +571,13 @@ namespace UI.Accounts.Voucher {
         protected global::System.Web.UI.WebControls.Button btnCRDelete;
         
         /// <summary>
-        /// ddlCRCostCentre control.
+        /// dgvCRVoucher control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCRCostCentre;
-        
-        /// <summary>
-        /// dgvCashReceive control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvCashReceive;
+        protected global::System.Web.UI.WebControls.GridView dgvCRVoucher;
         
         /// <summary>
         /// txtCRReceiveFrom control.
@@ -580,6 +625,24 @@ namespace UI.Accounts.Voucher {
         protected global::System.Web.UI.WebControls.TextBox txtCPDebitAmount;
         
         /// <summary>
+        /// hfCPCreditAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCPCreditAmount;
+        
+        /// <summary>
+        /// hfCPDebitAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCPDebitAmount;
+        
+        /// <summary>
         /// txtCPNarration control.
         /// </summary>
         /// <remarks>
@@ -587,6 +650,24 @@ namespace UI.Accounts.Voucher {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCPNarration;
+        
+        /// <summary>
+        /// hfCPNarration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCPNarration;
+        
+        /// <summary>
+        /// ddlCPCostCentre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCPCostCentre;
         
         /// <summary>
         /// btnCPAdd control.
@@ -607,22 +688,13 @@ namespace UI.Accounts.Voucher {
         protected global::System.Web.UI.WebControls.Button btnCPDelete;
         
         /// <summary>
-        /// ddlCPCostCentre control.
+        /// dgvCPVoucher control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCPCostCentre;
-        
-        /// <summary>
-        /// dgvCPCostCentre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvCPCostCentre;
+        protected global::System.Web.UI.WebControls.GridView dgvCPVoucher;
         
         /// <summary>
         /// txtCPPayTo control.

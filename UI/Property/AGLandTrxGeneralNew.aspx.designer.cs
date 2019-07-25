@@ -508,6 +508,15 @@ namespace UI.Property {
         protected global::System.Web.UI.WebControls.TextBox txtRegistrationCost;
         
         /// <summary>
+        /// txtPercentage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPercentage;
+        
+        /// <summary>
         /// Label20 control.
         /// </summary>
         /// <remarks>

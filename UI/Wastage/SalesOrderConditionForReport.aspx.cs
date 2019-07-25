@@ -35,7 +35,7 @@ namespace UI.Wastage
                     File.Delete(filePathForXML);
 
                     pnlUpperControl.DataBind();
-                    BindWarehouse();
+                    BindUnit();                    
                 }
                 catch (Exception ex)
                 {
@@ -46,12 +46,14 @@ namespace UI.Wastage
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if ((txtSOCondition.Text != ""))
+            if ((txtSOCondition.Text != "") && (!string.IsNullOrEmpty(ddlSO.SelectedValue)))
             {
                 CreateAddXml(ddlWHName.SelectedValue.ToString(), ddlSO.SelectedItem.ToString(), txtSOCondition.Text);
 
                 txtSOCondition.Text = "";               
             }
+            else
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Data Found To Add');", true);
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -62,6 +64,11 @@ namespace UI.Wastage
         protected void ddlWHName_SelectedIndexChanged(object sender, EventArgs e)
         {
             BindSalesOrder();
+        }
+
+        protected void ddlUnitName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindWarehouse();
         }
 
         protected void dgvWOCond_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -105,13 +112,24 @@ namespace UI.Wastage
 
         #region UMethod
 
+        private void BindUnit()
+        {
+            DataTable dt = new DataTable();
+            dt = objWastageBLL.GetUnit();
+            ddlUnitName.DataTextField = "strUnit";
+            ddlUnitName.DataValueField = "intUnitID";
+            ddlUnitName.DataSource = dt;
+            ddlUnitName.DataBind();
+        }
+
         private void BindWarehouse()
         {
             DataTable dt = new DataTable();
+            ddlWHName.Items.Clear();
 
-            dt = objWastageBLL.getWHALL();
+            dt = objWastageBLL.getWHbyUnitList(int.Parse(ddlUnitName.SelectedValue.ToString()));
             ddlWHName.DataTextField = "strWastageWareHouseName";
-            ddlWHName.DataValueField = "intWastageWHID";
+            ddlWHName.DataValueField = "intWastageWareHouseID";
             ddlWHName.DataSource = dt;
             ddlWHName.DataBind();
         }
@@ -119,6 +137,7 @@ namespace UI.Wastage
         private void BindSalesOrder()
         {
             DataTable dt = new DataTable();
+            ddlSO.Items.Clear();
 
             dt = objWastageBLL.getSalesOrderList(int.Parse(ddlWHName.SelectedValue));
             if (dt.Rows.Count > 0)
@@ -199,19 +218,42 @@ namespace UI.Wastage
             }
         }
 
+       
+
         private void SaveData()
         {
             string msg = string.Empty;
             DateTime insertDate = DateTime.Now;
-
+            int insertBy = 0;
             try
             {
+                insertBy = int.Parse(hdnEnroll.Value);
                 if (dgvWOCond.Rows.Count > 0)
                 {
                     for (int index = 0; index < dgvWOCond.Rows.Count; index++)
                     {
+                        string condition = string.Empty;
+                        int salesOId = 0, whId = 0;
 
+                        string wareHouse = ((Label)dgvWOCond.Rows[index].FindControl("lblWHId")).Text.ToString();
+                        string salesOrder = ((Label)dgvWOCond.Rows[index].FindControl("lblSalesOrder")).Text.ToString();
+                        condition = ((Label)dgvWOCond.Rows[index].FindControl("lblCondition")).Text.ToString();
+
+                        salesOId = int.Parse(salesOrder);
+                        whId = int.Parse(wareHouse);
+
+                        objWastageBLL.SaveWOCondition(salesOId, whId, condition, insertBy, insertDate);
                     }
+
+                    msg = "Condition Save Successfully";
+                    dgvWOCond.DataSource = null;
+                    dgvWOCond.DataBind();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                }
+                else
+                {
+                    msg = "No Data Found To Save";
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 }
             }
             catch (Exception ex)
