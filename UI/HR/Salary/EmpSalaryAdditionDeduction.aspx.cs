@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HR_BLL.Salary;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
@@ -15,11 +16,10 @@ namespace UI.HR.Salary
 {
     public partial class EmpSalaryAdditionDeduction : BasePage
     {
-         //DataTable dt = new DataTable();
-            //JobStation objbll = new JobStation();
-            //EmployeeBasicInfo objEmp = new EmployeeBasicInfo();
-            //EmpBenifit objBenifit = new EmpBenifit();
-       string filePathForXML, path, msg;
+        DataTable dt = new DataTable();
+
+        SalaryInfo objSal = new SalaryInfo();
+        string filePathForXML, path, msg;
         private readonly string ftp = "ftp://ftp.akij.net/ExcelUpload/Benifit.xlsx";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,17 +27,20 @@ namespace UI.HR.Salary
             filePathForXML = Server.MapPath("~/HR/Salary/FileExcell/Emp_Salary_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             if (!IsPostBack)
             {
-                
-               
+
                 try
                 {
-               
+                    LoadType();
                 }
                 catch { }
             }
         }
         
-
+        public void LoadType()
+        {
+            dt = objSal.GetType();
+            ddlType.LoadWithSelect(dt, "intID", "strType");
+        }
         protected void btnUpload_Click(object sender, EventArgs e)
         {
             
@@ -87,7 +90,7 @@ namespace UI.HR.Salary
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
-                XmlNode rootNode = doc.SelectSingleNode("salary");
+                XmlNode rootNode = doc.SelectSingleNode("SalaryEntry");
                 XmlNode addItem = CreateItemNode(doc, enrollid, Amount, insertBy);
                 rootNode.AppendChild(addItem);
             }
@@ -95,7 +98,7 @@ namespace UI.HR.Salary
             {
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
-                XmlNode rootNode = doc.CreateElement("salary");
+                XmlNode rootNode = doc.CreateElement("SalaryEntry");
                 XmlNode addItem = CreateItemNode(doc, enrollid, Amount, insertBy);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
@@ -140,13 +143,10 @@ namespace UI.HR.Salary
                 XmlNode node = doc.SelectSingleNode("SalaryEntry");
                 string xmlString = node.InnerXml;
                 xmlString = "<SalaryEntry>" + xmlString + "</SalaryEntry>";
-
-                //dt = objBenifit.InsertBenifitInfo(1, 0, 0, xmlString);
-
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Submitted Successfully');", true);
+                string msg =  objSal.SubmitSalaryAdditionDeduction(Convert.ToInt32(ddlType.SelectedItem.Value), xmlString);
+                Toaster(msg, "Employee Salary", Common.TosterType.Success);
                 try
                 {
-
                     File.Delete(filePathForXML);
                     gvExcelFile.DataSource = null;
                     gvExcelFile.DataBind();

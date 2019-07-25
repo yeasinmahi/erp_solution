@@ -192,54 +192,7 @@ namespace UI.SCM
             dgvIndent.Visible = true;
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                intWh = int.Parse(ddlWH.SelectedValue);
-                DateTime dteFrom = DateTime.Now.AddMonths(-1);
-                DateTime dteTo = DateTime.Now;
-                if (!string.IsNullOrWhiteSpace(txtDteFrom.Text) && !string.IsNullOrWhiteSpace(txtdteTo.Text))
-                {
-                    dteFrom = DateTime.Parse(txtDteFrom.Text);
-                    dteTo = DateTime.Parse(txtdteTo.Text);
-                }
-
-                string dept = ddlDept.SelectedItem.ToString();
-
-                //string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                //try
-                //{
-                //    Mrrid = int.Parse(txtMrrNo.Text);
-                //}
-                //catch
-                //{
-                //    Mrrid = 0;
-                //}
-                //dt = obj.DataView(12, xmlData, intWh, Mrrid, dteFrom, enroll);
-                dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh);
-
-                if (dt.Rows.Count > 0)
-                {
-                    dt.Columns.Add(new DataColumn("missingCost", typeof(string)));
-
-                    if (dt != null)
-                    {
-                        if (dt.Rows.Count > 0)
-                        {
-                            for (int i = 0; i < dt.Rows.Count; i++)
-                            {
-                                int poid = !string.IsNullOrEmpty(dt.Rows[i]["intpoid"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intpoid"]) : 0;
-                                int shipid = !string.IsNullOrEmpty(dt.Rows[i]["intShipmentID"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intShipmentID"]) : 0;
-                                dt.Rows[i]["missingCost"] = GetMRRMissingCost(poid, shipid);
-                            }
-                        }
-                    }
-
-                    dgvIndent.DataSource = dt;
-                    dgvIndent.DataBind();
-                }
-                else
-                {
-                    Toaster("Sorry! There is no data exist.", "Pending MRR", Common.TosterType.Warning);
-                }
+                LoadGrid();
 
             }
             catch (Exception ex)
@@ -252,6 +205,48 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+
+        public void LoadGrid()
+        {
+            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            intWh = int.Parse(ddlWH.SelectedValue);
+            DateTime dteFrom = DateTime.Now.AddMonths(-1);
+            DateTime dteTo = DateTime.Now;
+            if (!string.IsNullOrWhiteSpace(txtDteFrom.Text) && !string.IsNullOrWhiteSpace(txtdteTo.Text))
+            {
+                dteFrom = DateTime.Parse(txtDteFrom.Text);
+                dteTo = DateTime.Parse(txtdteTo.Text);
+            }
+
+            string dept = ddlDept.SelectedItem.ToString();
+
+            dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh, dept);
+
+            if (dt.Rows.Count > 0)
+            {
+                dt.Columns.Add(new DataColumn("missingCost", typeof(string)));
+
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            int poid = !string.IsNullOrEmpty(dt.Rows[i]["intpoid"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intpoid"]) : 0;
+                            int shipid = !string.IsNullOrEmpty(dt.Rows[i]["intShipmentID"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intShipmentID"]) : 0;
+                            dt.Rows[i]["missingCost"] = GetMRRMissingCost(poid, shipid);
+                        }
+                    }
+                }
+
+                dgvIndent.DataSource = dt;
+                dgvIndent.DataBind();
+            }
+            else
+            {
+                Toaster("Sorry! There is no data exist.", "Pending MRR", Common.TosterType.Warning);
+            }
         }
         protected void dgvIndent_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -277,7 +272,7 @@ namespace UI.SCM
                 Session["MrrID"] = lblMrrId.Text;
 
                 Label mrrid = FindControl("lblMrr") as Label;
-                mrrid.Text = MrrId;
+                mrrid.Text = " MRR No: "+MrrId;
 
                 if (ddlType.SelectedValue == "Costing")
                 {
@@ -513,6 +508,7 @@ namespace UI.SCM
         {
             LoadDepartment();
             HideShowGridColumn();
+            dgvIndent.UnLoad();
         }
 
         public void LoadDepartment()
