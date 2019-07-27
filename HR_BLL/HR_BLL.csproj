@@ -118,7 +118,6 @@
     <Compile Include="Document Inventory\documentdownload.cs" />
     <Compile Include="Document Inventory\documentupload.cs" />
     <Compile Include="DocumentTracking\DocumentTrackingBLL.cs" />
-    <Compile Include="Employee\EmpCostCenterBLL.cs" />
     <Compile Include="Employee\EmployeeBasicInfo.cs" />
     <Compile Include="Employee\EmployeeDetails.cs" />
     <Compile Include="Employee\EmployeeFullInformationBll.cs" />

@@ -7,7 +7,6 @@ using UI.ClassFiles;
 using GLOBAL_BLL;
 using Flogging.Core;
 using Utility;
-using System.Web;
 
 namespace UI.PaymentModule
 {
@@ -52,12 +51,6 @@ namespace UI.PaymentModule
             {
                 Toaster(ex.Message, Common.TosterType.Error);
             }
-        }
-
-       
-        public void ExportToExcel(ref string html, string fileName)
-        {
-         
         }
         protected void btnGo_Click(object sender, EventArgs e)
         {

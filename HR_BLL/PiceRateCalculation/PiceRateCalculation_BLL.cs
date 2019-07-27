@@ -136,18 +136,6 @@ namespace HR_BLL.PiceRateCalculation
                 return new DataTable();
             }
         }
-        public DataTable PiecesRateSalaryGenarate(int intWork, int intEnroll, decimal monAmount, int intGenerateBy, int unitId, int intBankid)
-        {
-            try
-            {
-                sprPiceRateSalaryGenerateTableAdapter adp = new sprPiceRateSalaryGenerateTableAdapter();
-                return adp.GetData(intWork, intEnroll, monAmount, intGenerateBy, unitId, intBankid);
-            }
-            catch (Exception ex)
-            {
-                return new DataTable();
-            }
-        }
 
     }
 }

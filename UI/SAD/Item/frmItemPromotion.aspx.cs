@@ -19,11 +19,7 @@ namespace UI.SAD.Item
         DataTable dt;int Custid,intActive,rptTYpe,intLineid,intGroupid,PUomId, ItemidSales,ItemidPromotion,Groupid, Rid, Aid,part,intUomid;        
         ItemPromotion objPromotion = new ItemPromotion();
         string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };  string ItemName,batchno, PromotionName, msg;
-        DateTime dteFdate, dteTdate;
-
-      
-
-        decimal SalesQty, PromotionQty;
+        DateTime dteFdate, dteTdate; decimal SalesQty, PromotionQty;
         SeriLog log = new SeriLog();
         string location = "SAD";
         string start = "starting SAD\\Item\\frmItemPromotion";
@@ -35,70 +31,7 @@ namespace UI.SAD.Item
                 Datainitialization();               
             }
         }
-        protected void btnshow_Click(object sender, EventArgs e)
-        {
-            dt = objPromotion.getCustomerListbyRegion(int.Parse(ddlRegion.SelectedValue.ToString()),int.Parse(ddlLine.SelectedValue.ToString()));
-            dglCustomerList.DataSource = dt;
-            dglCustomerList.DataBind();
 
-        }
-        protected void btnPointWiseSave_Click(object sender, EventArgs e)
-        {
-            if (dglCustomerList.Rows.Count > 0)
-            {
-
-                for (int index = 0; index < dglCustomerList.Rows.Count; index++)
-                {
-                    if (((CheckBox)dglCustomerList.Rows[index].FindControl("chkRow")).Checked == true)
-                    {
-                        string pid = ((Label)dglCustomerList.Rows[index].FindControl("intCusID")).Text.ToString();
-                        string Custid =(((Label)dglCustomerList.Rows[index].FindControl("intCusID")).Text.ToString());
-                     
-                        if (txtPromotionName.Text != "")
-                        {
-                            char[] delimiterCharss = { '[', ']' };
-                           
-                            arrayKeyItem = txtSalesItem.Text.Split(delimiterCharss);
-                            ItemidSales = int.Parse(arrayKeyItem[1].ToString());
-
-                            arrayKeyItem = txtPromotionItem.Text.Split(delimiterCharss);
-                            ItemidPromotion = int.Parse(arrayKeyItem[1].ToString());
-                            intUomid = int.Parse(ddlUom.SelectedValue);
-                            intLineid = int.Parse(ddlLine.SelectedValue);
-                            Rid = int.Parse(ddlRegion.SelectedValue);
-                            Aid = int.Parse(ddlAreaList.SelectedValue);
-                            Groupid = int.Parse(ddlPGroup.SelectedValue);
-                            dteFdate = CommonClass.GetDateAtSQLDateFormat(txtFrom.Text).Date;
-                            if (txtTo.Text == "")
-                            { dteTdate = DateTime.Parse("2009-1-1"); }
-                            else
-                            {
-                                dteTdate = CommonClass.GetDateAtSQLDateFormat(txtTo.Text).Date;
-                            }
-
-
-                            SalesQty = decimal.Parse(txtSalesQty.Text);
-                            PromotionQty = decimal.Parse(txtPromQty.Text);
-                            PUomId = int.Parse(ddlPUOM.Text);
-                            part = int.Parse(ddlPGroup.SelectedValue);
-                            PromotionName = txtPromotionName.Text;
-
-                            msg = objPromotion.getPromotionEntry(part,int.Parse(Custid), PromotionName, ItemidSales, intUomid, SalesQty, ItemidPromotion, PUomId, PromotionQty, int.Parse(Session[SessionParams.USER_ID].ToString()), dteFdate, dteTdate, Rid, Aid, intLineid);
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                            txtCustomer.Text = "";
-                            txtPromotionItem.Text = "";
-                            txtSalesItem.Text = "";
-                            txtSalesQty.Text = "";
-                            txtPromQty.Text = "";
-                            txtPromotionName.Text = "";
-                        }
-                        else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Entry Promotion Name');", true); }
-
-                    }
-                }
-            }
-            dglCustomerList.DataBind();
-            }
         private void Datainitialization()
         {
 
