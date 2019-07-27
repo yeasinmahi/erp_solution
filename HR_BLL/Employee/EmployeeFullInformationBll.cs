@@ -137,5 +137,10 @@ namespace HR_BLL.Employee
             tblEducationInformation1TableAdapter adp = new tblEducationInformation1TableAdapter();
             return adp.Delete1(id);
         }
+        public DataTable GetTodatysAttendance(int enroll)
+        {
+            tblEmployeeAttendanceTableAdapter adp = new tblEmployeeAttendanceTableAdapter();
+            return adp.GetData(enroll, DateTime.Now.ToString("yyyy/MM/dd"));
+        }
     }
 }

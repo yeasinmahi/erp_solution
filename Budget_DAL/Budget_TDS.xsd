@@ -686,11 +686,17 @@ SELECT strCCName, intCostCenterID FROM tblCostCenter WHERE (intCostCenterID = @i
             <Mappings>
               <Mapping SourceColumn="intBudgetYear" DataSetColumn="intBudgetYear" />
               <Mapping SourceColumn="intMonth" DataSetColumn="intMonth" />
-              <Mapping SourceColumn="numFGQty" DataSetColumn="numFGQty" />
+              <Mapping SourceColumn="decMatQnt" DataSetColumn="decMatQnt" />
+              <Mapping SourceColumn="decMatAmount" DataSetColumn="decMatAmount" />
               <Mapping SourceColumn="intMatID" DataSetColumn="intMatID" />
-              <Mapping SourceColumn="numMatQty" DataSetColumn="numMatQty" />
-              <Mapping SourceColumn="intyrid" DataSetColumn="intyrid" />
+              <Mapping SourceColumn="numFGBudgetQty" DataSetColumn="numFGBudgetQty" />
+              <Mapping SourceColumn="intYearid" DataSetColumn="intYearid" />
               <Mapping SourceColumn="intsl" DataSetColumn="intsl" />
+              <Mapping SourceColumn="qntvariance" DataSetColumn="qntvariance" />
+              <Mapping SourceColumn="amountvariance" DataSetColumn="amountvariance" />
+              <Mapping SourceColumn="monthnames" DataSetColumn="monthnames" />
+              <Mapping SourceColumn="dtfrom" DataSetColumn="dtfrom" />
+              <Mapping SourceColumn="dtto" DataSetColumn="dtto" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1050,11 +1056,23 @@ SELECT strCCName, intCostCenterID FROM tblCostCenter WHERE (intCostCenterID = @i
             <xs:sequence>
               <xs:element name="intBudgetYear" msprop:Generator_ColumnVarNameInTable="columnintBudgetYear" msprop:Generator_ColumnPropNameInRow="intBudgetYear" msprop:Generator_ColumnPropNameInTable="intBudgetYearColumn" msprop:Generator_UserColumnName="intBudgetYear" type="xs:int" minOccurs="0" />
               <xs:element name="intMonth" msprop:Generator_ColumnVarNameInTable="columnintMonth" msprop:Generator_ColumnPropNameInRow="intMonth" msprop:Generator_ColumnPropNameInTable="intMonthColumn" msprop:Generator_UserColumnName="intMonth" type="xs:int" minOccurs="0" />
-              <xs:element name="numFGQty" msprop:Generator_ColumnVarNameInTable="columnnumFGQty" msprop:Generator_ColumnPropNameInRow="numFGQty" msprop:Generator_ColumnPropNameInTable="numFGQtyColumn" msprop:Generator_UserColumnName="numFGQty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="decMatQnt" msprop:Generator_ColumnVarNameInTable="columndecMatQnt" msprop:Generator_ColumnPropNameInRow="decMatQnt" msprop:Generator_ColumnPropNameInTable="decMatQntColumn" msprop:Generator_UserColumnName="decMatQnt" type="xs:decimal" minOccurs="0" />
+              <xs:element name="decMatAmount" msprop:Generator_ColumnVarNameInTable="columndecMatAmount" msprop:Generator_ColumnPropNameInRow="decMatAmount" msprop:Generator_ColumnPropNameInTable="decMatAmountColumn" msprop:Generator_UserColumnName="decMatAmount" type="xs:decimal" minOccurs="0" />
               <xs:element name="intMatID" msprop:Generator_ColumnVarNameInTable="columnintMatID" msprop:Generator_ColumnPropNameInRow="intMatID" msprop:Generator_ColumnPropNameInTable="intMatIDColumn" msprop:Generator_UserColumnName="intMatID" type="xs:int" minOccurs="0" />
-              <xs:element name="numMatQty" msprop:Generator_ColumnVarNameInTable="columnnumMatQty" msprop:Generator_ColumnPropNameInRow="numMatQty" msprop:Generator_ColumnPropNameInTable="numMatQtyColumn" msprop:Generator_UserColumnName="numMatQty" type="xs:decimal" minOccurs="0" />
-              <xs:element name="intyrid" msprop:Generator_ColumnVarNameInTable="columnintyrid" msprop:Generator_ColumnPropNameInRow="intyrid" msprop:Generator_ColumnPropNameInTable="intyridColumn" msprop:Generator_UserColumnName="intyrid" type="xs:int" minOccurs="0" />
+              <xs:element name="numFGBudgetQty" msprop:Generator_ColumnVarNameInTable="columnnumFGBudgetQty" msprop:Generator_ColumnPropNameInRow="numFGBudgetQty" msprop:Generator_ColumnPropNameInTable="numFGBudgetQtyColumn" msprop:Generator_UserColumnName="numFGBudgetQty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intYearid" msprop:Generator_ColumnVarNameInTable="columnintYearid" msprop:Generator_ColumnPropNameInRow="intYearid" msprop:Generator_ColumnPropNameInTable="intYearidColumn" msprop:Generator_UserColumnName="intYearid" type="xs:int" minOccurs="0" />
               <xs:element name="intsl" msprop:Generator_ColumnVarNameInTable="columnintsl" msprop:Generator_ColumnPropNameInRow="intsl" msprop:Generator_ColumnPropNameInTable="intslColumn" msprop:Generator_UserColumnName="intsl" type="xs:int" minOccurs="0" />
+              <xs:element name="qntvariance" msprop:Generator_ColumnVarNameInTable="columnqntvariance" msprop:Generator_ColumnPropNameInRow="qntvariance" msprop:Generator_ColumnPropNameInTable="qntvarianceColumn" msprop:Generator_UserColumnName="qntvariance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="amountvariance" msprop:Generator_ColumnVarNameInTable="columnamountvariance" msprop:Generator_ColumnPropNameInRow="amountvariance" msprop:Generator_ColumnPropNameInTable="amountvarianceColumn" msprop:Generator_UserColumnName="amountvariance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monthnames" msprop:Generator_ColumnVarNameInTable="columnmonthnames" msprop:Generator_ColumnPropNameInRow="monthnames" msprop:Generator_ColumnPropNameInTable="monthnamesColumn" msprop:Generator_UserColumnName="monthnames" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dtfrom" msprop:Generator_ColumnVarNameInTable="columndtfrom" msprop:Generator_ColumnPropNameInRow="dtfrom" msprop:Generator_ColumnPropNameInTable="dtfromColumn" msprop:Generator_UserColumnName="dtfrom" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dtto" msprop:Generator_ColumnVarNameInTable="columndtto" msprop:Generator_ColumnPropNameInRow="dtto" msprop:Generator_ColumnPropNameInTable="dttoColumn" msprop:Generator_UserColumnName="dtto" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

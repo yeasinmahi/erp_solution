@@ -116,7 +116,7 @@
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Vouchar Date : "></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="txtVDate" CssClass="txtBox" runat="server"></asp:TextBox>
+                                    <asp:TextBox ID="txtVDate" CssClass="txtBox" runat="server" autocomplete="off"></asp:TextBox>
                                     <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtVDate" Format="yyyy/MM/dd" PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server" EnableViewState="true"></cc1:CalendarExtender>
                                     <img id="imgCal_2" src="../../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
                                 </td>

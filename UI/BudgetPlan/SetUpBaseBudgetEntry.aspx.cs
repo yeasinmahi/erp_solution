@@ -197,10 +197,10 @@ namespace UI.BudgetPlan
             Session["budgetcatg"] = ddlBudgetType.SelectedValue.ToString();
             clear();
             int typeid=int.Parse(ddlBudgetType.SelectedValue.ToString());
-            if(typeid==3 || typeid == 5)
-            {
-                lbltxboxallow();
-            }
+            //if(typeid==3 || typeid == 5)
+            //{
+            //    lbltxboxallow();
+            //}
 
 
             
@@ -250,11 +250,7 @@ namespace UI.BudgetPlan
                 budgettype = ddlBudgetType.SelectedValue.ToString();
                 if (budgettype.Length <= 0) { budgettype = "0.0"; }
 
-                if (int.Parse(budgettype)==3 || int.Parse(budgettype) == 5)
-                {
-                    txtProductRate.Enabled = true;
-                    txtProductRate.Text = "1";
-                }
+              
 
                 itemid = txtProduct.Text;
                 arrayKey = itemid.Split(delimiterChars);
@@ -330,6 +326,8 @@ namespace UI.BudgetPlan
                 string Productprice = txtProductRate.Text;
                 if (Productprice.Length <= 0) { Productprice = "0.0"; }
 
+
+
                 string totqnt = txtBudgetQnt.Text;
                 if (totqnt.Length <= 0) { totqnt = "0.0"; }
 
@@ -385,7 +383,10 @@ namespace UI.BudgetPlan
                 string totAmountProm = txtTotalamntPromo.Text;
                 if (totAmountProm.Length <= 0) { totAmountProm = "0.0"; }
 
-
+                if (int.Parse(budgettype) == 3 || int.Parse(budgettype) == 5)
+                {
+                    Productprice = "1";
+                }
 
                 Createxml(budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid, july, augest, september, october, november, december,
                 january, february, march, april, may, june,  prdname, budgyr, Productprice, totqnt, totAmount,regionname,areaname,linename
@@ -572,18 +573,33 @@ namespace UI.BudgetPlan
                 else if (budgettype == 3)
                 {
                     dt = obj.GetBudgetFGQntvsMaterialQnt(int.Parse(budgyr),prdid);
-                    txtJuly.Text = dt.Rows[0]["numMatQty"].ToString();
-                    txtAugest.Text = dt.Rows[1]["numMatQty"].ToString();
-                    txtSpetmeber.Text = dt.Rows[2]["numMatQty"].ToString();
-                    txtOctober.Text = dt.Rows[3]["numMatQty"].ToString();
-                    txtNovember.Text = dt.Rows[4]["numMatQty"].ToString();
-                    txtDecember.Text = dt.Rows[5]["numMatQty"].ToString();
-                    txtjan.Text = dt.Rows[6]["numMatQty"].ToString();
-                    txtFeb.Text = dt.Rows[7]["numMatQty"].ToString();
-                    txtMarch.Text = dt.Rows[8]["numMatQty"].ToString();
-                    txtApril.Text = dt.Rows[9]["numMatQty"].ToString();
-                    txtMay.Text = dt.Rows[10]["numMatQty"].ToString();
-                    txtJune.Text = dt.Rows[11]["numMatQty"].ToString();
+                    txtJuly.Text = dt.Rows[0]["decMatQnt"].ToString();
+                    txtAugest.Text = dt.Rows[1]["decMatQnt"].ToString();
+                    txtSpetmeber.Text = dt.Rows[2]["decMatQnt"].ToString();
+                    txtOctober.Text = dt.Rows[3]["decMatQnt"].ToString();
+                    txtNovember.Text = dt.Rows[4]["decMatQnt"].ToString();
+                    txtDecember.Text = dt.Rows[5]["decMatQnt"].ToString();
+                    txtjan.Text = dt.Rows[6]["decMatQnt"].ToString();
+                    txtFeb.Text = dt.Rows[7]["decMatQnt"].ToString();
+                    txtMarch.Text = dt.Rows[8]["decMatQnt"].ToString();
+                    txtApril.Text = dt.Rows[9]["decMatQnt"].ToString();
+                    txtMay.Text = dt.Rows[10]["decMatQnt"].ToString();
+                    txtJune.Text = dt.Rows[11]["decMatQnt"].ToString();
+
+                    txtJulyPromo.Text = dt.Rows[0]["decMatAmount"].ToString();
+                    txtAugestPromo.Text = dt.Rows[1]["decMatAmount"].ToString();
+                    txtSeptemberPromo.Text = dt.Rows[2]["decMatAmount"].ToString();
+                    txtOctoberPromo.Text = dt.Rows[3]["decMatAmount"].ToString();
+                    txtNovemberPromo.Text = dt.Rows[4]["decMatAmount"].ToString();
+                    txtDecemberPromo.Text = dt.Rows[5]["decMatAmount"].ToString();
+                    txtJanuaryPromo.Text = dt.Rows[6]["decMatAmount"].ToString();
+                    txtFebruaryPromo.Text = dt.Rows[7]["decMatAmount"].ToString();
+                    txtMarchPromo.Text = dt.Rows[8]["decMatAmount"].ToString();
+                    txtAprilPromo.Text = dt.Rows[9]["decMatAmount"].ToString();
+                    txtMayPromo.Text = dt.Rows[10]["decMatAmount"].ToString();
+                    txtJunePromo.Text = dt.Rows[11]["decMatAmount"].ToString();
+
+
 
                 }
 

@@ -129,7 +129,8 @@
                             <table class="tablestyle" style="width:80%">
                                 <tr>
                                     <td><asp:Label runat="server" CssClass="lblstyle">Designation : </asp:Label></td>
-                                    <td><asp:DropDownList runat="server" ID="ddlNETDesignation" CssClass="ddlstyle"></asp:DropDownList></td>
+                                    <td><asp:DropDownList runat="server" ID="ddlNETDesignation" CssClass="ddlstyle"
+                                        AutoPostBack="true" OnSelectedIndexChanged="ddlNETDesignation_SelectedIndexChanged"></asp:DropDownList></td>
                                 </tr>
                                 <tr>
                                     <td><asp:Label runat="server" CssClass="lblstyle">Channel : </asp:Label></td>
@@ -185,7 +186,8 @@
                             <table class="tablestyle" style="width:100%">
                                 <tr>
                                     <td><asp:Label runat="server" ID="Label1" Text="Designation : "></asp:Label></td>
-                                    <td><asp:DropDownList runat="server" ID="ddlEPoldDesignation" CssClass="ddlstyle"></asp:DropDownList></td>
+                                    <td><asp:DropDownList runat="server" ID="ddlEPoldDesignation" CssClass="ddlstyle"
+                                        AutoPostBack="true" OnSelectedIndexChanged="ddlEPoldDesignation_SelectedIndexChanged"></asp:DropDownList></td>
                                     <td><asp:Label runat="server" ID="Label2" Text="New Designation : "></asp:Label></td>
                                     <td><asp:DropDownList runat="server" ID="ddlEPnewDesignation" CssClass="ddlstyle"></asp:DropDownList></td>
                                 </tr>
@@ -257,7 +259,8 @@
                             <table class="tablestyle" style="width:100%">
                                 <tr>
                                     <td><asp:Label runat="server" ID="Label16" Text="Designation : "></asp:Label></td>
-                                    <td><asp:DropDownList runat="server" ID="ddlOETOldDesignation" CssClass="ddlstyle"></asp:DropDownList></td>
+                                    <td><asp:DropDownList runat="server" ID="ddlOETOldDesignation" CssClass="ddlstyle"
+                                        AutoPostBack="true" OnSelectedIndexChanged="ddlOETOldDesignation_SelectedIndexChanged"></asp:DropDownList></td>
                                     <td></td>
                                     <td></td>
                                 </tr>
@@ -330,7 +333,8 @@
                             <table class="tablestyle" style="width:80%">
                                 <tr>
                                     <td><asp:Label runat="server" CssClass="lblstyle">Designation : </asp:Label></td>
-                                    <td><asp:DropDownList runat="server" ID="ddlOERDesignation" CssClass="ddlstyle"></asp:DropDownList></td>
+                                    <td><asp:DropDownList runat="server" ID="ddlOERDesignation" CssClass="ddlstyle"
+                                        AutoPostBack="true" OnSelectedIndexChanged="ddlOERDesignation_SelectedIndexChanged"></asp:DropDownList></td>
                                 </tr>
                                 <tr>
                                     <td><asp:Label runat="server" CssClass="lblstyle">Channel : </asp:Label></td>

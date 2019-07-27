@@ -3131,6 +3131,7 @@ SELECT strEmployeeName, intEmployeeID FROM tblEmployee WHERE (intEmployeeID = @i
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NewGEOId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OldGEOId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@levelID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Message", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -3138,7 +3139,7 @@ SELECT strEmployeeName, intEmployeeID FROM tblEmployee WHERE (intEmployeeID = @i
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual EmployeeTransferNpromotion.EmployeeTransferNpromotionActionDataTable EmployeeTransferNpromotionUpdate(global::System.Nullable<int> type, global::System.Nullable<int> Enroll, global::System.Nullable<global::System.DateTime> Date, global::System.Nullable<int> NewDesignationId, global::System.Nullable<int> NewChannel, global::System.Nullable<int> OldChannel, global::System.Nullable<int> NewGEOId, global::System.Nullable<int> OldGEOId, global::System.Nullable<int> UserID, ref string Message) {
+        public virtual EmployeeTransferNpromotion.EmployeeTransferNpromotionActionDataTable EmployeeTransferNpromotionUpdate(global::System.Nullable<int> type, global::System.Nullable<int> Enroll, global::System.Nullable<global::System.DateTime> Date, global::System.Nullable<int> NewDesignationId, global::System.Nullable<int> NewChannel, global::System.Nullable<int> OldChannel, global::System.Nullable<int> NewGEOId, global::System.Nullable<int> OldGEOId, global::System.Nullable<int> UserID, global::System.Nullable<int> levelID, ref string Message) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((type.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(type.Value));
@@ -3194,20 +3195,26 @@ SELECT strEmployeeName, intEmployeeID FROM tblEmployee WHERE (intEmployeeID = @i
             else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((Message == null)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            if ((levelID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(levelID.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(Message));
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((Message == null)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(Message));
             }
             EmployeeTransferNpromotion.EmployeeTransferNpromotionActionDataTable dataTable = new EmployeeTransferNpromotion.EmployeeTransferNpromotionActionDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[10].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[10].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[11].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[11].Value.GetType() == typeof(global::System.DBNull)))) {
                 Message = null;
             }
             else {
-                Message = ((string)(this.Adapter.SelectCommand.Parameters[10].Value));
+                Message = ((string)(this.Adapter.SelectCommand.Parameters[11].Value));
             }
             return dataTable;
         }

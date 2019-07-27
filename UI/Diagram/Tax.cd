@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UI.OrderType">
+    <Position X="1.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAIAAAAQBAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OrderType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProductConfig" />
+      <Property Name="SupplierConfig" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI.TaxInOutType">
+    <Position X="6.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAACAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>OrderType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="PO" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI.SupplierConfig">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYCAAAAAAAAAABAAAAABAAAAAAAABAAAAAQAAAgAAA=</HashCode>
+      <FileName>OrderType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UI.ProductConfig">
+    <Position X="4.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAYCAAAAAAAAAABAAIAABAAAAAAAABAAAAAQABAAAAA=</HashCode>
+      <FileName>OrderType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="TaxType" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI.PO">
+    <Position X="9.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAYCAAAAAAAAAABAAAAABQIAAAAgAAAAAAAQgAAgAAA=</HashCode>
+      <FileName>PO.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="MRR" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI.MRR">
+    <Position X="12" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>UAYSAAAAAAAIAgBAAAAABQIAAAAAAAAAAAAQAAAggAA=</HashCode>
+      <FileName>PO.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Voucher" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI.Voucher">
+    <Position X="14.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQYCAAAAAAAAAABAAAAABAEAAAAAAgAAAAAAABEAAAA=</HashCode>
+      <FileName>Voucher.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ManagementAccount" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI.TaxType">
+    <Position X="6.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAASAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>TaxInOutType.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Voucher" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UI.ManagementAccount">
+    <Position X="14.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAQCAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>ManagementAccount.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -161,7 +161,7 @@ namespace BLL.Property
         public string InsertAGLandTrxGeneral(string Mainxml, string Docxml, int UnitID, int MouzaID,int subOfficeID, int DeedTypeID, string DeedNo,
             DateTime DeedDate,string sellerName,decimal purchaseArea, string Remark,decimal DeedValue, decimal Vat, decimal ExtendedValue,
             decimal BrokerValue,decimal RegistrationCost,decimal ait,decimal MutationCost,decimal OtherCost, string OtherCostRemark,
-            string East,string west,string North,string south)
+            string East,string west,string North,string south, int InsertBy)
         {
             string Message = string.Empty;
             try
@@ -169,7 +169,7 @@ namespace BLL.Property
                 AGLandTrxGeneralTableAdapter adapter = new AGLandTrxGeneralTableAdapter();
                 adapter.InsertAGLandTrxGeneralData(Mainxml, Docxml, UnitID, MouzaID, subOfficeID, DeedTypeID, DeedNo, DeedDate, sellerName,
                     purchaseArea, Remark, DeedValue, Vat, ExtendedValue, BrokerValue, RegistrationCost, ait, MutationCost, OtherCost,
-                    OtherCostRemark, East, west, North, south,ref Message);
+                    OtherCostRemark, East, west, North, south, InsertBy,ref Message);
             }
             catch (Exception ex)
             {
@@ -352,6 +352,36 @@ namespace BLL.Property
             }
 
             return iii;
+        }
+        public DataTable GetPlotAreaByMouza(int MouzaID)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                PlotDetailsByMouzaTableAdapter adapter = new PlotDetailsByMouzaTableAdapter();
+                dt = adapter.GetPlotDetailsByMouza(MouzaID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
+        public DataTable GetInsertedLandData(DateTime FromDate, DateTime ToDate, string DeedNo)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                ShowLandInsertedDataTableAdapter adapter = new ShowLandInsertedDataTableAdapter();
+                dt = adapter.ShowLandInsertedData(FromDate, ToDate, DeedNo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
         }
     }
 }

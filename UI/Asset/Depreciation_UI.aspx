@@ -141,11 +141,11 @@
                 <tr>
                        
                 <td style="text-align:right;"><asp:Label ID="LblAsset" runat="server" CssClass="lbl" Text="From Date"  Font-Bold="true"></asp:Label></td> 
-                <td> <asp:TextBox ID="txtDteFrom" runat="server" Font-Bold="true" CssClass="txtBox"></asp:TextBox>
+                <td> <asp:TextBox ID="txtDteFrom" runat="server" Font-Bold="true" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtenderMonthly" runat="server" Format="yyyy-MMMM-dd" TargetControlID="txtDteFrom"></cc1:CalendarExtender> </td>
                             
                 <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="To Date"  Font-Bold="true"></asp:Label></td> 
-                <td> <asp:TextBox ID="txtdteTo" runat="server" Font-Bold="true" CssClass="txtBox" AutoPostBack="true" OnTextChanged="txtdteTo_TextChanged"></asp:TextBox>
+                <td> <asp:TextBox ID="txtdteTo" runat="server" Font-Bold="true" CssClass="txtBox" AutoPostBack="true" OnTextChanged="txtdteTo_TextChanged" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MMMM-dd" TargetControlID="txtdteTo"></cc1:CalendarExtender> </td>
 
                 </tr>

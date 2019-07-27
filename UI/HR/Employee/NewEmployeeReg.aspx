@@ -231,7 +231,7 @@
                 </td>
 
                 <td style="text-align:right;"><asp:Label ID="lblappointment" CssClass="lbl" runat="server" Text="Joining-Date : "></asp:Label></td>
-                <td><asp:TextBox ID="txtJoiningDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                <td><asp:TextBox ID="txtJoiningDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                     <cc1:CalendarExtender ID="CEA" runat="server" Format="yyyy-MM-dd" TargetControlID="txtJoiningDate">
                     </cc1:CalendarExtender> 
                 </td>

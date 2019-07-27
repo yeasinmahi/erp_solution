@@ -10,8 +10,8 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
     <style>
-        body{
-            font-size:12px
+        body {
+            font-size: 12px
         }
     </style>
 </head>
@@ -161,19 +161,22 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6 col-xs-12">
-                                    <div class="info-box">
-                                        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+                                    <a href="../Reports/EmployeeAttendanceMonthWise.aspx">
+                                        <div class="info-box">
+                                            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
 
-                                        <div class="info-box-content">
-                                            <span class="info-box-text">Todays Attendance</span>
-                                            <span class="info-box-number">8:55 AM</span>
+                                            <div class="info-box-content">
+                                                <span class="info-box-text">Todays Attendance</span>
+                                                <span class="info-box-number" id="spanTodaysAttendance" runat="server">Not Found</span>
+                                            </div>
+                                            <!-- /.info-box-content -->
                                         </div>
-                                        <!-- /.info-box-content -->
-                                    </div>
+                                    </a>
                                     <!-- /.info-box -->
                                 </div>
                                 <!-- /.col -->
                                 <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <a href="../Cafeteria/CafeteriaService.aspx">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
 
@@ -183,6 +186,7 @@
                                         </div>
                                         <!-- /.info-box-content -->
                                     </div>
+                                        </a>
                                     <!-- /.info-box -->
                                 </div>
                                 <!-- /.col -->
@@ -191,6 +195,7 @@
                                 <div class="clearfix visible-sm-block"></div>
 
                                 <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <a href="../Reports/EmployeeAttendanceMonthWise.aspx">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
 
@@ -198,8 +203,10 @@
                                             <span class="info-box-text">Total Late (Current Month)</span>
                                             <span class="info-box-number">2</span>
                                         </div>
+                                        </a>
                                         <!-- /.info-box-content -->
                                     </div>
+                                        </a>
                                     <!-- /.info-box -->
                                 </div>
                                 <!-- /.col -->

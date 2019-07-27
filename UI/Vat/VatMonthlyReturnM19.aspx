@@ -100,7 +100,7 @@
         <asp:SessionParameter Name="unitid" SessionField="sesUnit" Type="Int32" /></SelectParameters></asp:ObjectDataSource>        
         </td>
         <td style="text-align:right; font-size:11px;">Date : </td>
-        <td><asp:TextBox ID="txtDate" runat="server" CssClass="txtBox"></asp:TextBox>
+        <td><asp:TextBox ID="txtDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="CEA" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender></td>
         </tr>
 

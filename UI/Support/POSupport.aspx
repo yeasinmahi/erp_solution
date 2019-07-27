@@ -247,12 +247,12 @@
                 </td>
 
                 <td style="font-weight:bold; text-align:right; color:#0b6016;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Font-Bold="true" Font-Size="11px" Text="Last Shipment Date:"></asp:Label></td>                
-                <td><asp:TextBox ID="txtLastShipmentDate" runat="server" AutoPostBack="false" CssClass="txtBox" Font-Bold="false" ForeColor="Black" Font-Size="11px" Enabled="true" Width="210px"></asp:TextBox>
+                <td><asp:TextBox ID="txtLastShipmentDate" runat="server" AutoPostBack="false" CssClass="txtBox" Font-Bold="false" ForeColor="Black" Font-Size="11px" Enabled="true" Width="210px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtLastShipmentDate"></cc1:CalendarExtender></td>                                     
             </tr>
             <tr>
                 <td style="font-weight:bold; text-align:right; color:#0b6016;"><asp:Label ID="lblPODate" runat="server" CssClass="lbl" Font-Bold="true" Font-Size="11px" Text="PO Date :"></asp:Label></td>                
-                <td><asp:TextBox ID="txtPODate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px" Font-Bold="false" ForeColor="Black" Font-Size="11px"></asp:TextBox>
+                <td><asp:TextBox ID="txtPODate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px" Font-Bold="false" ForeColor="Black" Font-Size="11px" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtPODate"></cc1:CalendarExtender></td> 
 
                 <td style="font-weight:bold; text-align:right; color:#0b6016;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Font-Bold="true" Font-Size="11px" Text="Payment terms"></asp:Label></td>
