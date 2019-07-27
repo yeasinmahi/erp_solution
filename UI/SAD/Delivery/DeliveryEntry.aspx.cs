@@ -149,7 +149,7 @@ namespace UI.SAD.Delivery
                 else
                 {
 
-                    PickingPageloadDataBind(Request.QueryString["strReportType"], Request.QueryString["PopupType"],int.Parse(ddlOrderType.SelectedValue));
+                    PickingPageloadDataBind(Request.QueryString["strReportType"], Request.QueryString["PopupType"],int.Parse(Request.QueryString["intid"]));
                     txtCustomer.Enabled = false;
                     txtShipToParty.Enabled = false;
                     txtCustomerAddress.Enabled = false;

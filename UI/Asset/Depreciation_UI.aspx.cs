@@ -41,6 +41,13 @@ namespace UI.Asset
                 ddlunit.DataTextField = "strName";
                 ddlunit.DataValueField = "Id";
                 ddlunit.DataBind();
+
+                dt = objdep.AssetType();
+                ddlCat.DataSource = dt;
+                ddlCat.DataTextField = "strAssetTypeName";
+                ddlCat.DataValueField = "intAssetTypeID";
+                ddlCat.DataBind();
+
                 ddlunit.Items.Insert(0, new ListItem("Select", "0"));
                 try
                 {
@@ -89,17 +96,17 @@ namespace UI.Asset
                 string assetid = "0"; string assetName = ""; string assetType = ""; int assetAutoId = 0;
                 if (arrayKey.Length > 0)
                 { assetName = arrayKey[0].ToString(); assetid = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
-                
 
+                int intType = int.Parse(ddlCat.SelectedValue.ToString());
 
                 xmlString = "<voucher><voucherentry AssetCOA=" + '"' + assetid + '"' + "/></voucher>".ToString();
                 if (int.Parse(ddltype.SelectedValue) == 1)
                 {
-                    dt = objdep.DepreciationView(6, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), 0, 0); 
+                    dt = objdep.DepreciationView(6, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), 0, intType); 
                 }
                 else
                 { 
-                    dt = objdep.DepreciationView(6, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), int.Parse(ddlunit.SelectedValue), 0);
+                    dt = objdep.DepreciationView(6, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), int.Parse(ddlunit.SelectedValue), intType);
                     //  ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true); 
                 }
                 dgvGridView.DataSource = dt;
