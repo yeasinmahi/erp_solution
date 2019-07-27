@@ -11,61 +11,47 @@ using System.Windows.Forms;
 using UI.ClassFiles;
 using Utility;
 using Label = System.Web.UI.WebControls.Label;
-using BLL.AutoSearch;
-using System.Web.Services;
 
 namespace UI.PaymentModule
 {
     public partial class FG_Cost_Update : BasePage
     {
-        public static ItemBll itemBll;
-        
         DataTable dt = new DataTable();
         DataTable dts = new DataTable();
         HR_BLL.Global.Unit unitObj = new HR_BLL.Global.Unit();
         InventoryTransfer_BLL inventoryTransfer_Obj = new InventoryTransfer_BLL();
         DateTime dteDate;
         int type, GroupID=0, ItemId=0, UnitID=0, CoAID=0, itemTypeId;
-        string xmlString="", _filePathForXml, msg="", code, ItemName;
+        string xmlString="", _filePathForXml, msg="", code;
         private string message;
         decimal monRate=0; decimal total = 0;
         bool isExistM, isExistL, isExistO, isExistItemT, isExistItemM;
-        string[] arrayKey;
-        char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                itemBll = new ItemBll();
                 Session["obj"] = null;
                 dgvReport.DataSource = "";
                 dgvReport.DataBind();
                 //try { File.Delete(GetXmlFilePath()); } catch { }
                 LoadUnit();
-                LoadItemType();
+                 LoadItemType();
                 itemTypeId = Convert.ToInt32( ddlItemType.SelectedItem.Value);
                 LoadCostGroup(itemTypeId);
                 GroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
                 LoadGL(GroupID);
 
                 UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
-                //LoadItem(UnitID);
+                LoadItem(UnitID);
                 dt = unitObj.GetUnitDescriptionByUnitID(UnitID);
                 lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
 
-            }
-            else
-            {
-                var tuple = Item();
-                ItemId = tuple.Item1;
             }
         }
         private void LoadUnit()
         {
             dt = unitObj.GetUnits(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             ddlUnit.Loads(dt, "intUnitID", "strUnit");
-            UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
-            Session["UnitId"] = UnitID.ToString();
         }
         private void LoadItemType()
         {
@@ -98,16 +84,15 @@ namespace UI.PaymentModule
             dt = inventoryTransfer_Obj.GetFgCostUpdate(2, CostGroupID, xmlString, UnitID);
             ddlGL.LoadWithSelect(dt, "intAccID", "strAccName");
         }
-        //private void LoadItem(int unitid)
-        //{          
-        //    dt = inventoryTransfer_Obj.GetItemByUnitID(unitid);
-        //    ddlItem.Loads(dt, "intItemID", "strProductName");
-        //}
+        private void LoadItem(int unitid)
+        {          
+            dt = inventoryTransfer_Obj.GetItemByUnitID(unitid);
+            ddlItem.Loads(dt, "intItemID", "strProductName");
+        }
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
-            Session["UnitId"] = UnitID.ToString();
-            //LoadItem(UnitID);
+            LoadItem(UnitID);
 
             dt = unitObj.GetUnitDescriptionByUnitID(UnitID);
             lblUnitName.Text=dt.Rows[0]["strDescription"].ToString();
@@ -133,7 +118,7 @@ namespace UI.PaymentModule
             GroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
             LoadGL(GroupID);
             UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
-            //LoadItem(UnitID);
+            LoadItem(UnitID);
         }
         protected void dgvReport_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -177,39 +162,13 @@ namespace UI.PaymentModule
                 Toaster(ex.Message, Common.TosterType.Error);
             }
         }
+       
 
-        #region====Item Search====
-
-        [WebMethod]
-        public static string[] GetAutoCompleteData(string strSearchKey)
-        {
-            return itemBll.GetAllItemListByUnit(strSearchKey, HttpContext.Current.Session["UnitId"].ToString());
-        }
-
-        public Tuple<int,string> Item()
-        {
-            ItemId = 0;
-            ItemName = "";
-            if (!String.IsNullOrEmpty(txtItem.Text))
-            {
-                arrayKey = txtItem.Text.Split(delimiterChars);
-
-                if (arrayKey.Length > 0)
-                {
-                    ItemId = Convert.ToInt32(arrayKey[1].ToString());
-                    ItemName = arrayKey[0].ToString();
-                }
-            }
-            return new Tuple<int, string>(ItemId,ItemName);
-        }
-
-        #endregion==End Search=======
         #region ========== Show Report Operation ===========
         protected void btnShow_Click(object sender, EventArgs e)
         {
             UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
-            var tuple = Item();
-            ItemId = tuple.Item1;
+            ItemId = Convert.ToInt32(ddlItem.SelectedItem.Value);
             dt = inventoryTransfer_Obj.GetFGDetail(ItemId, UnitID);
             if(dt.Rows.Count>0)
             {
@@ -251,12 +210,8 @@ namespace UI.PaymentModule
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             int UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
-
-            //getting item id and item name
-            var tuple = Item();
-            string ItemId = tuple.Item1.ToString();
-            string ItemName = tuple.Item2;
-
+            string ItemId = ddlItem.SelectedItem.Value;
+            string ItemName = ddlItem.SelectedItem.Text;
             string costGroup = ddlCostGroup.SelectedItem.Text;
             string GLName = ddlGL.SelectedItem.Text;
             string value = txtValue.Text;
@@ -293,9 +248,6 @@ namespace UI.PaymentModule
         
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            var tuple = Item();
-            string ItemId = tuple.Item1.ToString();
-            string ItemName = tuple.Item2;
 
             DataTable dt = GetDataTable(dgvReport);
             DataTable distictTable = dt.DefaultView.ToTable(true, "column0");
@@ -320,20 +272,20 @@ namespace UI.PaymentModule
                         isExistL = dt.IsExist(r => r.Field<string>("column2") == "Labour" && r.Field<string>("column0") == itemId);
                         if (isExistM != true)
                         {
-                            msg = "Please Enter Material Cost Group For Item: " + ItemName;
+                            msg = "Please Enter Material Cost Group For Item: " + ddlItem.SelectedItem.Text;
                             Toaster(msg, "Product Cost", Common.TosterType.Warning);
                             return;
                         }
                         if (isExistL != true)
                         {
-                            msg = "Please Enter Labour Cost Group For Item: " + ItemName + " for Labour cost group";
+                            msg = "Please Enter Labour Cost Group For Item: " + ddlItem.SelectedItem.Text + " for Labour cost group";
                             Toaster(msg, "Product Cost", Common.TosterType.Warning);
                             return;
                         }
 
                         if (isExistO != true)
                         {
-                            msg = "Please Enter Overhead Cost Group For Item: " + ItemName;
+                            msg = "Please Enter Overhead Cost Group For Item: " + ddlItem.SelectedItem.Text;
                             Toaster(msg, "Product Cost", Common.TosterType.Warning);
                             return;
                         }
@@ -344,7 +296,7 @@ namespace UI.PaymentModule
                     {
                         if (isExistM != true)
                         {
-                            msg = "Please Enter Material Cost Group For Item: " + ItemName;
+                            msg = "Please Enter Material Cost Group For Item: " + ddlItem.SelectedItem.Text;
                             Toaster(msg, "Product Cost", Common.TosterType.Warning);
                             return;
                         }

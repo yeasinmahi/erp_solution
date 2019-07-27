@@ -54,32 +54,6 @@ namespace BLL.Accounts.Voucher
             }
             return dt;
         }
-        public DataTable GetCRAccountsNumber(int UnitId, int Enroll)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                dt = accountsAdapter.GetCRCPAccountData(6, UnitId, Enroll);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
-            return dt;
-        }
-        public DataTable GetCPAccountsNumber(int UnitId, int Enroll)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                dt = accountsAdapter.GetCRCPAccountData(6, UnitId, Enroll);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
-            return dt;
-        }
         #endregion
 
         #region A/C Head
@@ -153,49 +127,7 @@ namespace BLL.Accounts.Voucher
         }
         #endregion
 
-        #region Cost Center
-        public DataTable GetCRCostCentre()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                CostCenterTableAdapter adapter = new CostCenterTableAdapter();
-                dt = adapter.GetCostCentreData();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
-            return dt;
-        }
-        public DataTable GetCPCostCentre()
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                CostCenterTableAdapter adapter = new CostCenterTableAdapter();
-                dt = adapter.GetCostCentreData();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
-            return dt;
-        }
-        public DataTable GetCOAByUnitNenroll(int UnitID, int Enroll)
-        {
-            DataTable dt = new DataTable();
-            try
-            {
-                AccountsChartOfAccTableAdapter adapter = new AccountsChartOfAccTableAdapter();
-                dt = adapter.GetCOAByUnitNuser(Enroll, UnitID);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
-            return dt;
-        }
+        #region INIT
         #endregion
     }
 }

@@ -127,18 +127,5 @@ namespace UI.HR.PiceRateCalculation
             //SetVisibility("itemPanel2", gridViewIndividualReport.Rows.Count > 0);
             //SetVisibility("itemPanel", gridViewReport.Rows.Count > 0);
         }
-
-        protected void btnGenarateSalary_Click(object sender, EventArgs e)
-        {
-            int unitId = ddlUnit.SelectedValue();
-            _dt = _bll.PiecesRateSalaryGenarate(3, 0, 0, 0, unitId, 0);
-            if (_dt.Rows.Count > 0)
-            {
-                Toaster("Already Salary Generated This Month.");
-                return;
-            }
-            _dt = _bll.PiecesRateSalaryGenarate(1, 0, 0, 0, unitId, 0);
-
-        }
     }
 }

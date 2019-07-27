@@ -96,7 +96,7 @@ namespace SCM_DAL {
         
         private tblWHListALLDataTable tabletblWHListALL;
         
-        private tblSalesOrderCondition1DataTable tabletblSalesOrderCondition1;
+        private tblSalesOrderConditionDataTable tabletblSalesOrderCondition;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -234,8 +234,8 @@ namespace SCM_DAL {
                 if ((ds.Tables["tblWHListALL"] != null)) {
                     base.Tables.Add(new tblWHListALLDataTable(ds.Tables["tblWHListALL"]));
                 }
-                if ((ds.Tables["tblSalesOrderCondition1"] != null)) {
-                    base.Tables.Add(new tblSalesOrderCondition1DataTable(ds.Tables["tblSalesOrderCondition1"]));
+                if ((ds.Tables["tblSalesOrderCondition"] != null)) {
+                    base.Tables.Add(new tblSalesOrderConditionDataTable(ds.Tables["tblSalesOrderCondition"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -619,9 +619,9 @@ namespace SCM_DAL {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public tblSalesOrderCondition1DataTable tblSalesOrderCondition1 {
+        public tblSalesOrderConditionDataTable tblSalesOrderCondition {
             get {
-                return this.tabletblSalesOrderCondition1;
+                return this.tabletblSalesOrderCondition;
             }
         }
         
@@ -800,8 +800,8 @@ namespace SCM_DAL {
                 if ((ds.Tables["tblWHListALL"] != null)) {
                     base.Tables.Add(new tblWHListALLDataTable(ds.Tables["tblWHListALL"]));
                 }
-                if ((ds.Tables["tblSalesOrderCondition1"] != null)) {
-                    base.Tables.Add(new tblSalesOrderCondition1DataTable(ds.Tables["tblSalesOrderCondition1"]));
+                if ((ds.Tables["tblSalesOrderCondition"] != null)) {
+                    base.Tables.Add(new tblSalesOrderConditionDataTable(ds.Tables["tblSalesOrderCondition"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -1052,10 +1052,10 @@ namespace SCM_DAL {
                     this.tabletblWHListALL.InitVars();
                 }
             }
-            this.tabletblSalesOrderCondition1 = ((tblSalesOrderCondition1DataTable)(base.Tables["tblSalesOrderCondition1"]));
+            this.tabletblSalesOrderCondition = ((tblSalesOrderConditionDataTable)(base.Tables["tblSalesOrderCondition"]));
             if ((initTable == true)) {
-                if ((this.tabletblSalesOrderCondition1 != null)) {
-                    this.tabletblSalesOrderCondition1.InitVars();
+                if ((this.tabletblSalesOrderCondition != null)) {
+                    this.tabletblSalesOrderCondition.InitVars();
                 }
             }
         }
@@ -1140,8 +1140,8 @@ namespace SCM_DAL {
             base.Tables.Add(this.tabletblWastageWareHouse);
             this.tabletblWHListALL = new tblWHListALLDataTable();
             base.Tables.Add(this.tabletblWHListALL);
-            this.tabletblSalesOrderCondition1 = new tblSalesOrderCondition1DataTable();
-            base.Tables.Add(this.tabletblSalesOrderCondition1);
+            this.tabletblSalesOrderCondition = new tblSalesOrderConditionDataTable();
+            base.Tables.Add(this.tabletblSalesOrderCondition);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1362,7 +1362,7 @@ namespace SCM_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializetblSalesOrderCondition1() {
+        private bool ShouldSerializetblSalesOrderCondition() {
             return false;
         }
         
@@ -1530,7 +1530,7 @@ namespace SCM_DAL {
         public delegate void tblWHListALLRowChangeEventHandler(object sender, tblWHListALLRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void tblSalesOrderCondition1RowChangeEventHandler(object sender, tblSalesOrderCondition1RowChangeEvent e);
+        public delegate void tblSalesOrderConditionRowChangeEventHandler(object sender, tblSalesOrderConditionRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -12058,12 +12058,12 @@ namespace SCM_DAL {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class tblSalesOrderCondition1DataTable : global::System.Data.TypedTableBase<tblSalesOrderCondition1Row> {
+        public partial class tblSalesOrderConditionDataTable : global::System.Data.TypedTableBase<tblSalesOrderConditionRow> {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSalesOrderCondition1DataTable() {
-                this.TableName = "tblSalesOrderCondition1";
+            public tblSalesOrderConditionDataTable() {
+                this.TableName = "tblSalesOrderCondition";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -12071,7 +12071,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal tblSalesOrderCondition1DataTable(global::System.Data.DataTable table) {
+            internal tblSalesOrderConditionDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -12088,7 +12088,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected tblSalesOrderCondition1DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected tblSalesOrderConditionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -12104,44 +12104,44 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSalesOrderCondition1Row this[int index] {
+            public tblSalesOrderConditionRow this[int index] {
                 get {
-                    return ((tblSalesOrderCondition1Row)(this.Rows[index]));
+                    return ((tblSalesOrderConditionRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblSalesOrderCondition1RowChangeEventHandler tblSalesOrderCondition1RowChanging;
+            public event tblSalesOrderConditionRowChangeEventHandler tblSalesOrderConditionRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblSalesOrderCondition1RowChangeEventHandler tblSalesOrderCondition1RowChanged;
+            public event tblSalesOrderConditionRowChangeEventHandler tblSalesOrderConditionRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblSalesOrderCondition1RowChangeEventHandler tblSalesOrderCondition1RowDeleting;
+            public event tblSalesOrderConditionRowChangeEventHandler tblSalesOrderConditionRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblSalesOrderCondition1RowChangeEventHandler tblSalesOrderCondition1RowDeleted;
+            public event tblSalesOrderConditionRowChangeEventHandler tblSalesOrderConditionRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddtblSalesOrderCondition1Row(tblSalesOrderCondition1Row row) {
+            public void AddtblSalesOrderConditionRow(tblSalesOrderConditionRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSalesOrderCondition1Row AddtblSalesOrderCondition1Row() {
-                tblSalesOrderCondition1Row rowtblSalesOrderCondition1Row = ((tblSalesOrderCondition1Row)(this.NewRow()));
+            public tblSalesOrderConditionRow AddtblSalesOrderConditionRow() {
+                tblSalesOrderConditionRow rowtblSalesOrderConditionRow = ((tblSalesOrderConditionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[0];
-                rowtblSalesOrderCondition1Row.ItemArray = columnValuesArray;
-                this.Rows.Add(rowtblSalesOrderCondition1Row);
-                return rowtblSalesOrderCondition1Row;
+                rowtblSalesOrderConditionRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblSalesOrderConditionRow);
+                return rowtblSalesOrderConditionRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                tblSalesOrderCondition1DataTable cln = ((tblSalesOrderCondition1DataTable)(base.Clone()));
+                tblSalesOrderConditionDataTable cln = ((tblSalesOrderConditionDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -12149,7 +12149,7 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new tblSalesOrderCondition1DataTable();
+                return new tblSalesOrderConditionDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12164,28 +12164,28 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSalesOrderCondition1Row NewtblSalesOrderCondition1Row() {
-                return ((tblSalesOrderCondition1Row)(this.NewRow()));
+            public tblSalesOrderConditionRow NewtblSalesOrderConditionRow() {
+                return ((tblSalesOrderConditionRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new tblSalesOrderCondition1Row(builder);
+                return new tblSalesOrderConditionRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(tblSalesOrderCondition1Row);
+                return typeof(tblSalesOrderConditionRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.tblSalesOrderCondition1RowChanged != null)) {
-                    this.tblSalesOrderCondition1RowChanged(this, new tblSalesOrderCondition1RowChangeEvent(((tblSalesOrderCondition1Row)(e.Row)), e.Action));
+                if ((this.tblSalesOrderConditionRowChanged != null)) {
+                    this.tblSalesOrderConditionRowChanged(this, new tblSalesOrderConditionRowChangeEvent(((tblSalesOrderConditionRow)(e.Row)), e.Action));
                 }
             }
             
@@ -12193,8 +12193,8 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.tblSalesOrderCondition1RowChanging != null)) {
-                    this.tblSalesOrderCondition1RowChanging(this, new tblSalesOrderCondition1RowChangeEvent(((tblSalesOrderCondition1Row)(e.Row)), e.Action));
+                if ((this.tblSalesOrderConditionRowChanging != null)) {
+                    this.tblSalesOrderConditionRowChanging(this, new tblSalesOrderConditionRowChangeEvent(((tblSalesOrderConditionRow)(e.Row)), e.Action));
                 }
             }
             
@@ -12202,8 +12202,8 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.tblSalesOrderCondition1RowDeleted != null)) {
-                    this.tblSalesOrderCondition1RowDeleted(this, new tblSalesOrderCondition1RowChangeEvent(((tblSalesOrderCondition1Row)(e.Row)), e.Action));
+                if ((this.tblSalesOrderConditionRowDeleted != null)) {
+                    this.tblSalesOrderConditionRowDeleted(this, new tblSalesOrderConditionRowChangeEvent(((tblSalesOrderConditionRow)(e.Row)), e.Action));
                 }
             }
             
@@ -12211,14 +12211,14 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.tblSalesOrderCondition1RowDeleting != null)) {
-                    this.tblSalesOrderCondition1RowDeleting(this, new tblSalesOrderCondition1RowChangeEvent(((tblSalesOrderCondition1Row)(e.Row)), e.Action));
+                if ((this.tblSalesOrderConditionRowDeleting != null)) {
+                    this.tblSalesOrderConditionRowDeleting(this, new tblSalesOrderConditionRowChangeEvent(((tblSalesOrderConditionRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemovetblSalesOrderCondition1Row(tblSalesOrderCondition1Row row) {
+            public void RemovetblSalesOrderConditionRow(tblSalesOrderConditionRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -12245,7 +12245,7 @@ namespace SCM_DAL {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "tblSalesOrderCondition1DataTable";
+                attribute2.FixedValue = "tblSalesOrderConditionDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -16191,15 +16191,15 @@ namespace SCM_DAL {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class tblSalesOrderCondition1Row : global::System.Data.DataRow {
+        public partial class tblSalesOrderConditionRow : global::System.Data.DataRow {
             
-            private tblSalesOrderCondition1DataTable tabletblSalesOrderCondition1;
+            private tblSalesOrderConditionDataTable tabletblSalesOrderCondition;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal tblSalesOrderCondition1Row(global::System.Data.DataRowBuilder rb) : 
+            internal tblSalesOrderConditionRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tabletblSalesOrderCondition1 = ((tblSalesOrderCondition1DataTable)(this.Table));
+                this.tabletblSalesOrderCondition = ((tblSalesOrderConditionDataTable)(this.Table));
             }
         }
         
@@ -17431,22 +17431,22 @@ namespace SCM_DAL {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class tblSalesOrderCondition1RowChangeEvent : global::System.EventArgs {
+        public class tblSalesOrderConditionRowChangeEvent : global::System.EventArgs {
             
-            private tblSalesOrderCondition1Row eventRow;
+            private tblSalesOrderConditionRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSalesOrderCondition1RowChangeEvent(tblSalesOrderCondition1Row row, global::System.Data.DataRowAction action) {
+            public tblSalesOrderConditionRowChangeEvent(tblSalesOrderConditionRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblSalesOrderCondition1Row Row {
+            public tblSalesOrderConditionRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -24754,7 +24754,7 @@ SELECT strWastageWareHouseName, intWastageWareHouseID, strAddress FROM tblWastag
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class tblSalesOrderCondition1TableAdapter : global::System.ComponentModel.Component {
+    public partial class tblSalesOrderConditionTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -24768,7 +24768,7 @@ SELECT strWastageWareHouseName, intWastageWareHouseID, strAddress FROM tblWastag
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public tblSalesOrderCondition1TableAdapter() {
+        public tblSalesOrderConditionTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -24898,8 +24898,8 @@ SELECT strWastageWareHouseName, intWastageWareHouseID, strAddress FROM tblWastag
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual WastageNewTDS.tblSalesOrderCondition1DataTable SaveWOCondition(global::System.Nullable<int> SalesOrderId, global::System.Nullable<int> WareHouseId, string Condition, global::System.Nullable<int> InsertBy, global::System.Nullable<global::System.DateTime> InsertDate) {
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int SaveWOCondition(WastageNewTDS.tblSalesOrderConditionDataTable dataTable, global::System.Nullable<int> SalesOrderId, global::System.Nullable<int> WareHouseId, string Condition, global::System.Nullable<int> InsertBy, global::System.Nullable<global::System.DateTime> InsertDate) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((SalesOrderId.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(SalesOrderId.Value));
@@ -24931,9 +24931,11 @@ SELECT strWastageWareHouseName, intWastageWareHouseID, strAddress FROM tblWastag
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            WastageNewTDS.tblSalesOrderCondition1DataTable dataTable = new WastageNewTDS.tblSalesOrderCondition1DataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
         }
     }
     

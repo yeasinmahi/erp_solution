@@ -125,7 +125,6 @@
                                         <asp:ListItem Value="4">Salary Advice</asp:ListItem>
                                         <asp:ListItem Value="5">TADA Advice</asp:ListItem>
                                         <asp:ListItem Value="6">Piece Rate</asp:ListItem>
-                                        <asp:ListItem Value="7">Zakat Advice HO</asp:ListItem>
                                     </asp:DropDownList></td>
                                 <td style="text-align: right;">
                                     <asp:Label ID="lblUnit" runat="server" CssClass="lbl" Text="Unit Name :"></asp:Label></td>

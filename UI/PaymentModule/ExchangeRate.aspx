@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExchangeRate.aspx.cs" Inherits="UI.PaymentModule.ExchangeRate" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -21,7 +20,7 @@
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
     <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
-    <%-- <script>
+   <%-- <script>
         function ViewBillDetailsPopup(Id) {
             window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
@@ -31,63 +30,7 @@
             if (window.focus) { newwindow.focus() }
         }
     </script>--%>
-    <script type="text/javascript">
-        $(function () {
-            //Enable Disable all TextBoxes when Header Row CheckBox is checked.
-            $("[id*=chkHeader]").bind("click", function () {
-                var chkHeader = $(this);
 
-                //Find and reference the GridView.
-                var grid = $(this).closest("table");
-
-                //Loop through the CheckBoxes in each Row.
-                $("td", grid).find("input[type=checkbox]").each(function () {
-
-                    //If Header CheckBox is checked.
-                    //Then check all CheckBoxes and enable the TextBoxes.
-                    if (chkHeader.is(":checked")) {
-                        $(this).attr("checked", "checked");
-                        var td = $("td", $(this).closest("tr"));
-                        td.css({ "background-color": "#D8EBF2" });
-                        $("input[type=text]", td).removeAttr("disabled");
-                    } else {
-                        $(this).removeAttr("checked");
-                        var td = $("td", $(this).closest("tr"));
-                        td.css({ "background-color": "#FFFF" });
-                        $("input[type=text]", td).attr("disabled", "disabled");
-                    }
-                });
-            });
-
-            //Enable Disable TextBoxes in a Row when the Row CheckBox is checked.
-            $("[id*=chkRow]").bind("click", function () {
-
-                //Find and reference the GridView.
-                var grid = $(this).closest("table");
-
-                //Find and reference the Header CheckBox.
-                var chkHeader = $("[id*=chkHeader]", grid);
-
-                //If the CheckBox is Checked then enable the TextBoxes in thr Row.
-                if (!$(this).is(":checked")) {
-                    var td = $("td", $(this).closest("tr"));
-                    td.css({ "background-color": "#FFFF" });
-                    $("input[type=text]", td).attr("disabled", "disabled");
-                } else {
-                    var td = $("td", $(this).closest("tr"));
-                    td.css({ "background-color": "#D8EBF2" });
-                    $("input[type=text]", td).removeAttr("disabled");
-                }
-
-                //Enable Header Row CheckBox if all the Row CheckBoxes are checked and vice versa.
-                if ($("[id*=chkRow]", grid).length == $("[id*=chkRow]:checked", grid).length) {
-                    chkHeader.attr("checked", "checked");
-                } else {
-                    chkHeader.removeAttr("checked");
-                }
-            });
-        });
-    </script>
 
 </head>
 <body>
@@ -112,37 +55,37 @@
                 <asp:HiddenField ID="hdnconfirm" runat="server" />
                 <asp:HiddenField ID="hdnEnroll" runat="server" />
                 <asp:HiddenField ID="hdnUnit" runat="server" />
-
+                
                 <asp:HiddenField ID="hdnEmail" runat="server" />
-                <%-- <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtAllPayDate"></cc1:CalendarExtender>--%>
+               <%-- <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtAllPayDate"></cc1:CalendarExtender>--%>
 
                 <div class="divbody" style="padding-right: 10px;">
 
 
                     <table class="tbldecoration" style="width: auto; float: left;">
                         <tr>
-
-
+                           
+                           
                             <td style="text-align: right;">
                                 <asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="From"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                             <td>
                                 <asp:TextBox ID="txtFrom" runat="server" AutoPostBack="false" autocomplete="off" CssClass="txtBox1" Enabled="true" Width="110"></asp:TextBox>
                                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFrom"></cc1:CalendarExtender>
                             </td>
+                           
 
-
-
+                          
                             <td style="text-align: right; padding: 5px 0px 5px 0px">
                                 <asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click" OnClientClick="showLoader()" /></td>
                         </tr>
 
-                        <tr>
-
-                            <td colspan="3">
-
-
+                         <tr>
+                           
+                            <td colspan="6">
+                              
+                                
                                 <span style="padding-left: 15px">
-                                    <asp:Button ID="btnPrepareAllVoucher" runat="server" class="myButton" Height="30px" Width="180px" Text="Save Exchange Rate" OnClick="btnPrepareAllVoucher_Click" /></span>
+                                    <asp:Button ID="btnPrepareAllVoucher" runat="server" class="myButton" Height="30px" Width="180px" Text="Save Exchange Rate" /></span>
                                 <%--<asp:Button ID="Button1" runat="server" class="myButton" Height="30px" Width="180px" Text="Save Exchange Rate" OnClientClick="ConfirmAll()" OnClick="btnPrepareAllVoucher_Click" /></span>--%>
 
                             </td>
@@ -171,13 +114,20 @@
                     </tr>
                     <tr>
                         <td>
-
-                            <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="Both">
-                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <asp:GridView ID="dgvReport" runat="server" 
+                                CssClass="GridViewStyle" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
+                                HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true" RowStyle-Height="25px"
+                                ForeColor="Black" GridLines="Vertical" >
+                                <AlternatingRowStyle BackColor="#CCCCCC" />
                                 <Columns>
+<%--                                    <asp:TemplateField HeaderText="SL No.">
+                                        <ItemStyle HorizontalAlign="center" Width="60px" />
+                                        <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                    </asp:TemplateField>--%>
+
                                     <asp:TemplateField HeaderText="Request ID" SortExpression="intAutoID">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lblAutoID" ForeColor="black" runat="server" Text='<%# Bind("intAutoID") %>' Width="70px"></asp:LinkButton>
+                                            <asp:LinkButton ID="lblAutoID" ForeColor="black" runat="server" Text='<%# Bind("intAutoID") %>'  Width="70px"></asp:LinkButton>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" Width="70px" />
                                     </asp:TemplateField>
@@ -192,7 +142,7 @@
 
                                     <asp:TemplateField HeaderText="Particualars" SortExpression="strParticualars">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lblParticualars" runat="server" ForeColor="black" Text='<%# Bind("strParticualars") %>' Width="200px"></asp:LinkButton>
+                                            <asp:LinkButton ID="lblParticualars" runat="server" ForeColor="black" Text='<%# Bind("strParticualars") %>'  Width="200px"></asp:LinkButton>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" Width="200px" />
                                     </asp:TemplateField>
@@ -204,7 +154,7 @@
                                         <ItemStyle HorizontalAlign="center" Width="90px" />
                                     </asp:TemplateField>
 
-
+                                    
                                     <asp:TemplateField HeaderText="Currency" SortExpression="strCurrencyName">
                                         <ItemTemplate>
                                             <asp:Label ID="lblCurrency" runat="server" Text='<%# Bind("strCurrencyName") %>' Width="50px"></asp:Label>
@@ -212,39 +162,32 @@
                                         <ItemStyle HorizontalAlign="center" Width="50px" />
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Actual Exchange Rate" ItemStyle-HorizontalAlign="right" SortExpression="numActualExcRate">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txtActualRate" CssClass="txtBox" Width="70px" ForeColor="Blue" runat="server" Text='<%# Bind("numActualExcRate", "{0:n2}") %>'></asp:TextBox>
-                                        </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="right" Width="70px" />
-                                    </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Actual Exchange Rate" ItemStyle-HorizontalAlign="right" SortExpression="numActualExcRate">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="txtActualRate" CssClass="txtBox" Width="70px" forecolor="Blue" runat="server" Text='<%# Bind("numActualExcRate", "{0:n2}") %>' ></asp:TextBox></ItemTemplate>
+                                            <ItemStyle HorizontalAlign="right" Width="70px" />
+                                        </asp:TemplateField>
 
-                                    <asp:TemplateField>
+                                        <asp:TemplateField>
                                         <HeaderTemplate>
-                                            <asp:CheckBox ID="chkHeader" runat="server" />
-                                        </HeaderTemplate>
+                                            <asp:CheckBox ID="chkHeader" runat="server" /></HeaderTemplate>
                                         <ItemTemplate>
                                             <asp:CheckBox ID="chkRow" runat="server" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
+
+
+
                                 </Columns>
-                                <EditRowStyle BackColor="#999999" />
-                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
-                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                             </asp:GridView>
                         </td>
                     </tr>
                 </table>
 
-            </ContentTemplate>
+                 </ContentTemplate>
         </asp:UpdatePanel>
     </form>
 </body>

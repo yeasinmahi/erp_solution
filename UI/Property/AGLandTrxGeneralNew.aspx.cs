@@ -40,22 +40,6 @@ namespace UI.Property
 
 
         DateTime DeedDate;
-
-        protected void txtPercentage_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                decimal DeedValue = !string.IsNullOrEmpty(txtDeedValue.Text) ? decimal.Parse(txtDeedValue.Text.Trim()) : 1;
-                decimal percentage = !string.IsNullOrEmpty(txtPercentage.Text) ? decimal.Parse(txtPercentage.Text.Trim()): 1;
-                decimal registrationValue = (DeedValue * percentage / 100);
-                txtRegistrationCost.Text = registrationValue.ToString("#.##");
-            }
-            catch (Exception ex)
-            {
-                
-            }
-        }
-
         private decimal PurchasedLand, DeedValue, AIT, Vat, MutationFee, ExtendedValue, OtherCost, Broker, RegistrationCost,
             TotalExpense, AddPlotQty;
         #endregion
@@ -112,7 +96,6 @@ namespace UI.Property
                     tabShowData.CssClass = "Initial";
                     mainView.ActiveViewIndex = 1;
                     lblqPurchaseLand.Text = !string.IsNullOrEmpty(txtPurchaseLand.Text) ? txtPurchaseLand.Text.ToString() : "0.00";
-                    btnCalculation_Click(null, null);
                 }
                 else
                 {

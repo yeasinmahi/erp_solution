@@ -32,7 +32,7 @@
         }
 
         .lblstyle {
-            font-size: 12px;
+            font-size: 15px;
             padding-right: 2px
         }
 
@@ -114,8 +114,7 @@
                 <div style="height: 30px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
-                <asp:HiddenField runat="server" ID="hfCRCPAccountID" />
-                <asp:HiddenField runat="server" ID="hfCRCPAccountNo" />
+
                 <div class="leaveApplication_container">
                     <asp:Button Text="Bank Receive" ID="tabBankReceive" CssClass="Initial tabstyle" runat="server" OnClick="tabBankReceive_Click" />
                     <asp:Button Text="Bank Payment" ID="tabBankPayment" CssClass="Initial tabstyle" runat="server" OnClick="tabBankPayment_Click" />
@@ -130,34 +129,22 @@
                             <table class="tablestyle">
                                 <tr>
                                     <td class="tdstyle">
-                                        <asp:Label runat="server" CssClass="lblstyle">A/C No : </asp:Label>
-                                    </td>
+                                        <asp:Label runat="server" CssClass="lblstyle">A/C No : </asp:Label></td>
                                     <td>
-                                        <asp:DropDownList runat="server" ID="ddlBRAccountNo" CssClass="ddlstyle"></asp:DropDownList>
-                                    </td>
+                                        <asp:DropDownList runat="server" ID="ddlBRAccountNo" CssClass="ddlstyle"></asp:DropDownList></td>
 
                                     <td class="tdstyle">
-                                        <asp:Label runat="server" CssClass="lblstyle">Instrument : </asp:Label>
-                                    </td>
+                                        <asp:Label runat="server" CssClass="lblstyle">Instrument : </asp:Label></td>
                                     <td>
-                                        <asp:DropDownList runat="server" ID="ddlBRInstrument" CssClass="ddlstyle" AutoPostBack="true" OnSelectedIndexChanged="ddlBRInstrument_SelectedIndexChanged"></asp:DropDownList>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="tdstyle">
-                                        <asp:Label runat="server" CssClass="lblstyle"> No : </asp:Label>
-
-                                    </td>
-                                    <td>
-                                        <asp:TextBox runat="server" ID="txtBRNo" CssClass="txtstyle" Height="22px"></asp:TextBox>
-
-                                    </td>
+                                        <asp:DropDownList runat="server" ID="ddlBRInstrument" CssClass="ddlstyle" AutoPostBack="true" OnSelectedIndexChanged="ddlBRInstrument_SelectedIndexChanged"></asp:DropDownList></td>
 
                                     <td class="tdstyle">
-                                        <asp:Label runat="server" CssClass="lblstyle">Date : </asp:Label>
+                                        <asp:Label runat="server" CssClass="lblstyle"> No : </asp:Label></td>
+                                    <td>
+                                        <asp:TextBox runat="server" ID="txtBRNo" CssClass="txtstyle" Height="22px"></asp:TextBox></td>
 
-                                    </td>
+                                    <td class="tdstyle">
+                                        <asp:Label runat="server" CssClass="lblstyle">Date : </asp:Label></td>
                                     <td>
                                         <asp:TextBox runat="server" ID="txtBankReceiveDate" CssClass="txtstyle" Height="22px"></asp:TextBox>
                                         <cc1:CalendarExtender runat="server" ID="txtBankReceiveDateCalender" TargetControlID="txtBankReceiveDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
@@ -176,8 +163,7 @@
                                         <asp:HiddenField runat="server" ID="hfTotalBRDebitAmount" />
                                         <asp:HiddenField runat="server" ID="hfTotalBRCreditAmount" />
                                     </td>
-                                </tr>
-                                <tr>
+
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Narration : </asp:Label></td>
                                     <td>
@@ -191,7 +177,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" style="text-align: center">
+                                    <td colspan="8" style="text-align: center">
                                         <asp:GridView ID="gvBankReceive" runat="server" Width="80%" AutoGenerateColumns="False"
                                             BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"
                                             CellPadding="5" Font-Size="12px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true"
@@ -241,11 +227,8 @@
                                         </asp:GridView>
                                     </td>
                                 </tr>
-                                 <tr>
-                                    <td colspan="4"><hr /></td>
-                                </tr>
                                 <tr>
-                                    
+                                    <td colspan="4"></td>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Receive From : </asp:Label>
                                     </td>
@@ -271,8 +254,6 @@
                                     <td>
                                         <asp:DropDownList runat="server" ID="ddlBankPaymentInstrument" CssClass="ddlstyle" AutoPostBack="true" OnSelectedIndexChanged="ddlBankPaymentInstrument_SelectedIndexChanged"></asp:DropDownList></td>
 
-                                </tr>
-                                <tr>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">No : </asp:Label></td>
                                     <td>
@@ -298,11 +279,10 @@
                                         <asp:HiddenField runat="server" ID="hfBPDebitAmount" />
                                         <asp:HiddenField runat="server" ID="hfBPCreditAmount" />
                                     </td>
-                                </tr>
-                                <tr>
+
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Narration : </asp:Label>
-                                        <asp:HiddenField runat="server" ID="hfBPNarration" />
+                                         <asp:HiddenField runat="server" ID="hfBPNarration" />
                                     </td>
                                     <td>
                                         <asp:TextBox runat="server" ID="txtBankPaymentNarration" CssClass="txtstyle" TextMode="MultiLine" Columns="3" Rows="5"></asp:TextBox></td>
@@ -313,7 +293,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4">
+                                    <td colspan="8">
                                         <asp:GridView ID="gvBankPayment" runat="server" AutoGenerateColumns="False" Width="100%"
                                             BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"
                                             CellPadding="5" Font-Size="11px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true"
@@ -364,9 +344,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4"><hr /></td>
-                                </tr>
-                                <tr>
+                                    <td colspan="4"></td>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Pay To : </asp:Label>
                                     </td>
@@ -384,7 +362,7 @@
                                 <tr>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Credit A/C : </asp:Label></td>
-                                    <td>
+                                    <td colspan="3">
                                         <asp:DropDownList runat="server" ID="ddlCRCreditAccount" CssClass="ddlstyle"></asp:DropDownList>
                                     </td>
 
@@ -392,33 +370,37 @@
                                         <asp:Label runat="server" CssClass="lblstyle">Amount : </asp:Label></td>
                                     <td>
                                         <asp:TextBox runat="server" ID="txtCRCreditAmount" CssClass="txtstyle"></asp:TextBox>
-                                        <asp:HiddenField runat="server" ID="hfCRCreditAmount" />
-                                        <asp:HiddenField runat="server" ID="hfCRDebitAmount" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Narration : </asp:Label></td>
-                                    <td>
-                                        <asp:TextBox runat="server" ID="txtCRNarration" CssClass="txtstyle" TextMode="MultiLine"></asp:TextBox>
-                                        <asp:HiddenField runat="server" ID="hfCRNarration" />
+                                    <td colspan="4">
+                                        <asp:TextBox runat="server" ID="TextBox1" CssClass="txtstyle"></asp:TextBox>
                                     </td>
+                                    <td class="tdstyle">
+                                        <asp:Button runat="server" ID="btnCRAdd" Text="ADD" CssClass="btnstyle-sm" OnClick="btnCRAdd_Click" />
+                                        <asp:Button runat="server" ID="btnCRDelete" Text="Delete" CssClass="btnstyle-sm" OnClick="btnCRDelete_Click" />
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Cost Centre : </asp:Label>
                                     </td>
                                     <td>
                                         <asp:DropDownList runat="server" ID="ddlCRCostCentre" CssClass="ddlstyle"></asp:DropDownList>
                                     </td>
+
+                                    <td></td>
+                                    <td></td>
+
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
-                                     <td colspan="4" class="tdstyle">
-                                        <asp:Button runat="server" ID="btnCRAdd" Text="ADD" CssClass="btnstyle-sm" OnClick="btnCRAdd_Click" />
-                                        <asp:Button runat="server" ID="btnCRDelete" Text="Delete" CssClass="btnstyle-sm" OnClick="btnCRDelete_Click" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4">
-                                        <asp:GridView ID="dgvCRVoucher" runat="server" AutoGenerateColumns="False"
+                                    <td colspan="8">
+                                        <asp:GridView ID="dgvCashReceive" runat="server" AutoGenerateColumns="False" Width="100%"
                                             BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"
                                             CellPadding="5" Font-Size="11px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true"
                                             FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
@@ -432,13 +414,13 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="A/C ID">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblCRAccountId" runat="server" Text='<%# Bind("creditaccountid") %>'></asp:Label>
+                                                        <asp:Label ID="lblCRAccountId" runat="server" Text='<%# Bind("debitaccountid") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Left" Width="45px" />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="A/C Name" SortExpression="debitaccountname">
                                                     <ItemTemplate>
-                                                        <asp:Label ID="lblCRAccountName" runat="server" Text='<%# Bind("creditaccountname") %>'></asp:Label>
+                                                        <asp:Label ID="lblCRAccountName" runat="server" Text='<%# Bind("debitaccountname") %>'></asp:Label>
                                                     </ItemTemplate>
                                                     <ItemStyle HorizontalAlign="Left" Width="250px" />
                                                 </asp:TemplateField>
@@ -467,11 +449,8 @@
                                         </asp:GridView>
                                     </td>
                                 </tr>
-                                 <tr>
-                                    <td colspan="4"><hr /></td>
-                                </tr>
-                                 
                                 <tr>
+                                    <td colspan="4"></td>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Receive From : </asp:Label>
                                     </td>
@@ -484,12 +463,12 @@
                                 </tr>
                             </table>
                         </asp:View>
-                        <asp:View runat="server" ID="viewCashPay">
-                            <table class="tablestyle">
+                         <asp:View runat="server" ID="viewCashPay">
+                             <table class="tablestyle">
                                 <tr>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Debit A/C : </asp:Label></td>
-                                    <td>
+                                    <td colspan="3">
                                         <asp:DropDownList runat="server" ID="ddlCPDebitAccount" CssClass="ddlstyle"></asp:DropDownList>
                                     </td>
 
@@ -497,17 +476,21 @@
                                         <asp:Label runat="server" CssClass="lblstyle">Amount : </asp:Label></td>
                                     <td>
                                         <asp:TextBox runat="server" ID="txtCPDebitAmount" CssClass="txtstyle"></asp:TextBox>
-                                        <asp:HiddenField runat="server" ID="hfCPCreditAmount" />
-                                        <asp:HiddenField runat="server" ID="hfCPDebitAmount" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Narration : </asp:Label></td>
-                                    <td>
-                                        <asp:TextBox runat="server" ID="txtCPNarration" CssClass="txtstyle" TextMode="MultiLine"></asp:TextBox>
-                                        <asp:HiddenField runat="server" ID="hfCPNarration" />
+                                    <td colspan="4">
+                                        <asp:TextBox runat="server" ID="txtCPNarration" CssClass="txtstyle"></asp:TextBox>
                                     </td>
+                                    <td class="tdstyle">
+                                        <asp:Button runat="server" ID="btnCPAdd" Text="ADD" CssClass="btnstyle-sm" OnClick="btnCPAdd_Click" />
+                                        <asp:Button runat="server" ID="btnCPDelete" Text="Delete" CssClass="btnstyle-sm" OnClick="btnCPDelete_Click" />
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Cost Centre : </asp:Label>
                                     </td>
@@ -515,16 +498,15 @@
                                         <asp:DropDownList runat="server" ID="ddlCPCostCentre" CssClass="ddlstyle"></asp:DropDownList>
                                     </td>
 
+                                    <td></td>
+                                    <td></td>
+
+                                    <td></td>
+                                    <td></td>
                                 </tr>
                                 <tr>
-                                     <td colspan="4" class="tdstyle">
-                                        <asp:Button runat="server" ID="btnCPAdd" Text="ADD" CssClass="btnstyle-sm" OnClick="btnCPAdd_Click" />
-                                        <asp:Button runat="server" ID="btnCPDelete" Text="Delete" CssClass="btnstyle-sm" OnClick="btnCPDelete_Click" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4">
-                                        <asp:GridView ID="dgvCPVoucher" runat="server" AutoGenerateColumns="False"
+                                    <td colspan="8">
+                                        <asp:GridView ID="dgvCPCostCentre" runat="server" AutoGenerateColumns="False" Width="100%"
                                             BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"
                                             CellPadding="5" Font-Size="11px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true"
                                             FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
@@ -546,7 +528,7 @@
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblCRAccountName" runat="server" Text='<%# Bind("debitaccountname") %>'></asp:Label>
                                                     </ItemTemplate>
-                                                    <ItemStyle HorizontalAlign="Left" Width="200px" />
+                                                    <ItemStyle HorizontalAlign="Left" Width="250px" />
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Narration" ItemStyle-HorizontalAlign="right">
                                                     <ItemTemplate>
@@ -573,11 +555,8 @@
                                         </asp:GridView>
                                     </td>
                                 </tr>
-                                 <tr>
-                                    <td colspan="4"><hr /></td>
-                                </tr>
-                                
                                 <tr>
+                                    <td colspan="4"></td>
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Pay To : </asp:Label>
                                     </td>
@@ -607,7 +586,7 @@
                                         <asp:Label runat="server" CssClass="lblstyle">Amount : </asp:Label></td>
                                     <td>
                                         <asp:TextBox runat="server" ID="txtJVAmount" CssClass="txtstyle"></asp:TextBox>
-                                        <asp:HiddenField runat="server" ID="hfJVDebitAmount" />
+                                         <asp:HiddenField runat="server" ID="hfJVDebitAmount" />
                                         <asp:HiddenField runat="server" ID="hfJVCreditAmount" />
                                     </td>
                                 </tr>
@@ -693,7 +672,7 @@
                         <asp:View runat="server" ID="viewContra">
                             <table class="tablestyle">
                                 <tr>
-                                    <td colspan="4" style="text-align: center">
+                                    <td colspan="8" style="text-align: center">
                                         <asp:RadioButton runat="server" ID="rbContraBanktoCash" Text="Bank to Cash" CssClass="lblstyle" AutoPostBack="true" OnCheckedChanged="rbContraBanktoCash_CheckedChanged" GroupName="contra" />
                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                         <asp:RadioButton runat="server" ID="rbContraCashtpoBank" Text="Cash to Bank" CssClass="lblstyle" AutoPostBack="true" OnCheckedChanged="rbContraCashtpoBank_CheckedChanged" GroupName="contra" />
@@ -710,9 +689,6 @@
                                     <td>
                                         <asp:DropDownList runat="server" ID="ddlContraInstrument" CssClass="ddlstyle" AutoPostBack="true" OnSelectedIndexChanged="ddlContraInstrument_SelectedIndexChanged"></asp:DropDownList></td>
 
-                                </tr>
-                                <tr>
-                                    
                                     <td class="tdstyle">
                                         <asp:Label runat="server" ID="lblContraNo" CssClass="lblstyle">No : </asp:Label></td>
                                     <td>
@@ -726,6 +702,7 @@
                                     </td>
                                 </tr>
                                 <tr>
+
                                     <td class="tdstyle">
                                         <asp:Label runat="server" CssClass="lblstyle">Amount : </asp:Label></td>
                                     <td>
@@ -740,10 +717,6 @@
                                     </td>
                                     <td>
                                         <asp:TextBox runat="server" ID="txtContraNarration" CssClass="txtstyle" TextMode="MultiLine" Columns="3" Rows="5"></asp:TextBox></td>
-                                </tr>
-                                <tr>
-
-                                    
                                     <td colspan="2"></td>
                                     <td colspan="2" class="tdstyle-btn">
                                         <asp:Button runat="server" ID="btnContraAdd" Text="ADD" CssClass="btnstyle-sm" OnClick="btnContraAdd_Click" />
@@ -751,7 +724,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4">
+                                    <td colspan="8">
                                         <asp:GridView ID="gvContra" runat="server" AutoGenerateColumns="False" Width="80%"
                                             BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"
                                             CellPadding="5" Font-Size="12px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true"
@@ -802,11 +775,9 @@
                                     </td>
 
                                 </tr>
-                                 <tr>
-                                    <td colspan="4"><hr /></td>
-                                </tr>
                                 <tr>
-                                    <td colspan="4" class="tdstyle-btn">
+                                    <td colspan="6"></td>
+                                    <td colspan="2" class="tdstyle-btn">
                                         <asp:Button runat="server" ID="btnContraSubmit" Text="Save CN" CssClass="btnstyle-lg" OnClick="btnContraSubmit_Click" />
                                     </td>
                                 </tr>
