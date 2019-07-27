@@ -85,13 +85,13 @@ namespace UI.HR.Employee {
         protected global::System.Web.UI.WebControls.Label Label20;
         
         /// <summary>
-        /// ddlLine control.
+        /// ddlunit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLine;
+        protected global::System.Web.UI.WebControls.DropDownList ddlunit;
         
         /// <summary>
         /// btnShow control.
@@ -103,13 +103,13 @@ namespace UI.HR.Employee {
         protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// Button1 control.
+        /// btnupdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnupdate;
         
         /// <summary>
         /// gridView control.

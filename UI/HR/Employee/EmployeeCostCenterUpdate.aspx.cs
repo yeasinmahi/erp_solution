@@ -9,93 +9,96 @@ using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
 
+using System.Web.Script.Services;
+using System.Web.Services;
+
+using HR_BLL.Employee;
+
 namespace UI.HR.Employee
 {
-    public partial class EmployeeCostCenterUpdate : BasePage
+    public partial class EmployeeCostCenterUpdate : Page
     {
         DataTable dt = new DataTable();
         CustomerGeo obj = new CustomerGeo();
-        int LineId, RegionId, AreaId, TerritoryId, PointId, ProductId, ProductUOM;
+        int LineId, RegionId, AreaId, TerritoryId, PointId, ProductId, ProductUOM,unitid,enroll,costid;
+        EmpCostCenterBLL objCost = new EmpCostCenterBLL();
         decimal Qtypcs, Qty;
         DateTime Date;
+        string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                LoadLine();
-                LoadRegion();
-               
+                GetunitList();
+
+                Session["UnitID"] = ddlunit.SelectedValue.ToString();
             }
         }
 
+        private void GetunitList()
+        {
+            dt = objCost.GetUnitListe();
+            ddlunit.DataTextField = "strUnit";
+            ddlunit.DataValueField = "intUnitID";
+            ddlunit.DataSource = dt;
+            ddlunit.DataBind();
+
+
+        }
+
         #region========Load DropDown List=====
-        public void LoadLine()
+      
+       
+        protected void ddlunit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dt = obj.GetLine();
-            ddlLine.Loads(dt, "intFGGroupID", "strFGGroupName");
+            Session["UnitID"] = ddlunit.SelectedValue.ToString();
         }
 
-        public void LoadRegion()
+        protected void btnupdate_Click1(object sender, EventArgs e)
         {
-            dt = obj.GetRegion();
-           
+            if (gridView.Rows.Count > 0)
+            {
+                string text;
+                for (int index = 0; index < gridView.Rows.Count; index++)
+                {
+                    
+
+                        enroll = int.Parse(((Label)gridView.Rows[index].FindControl("lblintEmployeeID")).Text.ToString());
+                        text = (((TextBox)gridView.Rows[index].FindControl("txtCustomer")).Text.ToString());
+                        char[] delimiterCharss = { '[', ']' };
+                        if (text != "")
+                        {
+
+                            arrayKeyItem = text.Split(delimiterCharss);
+                            costid = int.Parse(arrayKeyItem[1].ToString());
+                        objCost.getupdate(costid, enroll);
+                    }
+                        else { costid = int.Parse("0"); }
+
+                   
+                }
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save!');", true);
+             
+            }
         }
 
-        public void LoadArea(int regionId)
-        {
-            dt = obj.GetArea(regionId);
-         
-        }
-
-        
-
-        public void LoadTerritory(int areaId)
-        {
-            dt = obj.GetTerritory(areaId);
-          
-        }
-
-        public void LoadPoint(int territoryId)
-        {
-            dt = obj.GetPoint(territoryId);
-         
-        }
-        protected void ddlRegion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-         
-            LoadArea(RegionId);
-            
-        }
-
-        protected void ddlArea_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadTerritory(AreaId);
-        }
-
-        protected void ddlTerritory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-         
-            LoadPoint(TerritoryId);
-        }
+      
         #endregion =======End Dropdown========
 
         #region========Button Operations=====
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            LineId = Convert.ToInt32(ddlLine.SelectedValue);
+            unitid = Convert.ToInt32(ddlunit.SelectedValue);
            
 
-            dt = obj.GetTargetChange(1,LineId,PointId,Date,0,0,0,0);
+            dt = objCost.getEmpbyunit(unitid);
 
             if(dt.Rows.Count>0)
             {
                 gridView.Loads(dt);
             }
-            else
-            {
-                Toaster("Sorry! There is no data .", "Target Change", Common.TosterType.Warning);
-            }
+           
 
         }
 
@@ -118,29 +121,25 @@ namespace UI.HR.Employee
 
             QTYPCS.Text = pcs.ToString();
 
-            LineId = Convert.ToInt32(ddlLine.SelectedValue);
-            
-            if(!String.IsNullOrEmpty(QTY.Text) || QTY.Text!="0.00")
-            {
-                dt = obj.GetTargetChange(2, LineId, PointId, Date, Convert.ToInt32(ProductId), pcs, Convert.ToDecimal(strqty), Convert.ToInt32(strUOM));
-                Toaster("Updated Successfully.", "Target Change", Common.TosterType.Warning);
-            }
-            else
-            {
-                Toaster("Please Enter Quantity.", "Target Change", Common.TosterType.Warning);
-            }
-
+           
         }
 
         #endregion =======End Button========
 
         #region========Load Grid Operations=====
 
-        
+
 
         #endregion =======End Grid========
 
 
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetCustomerList(string prefixText, int count)
+        {
 
+            return CustomerInfoSt.GetCustomerDataForAutoFill(HttpContext.Current.Session["UnitID"].ToString(), prefixText);
+
+        }
     }
 }
