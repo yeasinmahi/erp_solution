@@ -66,7 +66,7 @@ namespace UI.Wastage
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             dt = objWastage.getCheck(int.Parse(ddlCOAName.SelectedValue));
-            if (int.Parse(dt.Rows[0]["checkcount"].ToString()) == 0)
+            if (int.Parse(dt.Rows[0]["check"].ToString()) == 0)
             {
                 intCustid=int.Parse(ddlcustlist.SelectedValue);
                 intCOAID = int.Parse(ddlCOAName.SelectedValue);

@@ -260,12 +260,10 @@
                                 <td class="td-lbl2">
                                     <span style="color:red">*</span><asp:Label ID="Label19" runat="server" CssClass="lbl-txt" Text="Registration Cost :"></asp:Label>
                                 </td>
-                                <td class="td-txt-ddl2" colspan="2">
-                                    <asp:TextBox ID="txtRegistrationCost" runat="server" CssClass="txt-field" Enabled="false"></asp:TextBox>
-                                    <asp:TextBox ID="txtPercentage" style="width:50px" runat="server" CssClass="txt-field" 
-                                        AutoPostBack="true" OnTextChanged="txtPercentage_TextChanged"></asp:TextBox><span>%</span>
+                                <td class="td-txt-ddl2">
+                                    <asp:TextBox ID="txtRegistrationCost" runat="server" CssClass="txt-field"></asp:TextBox>
                                 </td>
-                                
+                                <td></td>
                                 <td></td>
                             </tr>
                         </table>

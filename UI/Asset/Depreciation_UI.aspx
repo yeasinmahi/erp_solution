@@ -155,13 +155,18 @@
                  <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtAssetID"
                  ServiceMethod="GetAssetTransaction" MinimumPrefixLength="1" CompletionSetCount="1"
                  CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-                 CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender></td>
-                        
-                <td colspan="2" style="text-align: right;"><asp:Button ID="btnDepSubmit" OnClientClick="return Validation(this);" runat="server" Text="Depreciation Charge" OnClick="btnDepSubmit_Click"  />
-                <asp:Button ID="btnImpairment" runat="server" Text="Impirment" OnClientClick="return Validation(this);" OnClick="btnImpairment_Click"  /> 
-                 <asp:Button ID="btnShow" runat="server" Text="View" OnClick="btnShow_Click" /></td>
-                  
+                 CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender></td> 
+                    <td style="text-align:right;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Category"  Font-Bold="true"></asp:Label></td> 
+                    <td style="text-align: left;"> <asp:DropDownList ID="ddlCat" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="true"> </asp:DropDownList>                    
+                         </td> 
+    
                 </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="3" style="text-align: right;"><asp:Button ID="btnDepSubmit" OnClientClick="return Validation(this);" runat="server" Text="Depreciation Charge" OnClick="btnDepSubmit_Click"  />
+                            <asp:Button ID="btnImpairment" runat="server" Text="Impirment" OnClientClick="return Validation(this);" OnClick="btnImpairment_Click"  /> 
+                            <asp:Button ID="btnShow" runat="server" Text="View" OnClick="btnShow_Click" /></td>
+                    </tr>
                 </table>
         
                <table>

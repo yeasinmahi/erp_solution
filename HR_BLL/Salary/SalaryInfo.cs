@@ -59,32 +59,10 @@ namespace HR_BLL.Salary
            }
            catch { return new DataTable(); }
        }
-
-        public DataTable SubmitSalaryAdditionDeduction(int part,int TypeId,string xml)
-        {
-            string msg = "";
-            try
-            {
-                SprSalaryAdditionDeductionEntryTableAdapter adp = new SprSalaryAdditionDeductionEntryTableAdapter();
-                return adp.GetData(part,TypeId, xml);
-            }
-            catch (Exception ex) { msg = ex.ToString();
-                return new DataTable();
-            }
-            
-        }
-        public DataTable GetType()
-        {
-            try
-            {
-                tblSalaryAdditionDeductionTypeTableAdapter adp = new tblSalaryAdditionDeductionTypeTableAdapter();
-                return adp.GetData();
-            }
-            catch { return new DataTable(); }
-        }
-        
-
-
-
-    }
+   
+   
+   
+   
+   
+   }
 }
