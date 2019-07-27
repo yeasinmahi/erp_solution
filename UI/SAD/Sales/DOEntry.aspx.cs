@@ -600,7 +600,7 @@ namespace UI.SAD.Sales
                 }
 
                 SalesEntry se = new SalesEntry();
-                se.AddUpdateSalesDO(xml, Session["sesUserID"].ToString(), ddlUnit.SelectedValue
+               se.AddUpdateSalesDO(xml, Session["sesUserID"].ToString(), ddlUnit.SelectedValue
                     , CommonClass.GetDateAtSQLDateFormat(txtDate.Text + " 09:00 AM"), txtChallan.Text.Trim(), hdnCustomer.Value
                     , ddlCusType.SelectedValue
                     , narrTop, txtAddress.Text.Trim(), hdnDis.Value, hdnPriceId.Value, hdnPriceIdV.Value, logisCharge

@@ -245,6 +245,7 @@ namespace UI.SCM
             }
             else
             {
+                dgvIndent.UnLoad();
                 Toaster("Sorry! There is no data exist.", "Pending MRR", Common.TosterType.Warning);
             }
         }
