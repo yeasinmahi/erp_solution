@@ -1802,8 +1802,6 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnintMRRID;
             
-            private global::System.Data.DataColumn columnintpoid;
-            
             private global::System.Data.DataColumn columndteLastActionTime;
             
             private global::System.Data.DataColumn columnstrSupplierName;
@@ -1815,6 +1813,8 @@ namespace SCM_DAL {
             private global::System.Data.DataColumn columnintShipmentID;
             
             private global::System.Data.DataColumn columnintUnitID;
+            
+            private global::System.Data.DataColumn columnintPOID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -1854,14 +1854,6 @@ namespace SCM_DAL {
             public global::System.Data.DataColumn intMRRIDColumn {
                 get {
                     return this.columnintMRRID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intpoidColumn {
-                get {
-                    return this.columnintpoid;
                 }
             }
             
@@ -1915,6 +1907,14 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intPOIDColumn {
+                get {
+                    return this.columnintPOID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1950,17 +1950,17 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public PendingMRRRow AddPendingMRRRow(int intpoid, System.DateTime dteLastActionTime, string strSupplierName, string strExtnlReff, System.DateTime dteChallanDate, int intShipmentID, int intUnitID) {
+            public PendingMRRRow AddPendingMRRRow(System.DateTime dteLastActionTime, string strSupplierName, string strExtnlReff, System.DateTime dteChallanDate, int intShipmentID, int intUnitID, int intPOID) {
                 PendingMRRRow rowPendingMRRRow = ((PendingMRRRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        intpoid,
                         dteLastActionTime,
                         strSupplierName,
                         strExtnlReff,
                         dteChallanDate,
                         intShipmentID,
-                        intUnitID};
+                        intUnitID,
+                        intPOID};
                 rowPendingMRRRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPendingMRRRow);
                 return rowPendingMRRRow;
@@ -1991,13 +1991,13 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnintMRRID = base.Columns["intMRRID"];
-                this.columnintpoid = base.Columns["intpoid"];
                 this.columndteLastActionTime = base.Columns["dteLastActionTime"];
                 this.columnstrSupplierName = base.Columns["strSupplierName"];
                 this.columnstrExtnlReff = base.Columns["strExtnlReff"];
                 this.columndteChallanDate = base.Columns["dteChallanDate"];
                 this.columnintShipmentID = base.Columns["intShipmentID"];
                 this.columnintUnitID = base.Columns["intUnitID"];
+                this.columnintPOID = base.Columns["intPOID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2005,8 +2005,6 @@ namespace SCM_DAL {
             private void InitClass() {
                 this.columnintMRRID = new global::System.Data.DataColumn("intMRRID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintMRRID);
-                this.columnintpoid = new global::System.Data.DataColumn("intpoid", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintpoid);
                 this.columndteLastActionTime = new global::System.Data.DataColumn("dteLastActionTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndteLastActionTime);
                 this.columnstrSupplierName = new global::System.Data.DataColumn("strSupplierName", typeof(string), null, global::System.Data.MappingType.Element);
@@ -2019,6 +2017,8 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnintShipmentID);
                 this.columnintUnitID = new global::System.Data.DataColumn("intUnitID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintUnitID);
+                this.columnintPOID = new global::System.Data.DataColumn("intPOID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintPOID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintMRRID}, true));
                 this.columnintMRRID.AutoIncrement = true;
@@ -2027,11 +2027,11 @@ namespace SCM_DAL {
                 this.columnintMRRID.AllowDBNull = false;
                 this.columnintMRRID.ReadOnly = true;
                 this.columnintMRRID.Unique = true;
-                this.columnintpoid.AllowDBNull = false;
                 this.columndteLastActionTime.AllowDBNull = false;
                 this.columnstrSupplierName.MaxLength = 250;
                 this.columnstrExtnlReff.MaxLength = 500;
                 this.columnintUnitID.AllowDBNull = false;
+                this.columnintPOID.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2772,17 +2772,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intpoid {
-                get {
-                    return ((int)(this[this.tablePendingMRR.intpoidColumn]));
-                }
-                set {
-                    this[this.tablePendingMRR.intpoidColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public System.DateTime dteLastActionTime {
                 get {
                     return ((global::System.DateTime)(this[this.tablePendingMRR.dteLastActionTimeColumn]));
@@ -2864,6 +2853,17 @@ namespace SCM_DAL {
                 }
                 set {
                     this[this.tablePendingMRR.intUnitIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intPOID {
+                get {
+                    return ((int)(this[this.tablePendingMRR.intPOIDColumn]));
+                }
+                set {
+                    this[this.tablePendingMRR.intPOIDColumn] = value;
                 }
             }
             
@@ -4311,13 +4311,13 @@ SELECT ysnComplete, intPOID FROM tblPurchaseOrderMain WHERE (intPOID = @intPOID)
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "PendingMRR";
             tableMapping.ColumnMappings.Add("intMRRID", "intMRRID");
-            tableMapping.ColumnMappings.Add("intpoid", "intpoid");
             tableMapping.ColumnMappings.Add("dteLastActionTime", "dteLastActionTime");
             tableMapping.ColumnMappings.Add("strSupplierName", "strSupplierName");
             tableMapping.ColumnMappings.Add("strExtnlReff", "strExtnlReff");
             tableMapping.ColumnMappings.Add("dteChallanDate", "dteChallanDate");
             tableMapping.ColumnMappings.Add("intShipmentID", "intShipmentID");
             tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
+            tableMapping.ColumnMappings.Add("intPOID", "intPOID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -4334,23 +4334,23 @@ SELECT ysnComplete, intPOID FROM tblPurchaseOrderMain WHERE (intPOID = @intPOID)
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"Select mrr.intMRRID,mrr.intpoid,mrr.dteLastActionTime,  s.strSupplierName, mrr.strExtnlReff, mrr.dteChallanDate,mrr.intShipmentID,mrr.intUnitID
-From ERP_Inventory.dbo.tblFactoryReceiveMRR mrr 
-Join ERP_Inventory.dbo.tblSupplier s on mrr.intSupplierID=s.intSupplierID  
-join ERP_Inventory.dbo.tblPurchaseOrderMain po on mrr.intPOID = po.intPOID
-Where mrr.ysnFullQC is null and ysnInventory is null and  
-cast(mrr.dteLastActionTime as Date) between @fDate  and @tDate  And mrr.intWHID = @intWh";
+            this._commandCollection[0].CommandText = @"SELECT        mrr.intMRRID, mrr.intPOID, mrr.dteLastActionTime, s.strSupplierName, mrr.strExtnlReff, mrr.dteChallanDate, mrr.intShipmentID, mrr.intUnitID
+FROM            tblFactoryReceiveMRR AS mrr INNER JOIN
+                         tblSupplier AS s ON mrr.intSupplierID = s.intSupplierID INNER JOIN
+                         tblPurchaseOrderMain AS po ON mrr.intPOID = po.intPOID
+WHERE        (mrr.ysnFullQC IS NULL) AND (mrr.ysnInventory IS NULL) AND (CAST(mrr.dteLastActionTime AS Date) BETWEEN @fDate AND @tDate) AND (mrr.intWHID = @intWh) AND (po.strPoFor = @dept)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fDate", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tDate", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dept", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "strPoFor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MrrReceiveTDS.PendingMRRDataTable GetPendingMRRData(string fDate, string tDate, global::System.Nullable<int> intWh) {
+        public virtual MrrReceiveTDS.PendingMRRDataTable GetPendingMRRData(string fDate, string tDate, global::System.Nullable<int> intWh, string dept) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((fDate == null)) {
                 throw new global::System.ArgumentNullException("fDate");
@@ -4369,6 +4369,12 @@ cast(mrr.dteLastActionTime as Date) between @fDate  and @tDate  And mrr.intWHID 
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((dept == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(dept));
             }
             MrrReceiveTDS.PendingMRRDataTable dataTable = new MrrReceiveTDS.PendingMRRDataTable();
             this.Adapter.Fill(dataTable);

@@ -31,8 +31,21 @@
             if (window.focus) { newwindow.focus() }
         }
     </script>
-
-
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+     <script language="javascript" type="text/javascript">
+        function ExportDivDataToExcel() {
+            var html = $("#divExport").html();
+            html = $.trim(html);
+            html = html.replace(/>/g, '&gt;');
+            html = html.replace(/</g, '&lt;');
+            $("input[id$='HdnValue']").val(html);
+        }
+ </script>
+    <style type="text/css">
+        .auto-style1 {
+            height: 36px;
+        }
+    </style>
 </head>
 <body>
 
@@ -60,7 +73,7 @@
                 <asp:HiddenField ID="hdnysnPay" runat="server" />
                 <asp:HiddenField ID="hdnysnDutyVoucher" runat="server" />
                 <asp:HiddenField ID="hdnEmail" runat="server" />
-
+                 <asp:HiddenField ID="HdnValue" runat="server" />
                 <div class="divbody" style="padding-right: 10px;">
                     <div id="divLevel1" class="tabs_container" style="background-color: #dcdbdb; padding-top: 10px; padding-left: 5px; padding-right: -50px; border-radius: 5px;">
                         <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Bill Register" Font-Bold="true" Font-Size="16px"></asp:Label><hr />
@@ -106,10 +119,10 @@
                                     </tr>
                     </table>
                 </div>
-
+                 <div id="divExport">
                 <table>
                     <tr>
-                        <td style='text-align: center;'>
+                        <td style='text-align: center;' class="auto-style1">
                             <asp:Label ID="lblUnitName" runat="server" Font-Bold="true" Font-Size="20px"></asp:Label></td>
                     </tr>
                     <tr>
@@ -268,6 +281,7 @@
                         </td>
                     </tr>
                 </table>
+                     </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>

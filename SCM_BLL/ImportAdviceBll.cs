@@ -138,6 +138,24 @@ namespace SCM_BLL
             }
 
         }
+        public string UpdateExchangeRate(decimal rate,int userid,int requistid)
+        {
+            string msg = "";
+            try
+            {
+                UpdateExchangeRateTableAdapter adp = new UpdateExchangeRateTableAdapter();
+                adp.UpdateExchangeRate(rate,  userid,  requistid);
+
+                msg = "Successfully";
+            }
+            catch(Exception e)
+            {
+                msg = e.ToString();
+               
+            }
+            return msg;
+
+        }
 
     }
 }
