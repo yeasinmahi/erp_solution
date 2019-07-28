@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Web.UI.WebControls;
+using UI.ClassFiles;
 
 namespace Purchase_BLL.Asset
 {
@@ -876,7 +877,7 @@ namespace Purchase_BLL.Asset
             try
             {
                 SprDepreciationConfigTableAdapter depview = new SprDepreciationConfigTableAdapter();
-                return depview.DepreciationConfigGetData(intType, Convert.ToString(fyear), dtefrom, dteenddate, unitid, type);
+                return depview.DepreciationConfigGetData(intType, Convert.ToString(fyear), CommonClass.GetDateAtSQLDateFormat(dtefrom).Date , CommonClass.GetDateAtSQLDateFormat(dteenddate).Datedte, unitid, type);
             }
             catch { return new DataTable(); }
         }
