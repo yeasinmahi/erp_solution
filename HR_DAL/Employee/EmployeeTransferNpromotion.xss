@@ -9,7 +9,7 @@
     <Shape ID="DesignTable:ChannelToRoute" ZOrder="6" X="41" Y="39" Height="115" Width="274" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="24" OldDataTableHeight="24" SplitterPosition="64" />
     <Shape ID="DesignTable:StateToRoute" ZOrder="5" X="42" Y="172" Height="115" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:Employee" ZOrder="4" X="380" Y="39" Height="115" Width="225" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
-    <Shape ID="DesignTable:tblEmployee" ZOrder="2" X="683" Y="56" Height="134" Width="217" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
+    <Shape ID="DesignTable:tblEmployee" ZOrder="2" X="721" Y="56" Height="134" Width="217" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
     <Shape ID="DesignTable:EmployeeTransferNpromotionAction" ZOrder="1" X="36" Y="304" Height="96" Width="571" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
     <Shape ID="DesignSources:UpdateNewEmployeeTransferTableAdapter" ZOrder="3" X="383" Y="172" Height="67" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="63" />
   </Shapes>

@@ -186,6 +186,7 @@
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
     <Content Include="Accounts\Import\ImportAdjustment.aspx" />
+    <Content Include="Accounts\MDSlip\MDSlipCustomization.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsPaymentOrder.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewAdjustment.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewCashCredit.aspx" />
@@ -2055,6 +2056,13 @@
     </Compile>
     <Compile Include="Accounts\Import\ImportAdjustment.aspx.designer.cs">
       <DependentUpon>ImportAdjustment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipCustomization.aspx.cs">
+      <DependentUpon>MDSlipCustomization.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipCustomization.aspx.designer.cs">
+      <DependentUpon>MDSlipCustomization.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\MDSlip\MDSlipQuery.aspx.cs">
       <DependentUpon>MDSlipQuery.aspx</DependentUpon>
