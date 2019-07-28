@@ -16,6 +16,7 @@ using System.IO;
 using System.Drawing;
 using GLOBAL_BLL;
 using Flogging.Core;
+using Utility;
 
 namespace UI.Asset
 {
@@ -74,8 +75,8 @@ namespace UI.Asset
         #endregion===============Close================================
         protected void ddltype_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
-            dgvGridView.DataSource = ""; dgvGridView.DataBind();
+            dgvGridView.UnLoad();
+             
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -149,8 +150,8 @@ namespace UI.Asset
             }
             catch { }
 
-            dgvGridView.DataSource = ""; dgvGridView.DataBind();
-            
+            dgvGridView.UnLoad();
+
         }
 
         protected void btnDepSubmit_Click(object sender, EventArgs e)
@@ -215,6 +216,11 @@ namespace UI.Asset
 
             }
 
+        }
+
+        protected void ddlCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvGridView.UnLoad();
         }
 
         protected void btnImpairment_Click(object sender, EventArgs e)
