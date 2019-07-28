@@ -44,6 +44,16 @@ namespace SAD_BLL.Item
             return price.Value;
         }
 
+        public DataTable getCustomerListbyRegion(int regionid,int Lineid)
+        {
+            try
+            {
+                RegionWisePointCustomerListTableAdapter adp = new RegionWisePointCustomerListTableAdapter();
+                return adp.GetData(regionid, Lineid);
+            }
+            catch { return new DataTable(); }
+        }
+
         public DataTable getGroupProductList(string unitid)
         {
 

@@ -94,6 +94,7 @@
                                         <div class="col-md-12 col-sm-12" style="padding-top: 10px">
                                             <asp:Button ID="btnShowIndividualReport" runat="server" class="btn btn-primary form-control pull-left" Text="Individual Report" OnClientClick="return ValidateEnrollAndMonth();" OnClick="btnShowIndividualReport_OnClick" />
                                             <asp:Button ID="btnShowAllReport"  runat="server" class="btn btn-primary form-control pull-right" Text="All Report" OnClientClick="return ValidateMonth();" OnClick="btnShowAllReport_OnClick" />
+                                            <asp:Button ID="btnGenarateSalary"  runat="server" class="btn btn-primary form-control pull-right" Visible="false" Text="Salary Genarate" OnClick="btnGenarateSalary_Click" />
                                         </div>
                                     </div>
 

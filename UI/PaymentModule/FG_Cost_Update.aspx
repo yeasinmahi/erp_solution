@@ -58,8 +58,10 @@
                                 <asp:DropDownList ID="ddlGL" CssClass="ddList" Font-Bold="False" runat="server" Width="180px" Height="23px" AutoPostBack="true"></asp:DropDownList></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Item"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
-                            <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlItem" CssClass="ddList" Font-Bold="False" runat="server" Width="300px" Height="23px"></asp:DropDownList></td>
+                            <td style="text-align: left;" colspan="3">
+                                <%--<asp:DropDownList ID="ddlItem" CssClass="ddList" Font-Bold="False" runat="server" Width="300px" Height="23px"></asp:DropDownList>--%>
+                                <asp:TextBox ID="txtItem" runat="server" AutoPostBack="true" CssClass="txtBox1" Width="400px" placeholder="search here"></asp:TextBox>
+                            </td>
                         </tr>
                         <tr class="row">
                             <td style="text-align: right;">
@@ -76,7 +78,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td  colspan="9">
+                            <td  colspan="6">
                                 <div style="float:right">
                                     <asp:Button ID="btnAdd" runat="server" class="btn btn-primary" Text="Add" OnClick="btnAdd_Click" OnClientClick="return Validation();" />
                                 <asp:Button ID="btnSubmit" runat="server" class="btn btn-success" Text="Submit" OnClick="btnSubmit_Click" />
@@ -85,7 +87,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="9">
+                            <td colspan="6">
                                 <table>
                                     <tr>
                                         <td style="text-align: center;">
@@ -251,15 +253,69 @@
 
 
     <script type="text/javascript">
+         
+        $(function () {
+            SetAutoComplete();
+        });
+        $(document).ready(function() {
+            var prm = Sys.WebForms.PageRequestManager.getInstance();
+            prm.add_initializeRequest(InitializeRequest);
+            prm.add_endRequest(EndRequest);
+            SetAutoComplete();
+        });
+        function InitializeRequest(sender, args) {}
+
+        function EndRequest(sender, args) {
+              // after update occur on UpdatePanel re-init the Autocomplete
+              SetAutoComplete();
+        }
+        function SetAutoComplete() {
+            $("#txtItem").autocomplete({
+
+                source: function (request, response) {
+                    //debugger;
+                    var param = { strSearchKey: $("#txtItem").val() };
+                    $.ajax({
+                        url: "FG_Cost_Update.aspx/GetAutoCompleteData",
+                        data: JSON.stringify(param),
+                        dataType:"json",
+                        type: "post",
+                        contentType: "application/json;charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            response($.map(data.d, function (item) { return {value:item}}))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {  
+                             var err = eval("(" + XMLHttpRequest.responseText + ")");  
+                            alert(err.Message);
+                         } 
+                    });
+                },
+                minLength:1
+            });
+        }
+       
         function Validation() {
+           
+
             var effectdate = document.getElementById("txtEffectDate").value;
             var value = document.getElementById("txtValue").value;
-            if (effectdate === null || effectdate === "") {
+            var item = document.getElementById("txtItem").value;
+            if (document.getElementById('<%=ddlGL.ClientID%>').selectedIndex == 0) {
+                ShowNotification('Please Select GL', 'Product Cost Sheet', 'warning');
+                return false;
+            }
+            else if (effectdate === null || effectdate === "") {
                 ShowNotification('Date can not be blank', 'Product Cost', 'warning');
                 return false;
             }
             else if (value === null || value === "") {
                 ShowNotification('Value can not be blank', 'Product Cost', 'warning');
+                return false;
+            }
+            
+            else if (item === null || item === "") {
+                ShowNotification('Item search can not be blank', 'Product Cost Sheet', 'warning');
                 return false;
             }
             return true;

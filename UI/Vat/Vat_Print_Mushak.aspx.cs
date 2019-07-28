@@ -158,6 +158,7 @@ namespace UI.Vat
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
+            btnSave.Visible = false;
             string vatPointId = string.Empty, challan,challan2, actualDeliveryDate, customerBinNo,finalAddress,vehicleNo,vatChallanNo,customerName;
             dt = _vatObj.GetVatUnitByUser(Enroll);
             if (dt.Rows.Count > 0)
@@ -216,7 +217,7 @@ namespace UI.Vat
             }
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
-
+            btnSave.Visible = true;
         }
 
         protected void ddlChallan_OnSelectedIndexChanged(object sender, EventArgs e)
