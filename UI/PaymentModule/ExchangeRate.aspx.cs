@@ -17,12 +17,14 @@ namespace UI.PaymentModule
     {
         DateTime dteFDate; DateTime dteTDate;
         private readonly ImportAdviceBll _bll = new ImportAdviceBll();
-        DataTable dt;
+        DataTable dt; string msg;
 
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
             LoadGrid();
+
+            txtFrom.Text = DateTime.Now.ToString("yyyy/MM/dd");
         }
         private void LoadGrid()
         {
@@ -56,6 +58,35 @@ namespace UI.PaymentModule
 
             
 
+        }
+
+        protected void btnPrepareAllVoucher_Click(object sender, EventArgs e)
+        {
+           
+            if (dgvReport.Rows.Count > 0)
+            {
+
+                for (int index = 0; index < dgvReport.Rows.Count; index++)
+                {
+                    if (((CheckBox)dgvReport.Rows[index].FindControl("chkRow")).Checked == true)
+                    {
+                        int lblAutoID =int.Parse(((Label)dgvReport.Rows[index].FindControl("lblAutoID")).Text.ToString());
+                        decimal txtActualRate =decimal.Parse(((TextBox)dgvReport.Rows[index].FindControl("txtActualRate")).Text.ToString());
+
+                          msg = _bll.UpdateExchangeRate(txtActualRate,int.Parse(SessionParams.USER_ID.ToString()), lblAutoID);
+                    
+
+                    }
+                }
+              
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+
+               
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Data Available');", true);
+            }
         }
     }
  }

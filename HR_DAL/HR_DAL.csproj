@@ -233,6 +233,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DocumentTrackingTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Employee\EmpCostCenterTDS.cs">
+      <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmpCostCenterTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Employee\Employee.cs">
       <DependentUpon>Employee.xsd</DependentUpon>
     </Compile>
@@ -938,6 +946,17 @@
     </None>
     <None Include="DocumentTracking\DocumentTrackingTDS.xss">
       <DependentUpon>DocumentTrackingTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Employee\EmpCostCenterTDS.xsc">
+      <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Employee\EmpCostCenterTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmpCostCenterTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Employee\EmpCostCenterTDS.xss">
+      <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
     </None>
     <None Include="Employee\Employee.xsc">
       <DependentUpon>Employee.xsd</DependentUpon>

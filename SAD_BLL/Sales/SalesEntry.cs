@@ -21,37 +21,41 @@ namespace SAD_BLL.Sales
         , string other,string driver,string driverContact,string salesOffice, string shippingPoint, ref string code, ref string entryId
         )
         {
-            long? id = null;
-            int? priceVar_ = null, vehicleId_ = null, logisticPriceVar_ = null;
-            int? distributionPointId_ = null, vehicleTypeId_ = null, chargeId_ = null, incentiveId_ = null;
+           
+          
+                
+                long? id = null;
+                int? priceVar_ = null, vehicleId_ = null, logisticPriceVar_ = null;
+                int? distributionPointId_ = null, vehicleTypeId_ = null, chargeId_ = null, incentiveId_ = null;
 
-            try { id = long.Parse(entryId); }
-            catch { }
-            try { priceVar_ = int.Parse(priceVar); }
-            catch { }
-            try { vehicleId_ = int.Parse(vehicleId); }
-            catch { }
-            try { logisticPriceVar_ = int.Parse(logisticPriceVar); }
-            catch { }
-            try { distributionPointId_ = int.Parse(distributionPointId); }
-            catch { }
-            try { vehicleTypeId_ = int.Parse(vehicleTypeId); }
-            catch { }
-            try { chargeId_ = int.Parse(chargeId); }
-            catch { }
-            try { incentiveId_ = int.Parse(incentiveId); }
-            catch { }
+                try { id = long.Parse(entryId); }
+                catch { }
+                try { priceVar_ = int.Parse(priceVar); }
+                catch { }
+                try { vehicleId_ = int.Parse(vehicleId); }
+                catch { }
+                try { logisticPriceVar_ = int.Parse(logisticPriceVar); }
+                catch { }
+                try { distributionPointId_ = int.Parse(distributionPointId); }
+                catch { }
+                try { vehicleTypeId_ = int.Parse(vehicleTypeId); }
+                catch { }
+                try { chargeId_ = int.Parse(chargeId); }
+                catch { }
+                try { incentiveId_ = int.Parse(incentiveId); }
+                catch { }
 
-            SprSalesEntryTableAdapter ta = new SprSalesEntryTableAdapter();
+                SprSalesEntryTableAdapter ta = new SprSalesEntryTableAdapter();
 
-            ta.GetData(xmlStr, ref id, int.Parse(userId), int.Parse(unitId), date, challanNo
-                , int.Parse(customerType), int.Parse(customerId)
-                , distributionPointId_, narration, address, false, false
-                , priceVar_, logisticPriceVar_, logisticCharge, isLogistic, isLogisticByCompany, vehicleRegNo
-                , vehicleId_, vehicleTypeId_, chargeId_, charge, incentiveId_, incentive, supplierCOACode, supplierName, chargeToSupplier
-                , int.Parse(currencyId), conversionRate, int.Parse(salesTypeId), extAmount, extCause, other, driver, driverContact, int.Parse(salesOffice), int.Parse(shippingPoint), ref code);
+                ta.GetData(xmlStr, ref id, int.Parse(userId), int.Parse(unitId), date, challanNo
+                    , int.Parse(customerType), int.Parse(customerId)
+                    , distributionPointId_, narration, address, false, false
+                    , priceVar_, logisticPriceVar_, logisticCharge, isLogistic, isLogisticByCompany, vehicleRegNo
+                    , vehicleId_, vehicleTypeId_, chargeId_, charge, incentiveId_, incentive, supplierCOACode, supplierName, chargeToSupplier
+                    , int.Parse(currencyId), conversionRate, int.Parse(salesTypeId), extAmount, extCause, other, driver, driverContact, int.Parse(salesOffice), int.Parse(shippingPoint), ref code);
 
-            entryId = id.ToString();
+                entryId = id.ToString();
+              
         }
 
         public void AddUpdateSalesDO2(string xmlStr, string userId, string unitId
