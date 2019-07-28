@@ -64,12 +64,12 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
-        public DataTable GetAdviceData(int intActionBy)
+        public DataTable GetAdviceData(int type,int intActionBy)
         {
             try
             {
                 AdviceDataTableAdapter adp = new AdviceDataTableAdapter();
-                return adp.GetAdviceData(intActionBy);
+                return adp.GetAdviceData(type,intActionBy);
             }
             catch { return new DataTable(); }
         }
