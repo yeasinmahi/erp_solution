@@ -43,6 +43,10 @@
         function ViewDispatchPopup(Id) {
             window.open('VoucherPrint.aspx?ID=' + Id, 'sub', "height=500, width=900, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
+        function ShowDetailsDiv() {
+            $("#divExport").fadeIn("slow");
+            //$("#DetailsGrid").fadeOut("slow");
+        }
     </script>
 
 
@@ -177,7 +181,7 @@
                                     <asp:Button ID="btnShowReport" runat="server" Text="Show Report" OnClick="btnShowReport_Click" />
                                     <asp:Button ID="btnExport" runat="server" Text="Export" OnClick="btnExport_Click" OnClientClick="ExportDivDataToExcel()" />
                                     <asp:Button ID="btnExportIBBL" runat="server" Text="Export" OnClick="btnExportIBBL_Click" OnClientClick="ExportDivDataToExcelIBBL()" />
-                                    <asp:Button ID="btnPrint" runat="server" Text="Print" /></td>
+                                    <asp:Button ID="btnPrint" runat="server" Text="Print" OnClick="btnPrint_Click"/></td>
                             </tr>
                             <tr>
                                 <td colspan="6">

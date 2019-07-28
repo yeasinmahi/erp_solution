@@ -88,6 +88,9 @@ namespace UI.Accounts.Advice
             {
                 HideControl();
                 LoadAccountList();
+                dgvAdvice.UnLoad();
+                dgvAdviceIBBL.UnLoad();
+                dgvReport.UnLoad();
             }
             catch { }
         }
@@ -435,6 +438,12 @@ namespace UI.Accounts.Advice
         protected decimal totalamount = 0;
         protected string accounttext;
         protected string routingtext;
+
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
+
         protected void dgvAdvice_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             try
