@@ -156,7 +156,7 @@
                  CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                  CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender></td> 
                     <td style="text-align:right;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Category"  Font-Bold="true"></asp:Label></td> 
-                    <td style="text-align: left;"> <asp:DropDownList ID="ddlCat" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="true"> </asp:DropDownList>                    
+                    <td style="text-align: left;"> <asp:DropDownList ID="ddlCat" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="true" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged"> </asp:DropDownList>                    
                          </td> 
     
                 </tr>
@@ -181,15 +181,16 @@
                 <asp:TemplateField HeaderText="Unit"><ItemTemplate>                
                 <asp:Label ID="strunitID" runat="server" Text='<%# Eval("strUnit") %>'></asp:Label>
                 </ItemTemplate> </asp:TemplateField> 
-                <asp:BoundField DataField="strAssetID" HeaderText="AssetID" SortExpression="strAssetID"/>                    
-               <asp:BoundField DataField="strAssetName" HeaderText="AssetName" SortExpression="strAssetName" />
+                    <asp:BoundField DataField="strAssetID"  HeaderText="AssetID" SortExpression="strAssetID"/>
+                
+               <asp:BoundField DataField="strAssetName"  HeaderText="AssetName" SortExpression="strAssetName" ItemStyle-Width="130px" />
                 <asp:BoundField DataField="strAssetType" HeaderText="AssetType" SortExpression="strAssetType" />                  
                 <asp:BoundField DataField="strMajorCategory" HeaderText="MajorCategory" SortExpression="strMajorCategory" />         
                
                 <asp:BoundField DataField="monCostValue" HeaderText="CostValue" SortExpression="monCostValue" />                  
                 <asp:BoundField DataField="monAccumulatedDep" HeaderText="AccumulatedDep" SortExpression="monAccumulatedDep" />
                 <asp:BoundField DataField="monRateOfDep" HeaderText="RateOfDep%" SortExpression="monRateOfDep" />
-                <asp:BoundField DataField="monDepChargeDuringPeriod" HeaderText="DepChargeDuringPeriod" SortExpression="monDepChargeDuringPeriod" />                
+                <asp:BoundField DataField="monDepChargeDuringPeriod" HeaderText="ChargePeriod" SortExpression="monDepChargeDuringPeriod" />                
                 </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                 </asp:GridView></td>
