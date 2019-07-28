@@ -214,7 +214,7 @@ namespace UI.SCM
                 //    Mrrid = 0;
                 //}
                 //dt = obj.DataView(12, xmlData, intWh, Mrrid, dteFrom, enroll);
-                dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh);
+                dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh, dept);
 
                 if (dt.Rows.Count > 0)
                 {
@@ -252,10 +252,6 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-        }
-        protected void dgvIndent_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
@@ -530,6 +526,7 @@ namespace UI.SCM
                 ddlDept.Items.Insert(0, new ListItem("Import", "2"));
             }
         }
+       
         public void HideShowGridColumn()
         {
             if (ddlType.SelectedItem.Value == "QC")
@@ -542,6 +539,19 @@ namespace UI.SCM
                 dgvIndent.Columns[7].Visible = true;
                 dgvIndent.Columns[9].Visible = true;
             }
+        }
+
+        protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dt = mirObj.GetWHQC(Convert.ToInt32(ddlWH.SelectedItem.Value));
+            if(dt.Rows[0]["ysnQC"].ToString()=="true")
+            {
+                ddlType.Items.Clear();
+                ddlType.Items.Insert(0, new ListItem("Local", "1"));
+                ddlDept.Items.Insert(1, new ListItem("Import", "2"));
+                ddlDept.Items.Insert(2, new ListItem("Fabrication", "3"));
+            }
+
         }
 
         #endregion

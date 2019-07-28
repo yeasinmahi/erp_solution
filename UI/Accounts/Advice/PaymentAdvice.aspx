@@ -152,6 +152,7 @@
                                         <asp:ListItem Selected="True" Value="0">Select Bank</asp:ListItem>
                                         <asp:ListItem Selected="False" Value="1">IBBL</asp:ListItem>
                                         <asp:ListItem Value="2">SCB</asp:ListItem>
+                                        <asp:ListItem Value="3">OTHER</asp:ListItem>
                                     </asp:DropDownList></td>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label12" runat="server" CssClass="lbl" Text="Voucher Posting :"></asp:Label></td>
