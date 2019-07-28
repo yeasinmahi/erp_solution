@@ -188,8 +188,7 @@ namespace UI.Asset
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
                 }
-                dgvGridView.DataSource = "";
-                dgvGridView.DataBind();
+                dgvGridView.UnLoad();
 
             }
             catch (Exception ex)

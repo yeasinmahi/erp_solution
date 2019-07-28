@@ -16,7 +16,7 @@
     <link href="jquery-ui.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>       
-
+    <link href="../../Content/CSS/CommonStyle.css" rel="stylesheet" />
   <script type="text/javascript">
       function Search_dgvservice(strKey, strGV) {
 
@@ -49,7 +49,7 @@
                 $.trim(dtefrom) == undefined) {
                 document.getElementById("hdnPreConfirm").value = "0";
                 alert('Please Fill-Up From Date');
-                return false
+                return false;
             }
             else if ($.trim(dteTo).length ==0 ||
                 $.trim(dteTo) == "" ||
@@ -57,7 +57,7 @@
                 $.trim(dteTo) == undefined) {
                 document.getElementById("hdnPreConfirm").value = "0";
                 alert('Please Select To Date');
-                return false
+                return false;
             } 
                 else if ($.trim(dteTo)> $.trim(dteTo)||
                 $.trim(dteTo) == "" ||
@@ -65,7 +65,7 @@
                 $.trim(dteTo) == undefined) {
                 document.getElementById("hdnPreConfirm").value = "0";
                 alert('Please Select To Date');
-                return false
+                return false;
             } 
             else {
                 var confirmValue = document.createElement("INPUT");
@@ -74,13 +74,14 @@
                 if (confirm("Do you want to proceed?")) {
                     confirmValue.value = "Yes";
                     document.getElementById("hdnPreConfirm").value = "1";
+                    showLoader();
                 } else {
                     confirmValue.value = "No";
                     document.getElementById("hdnPreConfirm").value = "0";
-                    return false
+                    return false;
                 }
-                return true
-                
+                return true;
+
             }
 
 
@@ -125,7 +126,7 @@
     <asp:HiddenField ID="hfEmployeeIdp" runat="server" /><asp:HiddenField ID="hdnwh" runat="server" />       
           <asp:HiddenField ID="HdnServiceCost" runat="server" />   <asp:HiddenField ID="hdnRepairsCost" runat="server" />   
             <div class="leaveApplication_container">
-    <div class="tabs_container" align="Center" >Asset Depreciation</div>
+    <div class="tabs_container" align="left" >Asset Depreciation</div>
    
                 <table class="tblrowodd" >
                 <tr>
@@ -164,7 +165,7 @@
                         <td></td>
                         <td colspan="3" style="text-align: right;"><asp:Button ID="btnDepSubmit" OnClientClick="return Validation(this);" runat="server" Text="Depreciation Charge" OnClick="btnDepSubmit_Click"  />
                             <asp:Button ID="btnImpairment" runat="server" Text="Impirment" OnClientClick="return Validation(this);" OnClick="btnImpairment_Click"  /> 
-                            <asp:Button ID="btnShow" runat="server" Text="View" OnClick="btnShow_Click" /></td>
+                            <asp:Button ID="btnShow" runat="server"  Text="View" OnClientClick="showLoader();" OnClick="btnShow_Click" /></td>
                     </tr>
                 </table>
         
