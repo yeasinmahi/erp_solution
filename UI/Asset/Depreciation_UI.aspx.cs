@@ -164,6 +164,8 @@ namespace UI.Asset
                 fd.Product, fd.Layer);
             try
             {
+
+
                 string assetcode, xmlString;
                 string strSearchKey = txtAssetID.Text;
                 string[] searchKey = Regex.Split(strSearchKey, ";");

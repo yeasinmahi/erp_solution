@@ -127,6 +127,7 @@
           <asp:HiddenField ID="HdnServiceCost" runat="server" />   <asp:HiddenField ID="hdnRepairsCost" runat="server" />   
             <div class="leaveApplication_container">
     <div class="tabs_container" align="left" >Asset Depreciation</div>
+
    
                 <table class="tblrowodd" >
                 <tr>
