@@ -45,6 +45,7 @@ namespace UI.SAD.Delivery
         Vehicle vehicle = new Vehicle();
         XmlManager xm = new XmlManager();
 
+
         private string message;
         private string _filePathForXml, _xmlString = "", xmlHeaderString = "";
         private bool _isProcess = false, _checkItem=false; int _isCount = 0, xmlSerial=0;

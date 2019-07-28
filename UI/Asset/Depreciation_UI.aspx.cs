@@ -164,6 +164,8 @@ namespace UI.Asset
                 fd.Product, fd.Layer);
             try
             {
+
+
                 string assetcode, xmlString;
                 string strSearchKey = txtAssetID.Text;
                 string[] searchKey = Regex.Split(strSearchKey, ";");
@@ -188,8 +190,7 @@ namespace UI.Asset
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
                 }
-                dgvGridView.DataSource = "";
-                dgvGridView.DataBind();
+                dgvGridView.UnLoad();
 
             }
             catch (Exception ex)
