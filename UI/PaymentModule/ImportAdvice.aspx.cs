@@ -115,6 +115,8 @@ namespace UI.PaymentModule
                     }
                 }
 
+                string mesage = string.Empty;
+                Status status = Status.NoDataFound;
                 foreach (GridViewRow row in gridview.Rows)
                 {
                     int reqId = int.Parse(((Label)row.FindControl("lblRequestId")).Text);
@@ -127,10 +129,12 @@ namespace UI.PaymentModule
                     else if ((payFor == 1 || payFor == 3 || payFor == 5 || payFor == 8 || payFor == 9 || payFor == 10 || payFor == 11) && voucher == "")
                     {
                         _dt = _bll.CreateVoucherRequsition(reqId, payFor, Enroll);
+
                     }
                     else if (!string.IsNullOrWhiteSpace(voucher))
                     {
                         //Toaster("Voucher already created.");
+                        status = Status.AlreadyCreate;
                         continue;
                     }
                     if (_dt.Rows.Count > 0)
@@ -141,26 +145,54 @@ namespace UI.PaymentModule
                             _dt = _bll.UpdateVoucher(newVoucher, reqId);
                             if (_dt.Rows.Count == 0)
                             {
-                                Toaster("Update Voucher Failed");
-                                return;
+                                status = Status.UpdateFailed;
                             }
+                            status = Status.Success;
                         }
                     }
                     else
                     {
-                        Toaster("Can not craete Voucher");
-                        return;
+                        status = Status.CanNotCreate;
                     }
 
                 }
-                Toaster("Successfully Voucher Created",Common.TosterType.Success);
-                LoadGrid();
+                switch (status)
+                {
+                    case Status.Success:
+                        Toaster("Successfully Voucher Created", Common.TosterType.Success);
+                        LoadGrid();
+                        break;
+                    case Status.AlreadyCreate:
+                        Toaster("Voucher Already Created");
+                        break;
+                    case Status.NoDataFound:
+                        Toaster("Voucher Data Not Found", Common.TosterType.Error);
+                        break;
+                    case Status.CanNotCreate:
+                        Toaster("Voucher Can Not Create", Common.TosterType.Error);
+                        break;
+                    case Status.UpdateFailed:
+                        Toaster("Voucher Create Failed",Common.TosterType.Error);
+                        break;
+                    default:
+                        Toaster("Unknown Error", Common.TosterType.Error);
+                        break;
 
+                }
             }
             else
             {
                 Toaster(Message.NoFound.ToFriendlyString());
             }
+            
+        }
+        enum Status
+        {
+            NoDataFound,
+            Success,
+            AlreadyCreate,
+            CanNotCreate,
+            UpdateFailed
         }
     }
 }
