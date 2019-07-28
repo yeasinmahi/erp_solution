@@ -7,9 +7,39 @@
 <head runat="server">
     <title></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
-    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
-    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
+    <script>
+        function check() {
+
+            var confirm_value = document.createElement("input");
+
+            if (document.getElementById('<%=ddlType.ClientID%>').selectedIndex == 0) {
+                ShowNotification('Please Select Type', 'Product Cost Sheet', 'warning');
+                return false;
+            }
+            else {
+                confirm_value.type = "hidden";
+                confirm_value.name = "Confirm_value";
+                if (confirm("Do you want to proceed?")) {
+                    confirm.value = "Yes";
+                    document.getElementById("hdnConfirm").value = "1";
+                }
+                else {
+                    confirm.value = "No";
+                    document.getElementById("hdnConfirm").value = "0";
+                }
+
+                return true;
+            }
+
+            return true;
+
+        }
+    </script>
+    <style>
+        
+    </style>
 </head>
 <body>
     <form id="form1" runat="server" enctype="MULTIPART/FORM-DATA">
@@ -18,82 +48,102 @@
 
         <%--=========== Start Code =====================================================================--%>
 
-
-        <%--<div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Employee Benifits Entry :" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>--%>
         <asp:HiddenField ID="hdnConfirm" runat="server" />
-        <div class="leaveApplication_container">
-            <table class="tbldecoration" style="width: auto; float: left;">
-                <tr class="tblheader">
-                    <td class="tdheader" colspan="5">Employee Salary Addition Deduction :</td>
-                </tr>
-                <tr>
-                    <td colspan="4" class="auto-style2"></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <asp:Button ID="btnDownload" runat="server" class="myButton" Text="Download Excel Format" OnClick="btnDownload_Click" /></td>
-                    <td class="auto-style4" style="text-align: right;">
-                        <%--<asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Employee ID: " Visible="false"></asp:Label>--%>
-                    </td>
-                    <td class="tdheight">
-                        <%--<asp:TextBox ID="txtEmp" runat="server" CssClass="txtBox1" Visible="false"></asp:TextBox>--%>
-                    </td>
-                </tr>
-                <%-- <tr>
-                            <td colspan="4" style="height: 5px;"></td>
-                        </tr>--%>
-                <tr>
-
-                    <td class="" style="text-align: right;">
-                        <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Type : "></asp:Label>
-                    </td>
-                    <td class="">
-                        <asp:DropDownList ID="ddlType" runat="server" CssClass="ddList" Font-Bold="False" Font-Size="11px" ForeColor="Black" Height="24px">
-                        </asp:DropDownList>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td class="" style="text-align: right;">
-                        <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Import Excel File : "></asp:Label></td>
-                    <td class="tdheight">
-                        <asp:FileUpload ID="FileUpload1" runat="server"></asp:FileUpload></td>
-                    <td class="auto-style1">
-                        <asp:Button ID="btnUpload" runat="server" class="myButton" Text="Upload" Width="100px" OnClick="btnUpload_Click" /></td>
-                    <td class="auto-style1">
-                        <asp:Button ID="btnSubmitExcel" runat="server" class="myButton" Text="Submit" Width="100px" OnClientClick="check()" OnClick="btnSubmitExcel_Click" /></td>
-                </tr>
-                <tr>
-                    <td colspan="4">
-                        <div id="divItemInfo" runat="server" class="leaveApplication_container">
-                            <table class="tbldecoration" style="width: auto; float: left;">
-                                <tr>
-                                    <td>
-                                        <asp:GridView ID="gvExcelFile" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
-                                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                                            <EditRowStyle BackColor="#999999" />
-                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                                        </asp:GridView>
-                                    </td>
-                                </tr>
-                            </table>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <asp:Label runat="server" Text="Employee Salary Addition Deduction" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
-                    </td>
-                </tr>
+                        <div class="panel-body">
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <asp:Button ID="btnDownload" runat="server" class="btn btn-primary" Text="Download Excel Format" OnClick="btnDownload_Click" />
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-6">
+                                    <asp:Label ID="Label3" runat="server" Text="Type:" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12"></asp:DropDownList>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:Label ID="Label1" runat="server" Text="Import Excel File:" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:FileUpload ID="FileUpload1" runat="server" CssClass=""></asp:FileUpload>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <asp:Button ID="btnUpload" runat="server" class="btn btn-primary form-control" Text="Upload" OnClick="btnUpload_Click" />
+                                    <asp:Button ID="btnSubmitExcel" runat="server" class="btn btn-success form-control" OnClientClick="return check();" Text="Submit" OnClick="btnSubmitExcel_Click" />
 
-            </table>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md-12" style="padding-top: 20px;">
+                                    <asp:GridView ID="gvExcelFile" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
+
+                                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Employee ID">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblID" runat="server" Text='<%# Bind("intEmployeeID") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Employee Name">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblName" runat="server" Text='<%# Bind("strEmployeeName") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Left"  />
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Designation">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDesig" runat="server" Text='<%# Bind("strDesignation") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Left" />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Unit">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblUnit" runat="server" Text='<%# Bind("strUnit") %>' ></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Left"  />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Department">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblBank" runat="server" Text='<%# Bind("strDepatrment") %>' ></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Left"  />
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Amount">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("Amount","{0:N2}" )%>' ></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Right"  />
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <EditRowStyle BackColor="#999999" />
+                                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                        <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+
+                                    </asp:GridView>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
-
-
 
         <%--=========== End Code =====================================================================--%>
     </form>

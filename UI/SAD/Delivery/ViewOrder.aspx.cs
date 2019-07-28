@@ -136,8 +136,9 @@ namespace UI.SAD.Delivery
             string PopupType = "Order_Edit";
             string strReportType = "Order_Base";
             string ShipPointID = ddlShip.SelectedValue;
+            string orderType = ddlOrderType.SelectedValue.ToString();
 
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DO_Edit('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DO_Edit('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "','"+ orderType + "'    );", true);
             dgvViewOrder.DataBind();
         }
 

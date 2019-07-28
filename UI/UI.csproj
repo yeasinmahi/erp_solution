@@ -489,6 +489,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
+    <Content Include="HR\Employee\EmployeeCostCenterUpdate.aspx" />
     <Content Include="HR\Employee\PubEmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeTransferNpromotion.aspx" />
@@ -1464,6 +1465,7 @@
     <Content Include="SAD\Sales\Report\BudgetForFG.aspx" />
     <Content Include="SAD\Sales\Report\BudgetForMaterial.aspx" />
     <Content Include="SAD\Sales\Report\BudgetForPromotion.aspx" />
+    <Content Include="SAD\Sales\Report\CustomerGEORegRpt.aspx" />
     <Content Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx" />
     <Content Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx" />
     <Content Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx" />
@@ -3386,6 +3388,13 @@
     </Compile>
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeCostCenterUpdate.aspx.cs">
+      <DependentUpon>EmployeeCostCenterUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeCostCenterUpdate.aspx.designer.cs">
+      <DependentUpon>EmployeeCostCenterUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Employee\PubEmployeeFullInformation.aspx.cs">
       <DependentUpon>PubEmployeeFullInformation.aspx</DependentUpon>
@@ -7482,6 +7491,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\BudgetForPromotion.aspx.designer.cs">
       <DependentUpon>BudgetForPromotion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CustomerGEORegRpt.aspx.cs">
+      <DependentUpon>CustomerGEORegRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CustomerGEORegRpt.aspx.designer.cs">
+      <DependentUpon>CustomerGEORegRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx.cs">
       <DependentUpon>CustomerWiseSalesReport.aspx</DependentUpon>

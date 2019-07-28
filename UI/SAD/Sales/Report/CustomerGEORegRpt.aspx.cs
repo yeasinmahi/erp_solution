@@ -4,11 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using UI.ClassFiles;
 
-namespace UI.PaymentModule
+namespace UI.SAD.Sales.Report
 {
-    public partial class Bill_Of_Entry_Report : BasePage
+    public partial class CustomerGEORegRpt : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,7 +15,7 @@ namespace UI.PaymentModule
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Common_Reports/BillOfEntry?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/AFBL/CustomerGEORegReport?rs:Embed=true');", true);
 
         }
     }

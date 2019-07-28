@@ -20,20 +20,17 @@
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
-    <script language="javascript" type="text/javascript">
-        function divVisibleFalse() {
-            document.getElementById("divExport").style.display = "none";            
-        }                
-    </script>
-    <script language="javascript" type="text/javascript">
-        function ExportDivDataToExcel() {
-            var html = $("#divExport").html();
-            html = $.trim(html);
-            html = html.replace(/>/g, '&gt;');
-            html = html.replace(/</g, '&lt;');
-            $("input[id$='HdnValue']").val(html);
+ 
+     <script>
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
+                return false;
+            }
+            return true;
         }
- </script>
+    </script>
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     </head>
 <body>
@@ -43,91 +40,21 @@
     <ContentTemplate>--%>
     
     <%--=========================================Start My Code From Here===============================================--%>
-    <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
-    <asp:HiddenField ID="hdnLevel" runat="server" />    
-    <table>
+      <table>
         <tr><td>
             <div class="divbody" style="padding-right:10px;">
                 <div id="divLevel1" class="tabs_container" style="background-color:#dcdbdb; padding-top:10px; padding-left:5px; padding-right:-50px; border-radius:5px;"> <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="MD APPROVAL SHEET" Font-Bold="true" Font-Size="16px"></asp:Label><hr /></div>
                 
-                <table class="tbldecoration" style="width:auto; float:left;">
-                    <tr>
-                        <td style="text-align:right;"><asp:Label ID="lblLoanType" runat="server" CssClass="lbl" Text="Unit"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                        <td style="text-align:left;">
-                        <asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" runat="server" width="110px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList></td>
-                        <td style="text-align:right; "><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>
-                        <td style="text-align:right; "><asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>
-                        <td style="text-align:right;"><asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="From Date"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>                
-                        <td><asp:TextBox ID="txtFromDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="100px" autocomplete="off"></asp:TextBox>
-                        <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender></td>
-                        <td style="text-align:right; "><asp:Label ID="Label1" runat="server" Text=""></asp:Label></td>
-                        <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="To Date"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>                
-                        <td><asp:TextBox ID="txtToDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="100px" autocomplete="off"></asp:TextBox>
-                        <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender></td>
-                        <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
-                        <td style="text-align:right; padding: 10px 0px 5px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click"/></td> 
-                        <td style="text-align:right; padding: 10px 0px 5px 10px"><asp:Button ID="btnExport" runat="server" class="myButton" Text="Export To Excel" Height="30px" Width="145px" OnClick="btnExport_Click" OnClientClick="ExportDivDataToExcel()"/></td> 
-                    </tr>
-                </table>
+            
             </div>
         </td></tr>
-        <tr><td>    
-            <div id="divExport">
-                <table>
-                    <tr>
-                        <td colspan="3" style='text-align: center;'><asp:Label ID="lblUnitName" runat="server" Font-Bold="true" Font-Size="20px"></asp:Label></td></tr>
-                    <tr><td colspan="3" style='text-align: center;'><asp:Label ID="lblAddress" runat="server" Font-Size="15px"></asp:Label></td></tr>
-                    <tr><td colspan="3" style='text-align: center;'><asp:Label ID="lblReportName" runat="server" Font-Bold="true" Font-Size="18px"></asp:Label></td></tr>
-                    <tr><td colspan="3" style='text-align: center;'><asp:Label ID="lblFromToDate" runat="server" Font-Bold="true" Font-Size="15px"></asp:Label></td></tr>
-
-                    <tr><td colspan="3" style="padding-bottom:35px">   
-                    <asp:GridView ID="dgvMDApprovalSheet" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="12" Font-Size="11px"
-                    CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" RowStyle-Height="22px"
-                    HeaderStyle-Font-Size="11px" FooterStyle-Font-Size="10px" HeaderStyle-Font-Bold="true"
-                    ForeColor="Black" GridLines="Both" >
-                    <AlternatingRowStyle BackColor="White"/>    
-                    <Columns>
-                    <%--<asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>--%>
-            
-                    <asp:TemplateField HeaderText="SL No." SortExpression="intID">
-                    <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intID") %>' Width="40px"></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="center" Width="40px"/></asp:TemplateField>                
-            
-                    <asp:TemplateField HeaderText="Party Name" SortExpression="strParty">
-                    <ItemTemplate><asp:Label ID="lblPartyName" runat="server" Text='<%# Bind("strParty") %>' Width="220px"></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="left" Width="220px"/></asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="Description" SortExpression="strDescription">
-                    <ItemTemplate><asp:Label ID="lblDiscription" runat="server" Text='<%# Bind("strDescription") %>' Width="250px"></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="left" Width="250px"/></asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="Expense Code" SortExpression="strExpCode">
-                    <ItemTemplate><asp:Label ID="lblDiscription" runat="server" Text='<%# Bind("strExpCode") %>' Width="180px"></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="left" Width="180px"/></asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="Approved for Pay" SortExpression="monApprove">
-                    <ItemTemplate><asp:Label ID="lblApprovedForPay" runat="server" Text='<%# Bind("monApprove", "{0:n0}") %>' Width="130px"></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="130px" Font-Size="14px"/></asp:TemplateField>
-
-                    </Columns>
-                    <FooterStyle Font-Size="11px" />
-                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                    </asp:GridView>
-                    </td></tr> 
-                    
-                    <tr>
-                         <td style="text-align:center">Prepared By</td>
-                        <td style="text-align:center"> Reviewed By</td>
-                         <td style="text-align:center"> Recommended By </td>
-                        
-                    </tr>
-                </table>
-                <asp:HiddenField ID="HdnValue" runat="server" />
-            </div>
-        </td></tr>
+        <tr>
+            <td>
+               
+            </td>
+        </tr>
     </table>
-
+         <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>
      <%--=========================================End My Code From Here=================================================--%>
     <%--</ContentTemplate>
     </asp:UpdatePanel>--%>
