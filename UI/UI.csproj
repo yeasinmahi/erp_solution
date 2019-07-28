@@ -649,6 +649,7 @@
     <Content Include="Property\AGLandMouzaSetup.aspx" />
     <Content Include="Property\AGLandPlotByMouzaSetup.aspx" />
     <Content Include="Property\AGLandTrxGeneral.aspx" />
+    <Content Include="Property\AGLandTrxGeneralED.aspx" />
     <Content Include="Property\AGLandTrxGeneralNew.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
@@ -4368,6 +4369,13 @@
     </Compile>
     <Compile Include="Property\AGLandTrxGeneral.aspx.designer.cs">
       <DependentUpon>AGLandTrxGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralED.aspx.cs">
+      <DependentUpon>AGLandTrxGeneralED.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralED.aspx.designer.cs">
+      <DependentUpon>AGLandTrxGeneralED.aspx</DependentUpon>
     </Compile>
     <Compile Include="Property\AGLandTrxGeneralNew.aspx.cs">
       <DependentUpon>AGLandTrxGeneralNew.aspx</DependentUpon>
