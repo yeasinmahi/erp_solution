@@ -77,7 +77,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -427,6 +429,11 @@
     </Compile>
     <Compile Include="AutoSearch\EmployeeTds.Designer.cs">
       <DependentUpon>EmployeeTds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoSearch\ItemTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemTds.xsd</DependentUpon>
     </Compile>
     <Compile Include="Currency.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1254,6 +1261,17 @@
     <None Include="AutoSearch\EmployeeTds.xsd" />
     <None Include="AutoSearch\EmployeeTds.xss">
       <DependentUpon>EmployeeTds.xsd</DependentUpon>
+    </None>
+    <None Include="AutoSearch\ItemTds.xsc">
+      <DependentUpon>ItemTds.xsd</DependentUpon>
+    </None>
+    <None Include="AutoSearch\ItemTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AutoSearch\ItemTds.xss">
+      <DependentUpon>ItemTds.xsd</DependentUpon>
     </None>
     <None Include="Currency.xsc">
       <DependentUpon>Currency.xsd</DependentUpon>

@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace DAL.Accounts.Voucher {
+namespace HR_DAL.Employee {
     
     
     /// <summary>
@@ -20,23 +20,23 @@ namespace DAL.Accounts.Voucher {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("AccountsNsubAccountsTDS")]
+    [global::System.Xml.Serialization.XmlRootAttribute("EmpCostCenterTDS")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class AccountsNsubAccountsTDS : global::System.Data.DataSet {
+    public partial class EmpCostCenterTDS : global::System.Data.DataSet {
         
-        private AccountsNoDataTable tableAccountsNo;
+        private tblUnitDataTable tabletblUnit;
         
-        private SubAccountVoucherEntryDataTable tableSubAccountVoucherEntry;
+        private QRYEMPLOYEEPROFILEALLDataTable tableQRYEMPLOYEEPROFILEALL;
         
-        private CostCenterDataTable tableCostCenter;
+        private tblEmployeeDataTable tabletblEmployee;
         
-        private AccountsChartOfAccDataTable tableAccountsChartOfAcc;
+        private tblCostCenterDataTable tabletblCostCenter;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public AccountsNsubAccountsTDS() {
+        public EmpCostCenterTDS() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -47,7 +47,7 @@ namespace DAL.Accounts.Voucher {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected AccountsNsubAccountsTDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected EmpCostCenterTDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -60,17 +60,17 @@ namespace DAL.Accounts.Voucher {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["AccountsNo"] != null)) {
-                    base.Tables.Add(new AccountsNoDataTable(ds.Tables["AccountsNo"]));
+                if ((ds.Tables["tblUnit"] != null)) {
+                    base.Tables.Add(new tblUnitDataTable(ds.Tables["tblUnit"]));
                 }
-                if ((ds.Tables["SubAccountVoucherEntry"] != null)) {
-                    base.Tables.Add(new SubAccountVoucherEntryDataTable(ds.Tables["SubAccountVoucherEntry"]));
+                if ((ds.Tables["QRYEMPLOYEEPROFILEALL"] != null)) {
+                    base.Tables.Add(new QRYEMPLOYEEPROFILEALLDataTable(ds.Tables["QRYEMPLOYEEPROFILEALL"]));
                 }
-                if ((ds.Tables["CostCenter"] != null)) {
-                    base.Tables.Add(new CostCenterDataTable(ds.Tables["CostCenter"]));
+                if ((ds.Tables["tblEmployee"] != null)) {
+                    base.Tables.Add(new tblEmployeeDataTable(ds.Tables["tblEmployee"]));
                 }
-                if ((ds.Tables["AccountsChartOfAcc"] != null)) {
-                    base.Tables.Add(new AccountsChartOfAccDataTable(ds.Tables["AccountsChartOfAcc"]));
+                if ((ds.Tables["tblCostCenter"] != null)) {
+                    base.Tables.Add(new tblCostCenterDataTable(ds.Tables["tblCostCenter"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -94,9 +94,9 @@ namespace DAL.Accounts.Voucher {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public AccountsNoDataTable AccountsNo {
+        public tblUnitDataTable tblUnit {
             get {
-                return this.tableAccountsNo;
+                return this.tabletblUnit;
             }
         }
         
@@ -104,9 +104,9 @@ namespace DAL.Accounts.Voucher {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SubAccountVoucherEntryDataTable SubAccountVoucherEntry {
+        public QRYEMPLOYEEPROFILEALLDataTable QRYEMPLOYEEPROFILEALL {
             get {
-                return this.tableSubAccountVoucherEntry;
+                return this.tableQRYEMPLOYEEPROFILEALL;
             }
         }
         
@@ -114,9 +114,9 @@ namespace DAL.Accounts.Voucher {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public CostCenterDataTable CostCenter {
+        public tblEmployeeDataTable tblEmployee {
             get {
-                return this.tableCostCenter;
+                return this.tabletblEmployee;
             }
         }
         
@@ -124,9 +124,9 @@ namespace DAL.Accounts.Voucher {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public AccountsChartOfAccDataTable AccountsChartOfAcc {
+        public tblCostCenterDataTable tblCostCenter {
             get {
-                return this.tableAccountsChartOfAcc;
+                return this.tabletblCostCenter;
             }
         }
         
@@ -172,7 +172,7 @@ namespace DAL.Accounts.Voucher {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            AccountsNsubAccountsTDS cln = ((AccountsNsubAccountsTDS)(base.Clone()));
+            EmpCostCenterTDS cln = ((EmpCostCenterTDS)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -197,17 +197,17 @@ namespace DAL.Accounts.Voucher {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["AccountsNo"] != null)) {
-                    base.Tables.Add(new AccountsNoDataTable(ds.Tables["AccountsNo"]));
+                if ((ds.Tables["tblUnit"] != null)) {
+                    base.Tables.Add(new tblUnitDataTable(ds.Tables["tblUnit"]));
                 }
-                if ((ds.Tables["SubAccountVoucherEntry"] != null)) {
-                    base.Tables.Add(new SubAccountVoucherEntryDataTable(ds.Tables["SubAccountVoucherEntry"]));
+                if ((ds.Tables["QRYEMPLOYEEPROFILEALL"] != null)) {
+                    base.Tables.Add(new QRYEMPLOYEEPROFILEALLDataTable(ds.Tables["QRYEMPLOYEEPROFILEALL"]));
                 }
-                if ((ds.Tables["CostCenter"] != null)) {
-                    base.Tables.Add(new CostCenterDataTable(ds.Tables["CostCenter"]));
+                if ((ds.Tables["tblEmployee"] != null)) {
+                    base.Tables.Add(new tblEmployeeDataTable(ds.Tables["tblEmployee"]));
                 }
-                if ((ds.Tables["AccountsChartOfAcc"] != null)) {
-                    base.Tables.Add(new AccountsChartOfAccDataTable(ds.Tables["AccountsChartOfAcc"]));
+                if ((ds.Tables["tblCostCenter"] != null)) {
+                    base.Tables.Add(new tblCostCenterDataTable(ds.Tables["tblCostCenter"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -242,28 +242,28 @@ namespace DAL.Accounts.Voucher {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableAccountsNo = ((AccountsNoDataTable)(base.Tables["AccountsNo"]));
+            this.tabletblUnit = ((tblUnitDataTable)(base.Tables["tblUnit"]));
             if ((initTable == true)) {
-                if ((this.tableAccountsNo != null)) {
-                    this.tableAccountsNo.InitVars();
+                if ((this.tabletblUnit != null)) {
+                    this.tabletblUnit.InitVars();
                 }
             }
-            this.tableSubAccountVoucherEntry = ((SubAccountVoucherEntryDataTable)(base.Tables["SubAccountVoucherEntry"]));
+            this.tableQRYEMPLOYEEPROFILEALL = ((QRYEMPLOYEEPROFILEALLDataTable)(base.Tables["QRYEMPLOYEEPROFILEALL"]));
             if ((initTable == true)) {
-                if ((this.tableSubAccountVoucherEntry != null)) {
-                    this.tableSubAccountVoucherEntry.InitVars();
+                if ((this.tableQRYEMPLOYEEPROFILEALL != null)) {
+                    this.tableQRYEMPLOYEEPROFILEALL.InitVars();
                 }
             }
-            this.tableCostCenter = ((CostCenterDataTable)(base.Tables["CostCenter"]));
+            this.tabletblEmployee = ((tblEmployeeDataTable)(base.Tables["tblEmployee"]));
             if ((initTable == true)) {
-                if ((this.tableCostCenter != null)) {
-                    this.tableCostCenter.InitVars();
+                if ((this.tabletblEmployee != null)) {
+                    this.tabletblEmployee.InitVars();
                 }
             }
-            this.tableAccountsChartOfAcc = ((AccountsChartOfAccDataTable)(base.Tables["AccountsChartOfAcc"]));
+            this.tabletblCostCenter = ((tblCostCenterDataTable)(base.Tables["tblCostCenter"]));
             if ((initTable == true)) {
-                if ((this.tableAccountsChartOfAcc != null)) {
-                    this.tableAccountsChartOfAcc.InitVars();
+                if ((this.tabletblCostCenter != null)) {
+                    this.tabletblCostCenter.InitVars();
                 }
             }
         }
@@ -271,42 +271,42 @@ namespace DAL.Accounts.Voucher {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "AccountsNsubAccountsTDS";
+            this.DataSetName = "EmpCostCenterTDS";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/AccountsNsubAccountsTDS.xsd";
+            this.Namespace = "http://tempuri.org/EmpCostCenterTDS.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableAccountsNo = new AccountsNoDataTable();
-            base.Tables.Add(this.tableAccountsNo);
-            this.tableSubAccountVoucherEntry = new SubAccountVoucherEntryDataTable();
-            base.Tables.Add(this.tableSubAccountVoucherEntry);
-            this.tableCostCenter = new CostCenterDataTable();
-            base.Tables.Add(this.tableCostCenter);
-            this.tableAccountsChartOfAcc = new AccountsChartOfAccDataTable();
-            base.Tables.Add(this.tableAccountsChartOfAcc);
+            this.tabletblUnit = new tblUnitDataTable();
+            base.Tables.Add(this.tabletblUnit);
+            this.tableQRYEMPLOYEEPROFILEALL = new QRYEMPLOYEEPROFILEALLDataTable();
+            base.Tables.Add(this.tableQRYEMPLOYEEPROFILEALL);
+            this.tabletblEmployee = new tblEmployeeDataTable();
+            base.Tables.Add(this.tabletblEmployee);
+            this.tabletblCostCenter = new tblCostCenterDataTable();
+            base.Tables.Add(this.tabletblCostCenter);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeAccountsNo() {
+        private bool ShouldSerializetblUnit() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeSubAccountVoucherEntry() {
+        private bool ShouldSerializeQRYEMPLOYEEPROFILEALL() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeCostCenter() {
+        private bool ShouldSerializetblEmployee() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeAccountsChartOfAcc() {
+        private bool ShouldSerializetblCostCenter() {
             return false;
         }
         
@@ -321,7 +321,7 @@ namespace DAL.Accounts.Voucher {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            AccountsNsubAccountsTDS ds = new AccountsNsubAccountsTDS();
+            EmpCostCenterTDS ds = new EmpCostCenterTDS();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -366,32 +366,32 @@ namespace DAL.Accounts.Voucher {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void AccountsNoRowChangeEventHandler(object sender, AccountsNoRowChangeEvent e);
+        public delegate void tblUnitRowChangeEventHandler(object sender, tblUnitRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void SubAccountVoucherEntryRowChangeEventHandler(object sender, SubAccountVoucherEntryRowChangeEvent e);
+        public delegate void QRYEMPLOYEEPROFILEALLRowChangeEventHandler(object sender, QRYEMPLOYEEPROFILEALLRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void CostCenterRowChangeEventHandler(object sender, CostCenterRowChangeEvent e);
+        public delegate void tblEmployeeRowChangeEventHandler(object sender, tblEmployeeRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void AccountsChartOfAccRowChangeEventHandler(object sender, AccountsChartOfAccRowChangeEvent e);
+        public delegate void tblCostCenterRowChangeEventHandler(object sender, tblCostCenterRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class AccountsNoDataTable : global::System.Data.TypedTableBase<AccountsNoRow> {
+        public partial class tblUnitDataTable : global::System.Data.TypedTableBase<tblUnitRow> {
             
-            private global::System.Data.DataColumn columnstrAccName;
+            private global::System.Data.DataColumn columnstrUnit;
             
-            private global::System.Data.DataColumn columnintBankAccID;
+            private global::System.Data.DataColumn columnintUnitID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsNoDataTable() {
-                this.TableName = "AccountsNo";
+            public tblUnitDataTable() {
+                this.TableName = "tblUnit";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -399,7 +399,7 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal AccountsNoDataTable(global::System.Data.DataTable table) {
+            internal tblUnitDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -416,24 +416,24 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected AccountsNoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected tblUnitDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strAccNameColumn {
+            public global::System.Data.DataColumn strUnitColumn {
                 get {
-                    return this.columnstrAccName;
+                    return this.columnstrUnit;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intBankAccIDColumn {
+            public global::System.Data.DataColumn intUnitIDColumn {
                 get {
-                    return this.columnintBankAccID;
+                    return this.columnintUnitID;
                 }
             }
             
@@ -448,46 +448,53 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsNoRow this[int index] {
+            public tblUnitRow this[int index] {
                 get {
-                    return ((AccountsNoRow)(this.Rows[index]));
+                    return ((tblUnitRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event AccountsNoRowChangeEventHandler AccountsNoRowChanging;
+            public event tblUnitRowChangeEventHandler tblUnitRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event AccountsNoRowChangeEventHandler AccountsNoRowChanged;
+            public event tblUnitRowChangeEventHandler tblUnitRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event AccountsNoRowChangeEventHandler AccountsNoRowDeleting;
+            public event tblUnitRowChangeEventHandler tblUnitRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event AccountsNoRowChangeEventHandler AccountsNoRowDeleted;
+            public event tblUnitRowChangeEventHandler tblUnitRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddAccountsNoRow(AccountsNoRow row) {
+            public void AddtblUnitRow(tblUnitRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsNoRow AddAccountsNoRow(string strAccName, int intBankAccID) {
-                AccountsNoRow rowAccountsNoRow = ((AccountsNoRow)(this.NewRow()));
+            public tblUnitRow AddtblUnitRow(string strUnit) {
+                tblUnitRow rowtblUnitRow = ((tblUnitRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        strAccName,
-                        intBankAccID};
-                rowAccountsNoRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowAccountsNoRow);
-                return rowAccountsNoRow;
+                        strUnit,
+                        null};
+                rowtblUnitRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblUnitRow);
+                return rowtblUnitRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblUnitRow FindByintUnitID(int intUnitID) {
+                return ((tblUnitRow)(this.Rows.Find(new object[] {
+                            intUnitID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                AccountsNoDataTable cln = ((AccountsNoDataTable)(base.Clone()));
+                tblUnitDataTable cln = ((tblUnitDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -495,51 +502,59 @@ namespace DAL.Accounts.Voucher {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new AccountsNoDataTable();
+                return new tblUnitDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnstrAccName = base.Columns["strAccName"];
-                this.columnintBankAccID = base.Columns["intBankAccID"];
+                this.columnstrUnit = base.Columns["strUnit"];
+                this.columnintUnitID = base.Columns["intUnitID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnstrAccName = new global::System.Data.DataColumn("strAccName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrAccName);
-                this.columnintBankAccID = new global::System.Data.DataColumn("intBankAccID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintBankAccID);
-                this.columnstrAccName.ReadOnly = true;
-                this.columnstrAccName.MaxLength = 303;
+                this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUnit);
+                this.columnintUnitID = new global::System.Data.DataColumn("intUnitID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintUnitID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintUnitID}, true));
+                this.columnstrUnit.AllowDBNull = false;
+                this.columnstrUnit.MaxLength = 50;
+                this.columnintUnitID.AutoIncrement = true;
+                this.columnintUnitID.AutoIncrementSeed = -1;
+                this.columnintUnitID.AutoIncrementStep = -1;
+                this.columnintUnitID.AllowDBNull = false;
+                this.columnintUnitID.ReadOnly = true;
+                this.columnintUnitID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsNoRow NewAccountsNoRow() {
-                return ((AccountsNoRow)(this.NewRow()));
+            public tblUnitRow NewtblUnitRow() {
+                return ((tblUnitRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new AccountsNoRow(builder);
+                return new tblUnitRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(AccountsNoRow);
+                return typeof(tblUnitRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.AccountsNoRowChanged != null)) {
-                    this.AccountsNoRowChanged(this, new AccountsNoRowChangeEvent(((AccountsNoRow)(e.Row)), e.Action));
+                if ((this.tblUnitRowChanged != null)) {
+                    this.tblUnitRowChanged(this, new tblUnitRowChangeEvent(((tblUnitRow)(e.Row)), e.Action));
                 }
             }
             
@@ -547,8 +562,8 @@ namespace DAL.Accounts.Voucher {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.AccountsNoRowChanging != null)) {
-                    this.AccountsNoRowChanging(this, new AccountsNoRowChangeEvent(((AccountsNoRow)(e.Row)), e.Action));
+                if ((this.tblUnitRowChanging != null)) {
+                    this.tblUnitRowChanging(this, new tblUnitRowChangeEvent(((tblUnitRow)(e.Row)), e.Action));
                 }
             }
             
@@ -556,8 +571,8 @@ namespace DAL.Accounts.Voucher {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.AccountsNoRowDeleted != null)) {
-                    this.AccountsNoRowDeleted(this, new AccountsNoRowChangeEvent(((AccountsNoRow)(e.Row)), e.Action));
+                if ((this.tblUnitRowDeleted != null)) {
+                    this.tblUnitRowDeleted(this, new tblUnitRowChangeEvent(((tblUnitRow)(e.Row)), e.Action));
                 }
             }
             
@@ -565,14 +580,14 @@ namespace DAL.Accounts.Voucher {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.AccountsNoRowDeleting != null)) {
-                    this.AccountsNoRowDeleting(this, new AccountsNoRowChangeEvent(((AccountsNoRow)(e.Row)), e.Action));
+                if ((this.tblUnitRowDeleting != null)) {
+                    this.tblUnitRowDeleting(this, new tblUnitRowChangeEvent(((tblUnitRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveAccountsNoRow(AccountsNoRow row) {
+            public void RemovetblUnitRow(tblUnitRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -581,7 +596,7 @@ namespace DAL.Accounts.Voucher {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                AccountsNsubAccountsTDS ds = new AccountsNsubAccountsTDS();
+                EmpCostCenterTDS ds = new EmpCostCenterTDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -599,7 +614,7 @@ namespace DAL.Accounts.Voucher {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "AccountsNoDataTable";
+                attribute2.FixedValue = "tblUnitDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -645,14 +660,32 @@ namespace DAL.Accounts.Voucher {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SubAccountVoucherEntryDataTable : global::System.Data.TypedTableBase<SubAccountVoucherEntryRow> {
+        public partial class QRYEMPLOYEEPROFILEALLDataTable : global::System.Data.TypedTableBase<QRYEMPLOYEEPROFILEALLRow> {
             
-            private global::System.Data.DataColumn columnColumn1;
+            private global::System.Data.DataColumn columnintEmployeeID;
+            
+            private global::System.Data.DataColumn columnstrEmployeeCode;
+            
+            private global::System.Data.DataColumn columnstrEmployeeName;
+            
+            private global::System.Data.DataColumn columnstrDesignation;
+            
+            private global::System.Data.DataColumn columnstrDepatrment;
+            
+            private global::System.Data.DataColumn columnstrJobType;
+            
+            private global::System.Data.DataColumn columnstrGroupName;
+            
+            private global::System.Data.DataColumn columnstrUnit;
+            
+            private global::System.Data.DataColumn columnstrJobStationName;
+            
+            private global::System.Data.DataColumn columncode;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SubAccountVoucherEntryDataTable() {
-                this.TableName = "SubAccountVoucherEntry";
+            public QRYEMPLOYEEPROFILEALLDataTable() {
+                this.TableName = "QRYEMPLOYEEPROFILEALL";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -660,7 +693,7 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SubAccountVoucherEntryDataTable(global::System.Data.DataTable table) {
+            internal QRYEMPLOYEEPROFILEALLDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -677,16 +710,88 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected SubAccountVoucherEntryDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected QRYEMPLOYEEPROFILEALLDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Column1Column {
+            public global::System.Data.DataColumn intEmployeeIDColumn {
                 get {
-                    return this.columnColumn1;
+                    return this.columnintEmployeeID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strEmployeeCodeColumn {
+                get {
+                    return this.columnstrEmployeeCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strEmployeeNameColumn {
+                get {
+                    return this.columnstrEmployeeName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strDesignationColumn {
+                get {
+                    return this.columnstrDesignation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strDepatrmentColumn {
+                get {
+                    return this.columnstrDepatrment;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strJobTypeColumn {
+                get {
+                    return this.columnstrJobType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strGroupNameColumn {
+                get {
+                    return this.columnstrGroupName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strUnitColumn {
+                get {
+                    return this.columnstrUnit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strJobStationNameColumn {
+                get {
+                    return this.columnstrJobStationName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn codeColumn {
+                get {
+                    return this.columncode;
                 }
             }
             
@@ -701,45 +806,61 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SubAccountVoucherEntryRow this[int index] {
+            public QRYEMPLOYEEPROFILEALLRow this[int index] {
                 get {
-                    return ((SubAccountVoucherEntryRow)(this.Rows[index]));
+                    return ((QRYEMPLOYEEPROFILEALLRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SubAccountVoucherEntryRowChangeEventHandler SubAccountVoucherEntryRowChanging;
+            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SubAccountVoucherEntryRowChangeEventHandler SubAccountVoucherEntryRowChanged;
+            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SubAccountVoucherEntryRowChangeEventHandler SubAccountVoucherEntryRowDeleting;
+            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SubAccountVoucherEntryRowChangeEventHandler SubAccountVoucherEntryRowDeleted;
+            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddSubAccountVoucherEntryRow(SubAccountVoucherEntryRow row) {
+            public void AddQRYEMPLOYEEPROFILEALLRow(QRYEMPLOYEEPROFILEALLRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SubAccountVoucherEntryRow AddSubAccountVoucherEntryRow(string Column1) {
-                SubAccountVoucherEntryRow rowSubAccountVoucherEntryRow = ((SubAccountVoucherEntryRow)(this.NewRow()));
+            public QRYEMPLOYEEPROFILEALLRow AddQRYEMPLOYEEPROFILEALLRow(int intEmployeeID, string strEmployeeCode, string strEmployeeName, string strDesignation, string strDepatrment, string strJobType, string strGroupName, string strUnit, string strJobStationName, string code) {
+                QRYEMPLOYEEPROFILEALLRow rowQRYEMPLOYEEPROFILEALLRow = ((QRYEMPLOYEEPROFILEALLRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Column1};
-                rowSubAccountVoucherEntryRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSubAccountVoucherEntryRow);
-                return rowSubAccountVoucherEntryRow;
+                        intEmployeeID,
+                        strEmployeeCode,
+                        strEmployeeName,
+                        strDesignation,
+                        strDepatrment,
+                        strJobType,
+                        strGroupName,
+                        strUnit,
+                        strJobStationName,
+                        code};
+                rowQRYEMPLOYEEPROFILEALLRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowQRYEMPLOYEEPROFILEALLRow);
+                return rowQRYEMPLOYEEPROFILEALLRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public QRYEMPLOYEEPROFILEALLRow FindByintEmployeeID(int intEmployeeID) {
+                return ((QRYEMPLOYEEPROFILEALLRow)(this.Rows.Find(new object[] {
+                            intEmployeeID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                SubAccountVoucherEntryDataTable cln = ((SubAccountVoucherEntryDataTable)(base.Clone()));
+                QRYEMPLOYEEPROFILEALLDataTable cln = ((QRYEMPLOYEEPROFILEALLDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -747,48 +868,87 @@ namespace DAL.Accounts.Voucher {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new SubAccountVoucherEntryDataTable();
+                return new QRYEMPLOYEEPROFILEALLDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnColumn1 = base.Columns["Column1"];
+                this.columnintEmployeeID = base.Columns["intEmployeeID"];
+                this.columnstrEmployeeCode = base.Columns["strEmployeeCode"];
+                this.columnstrEmployeeName = base.Columns["strEmployeeName"];
+                this.columnstrDesignation = base.Columns["strDesignation"];
+                this.columnstrDepatrment = base.Columns["strDepatrment"];
+                this.columnstrJobType = base.Columns["strJobType"];
+                this.columnstrGroupName = base.Columns["strGroupName"];
+                this.columnstrUnit = base.Columns["strUnit"];
+                this.columnstrJobStationName = base.Columns["strJobStationName"];
+                this.columncode = base.Columns["code"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnColumn1 = new global::System.Data.DataColumn("Column1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnColumn1);
-                this.columnColumn1.ReadOnly = true;
-                this.columnColumn1.MaxLength = 50;
+                this.columnintEmployeeID = new global::System.Data.DataColumn("intEmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintEmployeeID);
+                this.columnstrEmployeeCode = new global::System.Data.DataColumn("strEmployeeCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrEmployeeCode);
+                this.columnstrEmployeeName = new global::System.Data.DataColumn("strEmployeeName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrEmployeeName);
+                this.columnstrDesignation = new global::System.Data.DataColumn("strDesignation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDesignation);
+                this.columnstrDepatrment = new global::System.Data.DataColumn("strDepatrment", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDepatrment);
+                this.columnstrJobType = new global::System.Data.DataColumn("strJobType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrJobType);
+                this.columnstrGroupName = new global::System.Data.DataColumn("strGroupName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrGroupName);
+                this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUnit);
+                this.columnstrJobStationName = new global::System.Data.DataColumn("strJobStationName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrJobStationName);
+                this.columncode = new global::System.Data.DataColumn("code", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncode);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintEmployeeID}, true));
+                this.columnintEmployeeID.AllowDBNull = false;
+                this.columnintEmployeeID.Unique = true;
+                this.columnstrEmployeeCode.MaxLength = 100;
+                this.columnstrEmployeeName.MaxLength = 1000;
+                this.columnstrDesignation.MaxLength = 100;
+                this.columnstrDepatrment.MaxLength = 100;
+                this.columnstrJobType.MaxLength = 100;
+                this.columnstrGroupName.MaxLength = 100;
+                this.columnstrUnit.MaxLength = 50;
+                this.columnstrJobStationName.MaxLength = 250;
+                this.columncode.ReadOnly = true;
+                this.columncode.MaxLength = 1;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SubAccountVoucherEntryRow NewSubAccountVoucherEntryRow() {
-                return ((SubAccountVoucherEntryRow)(this.NewRow()));
+            public QRYEMPLOYEEPROFILEALLRow NewQRYEMPLOYEEPROFILEALLRow() {
+                return ((QRYEMPLOYEEPROFILEALLRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SubAccountVoucherEntryRow(builder);
+                return new QRYEMPLOYEEPROFILEALLRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(SubAccountVoucherEntryRow);
+                return typeof(QRYEMPLOYEEPROFILEALLRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.SubAccountVoucherEntryRowChanged != null)) {
-                    this.SubAccountVoucherEntryRowChanged(this, new SubAccountVoucherEntryRowChangeEvent(((SubAccountVoucherEntryRow)(e.Row)), e.Action));
+                if ((this.QRYEMPLOYEEPROFILEALLRowChanged != null)) {
+                    this.QRYEMPLOYEEPROFILEALLRowChanged(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
                 }
             }
             
@@ -796,8 +956,8 @@ namespace DAL.Accounts.Voucher {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.SubAccountVoucherEntryRowChanging != null)) {
-                    this.SubAccountVoucherEntryRowChanging(this, new SubAccountVoucherEntryRowChangeEvent(((SubAccountVoucherEntryRow)(e.Row)), e.Action));
+                if ((this.QRYEMPLOYEEPROFILEALLRowChanging != null)) {
+                    this.QRYEMPLOYEEPROFILEALLRowChanging(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
                 }
             }
             
@@ -805,8 +965,8 @@ namespace DAL.Accounts.Voucher {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.SubAccountVoucherEntryRowDeleted != null)) {
-                    this.SubAccountVoucherEntryRowDeleted(this, new SubAccountVoucherEntryRowChangeEvent(((SubAccountVoucherEntryRow)(e.Row)), e.Action));
+                if ((this.QRYEMPLOYEEPROFILEALLRowDeleted != null)) {
+                    this.QRYEMPLOYEEPROFILEALLRowDeleted(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
                 }
             }
             
@@ -814,14 +974,14 @@ namespace DAL.Accounts.Voucher {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.SubAccountVoucherEntryRowDeleting != null)) {
-                    this.SubAccountVoucherEntryRowDeleting(this, new SubAccountVoucherEntryRowChangeEvent(((SubAccountVoucherEntryRow)(e.Row)), e.Action));
+                if ((this.QRYEMPLOYEEPROFILEALLRowDeleting != null)) {
+                    this.QRYEMPLOYEEPROFILEALLRowDeleting(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveSubAccountVoucherEntryRow(SubAccountVoucherEntryRow row) {
+            public void RemoveQRYEMPLOYEEPROFILEALLRow(QRYEMPLOYEEPROFILEALLRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -830,7 +990,7 @@ namespace DAL.Accounts.Voucher {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                AccountsNsubAccountsTDS ds = new AccountsNsubAccountsTDS();
+                EmpCostCenterTDS ds = new EmpCostCenterTDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -848,7 +1008,7 @@ namespace DAL.Accounts.Voucher {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SubAccountVoucherEntryDataTable";
+                attribute2.FixedValue = "QRYEMPLOYEEPROFILEALLDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -894,16 +1054,251 @@ namespace DAL.Accounts.Voucher {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class CostCenterDataTable : global::System.Data.TypedTableBase<CostCenterRow> {
+        public partial class tblEmployeeDataTable : global::System.Data.TypedTableBase<tblEmployeeRow> {
             
-            private global::System.Data.DataColumn columnintCostCenterID;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblEmployeeDataTable() {
+                this.TableName = "tblEmployee";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal tblEmployeeDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected tblEmployeeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblEmployeeRow this[int index] {
+                get {
+                    return ((tblEmployeeRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event tblEmployeeRowChangeEventHandler tblEmployeeRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event tblEmployeeRowChangeEventHandler tblEmployeeRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event tblEmployeeRowChangeEventHandler tblEmployeeRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event tblEmployeeRowChangeEventHandler tblEmployeeRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddtblEmployeeRow(tblEmployeeRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblEmployeeRow AddtblEmployeeRow() {
+                tblEmployeeRow rowtblEmployeeRow = ((tblEmployeeRow)(this.NewRow()));
+                object[] columnValuesArray = new object[0];
+                rowtblEmployeeRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblEmployeeRow);
+                return rowtblEmployeeRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tblEmployeeDataTable cln = ((tblEmployeeDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblEmployeeDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblEmployeeRow NewtblEmployeeRow() {
+                return ((tblEmployeeRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblEmployeeRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblEmployeeRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblEmployeeRowChanged != null)) {
+                    this.tblEmployeeRowChanged(this, new tblEmployeeRowChangeEvent(((tblEmployeeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblEmployeeRowChanging != null)) {
+                    this.tblEmployeeRowChanging(this, new tblEmployeeRowChangeEvent(((tblEmployeeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblEmployeeRowDeleted != null)) {
+                    this.tblEmployeeRowDeleted(this, new tblEmployeeRowChangeEvent(((tblEmployeeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblEmployeeRowDeleting != null)) {
+                    this.tblEmployeeRowDeleting(this, new tblEmployeeRowChangeEvent(((tblEmployeeRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemovetblEmployeeRow(tblEmployeeRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                EmpCostCenterTDS ds = new EmpCostCenterTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblEmployeeDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblCostCenterDataTable : global::System.Data.TypedTableBase<tblCostCenterRow> {
             
             private global::System.Data.DataColumn columnstrCCName;
             
+            private global::System.Data.DataColumn columnintCostCenterID;
+            
+            private global::System.Data.DataColumn columnintCostCenterID1;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CostCenterDataTable() {
-                this.TableName = "CostCenter";
+            public tblCostCenterDataTable() {
+                this.TableName = "tblCostCenter";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -911,7 +1306,7 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal CostCenterDataTable(global::System.Data.DataTable table) {
+            internal tblCostCenterDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -928,17 +1323,9 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected CostCenterDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected tblCostCenterDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intCostCenterIDColumn {
-                get {
-                    return this.columnintCostCenterID;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -951,6 +1338,22 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intCostCenterIDColumn {
+                get {
+                    return this.columnintCostCenterID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intCostCenterID1Column {
+                get {
+                    return this.columnintCostCenterID1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -960,53 +1363,55 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CostCenterRow this[int index] {
+            public tblCostCenterRow this[int index] {
                 get {
-                    return ((CostCenterRow)(this.Rows[index]));
+                    return ((tblCostCenterRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event CostCenterRowChangeEventHandler CostCenterRowChanging;
+            public event tblCostCenterRowChangeEventHandler tblCostCenterRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event CostCenterRowChangeEventHandler CostCenterRowChanged;
+            public event tblCostCenterRowChangeEventHandler tblCostCenterRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event CostCenterRowChangeEventHandler CostCenterRowDeleting;
+            public event tblCostCenterRowChangeEventHandler tblCostCenterRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event CostCenterRowChangeEventHandler CostCenterRowDeleted;
+            public event tblCostCenterRowChangeEventHandler tblCostCenterRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddCostCenterRow(CostCenterRow row) {
+            public void AddtblCostCenterRow(tblCostCenterRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CostCenterRow AddCostCenterRow(string strCCName) {
-                CostCenterRow rowCostCenterRow = ((CostCenterRow)(this.NewRow()));
+            public tblCostCenterRow AddtblCostCenterRow(string strCCName) {
+                tblCostCenterRow rowtblCostCenterRow = ((tblCostCenterRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        strCCName,
                         null,
-                        strCCName};
-                rowCostCenterRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowCostCenterRow);
-                return rowCostCenterRow;
+                        null};
+                rowtblCostCenterRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblCostCenterRow);
+                return rowtblCostCenterRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CostCenterRow FindByintCostCenterID(int intCostCenterID) {
-                return ((CostCenterRow)(this.Rows.Find(new object[] {
-                            intCostCenterID})));
+            public tblCostCenterRow FindByintCostCenterIDintCostCenterID1(int intCostCenterID, int intCostCenterID1) {
+                return ((tblCostCenterRow)(this.Rows.Find(new object[] {
+                            intCostCenterID,
+                            intCostCenterID1})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                CostCenterDataTable cln = ((CostCenterDataTable)(base.Clone()));
+                tblCostCenterDataTable cln = ((tblCostCenterDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1014,58 +1419,67 @@ namespace DAL.Accounts.Voucher {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new CostCenterDataTable();
+                return new tblCostCenterDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnintCostCenterID = base.Columns["intCostCenterID"];
                 this.columnstrCCName = base.Columns["strCCName"];
+                this.columnintCostCenterID = base.Columns["intCostCenterID"];
+                this.columnintCostCenterID1 = base.Columns["intCostCenterID1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnintCostCenterID = new global::System.Data.DataColumn("intCostCenterID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintCostCenterID);
                 this.columnstrCCName = new global::System.Data.DataColumn("strCCName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrCCName);
+                this.columnintCostCenterID = new global::System.Data.DataColumn("intCostCenterID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintCostCenterID);
+                this.columnintCostCenterID1 = new global::System.Data.DataColumn("intCostCenterID1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintCostCenterID1);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintCostCenterID}, true));
+                                this.columnintCostCenterID,
+                                this.columnintCostCenterID1}, true));
+                this.columnstrCCName.ReadOnly = true;
+                this.columnstrCCName.MaxLength = 503;
                 this.columnintCostCenterID.AutoIncrement = true;
                 this.columnintCostCenterID.AutoIncrementSeed = -1;
                 this.columnintCostCenterID.AutoIncrementStep = -1;
                 this.columnintCostCenterID.AllowDBNull = false;
                 this.columnintCostCenterID.ReadOnly = true;
-                this.columnintCostCenterID.Unique = true;
-                this.columnstrCCName.MaxLength = 250;
+                this.columnintCostCenterID1.AutoIncrement = true;
+                this.columnintCostCenterID1.AutoIncrementSeed = -1;
+                this.columnintCostCenterID1.AutoIncrementStep = -1;
+                this.columnintCostCenterID1.AllowDBNull = false;
+                this.columnintCostCenterID1.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CostCenterRow NewCostCenterRow() {
-                return ((CostCenterRow)(this.NewRow()));
+            public tblCostCenterRow NewtblCostCenterRow() {
+                return ((tblCostCenterRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new CostCenterRow(builder);
+                return new tblCostCenterRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(CostCenterRow);
+                return typeof(tblCostCenterRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.CostCenterRowChanged != null)) {
-                    this.CostCenterRowChanged(this, new CostCenterRowChangeEvent(((CostCenterRow)(e.Row)), e.Action));
+                if ((this.tblCostCenterRowChanged != null)) {
+                    this.tblCostCenterRowChanged(this, new tblCostCenterRowChangeEvent(((tblCostCenterRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1073,8 +1487,8 @@ namespace DAL.Accounts.Voucher {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.CostCenterRowChanging != null)) {
-                    this.CostCenterRowChanging(this, new CostCenterRowChangeEvent(((CostCenterRow)(e.Row)), e.Action));
+                if ((this.tblCostCenterRowChanging != null)) {
+                    this.tblCostCenterRowChanging(this, new tblCostCenterRowChangeEvent(((tblCostCenterRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1082,8 +1496,8 @@ namespace DAL.Accounts.Voucher {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.CostCenterRowDeleted != null)) {
-                    this.CostCenterRowDeleted(this, new CostCenterRowChangeEvent(((CostCenterRow)(e.Row)), e.Action));
+                if ((this.tblCostCenterRowDeleted != null)) {
+                    this.tblCostCenterRowDeleted(this, new tblCostCenterRowChangeEvent(((tblCostCenterRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1091,14 +1505,14 @@ namespace DAL.Accounts.Voucher {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.CostCenterRowDeleting != null)) {
-                    this.CostCenterRowDeleting(this, new CostCenterRowChangeEvent(((CostCenterRow)(e.Row)), e.Action));
+                if ((this.tblCostCenterRowDeleting != null)) {
+                    this.tblCostCenterRowDeleting(this, new tblCostCenterRowChangeEvent(((tblCostCenterRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveCostCenterRow(CostCenterRow row) {
+            public void RemovetblCostCenterRow(tblCostCenterRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1107,7 +1521,7 @@ namespace DAL.Accounts.Voucher {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                AccountsNsubAccountsTDS ds = new AccountsNsubAccountsTDS();
+                EmpCostCenterTDS ds = new EmpCostCenterTDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1125,285 +1539,7 @@ namespace DAL.Accounts.Voucher {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "CostCenterDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class AccountsChartOfAccDataTable : global::System.Data.TypedTableBase<AccountsChartOfAccRow> {
-            
-            private global::System.Data.DataColumn columnstrAccName;
-            
-            private global::System.Data.DataColumn columnintAccID;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsChartOfAccDataTable() {
-                this.TableName = "AccountsChartOfAcc";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal AccountsChartOfAccDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected AccountsChartOfAccDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strAccNameColumn {
-                get {
-                    return this.columnstrAccName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intAccIDColumn {
-                get {
-                    return this.columnintAccID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsChartOfAccRow this[int index] {
-                get {
-                    return ((AccountsChartOfAccRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event AccountsChartOfAccRowChangeEventHandler AccountsChartOfAccRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event AccountsChartOfAccRowChangeEventHandler AccountsChartOfAccRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event AccountsChartOfAccRowChangeEventHandler AccountsChartOfAccRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event AccountsChartOfAccRowChangeEventHandler AccountsChartOfAccRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddAccountsChartOfAccRow(AccountsChartOfAccRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsChartOfAccRow AddAccountsChartOfAccRow(string strAccName) {
-                AccountsChartOfAccRow rowAccountsChartOfAccRow = ((AccountsChartOfAccRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        strAccName,
-                        null};
-                rowAccountsChartOfAccRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowAccountsChartOfAccRow);
-                return rowAccountsChartOfAccRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsChartOfAccRow FindByintAccID(int intAccID) {
-                return ((AccountsChartOfAccRow)(this.Rows.Find(new object[] {
-                            intAccID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                AccountsChartOfAccDataTable cln = ((AccountsChartOfAccDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new AccountsChartOfAccDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnstrAccName = base.Columns["strAccName"];
-                this.columnintAccID = base.Columns["intAccID"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnstrAccName = new global::System.Data.DataColumn("strAccName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrAccName);
-                this.columnintAccID = new global::System.Data.DataColumn("intAccID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintAccID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintAccID}, true));
-                this.columnstrAccName.AllowDBNull = false;
-                this.columnstrAccName.MaxLength = 200;
-                this.columnintAccID.AutoIncrement = true;
-                this.columnintAccID.AutoIncrementSeed = -1;
-                this.columnintAccID.AutoIncrementStep = -1;
-                this.columnintAccID.AllowDBNull = false;
-                this.columnintAccID.ReadOnly = true;
-                this.columnintAccID.Unique = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsChartOfAccRow NewAccountsChartOfAccRow() {
-                return ((AccountsChartOfAccRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new AccountsChartOfAccRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(AccountsChartOfAccRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.AccountsChartOfAccRowChanged != null)) {
-                    this.AccountsChartOfAccRowChanged(this, new AccountsChartOfAccRowChangeEvent(((AccountsChartOfAccRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.AccountsChartOfAccRowChanging != null)) {
-                    this.AccountsChartOfAccRowChanging(this, new AccountsChartOfAccRowChangeEvent(((AccountsChartOfAccRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.AccountsChartOfAccRowDeleted != null)) {
-                    this.AccountsChartOfAccRowDeleted(this, new AccountsChartOfAccRowChangeEvent(((AccountsChartOfAccRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.AccountsChartOfAccRowDeleting != null)) {
-                    this.AccountsChartOfAccRowDeleting(this, new AccountsChartOfAccRowChangeEvent(((AccountsChartOfAccRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveAccountsChartOfAccRow(AccountsChartOfAccRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                AccountsNsubAccountsTDS ds = new AccountsNsubAccountsTDS();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "AccountsChartOfAccDataTable";
+                attribute2.FixedValue = "tblCostCenterDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1447,140 +1583,349 @@ namespace DAL.Accounts.Voucher {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class AccountsNoRow : global::System.Data.DataRow {
+        public partial class tblUnitRow : global::System.Data.DataRow {
             
-            private AccountsNoDataTable tableAccountsNo;
+            private tblUnitDataTable tabletblUnit;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal AccountsNoRow(global::System.Data.DataRowBuilder rb) : 
+            internal tblUnitRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableAccountsNo = ((AccountsNoDataTable)(this.Table));
+                this.tabletblUnit = ((tblUnitDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strAccName {
+            public string strUnit {
                 get {
-                    try {
-                        return ((string)(this[this.tableAccountsNo.strAccNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strAccName\' in table \'AccountsNo\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tabletblUnit.strUnitColumn]));
                 }
                 set {
-                    this[this.tableAccountsNo.strAccNameColumn] = value;
+                    this[this.tabletblUnit.strUnitColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intBankAccID {
+            public int intUnitID {
                 get {
-                    try {
-                        return ((int)(this[this.tableAccountsNo.intBankAccIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intBankAccID\' in table \'AccountsNo\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tabletblUnit.intUnitIDColumn]));
                 }
                 set {
-                    this[this.tableAccountsNo.intBankAccIDColumn] = value;
+                    this[this.tabletblUnit.intUnitIDColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrAccNameNull() {
-                return this.IsNull(this.tableAccountsNo.strAccNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrAccNameNull() {
-                this[this.tableAccountsNo.strAccNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintBankAccIDNull() {
-                return this.IsNull(this.tableAccountsNo.intBankAccIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintBankAccIDNull() {
-                this[this.tableAccountsNo.intBankAccIDColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SubAccountVoucherEntryRow : global::System.Data.DataRow {
+        public partial class QRYEMPLOYEEPROFILEALLRow : global::System.Data.DataRow {
             
-            private SubAccountVoucherEntryDataTable tableSubAccountVoucherEntry;
+            private QRYEMPLOYEEPROFILEALLDataTable tableQRYEMPLOYEEPROFILEALL;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SubAccountVoucherEntryRow(global::System.Data.DataRowBuilder rb) : 
+            internal QRYEMPLOYEEPROFILEALLRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableSubAccountVoucherEntry = ((SubAccountVoucherEntryDataTable)(this.Table));
+                this.tableQRYEMPLOYEEPROFILEALL = ((QRYEMPLOYEEPROFILEALLDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Column1 {
+            public int intEmployeeID {
+                get {
+                    return ((int)(this[this.tableQRYEMPLOYEEPROFILEALL.intEmployeeIDColumn]));
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.intEmployeeIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strEmployeeCode {
                 get {
                     try {
-                        return ((string)(this[this.tableSubAccountVoucherEntry.Column1Column]));
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeCodeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Column1\' in table \'SubAccountVoucherEntry\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strEmployeeCode\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tableSubAccountVoucherEntry.Column1Column] = value;
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeCodeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsColumn1Null() {
-                return this.IsNull(this.tableSubAccountVoucherEntry.Column1Column);
+            public string strEmployeeName {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strEmployeeName\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetColumn1Null() {
-                this[this.tableSubAccountVoucherEntry.Column1Column] = global::System.Convert.DBNull;
+            public string strDesignation {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDesignation\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strDepatrment {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strDepatrmentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDepatrment\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strDepatrmentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strJobType {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strJobTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strJobType\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strJobTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strGroupName {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strGroupNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strGroupName\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strGroupNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strUnit {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strUnitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strUnit\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strUnitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strJobStationName {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strJobStationNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strJobStationName\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strJobStationNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string code {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.codeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'code\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.codeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrEmployeeCodeNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strEmployeeCodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrEmployeeCodeNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrEmployeeNameNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrEmployeeNameNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDesignationNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDesignationNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDepatrmentNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strDepatrmentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDepatrmentNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strDepatrmentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrJobTypeNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strJobTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrJobTypeNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strJobTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrGroupNameNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strGroupNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrGroupNameNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strGroupNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrUnitNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strUnitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrUnitNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strUnitColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrJobStationNameNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strJobStationNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrJobStationNameNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strJobStationNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IscodeNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.codeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetcodeNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.codeColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class CostCenterRow : global::System.Data.DataRow {
+        public partial class tblEmployeeRow : global::System.Data.DataRow {
             
-            private CostCenterDataTable tableCostCenter;
+            private tblEmployeeDataTable tabletblEmployee;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal CostCenterRow(global::System.Data.DataRowBuilder rb) : 
+            internal tblEmployeeRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableCostCenter = ((CostCenterDataTable)(this.Table));
+                this.tabletblEmployee = ((tblEmployeeDataTable)(this.Table));
             }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class tblCostCenterRow : global::System.Data.DataRow {
+            
+            private tblCostCenterDataTable tabletblCostCenter;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intCostCenterID {
-                get {
-                    return ((int)(this[this.tableCostCenter.intCostCenterIDColumn]));
-                }
-                set {
-                    this[this.tableCostCenter.intCostCenterIDColumn] = value;
-                }
+            internal tblCostCenterRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblCostCenter = ((tblCostCenterDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1588,64 +1933,49 @@ namespace DAL.Accounts.Voucher {
             public string strCCName {
                 get {
                     try {
-                        return ((string)(this[this.tableCostCenter.strCCNameColumn]));
+                        return ((string)(this[this.tabletblCostCenter.strCCNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strCCName\' in table \'CostCenter\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strCCName\' in table \'tblCostCenter\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableCostCenter.strCCNameColumn] = value;
+                    this[this.tabletblCostCenter.strCCNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intCostCenterID {
+                get {
+                    return ((int)(this[this.tabletblCostCenter.intCostCenterIDColumn]));
+                }
+                set {
+                    this[this.tabletblCostCenter.intCostCenterIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intCostCenterID1 {
+                get {
+                    return ((int)(this[this.tabletblCostCenter.intCostCenterID1Column]));
+                }
+                set {
+                    this[this.tabletblCostCenter.intCostCenterID1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrCCNameNull() {
-                return this.IsNull(this.tableCostCenter.strCCNameColumn);
+                return this.IsNull(this.tabletblCostCenter.strCCNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrCCNameNull() {
-                this[this.tableCostCenter.strCCNameColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class AccountsChartOfAccRow : global::System.Data.DataRow {
-            
-            private AccountsChartOfAccDataTable tableAccountsChartOfAcc;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal AccountsChartOfAccRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableAccountsChartOfAcc = ((AccountsChartOfAccDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strAccName {
-                get {
-                    return ((string)(this[this.tableAccountsChartOfAcc.strAccNameColumn]));
-                }
-                set {
-                    this[this.tableAccountsChartOfAcc.strAccNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intAccID {
-                get {
-                    return ((int)(this[this.tableAccountsChartOfAcc.intAccIDColumn]));
-                }
-                set {
-                    this[this.tableAccountsChartOfAcc.intAccIDColumn] = value;
-                }
+                this[this.tabletblCostCenter.strCCNameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1653,22 +1983,22 @@ namespace DAL.Accounts.Voucher {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class AccountsNoRowChangeEvent : global::System.EventArgs {
+        public class tblUnitRowChangeEvent : global::System.EventArgs {
             
-            private AccountsNoRow eventRow;
+            private tblUnitRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsNoRowChangeEvent(AccountsNoRow row, global::System.Data.DataRowAction action) {
+            public tblUnitRowChangeEvent(tblUnitRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsNoRow Row {
+            public tblUnitRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1687,22 +2017,22 @@ namespace DAL.Accounts.Voucher {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class SubAccountVoucherEntryRowChangeEvent : global::System.EventArgs {
+        public class QRYEMPLOYEEPROFILEALLRowChangeEvent : global::System.EventArgs {
             
-            private SubAccountVoucherEntryRow eventRow;
+            private QRYEMPLOYEEPROFILEALLRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SubAccountVoucherEntryRowChangeEvent(SubAccountVoucherEntryRow row, global::System.Data.DataRowAction action) {
+            public QRYEMPLOYEEPROFILEALLRowChangeEvent(QRYEMPLOYEEPROFILEALLRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SubAccountVoucherEntryRow Row {
+            public QRYEMPLOYEEPROFILEALLRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1721,22 +2051,22 @@ namespace DAL.Accounts.Voucher {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class CostCenterRowChangeEvent : global::System.EventArgs {
+        public class tblEmployeeRowChangeEvent : global::System.EventArgs {
             
-            private CostCenterRow eventRow;
+            private tblEmployeeRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CostCenterRowChangeEvent(CostCenterRow row, global::System.Data.DataRowAction action) {
+            public tblEmployeeRowChangeEvent(tblEmployeeRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CostCenterRow Row {
+            public tblEmployeeRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1755,22 +2085,22 @@ namespace DAL.Accounts.Voucher {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class AccountsChartOfAccRowChangeEvent : global::System.EventArgs {
+        public class tblCostCenterRowChangeEvent : global::System.EventArgs {
             
-            private AccountsChartOfAccRow eventRow;
+            private tblCostCenterRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsChartOfAccRowChangeEvent(AccountsChartOfAccRow row, global::System.Data.DataRowAction action) {
+            public tblCostCenterRowChangeEvent(tblCostCenterRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public AccountsChartOfAccRow Row {
+            public tblCostCenterRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -1786,7 +2116,7 @@ namespace DAL.Accounts.Voucher {
         }
     }
 }
-namespace DAL.Accounts.Voucher.AccountsNsubAccountsTDSTableAdapters {
+namespace HR_DAL.Employee.EmpCostCenterTDSTableAdapters {
     
     
     /// <summary>
@@ -1798,7 +2128,7 @@ namespace DAL.Accounts.Voucher.AccountsNsubAccountsTDSTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class AccountsNoTableAdapter : global::System.ComponentModel.Component {
+    public partial class tblUnitTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -1812,7 +2142,7 @@ namespace DAL.Accounts.Voucher.AccountsNsubAccountsTDSTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public AccountsNoTableAdapter() {
+        public tblUnitTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -1909,749 +2239,34 @@ namespace DAL.Accounts.Voucher.AccountsNsubAccountsTDSTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "AccountsNo";
-            tableMapping.ColumnMappings.Add("strAccName", "strAccName");
-            tableMapping.ColumnMappings.Add("intBankAccID", "intBankAccID");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[7];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.SP_SubAccountFormData";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "dbo.SP_SubAccountFormData";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "dbo.SP_SubAccountFormData";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "dbo.SP_SubAccountFormData";
-            this._commandCollection[3].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "dbo.SP_SubAccountFormData";
-            this._commandCollection[4].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "dbo.SP_SubAccountFormData";
-            this._commandCollection[5].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "dbo.SP_SubAccountFormData";
-            this._commandCollection[6].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AccountsNsubAccountsTDS.AccountsNoDataTable GetBankReceiveACNoData(global::System.Nullable<int> part, global::System.Nullable<int> UnitId, global::System.Nullable<int> Enroll) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((part.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(part.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((UnitId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(UnitId.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Enroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Enroll.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            AccountsNsubAccountsTDS.AccountsNoDataTable dataTable = new AccountsNsubAccountsTDS.AccountsNoDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual AccountsNsubAccountsTDS.AccountsNoDataTable GetBankPaymentACNoData(global::System.Nullable<int> part, global::System.Nullable<int> UnitId, global::System.Nullable<int> Enroll) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((part.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(part.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((UnitId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(UnitId.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Enroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Enroll.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            AccountsNsubAccountsTDS.AccountsNoDataTable dataTable = new AccountsNsubAccountsTDS.AccountsNoDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual AccountsNsubAccountsTDS.AccountsNoDataTable GetBPDebitAccountsData(global::System.Nullable<int> part, global::System.Nullable<int> UnitId, global::System.Nullable<int> Enroll) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
-            if ((part.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(part.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((UnitId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(UnitId.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Enroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Enroll.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            AccountsNsubAccountsTDS.AccountsNoDataTable dataTable = new AccountsNsubAccountsTDS.AccountsNoDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual AccountsNsubAccountsTDS.AccountsNoDataTable GetBRCreditAccountsData(global::System.Nullable<int> part, global::System.Nullable<int> UnitId, global::System.Nullable<int> Enroll) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
-            if ((part.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(part.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((UnitId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(UnitId.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Enroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Enroll.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            AccountsNsubAccountsTDS.AccountsNoDataTable dataTable = new AccountsNsubAccountsTDS.AccountsNoDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual AccountsNsubAccountsTDS.AccountsNoDataTable GetContraAccountsNoData(global::System.Nullable<int> part, global::System.Nullable<int> UnitId, global::System.Nullable<int> Enroll) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
-            if ((part.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(part.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((UnitId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(UnitId.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Enroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Enroll.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            AccountsNsubAccountsTDS.AccountsNoDataTable dataTable = new AccountsNsubAccountsTDS.AccountsNoDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual AccountsNsubAccountsTDS.AccountsNoDataTable GetCRCPAccountData(global::System.Nullable<int> part, global::System.Nullable<int> UnitId, global::System.Nullable<int> Enroll) {
-            this.Adapter.SelectCommand = this.CommandCollection[5];
-            if ((part.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(part.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((UnitId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(UnitId.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Enroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Enroll.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            AccountsNsubAccountsTDS.AccountsNoDataTable dataTable = new AccountsNsubAccountsTDS.AccountsNoDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual AccountsNsubAccountsTDS.AccountsNoDataTable GetJVAccountsHeaderData(global::System.Nullable<int> part, global::System.Nullable<int> UnitId, global::System.Nullable<int> Enroll) {
-            this.Adapter.SelectCommand = this.CommandCollection[6];
-            if ((part.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(part.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((UnitId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(UnitId.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Enroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Enroll.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            AccountsNsubAccountsTDS.AccountsNoDataTable dataTable = new AccountsNsubAccountsTDS.AccountsNoDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SubAccountVoucherEntryTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SubAccountVoucherEntryTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SubAccountVoucherEntry";
-            tableMapping.ColumnMappings.Add("Column1", "Column1");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.SP_SubAccountVoucherEntry";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strXML", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@accountId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@accountNumber", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@checkNumber", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@checkDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnCheque", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnDemandDraft", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnPayOrder", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnDepositSlip", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnAdvance", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnAdjustment", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnOnline", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@masterNarration", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@totalDebitAmount", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 6, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@totalCreditAmount", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 6, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rcvorpayFrom", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AccountsNsubAccountsTDS.SubAccountVoucherEntryDataTable InsertSubAccountNgetVoucherID(
-                    global::System.Nullable<int> type, 
-                    global::System.Nullable<int> intUnitid, 
-                    object strXML, 
-                    global::System.Nullable<int> accountId, 
-                    string accountNumber, 
-                    string checkNumber, 
-                    global::System.Nullable<global::System.DateTime> checkDate, 
-                    global::System.Nullable<int> ysnCheque, 
-                    global::System.Nullable<int> ysnDemandDraft, 
-                    global::System.Nullable<int> ysnPayOrder, 
-                    global::System.Nullable<int> ysnDepositSlip, 
-                    global::System.Nullable<int> ysnAdvance, 
-                    global::System.Nullable<int> ysnAdjustment, 
-                    global::System.Nullable<int> ysnOnline, 
-                    string masterNarration, 
-                    global::System.Nullable<decimal> totalDebitAmount, 
-                    global::System.Nullable<decimal> totalCreditAmount, 
-                    string rcvorpayFrom, 
-                    global::System.Nullable<int> Enroll) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((type.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(type.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((intUnitid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intUnitid.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((strXML == null)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((object)(strXML));
-            }
-            if ((accountId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(accountId.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((accountNumber == null)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(accountNumber));
-            }
-            if ((checkNumber == null)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(checkNumber));
-            }
-            if ((checkDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((System.DateTime)(checkDate.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            if ((ysnCheque.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(ysnCheque.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((ysnDemandDraft.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(ysnDemandDraft.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((ysnPayOrder.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(ysnPayOrder.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            if ((ysnDepositSlip.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((int)(ysnDepositSlip.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            if ((ysnAdvance.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[12].Value = ((int)(ysnAdvance.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            if ((ysnAdjustment.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[13].Value = ((int)(ysnAdjustment.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            if ((ysnOnline.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[14].Value = ((int)(ysnOnline.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            if ((masterNarration == null)) {
-                this.Adapter.SelectCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[15].Value = ((string)(masterNarration));
-            }
-            if ((totalDebitAmount.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[16].Value = ((decimal)(totalDebitAmount.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            if ((totalCreditAmount.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[17].Value = ((decimal)(totalCreditAmount.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            if ((rcvorpayFrom == null)) {
-                this.Adapter.SelectCommand.Parameters[18].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[18].Value = ((string)(rcvorpayFrom));
-            }
-            if ((Enroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[19].Value = ((int)(Enroll.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            AccountsNsubAccountsTDS.SubAccountVoucherEntryDataTable dataTable = new AccountsNsubAccountsTDS.SubAccountVoucherEntryDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class CostCenterTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public CostCenterTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "CostCenter";
-            tableMapping.ColumnMappings.Add("intCostCenterID", "intCostCenterID");
-            tableMapping.ColumnMappings.Add("strCCName", "strCCName");
+            tableMapping.DataSetTable = "tblUnit";
+            tableMapping.ColumnMappings.Add("strUnit", "strUnit");
+            tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tblCostCenter] WHERE (([intCostCenterID] = @Original_intCostCenterID" +
-                ") AND ((@IsNull_strCCName = 1 AND [strCCName] IS NULL) OR ([strCCName] = @Origin" +
-                "al_strCCName)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [ERP_HR].[dbo].[tblUnit] WHERE (([strUnit] = @Original_strUnit) AND (" +
+                "[intUnitID] = @Original_intUnitID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intCostCenterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intCostCenterID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strCCName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCCName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strCCName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCCName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [tblCostCenter] ([strCCName]) VALUES (@strCCName);\r\nSELECT intCostCen" +
-                "terID, strCCName FROM tblCostCenter WHERE (intCostCenterID = SCOPE_IDENTITY()) O" +
-                "RDER BY strCCName";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCCName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCCName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strUnit", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUnit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [tblCostCenter] SET [strCCName] = @strCCName WHERE (([intCostCenterID] = @Original_intCostCenterID) AND ((@IsNull_strCCName = 1 AND [strCCName] IS NULL) OR ([strCCName] = @Original_strCCName)));
-SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @intCostCenterID) ORDER BY strCCName";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [ERP_HR].[dbo].[tblUnit] SET [strUnit] = @strUnit WHERE (([strUnit] = @Ori" +
+                "ginal_strUnit) AND ([intUnitID] = @Original_intUnitID));\r\nSELECT strUnit, intUni" +
+                "tID FROM tblUnit WHERE (intUnitID = @intUnitID) ORDER BY strUnit";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCCName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCCName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intCostCenterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intCostCenterID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strCCName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCCName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strCCName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCCName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCostCenterID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCostCenterID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strUnit", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUnit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strUnit", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strUnit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_HRConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2660,8 +2275,8 @@ SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @i
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        intCostCenterID, strCCName\r\nFROM            tblCostCenter\r\nWHERE   " +
-                "     (intUnitID = 2) AND (ysnActive = 1)\r\nORDER BY strCCName";
+            this._commandCollection[0].CommandText = "SELECT strUnit, intUnitID FROM ERP_HR.dbo.tblUnit WHERE ysnEnable = 1 AND ysnPFUn" +
+                "it = 0 Order by strUnit asc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -2669,9 +2284,9 @@ SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @i
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AccountsNsubAccountsTDS.CostCenterDataTable GetCostCentreData() {
+        public virtual EmpCostCenterTDS.tblUnitDataTable GetUnitList() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            AccountsNsubAccountsTDS.CostCenterDataTable dataTable = new AccountsNsubAccountsTDS.CostCenterDataTable();
+            EmpCostCenterTDS.tblUnitDataTable dataTable = new EmpCostCenterTDS.tblUnitDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2679,15 +2294,15 @@ SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @i
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(AccountsNsubAccountsTDS.CostCenterDataTable dataTable) {
+        public virtual int Update(EmpCostCenterTDS.tblUnitDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(AccountsNsubAccountsTDS dataSet) {
-            return this.Adapter.Update(dataSet, "CostCenter");
+        public virtual int Update(EmpCostCenterTDS dataSet) {
+            return this.Adapter.Update(dataSet, "tblUnit");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2715,7 +2330,7 @@ SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @i
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class AccountsChartOfAccTableAdapter : global::System.ComponentModel.Component {
+    public partial class QRYEMPLOYEEPROFILEALLTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -2729,7 +2344,7 @@ SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @i
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public AccountsChartOfAccTableAdapter() {
+        public QRYEMPLOYEEPROFILEALLTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -2826,9 +2441,17 @@ SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @i
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "AccountsChartOfAcc";
-            tableMapping.ColumnMappings.Add("strAccName", "strAccName");
-            tableMapping.ColumnMappings.Add("intAccID", "intAccID");
+            tableMapping.DataSetTable = "QRYEMPLOYEEPROFILEALL";
+            tableMapping.ColumnMappings.Add("intEmployeeID", "intEmployeeID");
+            tableMapping.ColumnMappings.Add("strEmployeeCode", "strEmployeeCode");
+            tableMapping.ColumnMappings.Add("strEmployeeName", "strEmployeeName");
+            tableMapping.ColumnMappings.Add("strDesignation", "strDesignation");
+            tableMapping.ColumnMappings.Add("strDepatrment", "strDepatrment");
+            tableMapping.ColumnMappings.Add("strJobType", "strJobType");
+            tableMapping.ColumnMappings.Add("strGroupName", "strGroupName");
+            tableMapping.ColumnMappings.Add("strUnit", "strUnit");
+            tableMapping.ColumnMappings.Add("strJobStationName", "strJobStationName");
+            tableMapping.ColumnMappings.Add("code", "code");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2836,7 +2459,7 @@ SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @i
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_HRConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2845,37 +2468,433 @@ SELECT intCostCenterID, strCCName FROM tblCostCenter WHERE (intCostCenterID = @i
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        coa.strAccName, coa.intAccID
-FROM            tblSubAccountsChartOfAccByUser AS subcoa INNER JOIN
-                         tblAccountsChartOfAcc AS coa ON subcoa.intCOAID = coa.intAccID
-WHERE        (subcoa.intAccountType = 1) AND (subcoa.intEmployeeID = @Enroll) AND (subcoa.intAccUnitID = @UnitID)
-ORDER BY coa.strAccName";
+            this._commandCollection[0].CommandText = @"SELECT intEmployeeID, strEmployeeCode, strEmployeeName, strDesignation, strDepatrment, strJobType, strGroupName, strUnit, strJobStationName,'' code FROM ERP_HR.dbo.QryEmployeeProfileAll WHERE intUnitID =@intUnitid AND strGLCode IS NULL AND ysnActive = 1 Order by strEmployeeName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAccUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AccountsNsubAccountsTDS.AccountsChartOfAccDataTable GetCOAByUnitNuser(global::System.Nullable<int> Enroll, global::System.Nullable<int> UnitID) {
+        public virtual EmpCostCenterTDS.QRYEMPLOYEEPROFILEALLDataTable GetEmployeeListByUnit(global::System.Nullable<int> intUnitid) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((Enroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(Enroll.Value));
+            if ((intUnitid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intUnitid.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((UnitID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(UnitID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            AccountsNsubAccountsTDS.AccountsChartOfAccDataTable dataTable = new AccountsNsubAccountsTDS.AccountsChartOfAccDataTable();
+            EmpCostCenterTDS.QRYEMPLOYEEPROFILEALLDataTable dataTable = new EmpCostCenterTDS.QRYEMPLOYEEPROFILEALLDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class tblEmployeeTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public tblEmployeeTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_HRConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "UPDATE ERP_HR.dbo.tblEmployee SET strGLCode =@costid WHERE intEmployeeID =@enroll" +
+                "";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@costid", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strGLCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual EmpCostCenterTDS.tblEmployeeDataTable GetUpdate(string costid, int enroll) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((costid == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(costid));
+            }
+            this.Adapter.SelectCommand.Parameters[1].Value = ((int)(enroll));
+            EmpCostCenterTDS.tblEmployeeDataTable dataTable = new EmpCostCenterTDS.tblEmployeeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class tblCostCenterTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public tblCostCenterTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "tblCostCenter";
+            tableMapping.ColumnMappings.Add("strCCName", "strCCName");
+            tableMapping.ColumnMappings.Add("intCostCenterID", "intCostCenterID");
+            tableMapping.ColumnMappings.Add("intCostCenterID1", "intCostCenterID1");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [tblCostCenter] WHERE (([intCostCenterID] = @p4) AND ([intCostCenterI" +
+                "D] = @Original_intCostCenterID))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p4", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intCostCenterID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intCostCenterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intCostCenterID1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tblCostCenter] DEFAULT VALUES;
+SELECT tblCostCenter.strCCName + ' (' + tblCostCenter_1.strCCName + ')' AS strCCName, tblCostCenter.intCostCenterID, tblCostCenter_1.intCostCenterID AS Expr1 FROM tblCostCenter INNER JOIN tblCostCenter AS tblCostCenter_1 ON tblCostCenter.intParentID = tblCostCenter_1.intCostCenterID WHERE (tblCostCenter.intCostCenterID = SCOPE_IDENTITY()) AND (tblCostCenter.intCostCenterID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::HR_DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"SELECT tblCostCenter.strCCName + ' (' + tblCostCenter_1.strCCName + ')' AS strCCName, tblCostCenter.intCostCenterID, tblCostCenter_1.intCostCenterID FROM tblCostCenter INNER JOIN tblCostCenter AS tblCostCenter_1 ON tblCostCenter.intParentID = tblCostCenter_1.intCostCenterID WHERE (tblCostCenter.intUnitID = @intUnitid) AND (tblCostCenter.ysnTransHead = 1) AND (tblCostCenter.ysnActive = 1)";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual EmpCostCenterTDS.tblCostCenterDataTable GetCostCenterList(global::System.Nullable<int> intUnitid) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intUnitid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intUnitid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            EmpCostCenterTDS.tblCostCenterDataTable dataTable = new EmpCostCenterTDS.tblCostCenterDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(EmpCostCenterTDS.tblCostCenterDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(EmpCostCenterTDS dataSet) {
+            return this.Adapter.Update(dataSet, "tblCostCenter");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int p4, int Original_intCostCenterID) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(p4));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_intCostCenterID));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert() {
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
         }
     }
     
@@ -2891,7 +2910,9 @@ ORDER BY coa.strAccName";
         
         private UpdateOrderOption _updateOrder;
         
-        private CostCenterTableAdapter _costCenterTableAdapter;
+        private tblUnitTableAdapter _tblUnitTableAdapter;
+        
+        private tblCostCenterTableAdapter _tblCostCenterTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -2913,12 +2934,26 @@ ORDER BY coa.strAccName";
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public CostCenterTableAdapter CostCenterTableAdapter {
+        public tblUnitTableAdapter tblUnitTableAdapter {
             get {
-                return this._costCenterTableAdapter;
+                return this._tblUnitTableAdapter;
             }
             set {
-                this._costCenterTableAdapter = value;
+                this._tblUnitTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public tblCostCenterTableAdapter tblCostCenterTableAdapter {
+            get {
+                return this._tblCostCenterTableAdapter;
+            }
+            set {
+                this._tblCostCenterTableAdapter = value;
             }
         }
         
@@ -2941,9 +2976,13 @@ ORDER BY coa.strAccName";
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._costCenterTableAdapter != null) 
-                            && (this._costCenterTableAdapter.Connection != null))) {
-                    return this._costCenterTableAdapter.Connection;
+                if (((this._tblUnitTableAdapter != null) 
+                            && (this._tblUnitTableAdapter.Connection != null))) {
+                    return this._tblUnitTableAdapter.Connection;
+                }
+                if (((this._tblCostCenterTableAdapter != null) 
+                            && (this._tblCostCenterTableAdapter.Connection != null))) {
+                    return this._tblCostCenterTableAdapter.Connection;
                 }
                 return null;
             }
@@ -2958,7 +2997,10 @@ ORDER BY coa.strAccName";
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._costCenterTableAdapter != null)) {
+                if ((this._tblUnitTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._tblCostCenterTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -2970,14 +3012,23 @@ ORDER BY coa.strAccName";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateUpdatedRows(AccountsNsubAccountsTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(EmpCostCenterTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._costCenterTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.CostCenter.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._tblUnitTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tblUnit.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._costCenterTableAdapter.Update(updatedRows));
+                    result = (result + this._tblUnitTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tblCostCenterTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tblCostCenter.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tblCostCenterTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -2989,13 +3040,21 @@ ORDER BY coa.strAccName";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateInsertedRows(AccountsNsubAccountsTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(EmpCostCenterTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._costCenterTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.CostCenter.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._tblUnitTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tblUnit.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._costCenterTableAdapter.Update(addedRows));
+                    result = (result + this._tblUnitTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tblCostCenterTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tblCostCenter.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tblCostCenterTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -3007,13 +3066,21 @@ ORDER BY coa.strAccName";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateDeletedRows(AccountsNsubAccountsTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(EmpCostCenterTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._costCenterTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.CostCenter.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._tblCostCenterTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tblCostCenter.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._costCenterTableAdapter.Update(deletedRows));
+                    result = (result + this._tblCostCenterTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tblUnitTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tblUnit.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tblUnitTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -3049,15 +3116,20 @@ ORDER BY coa.strAccName";
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public virtual int UpdateAll(AccountsNsubAccountsTDS dataSet) {
+        public virtual int UpdateAll(EmpCostCenterTDS dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._costCenterTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._costCenterTableAdapter.Connection) == false))) {
+            if (((this._tblUnitTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tblUnitTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._tblCostCenterTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tblCostCenterTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -3093,13 +3165,22 @@ ORDER BY coa.strAccName";
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._costCenterTableAdapter != null)) {
-                    revertConnections.Add(this._costCenterTableAdapter, this._costCenterTableAdapter.Connection);
-                    this._costCenterTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._costCenterTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._costCenterTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._costCenterTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._costCenterTableAdapter.Adapter);
+                if ((this._tblUnitTableAdapter != null)) {
+                    revertConnections.Add(this._tblUnitTableAdapter, this._tblUnitTableAdapter.Connection);
+                    this._tblUnitTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tblUnitTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tblUnitTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tblUnitTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblUnitTableAdapter.Adapter);
+                    }
+                }
+                if ((this._tblCostCenterTableAdapter != null)) {
+                    revertConnections.Add(this._tblCostCenterTableAdapter, this._tblCostCenterTableAdapter.Connection);
+                    this._tblCostCenterTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tblCostCenterTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tblCostCenterTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tblCostCenterTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblCostCenterTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -3160,9 +3241,13 @@ ORDER BY coa.strAccName";
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._costCenterTableAdapter != null)) {
-                    this._costCenterTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._costCenterTableAdapter]));
-                    this._costCenterTableAdapter.Transaction = null;
+                if ((this._tblUnitTableAdapter != null)) {
+                    this._tblUnitTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblUnitTableAdapter]));
+                    this._tblUnitTableAdapter.Transaction = null;
+                }
+                if ((this._tblCostCenterTableAdapter != null)) {
+                    this._tblCostCenterTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblCostCenterTableAdapter]));
+                    this._tblCostCenterTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

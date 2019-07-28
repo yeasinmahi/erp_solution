@@ -18,6 +18,8 @@
           //  window.self.closed();
             document.body.innerHTML = originalContents;
         }
+
+
     </script>
     <script type="text/javascript">
         $("[id*=lblQuantity]").live("keyup", function () {

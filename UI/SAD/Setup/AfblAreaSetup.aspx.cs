@@ -68,7 +68,7 @@ namespace UI.SAD.Setup
         
         protected void btnClear_Click(object sender, EventArgs e)
         {
-
+            clearAll();
         }
 
         protected void ddlExLineName_SelectedIndexChanged(object sender, EventArgs e)
@@ -125,7 +125,9 @@ namespace UI.SAD.Setup
         {
             DataTable dt = new DataTable();
             string phoneNo = string.Empty;
+            string desc = string.Empty;
             int lineId = 0;
+
             try
             {
                 if (!string.IsNullOrEmpty(ddlExArea.SelectedValue))
@@ -134,13 +136,17 @@ namespace UI.SAD.Setup
                     lineId = Convert.ToInt32(ddlExArea.SelectedValue.ToString());
                     dt = objAfblDistributionBll.GetAFBLExistGeoInfo(lineId, part);
                     if (dt.Rows.Count > 0)
+                    {
                         phoneNo = dt.Rows[0].Field<string>(3);
-
+                        desc = dt.Rows[0].Field<string>(4);
+                    }
                     btnCreate.Visible = false;
                 }
                 else
                     btnCreate.Visible = true;
+
                 txtPhoneNo.Text = phoneNo;
+                txtArea.Text = desc;
             }
             catch (Exception Ex)
             {

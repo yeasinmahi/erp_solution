@@ -236,8 +236,10 @@
     <Compile Include="Employee\EmpCostCenterTDS.cs">
       <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Employee\EmpCostCenterTDS.designer.cs">
-      <DependentUpon>EmpCostCenterTDS.cs</DependentUpon>
+    <Compile Include="Employee\EmpCostCenterTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Employee\Employee.cs">
       <DependentUpon>Employee.xsd</DependentUpon>
@@ -949,9 +951,9 @@
       <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
     </None>
     <None Include="Employee\EmpCostCenterTDS.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>EmpCostCenterTDS1.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmpCostCenterTDS.Designer.cs</LastGenOutput>
     </None>
     <None Include="Employee\EmpCostCenterTDS.xss">
       <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
