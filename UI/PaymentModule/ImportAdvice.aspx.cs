@@ -30,12 +30,12 @@ namespace UI.PaymentModule
         public void LoadUnit()
         {
             _dt = _bll.GetUnit();
-            ddlUnit.Loads(_dt, "intUnitID", "strDescription");
+            ddlUnit.LoadWithSelect(_dt, "intUnitID", "strDescription");
         }
         public void LoadBank()
         {
             _dt = _bll.GetBank();
-            ddlbank.Loads(_dt, "intBankID", "strBankName");
+            ddlbank.LoadWithSelect(_dt, "intBankID", "strBankName");
         }
         public void LoadAdvice()
         {
@@ -44,7 +44,7 @@ namespace UI.PaymentModule
             string fromDate = txtDate.Text;
             string toDate = DateTime.Now.ToString("yyyy/MM/dd");
             _dt = _bll.GetAdvice(unitId, bankId, fromDate, toDate);
-            ddlAdvice.Loads(_dt, "strAdviceGroup", "strAdviceGroup");
+            ddlAdvice.LoadWithSelect(_dt, "strAdviceGroup", "strAdviceGroup");
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -79,11 +79,13 @@ namespace UI.PaymentModule
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadBank();
             LoadAdvice();
         }
 
         protected void ddlbank_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             LoadAdvice();
         }
 
