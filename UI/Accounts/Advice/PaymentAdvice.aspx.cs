@@ -192,7 +192,7 @@ namespace UI.Accounts.Advice
         protected void btnShowReport_Click(object sender, EventArgs e)
         {
             LoadGrid();
-            LoadGridExport();
+            
         }
 
         private void LoadGrid()
@@ -224,24 +224,19 @@ namespace UI.Accounts.Advice
                 //{
 
                 //}
-                else
+                else if(intBankType==1)
                 {
 
-                    intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
-                    dt = new DataTable();
-                    dt = bll.GetUnitAddress(intUnitID);
-                    lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
-                    lblForUnit.Text = "For " + dt.Rows[0]["strDescription"].ToString();
-                    lblUnitAddress.Text = dt.Rows[0]["strAddress"].ToString();
-
-                    dteDate = DateTime.Parse(txtDate.Text.ToString());
-                    intWork = 0;
-                    strAccountMandatory = ddlMandatory.SelectedItem.ToString();
-                    strBankName = ddlFormat.SelectedItem.ToString();
-                    ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
+                    LoadLabel();
                     dt = new DataTable();
                     dt = bll.GetPartyAdvice(intAdviceType, intActionBy, intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted, intChillingID);
+                    LoadGridExport();
 
+                }
+                else if(intBankType==2)
+                {
+                    LoadGridExport();
+                    
                 }
 
             }
@@ -257,6 +252,22 @@ namespace UI.Accounts.Advice
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+
+        public void   LoadLabel()
+        {
+            intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
+            dt = new DataTable();
+            dt = bll.GetUnitAddress(intUnitID);
+            lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
+            lblForUnit.Text = "For " + dt.Rows[0]["strDescription"].ToString();
+            lblUnitAddress.Text = dt.Rows[0]["strAddress"].ToString();
+
+            dteDate = DateTime.Parse(txtDate.Text.ToString());
+            intWork = 0;
+            strAccountMandatory = ddlMandatory.SelectedItem.ToString();
+            strBankName = ddlFormat.SelectedItem.ToString();
+            ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
         }
         public void CheckScbBank()
         {
@@ -364,8 +375,11 @@ namespace UI.Accounts.Advice
                     strAccountMandatory = ddlMandatory.SelectedItem.ToString();
                     strBankName = ddlFormat.SelectedItem.ToString();
                     ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
+                    //dt = new DataTable();
+                    //dt = bll.GetAdviceData(intActionBy);
+                    LoadLabel();
                     dt = new DataTable();
-                    dt = bll.GetAdviceData(intActionBy);
+                    dt = bll.GetPartyAdviceForSCB(intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted);
 
                     CheckScbBank();
 
