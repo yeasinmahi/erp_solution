@@ -233,6 +233,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DepositorBankTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Bank\RoutingNumberEntryTDS.cs">
+      <DependentUpon>RoutingNumberEntryTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\RoutingNumberEntryTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RoutingNumberEntryTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Books\BankBookTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -800,6 +808,17 @@
     </None>
     <None Include="Accounts\Bank\DepositorBankTDS.xss">
       <DependentUpon>DepositorBankTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\RoutingNumberEntryTDS.xsc">
+      <DependentUpon>RoutingNumberEntryTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Bank\RoutingNumberEntryTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RoutingNumberEntryTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Bank\RoutingNumberEntryTDS.xss">
+      <DependentUpon>RoutingNumberEntryTDS.xsd</DependentUpon>
     </None>
     <None Include="Accounts\Books\BankBookTDS.xsc">
       <DependentUpon>BankBookTDS.xsd</DependentUpon>
