@@ -41,10 +41,8 @@
         }
 
    </style>
-    
 
     <script language="javascript" type="text/javascript">
-
         //function onlyNumbers(evt) {
         //    var e = event || evt; // for trans-browser compatibility
         //    var charCode = e.which || e.keyCode;

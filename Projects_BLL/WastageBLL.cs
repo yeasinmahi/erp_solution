@@ -329,12 +329,12 @@ namespace Projects_BLL
             return msg;
         }
 
-        public void SaveCondition(int salesOId, int whId, string condition, string insertBy, DateTime dt)
+        public void SaveWOCondition(int salesOId, int whId, string condition, int insertBy, DateTime dt)
         {
-            tblSalesOrderConditionTableAdapter obj = new tblSalesOrderConditionTableAdapter();
+            tblSalesOrderCondition1TableAdapter obj = new tblSalesOrderCondition1TableAdapter();
             try
             {
-                //obj.SaveWOCondition(salesOId, whId, condition, insertBy, dt);
+                obj.SaveWOCondition(salesOId, whId, condition, insertBy, dt);
             }
             catch (Exception)
             {

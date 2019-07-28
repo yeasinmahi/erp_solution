@@ -1816,8 +1816,6 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnintPOID;
             
-            private global::System.Data.DataColumn columnstrPoFor;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public PendingMRRDataTable() {
@@ -1917,14 +1915,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strPoForColumn {
-                get {
-                    return this.columnstrPoFor;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1960,7 +1950,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public PendingMRRRow AddPendingMRRRow(System.DateTime dteLastActionTime, string strSupplierName, string strExtnlReff, System.DateTime dteChallanDate, int intShipmentID, int intUnitID, int intPOID, string strPoFor) {
+            public PendingMRRRow AddPendingMRRRow(System.DateTime dteLastActionTime, string strSupplierName, string strExtnlReff, System.DateTime dteChallanDate, int intShipmentID, int intUnitID, int intPOID) {
                 PendingMRRRow rowPendingMRRRow = ((PendingMRRRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1970,8 +1960,7 @@ namespace SCM_DAL {
                         dteChallanDate,
                         intShipmentID,
                         intUnitID,
-                        intPOID,
-                        strPoFor};
+                        intPOID};
                 rowPendingMRRRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPendingMRRRow);
                 return rowPendingMRRRow;
@@ -2009,7 +1998,6 @@ namespace SCM_DAL {
                 this.columnintShipmentID = base.Columns["intShipmentID"];
                 this.columnintUnitID = base.Columns["intUnitID"];
                 this.columnintPOID = base.Columns["intPOID"];
-                this.columnstrPoFor = base.Columns["strPoFor"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2031,8 +2019,6 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnintUnitID);
                 this.columnintPOID = new global::System.Data.DataColumn("intPOID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintPOID);
-                this.columnstrPoFor = new global::System.Data.DataColumn("strPoFor", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrPoFor);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintMRRID}, true));
                 this.columnintMRRID.AutoIncrement = true;
@@ -2046,7 +2032,6 @@ namespace SCM_DAL {
                 this.columnstrExtnlReff.MaxLength = 500;
                 this.columnintUnitID.AllowDBNull = false;
                 this.columnintPOID.AllowDBNull = false;
-                this.columnstrPoFor.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2884,22 +2869,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strPoFor {
-                get {
-                    try {
-                        return ((string)(this[this.tablePendingMRR.strPoForColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strPoFor\' in table \'PendingMRR\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablePendingMRR.strPoForColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrSupplierNameNull() {
                 return this.IsNull(this.tablePendingMRR.strSupplierNameColumn);
             }
@@ -2944,18 +2913,6 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetintShipmentIDNull() {
                 this[this.tablePendingMRR.intShipmentIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrPoForNull() {
-                return this.IsNull(this.tablePendingMRR.strPoForColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrPoForNull() {
-                this[this.tablePendingMRR.strPoForColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4361,7 +4318,6 @@ SELECT ysnComplete, intPOID FROM tblPurchaseOrderMain WHERE (intPOID = @intPOID)
             tableMapping.ColumnMappings.Add("intShipmentID", "intShipmentID");
             tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
             tableMapping.ColumnMappings.Add("intPOID", "intPOID");
-            tableMapping.ColumnMappings.Add("strPoFor", "strPoFor");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -4378,23 +4334,23 @@ SELECT ysnComplete, intPOID FROM tblPurchaseOrderMain WHERE (intPOID = @intPOID)
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        mrr.intMRRID, mrr.intPOID, mrr.dteLastActionTime, s.strSupplierName, mrr.strExtnlReff, mrr.dteChallanDate, mrr.intShipmentID, mrr.intUnitID, po.strPoFor
+            this._commandCollection[0].CommandText = @"SELECT        mrr.intMRRID, mrr.intPOID, mrr.dteLastActionTime, s.strSupplierName, mrr.strExtnlReff, mrr.dteChallanDate, mrr.intShipmentID, mrr.intUnitID
 FROM            tblFactoryReceiveMRR AS mrr INNER JOIN
                          tblSupplier AS s ON mrr.intSupplierID = s.intSupplierID INNER JOIN
                          tblPurchaseOrderMain AS po ON mrr.intPOID = po.intPOID
-WHERE        (mrr.ysnFullQC IS NULL) AND (mrr.ysnInventory IS NULL) AND (CAST(mrr.dteLastActionTime AS Date) BETWEEN @fDate AND @tDate) AND (mrr.intWHID = @intWh) AND (po.strPoFor = @POFor)";
+WHERE        (mrr.ysnFullQC IS NULL) AND (mrr.ysnInventory IS NULL) AND (CAST(mrr.dteLastActionTime AS Date) BETWEEN @fDate AND @tDate) AND (mrr.intWHID = @intWh) AND (po.strPoFor = @dept)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fDate", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tDate", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@POFor", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "strPoFor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dept", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "strPoFor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual MrrReceiveTDS.PendingMRRDataTable GetPendingMRRData(string fDate, string tDate, global::System.Nullable<int> intWh, string POFor) {
+        public virtual MrrReceiveTDS.PendingMRRDataTable GetPendingMRRData(string fDate, string tDate, global::System.Nullable<int> intWh, string dept) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((fDate == null)) {
                 throw new global::System.ArgumentNullException("fDate");
@@ -4414,11 +4370,11 @@ WHERE        (mrr.ysnFullQC IS NULL) AND (mrr.ysnInventory IS NULL) AND (CAST(mr
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((POFor == null)) {
+            if ((dept == null)) {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(POFor));
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(dept));
             }
             MrrReceiveTDS.PendingMRRDataTable dataTable = new MrrReceiveTDS.PendingMRRDataTable();
             this.Adapter.Fill(dataTable);

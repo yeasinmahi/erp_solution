@@ -154,6 +154,7 @@
     <Compile Include="AFBLSMSServer\ApiSmsBll.cs" />
     <Compile Include="AutoSearch\EmployeeBll.cs" />
     <Compile Include="Accounts\CodeInfoBll.cs" />
+    <Compile Include="AutoSearch\ItemBll.cs" />
     <Compile Include="DropDown\CostCenterBll.cs" />
     <Compile Include="DropDown\Currency.cs" />
     <Compile Include="DropDown\Supplier.cs" />

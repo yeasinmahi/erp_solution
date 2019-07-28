@@ -15,9 +15,8 @@
     <script src="../../Content/JS/JSSettlement.js"></script> 
     <link href="jquery-ui.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-       
-
+    <script src="jquery-ui.min.js"></script>       
+    <link href="../../Content/CSS/CommonStyle.css" rel="stylesheet" />
   <script type="text/javascript">
       function Search_dgvservice(strKey, strGV) {
 
@@ -50,7 +49,7 @@
                 $.trim(dtefrom) == undefined) {
                 document.getElementById("hdnPreConfirm").value = "0";
                 alert('Please Fill-Up From Date');
-                return false
+                return false;
             }
             else if ($.trim(dteTo).length ==0 ||
                 $.trim(dteTo) == "" ||
@@ -58,7 +57,7 @@
                 $.trim(dteTo) == undefined) {
                 document.getElementById("hdnPreConfirm").value = "0";
                 alert('Please Select To Date');
-                return false
+                return false;
             } 
                 else if ($.trim(dteTo)> $.trim(dteTo)||
                 $.trim(dteTo) == "" ||
@@ -66,7 +65,7 @@
                 $.trim(dteTo) == undefined) {
                 document.getElementById("hdnPreConfirm").value = "0";
                 alert('Please Select To Date');
-                return false
+                return false;
             } 
             else {
                 var confirmValue = document.createElement("INPUT");
@@ -75,13 +74,14 @@
                 if (confirm("Do you want to proceed?")) {
                     confirmValue.value = "Yes";
                     document.getElementById("hdnPreConfirm").value = "1";
+                    showLoader();
                 } else {
                     confirmValue.value = "No";
                     document.getElementById("hdnPreConfirm").value = "0";
-                    return false
+                    return false;
                 }
-                return true
-                
+                return true;
+
             }
 
 
@@ -126,7 +126,8 @@
     <asp:HiddenField ID="hfEmployeeIdp" runat="server" /><asp:HiddenField ID="hdnwh" runat="server" />       
           <asp:HiddenField ID="HdnServiceCost" runat="server" />   <asp:HiddenField ID="hdnRepairsCost" runat="server" />   
             <div class="leaveApplication_container">
-    <div class="tabs_container" align="Center" >Asset Depreciation</div>
+    <div class="tabs_container" align="left" >Asset Depreciation</div>
+
    
                 <table class="tblrowodd" >
                 <tr>
@@ -142,11 +143,11 @@
                        
                 <td style="text-align:right;"><asp:Label ID="LblAsset" runat="server" CssClass="lbl" Text="From Date"  Font-Bold="true"></asp:Label></td> 
                 <td> <asp:TextBox ID="txtDteFrom" runat="server" Font-Bold="true" CssClass="txtBox" autocomplete="off"></asp:TextBox>
-                <cc1:CalendarExtender ID="CalendarExtenderMonthly" runat="server" Format="yyyy-MMMM-dd" TargetControlID="txtDteFrom"></cc1:CalendarExtender> </td>
+                <cc1:CalendarExtender ID="CalendarExtenderMonthly" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteFrom"></cc1:CalendarExtender> </td>
                             
                 <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="To Date"  Font-Bold="true"></asp:Label></td> 
                 <td> <asp:TextBox ID="txtdteTo" runat="server" Font-Bold="true" CssClass="txtBox" AutoPostBack="true" OnTextChanged="txtdteTo_TextChanged" autocomplete="off"></asp:TextBox>
-                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MMMM-dd" TargetControlID="txtdteTo"></cc1:CalendarExtender> </td>
+                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteTo"></cc1:CalendarExtender> </td>
 
                 </tr>
                 <tr>
@@ -155,13 +156,18 @@
                  <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtAssetID"
                  ServiceMethod="GetAssetTransaction" MinimumPrefixLength="1" CompletionSetCount="1"
                  CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-                 CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender></td>
-                        
-                <td colspan="2" style="text-align: right;"><asp:Button ID="btnDepSubmit" OnClientClick="return Validation(this);" runat="server" Text="Depreciation Charge" OnClick="btnDepSubmit_Click"  />
-                <asp:Button ID="btnImpairment" runat="server" Text="Impirment" OnClientClick="return Validation(this);" OnClick="btnImpairment_Click"  /> 
-                 <asp:Button ID="btnShow" runat="server" Text="View" OnClick="btnShow_Click" /></td>
-                  
+                 CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender></td> 
+                    <td style="text-align:right;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Category"  Font-Bold="true"></asp:Label></td> 
+                    <td style="text-align: left;"> <asp:DropDownList ID="ddlCat" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="true" OnSelectedIndexChanged="ddlCat_SelectedIndexChanged"> </asp:DropDownList>                    
+                         </td> 
+    
                 </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="3" style="text-align: right;"><asp:Button ID="btnDepSubmit" OnClientClick="return Validation(this);" runat="server" Text="Depreciation Charge" OnClick="btnDepSubmit_Click"  />
+                            <asp:Button ID="btnImpairment" runat="server" Text="Impirment" OnClientClick="return Validation(this);" OnClick="btnImpairment_Click"  /> 
+                            <asp:Button ID="btnShow" runat="server"  Text="View" OnClientClick="showLoader();" OnClick="btnShow_Click" /></td>
+                    </tr>
                 </table>
         
                <table>
@@ -177,15 +183,16 @@
                 <asp:TemplateField HeaderText="Unit"><ItemTemplate>                
                 <asp:Label ID="strunitID" runat="server" Text='<%# Eval("strUnit") %>'></asp:Label>
                 </ItemTemplate> </asp:TemplateField> 
-                <asp:BoundField DataField="strAssetID" HeaderText="AssetID" SortExpression="strAssetID"/>                    
-               <asp:BoundField DataField="strAssetName" HeaderText="AssetName" SortExpression="strAssetName" />
+                    <asp:BoundField DataField="strAssetID"  HeaderText="AssetID" SortExpression="strAssetID"/>
+                
+               <asp:BoundField DataField="strAssetName"  HeaderText="AssetName" SortExpression="strAssetName" ItemStyle-Width="130px" />
                 <asp:BoundField DataField="strAssetType" HeaderText="AssetType" SortExpression="strAssetType" />                  
                 <asp:BoundField DataField="strMajorCategory" HeaderText="MajorCategory" SortExpression="strMajorCategory" />         
                
                 <asp:BoundField DataField="monCostValue" HeaderText="CostValue" SortExpression="monCostValue" />                  
                 <asp:BoundField DataField="monAccumulatedDep" HeaderText="AccumulatedDep" SortExpression="monAccumulatedDep" />
                 <asp:BoundField DataField="monRateOfDep" HeaderText="RateOfDep%" SortExpression="monRateOfDep" />
-                <asp:BoundField DataField="monDepChargeDuringPeriod" HeaderText="DepChargeDuringPeriod" SortExpression="monDepChargeDuringPeriod" />                
+                <asp:BoundField DataField="monDepChargeDuringPeriod" HeaderText="ChargePeriod" SortExpression="monDepChargeDuringPeriod" />                
                 </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                 <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                 </asp:GridView></td>
