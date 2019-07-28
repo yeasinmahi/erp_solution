@@ -55,9 +55,7 @@ namespace UI.SCM
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataBind();
 
-                LoadDepartment();
-
-                HideShowGridColumn();
+                LoadDeptOnWH();
                 hdnpoid.Value = "0";
                 hdnmrrid.Value = "0";
                 try
@@ -245,6 +243,7 @@ namespace UI.SCM
             }
             else
             {
+                dgvIndent.UnLoad();
                 Toaster("Sorry! There is no data exist.", "Pending MRR", Common.TosterType.Warning);
             }
         }
@@ -538,6 +537,39 @@ namespace UI.SCM
                 dgvIndent.Columns[7].Visible = true;
                 dgvIndent.Columns[9].Visible = true;
             }
+        }
+        public void LoadDeptOnWH()
+        {
+            dt = mirObj.GetWHQC(Convert.ToInt32(ddlWH.SelectedItem.Value));
+            string is_QC = "";
+            try
+            {
+                is_QC = dt.Rows[0]["ysnQC"].ToString();
+            }
+            catch
+            {
+                is_QC = "False";
+            }
+            if (is_QC == "True")
+            {
+                ddlType.Items.Clear();
+                ddlType.Items.Insert(0, new ListItem("--Please Select--", "0"));
+                ddlType.Items.Insert(1, new ListItem("QC", "QC"));
+                ddlType.Items.Insert(2, new ListItem("Costing", "Costing"));
+            }
+            else
+            {
+                ddlType.Items.Clear();
+                ddlType.Items.Insert(0, new ListItem("--Please Select--", "0"));
+                ddlType.Items.Insert(1, new ListItem("Costing", "Costing"));
+            }
+
+            LoadDepartment();
+            HideShowGridColumn();
+        }
+        protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDeptOnWH();
         }
 
         #endregion

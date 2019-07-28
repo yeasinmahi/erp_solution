@@ -43,6 +43,13 @@
         function ViewDispatchPopup(Id) {
             window.open('VoucherPrint.aspx?ID=' + Id, 'sub', "height=500, width=900, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
+        function ShowDetailsDiv() {
+            $("#divExport").fadeIn("slow");
+            //$("#DetailsGrid").fadeOut("slow");
+        }
+        function HideReasonDiv() {
+            $("#divExport").fadeOut("slow");
+        }
     </script>
 
 
@@ -152,7 +159,8 @@
                                     <asp:DropDownList ID="ddlFormat" runat="server" CssClass="ddList" Width="210px" AutoPostBack="true" OnSelectedIndexChanged="ddlFormat_SelectedIndexChanged">
                                         <asp:ListItem Selected="True" Value="0">Select Bank</asp:ListItem>
                                         <asp:ListItem Selected="False" Value="1">IBBL</asp:ListItem>
-                                        <asp:ListItem Value="2">Others</asp:ListItem>
+                                        <asp:ListItem Value="2">SCB</asp:ListItem>
+                                        <asp:ListItem Value="3">OTHER</asp:ListItem>
                                     </asp:DropDownList></td>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label12" runat="server" CssClass="lbl" Text="Voucher Posting :"></asp:Label></td>
@@ -176,7 +184,7 @@
                                     <asp:Button ID="btnShowReport" runat="server" Text="Show Report" OnClick="btnShowReport_Click" />
                                     <asp:Button ID="btnExport" runat="server" Text="Export" OnClick="btnExport_Click" OnClientClick="ExportDivDataToExcel()" />
                                     <asp:Button ID="btnExportIBBL" runat="server" Text="Export" OnClick="btnExportIBBL_Click" OnClientClick="ExportDivDataToExcelIBBL()" />
-                                    <asp:Button ID="btnPrint" runat="server" Text="Print" /></td>
+                                    <asp:Button ID="btnPrint" runat="server" Text="Print" OnClick="btnPrint_Click"/></td>
                             </tr>
                             <tr>
                                 <td colspan="6">
@@ -346,11 +354,14 @@
                     <div id="divExport" runat="server">
                         <table>
                             <tr>
+                                <%--<td style="width:20px;"></td>--%>
                                 <td style="font-weight: bold; text-decoration: underline; font-size: 22px; color: #000000; text-align: center">
-                                    <asp:Label ID="lblUnitName" runat="server"></asp:Label></td>
+                                    <asp:Label ID="lblUnitName" runat="server"></asp:Label>
+                                </td>
+                                <%--<td></td>--%>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold; text-decoration: underline; font-size: 18px; color: #000000; text-align: center">
+                                <td colspan="3" style="font-weight: bold; text-decoration: underline; font-size: 18px; color: #000000; text-align: center">
                                     <asp:Label ID="lblUnitAddress" runat="server"></asp:Label></td>
                             </tr>
                             <tr>

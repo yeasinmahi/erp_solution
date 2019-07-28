@@ -60,16 +60,18 @@ namespace HR_BLL.Salary
            catch { return new DataTable(); }
        }
 
-        public string SubmitSalaryAdditionDeduction(int TypeId,string xml)
+        public DataTable SubmitSalaryAdditionDeduction(int part,int TypeId,string xml)
         {
             string msg = "";
             try
             {
                 SprSalaryAdditionDeductionEntryTableAdapter adp = new SprSalaryAdditionDeductionEntryTableAdapter();
-               adp.InsertData(TypeId, xml,ref msg);
+                return adp.GetData(part,TypeId, xml);
             }
-            catch (Exception ex) { msg = ex.ToString(); }
-            return msg;
+            catch (Exception ex) { msg = ex.ToString();
+                return new DataTable();
+            }
+            
         }
         public DataTable GetType()
         {

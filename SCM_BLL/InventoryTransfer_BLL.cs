@@ -677,6 +677,21 @@ namespace SCM_BLL
 
             return dt;
         }
+        public DataTable GetWHQC(int WHId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                tblWearHouse1TableAdapter adp = new tblWearHouse1TableAdapter();
+                dt = adp.GetYsnQCByWH(WHId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
         #endregion End Insert MIR
 
     }

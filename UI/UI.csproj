@@ -187,6 +187,7 @@
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
     <Content Include="Accounts\Import\ImportAdjustment.aspx" />
+    <Content Include="Accounts\MDSlip\MDSlipCustomization.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsPaymentOrder.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewAdjustment.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewCashCredit.aspx" />
@@ -489,6 +490,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
+    <Content Include="HR\Employee\EmployeeCostCenterUpdate.aspx" />
     <Content Include="HR\Employee\PubEmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeTransferNpromotion.aspx" />
@@ -648,6 +650,7 @@
     <Content Include="Property\AGLandMouzaSetup.aspx" />
     <Content Include="Property\AGLandPlotByMouzaSetup.aspx" />
     <Content Include="Property\AGLandTrxGeneral.aspx" />
+    <Content Include="Property\AGLandTrxGeneralED.aspx" />
     <Content Include="Property\AGLandTrxGeneralNew.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
@@ -1457,6 +1460,7 @@
     <Content Include="SAD\Sales\Farmer_Setup.aspx" />
     <Content Include="SAD\Sales\NBR_DOEntry.aspx" />
     <Content Include="SAD\Sales\NBR_SalesChallan.aspx" />
+    <Content Include="SAD\Sales\Report\AfblPointStock.aspx" />
     <Content Include="SAD\Sales\Report\All_Shipping_Point_Delivery_Report.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
@@ -1476,6 +1480,7 @@
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx" />
     <Content Include="SAD\Sales\Report\DR_Access_Finished_Goods_Stock.aspx" />
+    <Content Include="SAD\Sales\Report\EmployeeInfoOfSales.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
     <Content Include="SAD\Sales\Report\Invoice_Print_Report.aspx" />
@@ -1498,6 +1503,7 @@
     <Content Include="SAD\Sales\Report\ProductLoadingStatus.aspx" />
     <Content Include="SAD\Sales\Report\Product_Details_Horizontal_Report.aspx" />
     <Content Include="SAD\Sales\Report\Product_Rate_vs_DO.aspx" />
+    <Content Include="SAD\Sales\Report\PSRDeliveryNotInput.aspx" />
     <Content Include="SAD\Sales\Report\Region_Area_item_wise_sales.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx" />
@@ -2064,6 +2070,13 @@
     </Compile>
     <Compile Include="Accounts\Import\ImportAdjustment.aspx.designer.cs">
       <DependentUpon>ImportAdjustment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipCustomization.aspx.cs">
+      <DependentUpon>MDSlipCustomization.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipCustomization.aspx.designer.cs">
+      <DependentUpon>MDSlipCustomization.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\MDSlip\MDSlipQuery.aspx.cs">
       <DependentUpon>MDSlipQuery.aspx</DependentUpon>
@@ -3388,6 +3401,13 @@
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Employee\EmployeeCostCenterUpdate.aspx.cs">
+      <DependentUpon>EmployeeCostCenterUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeCostCenterUpdate.aspx.designer.cs">
+      <DependentUpon>EmployeeCostCenterUpdate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Employee\PubEmployeeFullInformation.aspx.cs">
       <DependentUpon>PubEmployeeFullInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4360,6 +4380,13 @@
     </Compile>
     <Compile Include="Property\AGLandTrxGeneral.aspx.designer.cs">
       <DependentUpon>AGLandTrxGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralED.aspx.cs">
+      <DependentUpon>AGLandTrxGeneralED.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralED.aspx.designer.cs">
+      <DependentUpon>AGLandTrxGeneralED.aspx</DependentUpon>
     </Compile>
     <Compile Include="Property\AGLandTrxGeneralNew.aspx.cs">
       <DependentUpon>AGLandTrxGeneralNew.aspx</DependentUpon>
@@ -7435,6 +7462,13 @@
     <Compile Include="SAD\Sales\NBR_SalesChallan.aspx.designer.cs">
       <DependentUpon>NBR_SalesChallan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\AfblPointStock.aspx.cs">
+      <DependentUpon>AfblPointStock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\AfblPointStock.aspx.designer.cs">
+      <DependentUpon>AfblPointStock.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\All_Shipping_Point_Delivery_Report.aspx.cs">
       <DependentUpon>All_Shipping_Point_Delivery_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7567,6 +7601,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\DR_Access_Finished_Goods_Stock.aspx.designer.cs">
       <DependentUpon>DR_Access_Finished_Goods_Stock.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\EmployeeInfoOfSales.aspx.cs">
+      <DependentUpon>EmployeeInfoOfSales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\EmployeeInfoOfSales.aspx.designer.cs">
+      <DependentUpon>EmployeeInfoOfSales.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.cs">
       <DependentUpon>Free.aspx</DependentUpon>
@@ -7721,6 +7762,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Product_Rate_vs_DO.aspx.designer.cs">
       <DependentUpon>Product_Rate_vs_DO.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\PSRDeliveryNotInput.aspx.cs">
+      <DependentUpon>PSRDeliveryNotInput.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\PSRDeliveryNotInput.aspx.designer.cs">
+      <DependentUpon>PSRDeliveryNotInput.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Region_Area_item_wise_sales.aspx.cs">
       <DependentUpon>Region_Area_item_wise_sales.aspx</DependentUpon>
