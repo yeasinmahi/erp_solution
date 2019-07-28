@@ -47,6 +47,9 @@
             $("#divExport").fadeIn("slow");
             //$("#DetailsGrid").fadeOut("slow");
         }
+        function HideReasonDiv() {
+            $("#divExport").fadeOut("slow");
+        }
     </script>
 
 
@@ -351,11 +354,14 @@
                     <div id="divExport" runat="server">
                         <table>
                             <tr>
+                                <%--<td style="width:20px;"></td>--%>
                                 <td style="font-weight: bold; text-decoration: underline; font-size: 22px; color: #000000; text-align: center">
-                                    <asp:Label ID="lblUnitName" runat="server"></asp:Label></td>
+                                    <asp:Label ID="lblUnitName" runat="server"></asp:Label>
+                                </td>
+                                <%--<td></td>--%>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold; text-decoration: underline; font-size: 18px; color: #000000; text-align: center">
+                                <td colspan="3" style="font-weight: bold; text-decoration: underline; font-size: 18px; color: #000000; text-align: center">
                                     <asp:Label ID="lblUnitAddress" runat="server"></asp:Label></td>
                             </tr>
                             <tr>

@@ -55,7 +55,7 @@ namespace UI.SCM
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataBind();
 
-                
+                LoadDeptOnWH();
                 hdnpoid.Value = "0";
                 hdnmrrid.Value = "0";
                 try
@@ -553,13 +553,15 @@ namespace UI.SCM
             if (is_QC == "True")
             {
                 ddlType.Items.Clear();
-                ddlType.Items.Insert(0, new ListItem("QC", "QC"));
-                ddlType.Items.Insert(1, new ListItem("Costing", "Costing"));
+                ddlType.Items.Insert(0, new ListItem("--Please Select--", "0"));
+                ddlType.Items.Insert(1, new ListItem("QC", "QC"));
+                ddlType.Items.Insert(2, new ListItem("Costing", "Costing"));
             }
             else
             {
                 ddlType.Items.Clear();
-                ddlType.Items.Insert(0, new ListItem("Costing", "Costing"));
+                ddlType.Items.Insert(0, new ListItem("--Please Select--", "0"));
+                ddlType.Items.Insert(1, new ListItem("Costing", "Costing"));
             }
 
             LoadDepartment();
