@@ -386,7 +386,6 @@ namespace UI.Property
         {
             FTPUpload();
         }
-
         protected void dgvFileUp_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -716,7 +715,6 @@ namespace UI.Property
         {
             return true;
         }
-
         private void MasterClear()
         {
             ddlUnit.SelectedValue = "-1";
@@ -944,7 +942,6 @@ namespace UI.Property
             }
             catch { }
         }
-
         private void FTPUpload()
         {
             try
@@ -1178,6 +1175,10 @@ namespace UI.Property
                 File.Delete(Server.MapPath("~/Property/Files/") + fileName);
             }
             catch (Exception ex) { throw ex; }
+        }
+        private void FillExistLandData()
+        {
+
         }
         #endregion
     }
