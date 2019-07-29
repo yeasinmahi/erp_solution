@@ -179,6 +179,7 @@
     <Content Include="Accounts\Bank\BankReceive.aspx" />
     <Content Include="Accounts\Bank\ChequeBook.aspx" />
     <Content Include="Accounts\Bank\LoanType.aspx" />
+    <Content Include="Accounts\Bank\RoutingNumberEntry.aspx" />
     <Content Include="Accounts\ChartOfAccount\animatedcollapse.js" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx" />
@@ -2020,6 +2021,13 @@
     </Compile>
     <Compile Include="Accounts\Bank\LoanType.aspx.designer.cs">
       <DependentUpon>LoanType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\RoutingNumberEntry.aspx.cs">
+      <DependentUpon>RoutingNumberEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Bank\RoutingNumberEntry.aspx.designer.cs">
+      <DependentUpon>RoutingNumberEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx.cs">
       <DependentUpon>ChartOfAccounts.aspx</DependentUpon>

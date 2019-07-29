@@ -4,6 +4,7 @@ using GLOBAL_BLL;
 using System;
 using System.Data;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
@@ -439,10 +440,10 @@ namespace UI.Accounts.Advice
         protected string accounttext;
         protected string routingtext;
 
-        protected void btnPrint_Click(object sender, EventArgs e)
-        {
-
-        }
+        //protected void btnPrint_Click(object sender, EventArgs e)
+        //{
+        //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ShowReasonDiv();", true);
+        //}
 
         protected void dgvAdvice_RowDataBound(object sender, GridViewRowEventArgs e)
         {
