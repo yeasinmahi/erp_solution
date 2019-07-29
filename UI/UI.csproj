@@ -179,6 +179,7 @@
     <Content Include="Accounts\Bank\BankReceive.aspx" />
     <Content Include="Accounts\Bank\ChequeBook.aspx" />
     <Content Include="Accounts\Bank\LoanType.aspx" />
+    <Content Include="Accounts\Bank\RoutingNumberEntry.aspx" />
     <Content Include="Accounts\ChartOfAccount\animatedcollapse.js" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx" />
@@ -186,6 +187,7 @@
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
     <Content Include="Accounts\Import\ImportAdjustment.aspx" />
+    <Content Include="Accounts\MDSlip\MDSlipCustomization.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsPaymentOrder.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewAdjustment.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewCashCredit.aspx" />
@@ -649,6 +651,7 @@
     <Content Include="Property\AGLandMouzaSetup.aspx" />
     <Content Include="Property\AGLandPlotByMouzaSetup.aspx" />
     <Content Include="Property\AGLandTrxGeneral.aspx" />
+    <Content Include="Property\AGLandTrxGeneralED.aspx" />
     <Content Include="Property\AGLandTrxGeneralNew.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
@@ -2020,6 +2023,13 @@
     <Compile Include="Accounts\Bank\LoanType.aspx.designer.cs">
       <DependentUpon>LoanType.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Bank\RoutingNumberEntry.aspx.cs">
+      <DependentUpon>RoutingNumberEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Bank\RoutingNumberEntry.aspx.designer.cs">
+      <DependentUpon>RoutingNumberEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx.cs">
       <DependentUpon>ChartOfAccounts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2061,6 +2071,13 @@
     </Compile>
     <Compile Include="Accounts\Import\ImportAdjustment.aspx.designer.cs">
       <DependentUpon>ImportAdjustment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipCustomization.aspx.cs">
+      <DependentUpon>MDSlipCustomization.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipCustomization.aspx.designer.cs">
+      <DependentUpon>MDSlipCustomization.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\MDSlip\MDSlipQuery.aspx.cs">
       <DependentUpon>MDSlipQuery.aspx</DependentUpon>
@@ -4371,6 +4388,13 @@
     </Compile>
     <Compile Include="Property\AGLandTrxGeneral.aspx.designer.cs">
       <DependentUpon>AGLandTrxGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralED.aspx.cs">
+      <DependentUpon>AGLandTrxGeneralED.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralED.aspx.designer.cs">
+      <DependentUpon>AGLandTrxGeneralED.aspx</DependentUpon>
     </Compile>
     <Compile Include="Property\AGLandTrxGeneralNew.aspx.cs">
       <DependentUpon>AGLandTrxGeneralNew.aspx</DependentUpon>

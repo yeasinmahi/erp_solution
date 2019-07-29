@@ -40,6 +40,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblJobStation" CssClass="lbl" runat="server" Text="Job Station : "></asp:Label></td>
                             <td>
+                                <%--<asp:DropDownList runat="server" ID="ddlJobStation" CssClass="" Width="220px" Height="35px"></asp:DropDownList>--%>
                                 <asp:TextBox ID="txtJobStation" runat="server" CssClass="txtBox" ReadOnly="true"></asp:TextBox>
                                 <asp:HiddenField runat="server" ID="hfJobStationId" />
                             </td>

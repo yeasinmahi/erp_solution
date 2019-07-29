@@ -17,7 +17,6 @@
             width: 100%;
         }
     </style>
-
     <script>
           
           function Changed() {
@@ -25,8 +24,6 @@
           }
          
     </script>
-
-
 </head>
 <body>
     <form id="form1" runat="server">
