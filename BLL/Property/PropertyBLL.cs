@@ -383,5 +383,21 @@ namespace BLL.Property
 
             return dt;
         }
+
+        public DataTable GetDeedYear()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                vwLandGeneralInfoTableAdapter obj = new vwLandGeneralInfoTableAdapter();
+                dt = obj.GetDeedYear();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
     }
 }

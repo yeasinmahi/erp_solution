@@ -645,6 +645,7 @@
     <Content Include="PaymentModule\VAT_Rebate.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="Personal\Test.aspx" />
+    <Content Include="Property\AGLandDeedReport.aspx" />
     <Content Include="Property\AGLandMouzaSetup.aspx" />
     <Content Include="Property\AGLandPlotByMouzaSetup.aspx" />
     <Content Include="Property\AGLandTrxGeneral.aspx" />
@@ -4343,6 +4344,13 @@
       <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
     <Compile Include="PO.cs" />
+    <Compile Include="Property\AGLandDeedReport.aspx.cs">
+      <DependentUpon>AGLandDeedReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandDeedReport.aspx.designer.cs">
+      <DependentUpon>AGLandDeedReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Property\AGLandMouzaSetup.aspx.cs">
       <DependentUpon>AGLandMouzaSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
