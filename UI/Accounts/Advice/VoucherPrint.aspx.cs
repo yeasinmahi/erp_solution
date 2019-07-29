@@ -99,19 +99,19 @@ namespace UI.Accounts.Advice
                 //jsString = jsString + "DivItem(" + htmlString + ")";
                 //jsString = "</script>";
                 //Response.Write(jsString);
-                lblUnitName.Text = unitName.ToUpper();
-                lblUnitAddress.Text = unitAddress;
-                lblVoucherType.Text = "<br><br>" + voucherType;
-                strCodeForbarCode = strCodeForbarCode.Replace("-", "");
-                Image1.ImageUrl = "BarCodeHandler.ashx?info=" + strCodeForbarCode;
-                Image1.Width = 180;
-                Image1.Height = 50;
+                //lblUnitName.Text = unitName.ToUpper();
+                //lblUnitAddress.Text = unitAddress;
+                //lblVoucherType.Text = "<br><br>" + voucherType;
+                //strCodeForbarCode = strCodeForbarCode.Replace("-", "");
+                //Image1.ImageUrl = "BarCodeHandler.ashx?info=" + strCodeForbarCode;
+                //Image1.Width = 180;
+                //Image1.Height = 50;
 
-                //logo image
-                Image2.ImageUrl = "../../Content/Images/img/" + unitID + ".png";
-                //Image2.Width = 180;
-                //Image2.Height = 50;
-                Label1.Text = htmlString;
+                ////logo image
+                //Image2.ImageUrl = "../../Content/Images/img/" + unitID + ".png";
+                ////Image2.Width = 180;
+                ////Image2.Height = 50;
+                //Label1.Text = htmlString;
                 }
                 catch (Exception ex)
                 {
