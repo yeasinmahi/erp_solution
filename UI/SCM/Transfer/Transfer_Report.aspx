@@ -103,10 +103,10 @@
                 var txtToDate = document.getElementById("txtToDate").value;
 
                 if (txtFromDate == "") {
-                    ShowNotification("From date can not be blank", "Inventory Statement Report", "warning");
+                    ShowNotification("From date can not be blank", "Transfer Report", "warning");
                     return false;
                 } else if (txtToDate == "") {
-                    ShowNotification("To date can not be blank", "Inventory Statement Report", "warning");
+                    ShowNotification("To date can not be blank", "Transfer Report", "warning");
                     return false;
                 }
                 return true;
