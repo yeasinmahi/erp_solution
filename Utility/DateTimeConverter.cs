@@ -20,5 +20,13 @@ namespace Utility
         {
             return time.TotalSeconds / 3600;
         }
+        public static DateTime FirstDay(this DateTime date)
+        {
+            return new DateTime(date.Year, date.Month, 1);
+        }
+        public static DateTime LastDay(this DateTime date)
+        {
+            return new DateTime(date.Year, date.Month, date.AddMonths(1).FirstDay().AddDays(-1).Day);
+        }
     }
 }
