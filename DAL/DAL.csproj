@@ -564,6 +564,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BillRegisterDetailMrr.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PetBottle\PBReceiveTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PBReceiveTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1544,6 +1549,17 @@
     </None>
     <None Include="Payment\BillRegisterDetailMrr.xss">
       <DependentUpon>BillRegisterDetailMrr.xsd</DependentUpon>
+    </None>
+    <None Include="PetBottle\PBReceiveTDS.xsc">
+      <DependentUpon>PBReceiveTDS.xsd</DependentUpon>
+    </None>
+    <None Include="PetBottle\PBReceiveTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PBReceiveTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PetBottle\PBReceiveTDS.xss">
+      <DependentUpon>PBReceiveTDS.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

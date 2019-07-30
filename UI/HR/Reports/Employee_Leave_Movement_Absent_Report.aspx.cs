@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
-namespace UI.PaymentModule
+namespace UI.HR.Reports
 {
-    public partial class SisterConsernReportbyUnit : BasePage
+    public partial class Employee_Leave_Movement_Absent_Report : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,7 +16,8 @@ namespace UI.PaymentModule
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Common_Reports/Payment/SisterConcerenByUnit?rs:Embed=true&rc:LinkTarget=_self');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'http://report.akij.net/reports/report/Common_Reports/Employee_Leave_Movement_Absent_Report?rs:Embed=true');", true);
+
 
         }
     }
