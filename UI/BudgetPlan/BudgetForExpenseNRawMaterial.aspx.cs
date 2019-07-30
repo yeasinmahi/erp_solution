@@ -18,17 +18,16 @@ using UI.ClassFiles;
 
 namespace UI.BudgetPlan
 {
-    public partial class SetUpBaseBudgetEntry : System.Web.UI.Page
+    public partial class BudgetForExpenseNRawMaterial : System.Web.UI.Page
     {
-
         #region =========== Global Variable Declareation ==========
-        int enrol, reporttype, coaid, unitid, intmainheadcoaid,intvitmid; char[] delimiterChars = { '[', ']' }; string[] arrayKey;
+        int enrol, reporttype, coaid, unitid, intmainheadcoaid, intvitmid; char[] delimiterChars = { '[', ']' }; string[] arrayKey;
         DataTable dt = new DataTable();
         Budget_Entry_BLL obj = new Budget_Entry_BLL();
         SalesOrderView objso = new SalesOrderView();
         string xmlString = "";
         bool ysnChecked;
-        string xmlpath, email, strVcode, strPrefix, glblnarration, rptname, salesofficelike,regionname, areaname, linename;
+        string xmlpath, email, strVcode, strPrefix, glblnarration, rptname, salesofficelike, regionname, areaname, linename;
         decimal totalcom, selectedtotalcom = 0;
 
         string budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid, january, february
@@ -39,36 +38,11 @@ namespace UI.BudgetPlan
 
         #endregion
 
-
-        protected void grdvSetupBaseBudget_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                if (e.Row.RowIndex == 0)
-                    e.Row.Cells[1].BackColor = Color.GreenYellow;
-                e.Row.Cells[2].BackColor = Color.GreenYellow;
-                e.Row.Cells[3].BackColor = Color.GreenYellow;
-                e.Row.Cells[4].BackColor = Color.GreenYellow;
-                e.Row.Cells[5].BackColor = Color.GreenYellow;
-                e.Row.Cells[6].BackColor = Color.GreenYellow;
-                e.Row.Cells[7].BackColor = Color.GreenYellow;
-                e.Row.Cells[8].BackColor = Color.GreenYellow;
-                e.Row.Cells[9].BackColor = Color.GreenYellow;
-                e.Row.Cells[10].BackColor = Color.GreenYellow;
-                e.Row.Cells[11].BackColor = Color.GreenYellow;
-                e.Row.Cells[12].BackColor = Color.GreenYellow;
-                e.Row.Cells[13].BackColor = Color.GreenYellow;
-                e.Row.Cells[14].BackColor = Color.Red;
-                e.Row.Cells[15].BackColor = Color.Red;
-                e.Row.Cells[28].BackColor = Color.Red;
-                e.Row.Cells[29].BackColor = Color.Red;
-                if (e.Row.RowIndex == 1)
-                e.Row.Cells[14].BackColor = Color.Green;
-            }
-        }
+       
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             xmlpath = Server.MapPath("~/BudgetPlan/Data/BudgetEntry_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + HttpContext.Current.Session[SessionParams.UNIT_ID].ToString() + "_" + "setupbaseBudget.xml");
@@ -94,8 +68,8 @@ namespace UI.BudgetPlan
                 txtNovember.Text = "0.0";
                 txtDecember.Text = "0.0";
                 txtJulyPromo.Text = "0.0";
-              
-             
+
+
                 txtAugestPromo.Text = "0.0";
                 txtSeptemberPromo.Text = "0.0";
                 txtOctoberPromo.Text = "0.0";
@@ -117,13 +91,15 @@ namespace UI.BudgetPlan
             }
 
 
-            //LoadGridwithXml();
+
+
         }
+
         private void LoadGridwithXml()
         {
             try
             {
-                System.Xml.XmlDocument doc = new System.Xml.XmlDocument();doc.Load(xmlpath);
+                System.Xml.XmlDocument doc = new System.Xml.XmlDocument(); doc.Load(xmlpath);
                 System.Xml.XmlNode dSftTm = doc.SelectSingleNode("SetupbaseBudget");
                 xmlString = dSftTm.InnerXml;
                 xmlString = "<SetupbaseBudget>" + xmlString + "</SetupbaseBudget>";
@@ -172,7 +148,7 @@ namespace UI.BudgetPlan
                 string fd = "2020-12-31";
                 string td = "2020-12-31";
 
-          
+
 
                 string msg = obj.InsertOPSetupBaseBudget(xmlString, enrol, unitid);
                 grdvSetupBaseBudget.DataSource = dt;
@@ -204,7 +180,39 @@ namespace UI.BudgetPlan
 
 
 
+        protected void grdvSetupBaseBudget_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.RowIndex == 0)
+                    e.Row.Cells[1].BackColor = Color.GreenYellow;
+                    e.Row.Cells[2].BackColor = Color.GreenYellow;
+                    e.Row.Cells[3].BackColor = Color.GreenYellow;
+                    e.Row.Cells[4].BackColor = Color.GreenYellow;
+                    e.Row.Cells[5].BackColor = Color.GreenYellow;
+                    e.Row.Cells[6].BackColor = Color.GreenYellow;
+                    e.Row.Cells[7].BackColor = Color.GreenYellow;
+                    e.Row.Cells[8].BackColor = Color.GreenYellow;
+                    e.Row.Cells[9].BackColor = Color.GreenYellow;
+                    e.Row.Cells[10].BackColor = Color.GreenYellow;
+                    e.Row.Cells[11].BackColor = Color.GreenYellow;
+                    e.Row.Cells[12].BackColor = Color.GreenYellow;
+                    e.Row.Cells[13].BackColor = Color.GreenYellow;
+                   e.Row.Cells[14].BackColor = Color.Red;
+                   e.Row.Cells[27].BackColor = Color.Red;
 
+              
+
+
+
+
+
+                if (e.Row.RowIndex == 1)
+                e.Row.Cells[14].BackColor = Color.Green;
+            }
+
+        }
 
 
 
@@ -216,23 +224,29 @@ namespace UI.BudgetPlan
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
-            
+
 
         }
         protected void ddlBudgetType_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
             Session["budgetcatg"] = ddlBudgetType.SelectedValue.ToString();
             clear();
-            int typeid=int.Parse(ddlBudgetType.SelectedValue.ToString());
-            //if(typeid==3 || typeid == 5)
-            //{
-            //    lbltxboxallow();
-            //}
+            int typeid = int.Parse(ddlBudgetType.SelectedValue.ToString());
+            if ( typeid == 5)
+            {
+                lbltxboxnotallow();
+                //removegrid();
+            }
+
+            if (typeid == 3)
+            {
+                lbltxboxallow();
+                //removegrid();
+            }
 
 
-            
-            
+
 
 
         }
@@ -241,26 +255,42 @@ namespace UI.BudgetPlan
             txtJuly.Text = "0.0"; txtAugest.Text = "0.0"; txtSpetmeber.Text = "0.0"; txtOctober.Text = "0.0"; txtNovember.Text = "0.0"; ; txtDecember.Text = "0.0";
             txtjan.Text = "0.0"; txtFeb.Text = "0.0"; txtMarch.Text = "0.0"; txtApril.Text = "0.0"; txtMay.Text = "0.0"; ; txtJune.Text = "0.0";
             //txtProduct.Text = "";
-            txtBudgetQnt.Text = "0.0"; txtTotal.Text = "0.0";
-            txtProductRate.Text = "0.0";
+            txtBudgetQnt.Text = "0.0";
+            //txtProductRate.Text = "0.0";
             txtJulyPromo.Text = "0.0"; txtAugestPromo.Text = "0.0"; txtSeptemberPromo.Text = "0.0"; txtOctoberPromo.Text = "0.0"; txtNovemberPromo.Text = "0.0"; ; txtDecemberPromo.Text = "0.0";
             txtJanuaryPromo.Text = "0.0"; txtFebruaryPromo.Text = "0.0"; txtMarchPromo.Text = "0.0"; txtAprilPromo.Text = "0.0"; txtMayPromo.Text = "0.0"; ; txtJunePromo.Text = "0.0";
             txtTotalamntPromo.Text = "0.0";
 
         }
 
-        private void lbltxboxallow()
+        private void lbltxboxnotallow()
         {
-            txtJulyPromo.Visible =false; txtAugestPromo.Visible = false; txtSeptemberPromo.Visible = false; txtOctoberPromo.Visible = false; txtNovemberPromo.Visible = false; ; txtDecemberPromo.Visible = false;
+            txtJulyPromo.Visible = false; txtAugestPromo.Visible = false; txtSeptemberPromo.Visible = false; txtOctoberPromo.Visible = false; txtNovemberPromo.Visible = false; ; txtDecemberPromo.Visible = false;
             txtJanuaryPromo.Visible = false; txtFebruaryPromo.Visible = false; txtMarchPromo.Visible = false; txtAprilPromo.Visible = false; txtMayPromo.Visible = false; ; txtJunePromo.Visible = false;
             lblJulyProm.Visible = false; lblAugprom.Visible = false; lblSepprom.Visible = false; lblOctprom.Visible = false; lblNovprom.Visible = false; lblDecprom.Visible = false; lblJanuaryprom.Visible = false;
             lblFebprom.Visible = false; lblMarchprom.Visible = false; lblAprilprom.Visible = false; lblMayprom.Visible = false; lblJuneprom.Visible = false;
-            txtQntPromo.Visible = false; txtTotalamntPromo.Visible = false; lblPromQnt.Visible = false;lblPromTotal.Visible = false;
-            ddlRegion.Enabled = false; drdlArea.Enabled = false; drdlPrdouctLine.Enabled = false;
-            txtProductRate.Text = "1";
-          
+             txtTotalamntPromo.Visible = false; lblPromTotal.Visible = false;
            
+
+
         }
+        private void lbltxboxallow()
+        {
+            txtJulyPromo.Visible = true; txtAugestPromo.Visible = true; txtSeptemberPromo.Visible = true; txtOctoberPromo.Visible = true; txtNovemberPromo.Visible = true; ; txtDecemberPromo.Visible = true;
+            txtJanuaryPromo.Visible = true; txtFebruaryPromo.Visible = true; txtMarchPromo.Visible = true; txtAprilPromo.Visible = true; txtMayPromo.Visible = true; ; txtJunePromo.Visible = true;
+            lblJulyProm.Visible = true; lblAugprom.Visible = true; lblSepprom.Visible = true; lblOctprom.Visible = true; lblNovprom.Visible = true; lblDecprom.Visible = true; lblJanuaryprom.Visible = true;
+            lblFebprom.Visible = true; lblMarchprom.Visible = true; lblAprilprom.Visible = true; lblMayprom.Visible = true; lblJuneprom.Visible = true;
+            txtTotalamntPromo.Visible = true; lblPromTotal.Visible = true;
+
+
+
+        }
+        private void removegrid()
+        {
+            grdvSetupBaseBudget.DataSource = null;
+            grdvSetupBaseBudget.DataBind();
+        }
+
 
         protected void ddlUnit_DataBound(object sender, EventArgs e)
         {
@@ -272,167 +302,167 @@ namespace UI.BudgetPlan
 
             //budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid,
             //january, february, march, april, may, june, july, augest, september, october, november, december
-
             budgettype = ddlBudgetType.SelectedValue.ToString();
-            if (int.Parse(budgettype) == 4 )
+            if (int.Parse(budgettype) == 3 || int.Parse(budgettype) == 5)
             {
+
 
                 if (hdnconfirm.Value == "1")
-            {
-                
-                if (budgettype.Length <= 0) { budgettype = "0.0"; }
-
-              
-
-                itemid = txtProduct.Text;
-                arrayKey = itemid.Split(delimiterChars);
-                itemid = arrayKey[1].ToString();
-                prdname = arrayKey[0].ToString();
-
-                if (budgettype == "4")
                 {
-                    dt = objso.GetFGItemvsInvItem(int.Parse(itemid));
-                    string invitm= dt.Rows[0]["intinvitmid"].ToString();
-                    itemid = invitm;
+
+                    if (budgettype.Length <= 0) { budgettype = "0.0"; }
+
+
+
+                    itemid = txtProduct.Text;
+                    arrayKey = itemid.Split(delimiterChars);
+                    itemid = arrayKey[1].ToString();
+                    prdname = arrayKey[0].ToString();
+
+                    if (budgettype == "4")
+                    {
+                        dt = objso.GetFGItemvsInvItem(int.Parse(itemid));
+                        string invitm = dt.Rows[0]["intinvitmid"].ToString();
+                        itemid = invitm;
+                    }
+                    else
+                    {
+                        //txtProductRate.Text = "0.0";
+                    }
+
+
+
+
+
+                    salesofficeid = "0";
+                    regionid = "0";
+                    areaid = "0";
+                    prdlineid = "0";
+                    //prdlineid = "1";
+                    costcneteid = ddlCostCenter.SelectedValue.ToString();
+                    yrid = ddlYear.SelectedValue.ToString();
+
+
+
+                    july = txtJuly.Text;
+                    if (july.Length <= 0) { july = "0.0"; }
+
+                    augest = txtAugest.Text;
+                    if (augest.Length <= 0) { augest = "0.0"; }
+
+                    september = txtSpetmeber.Text;
+                    if (september.Length <= 0) { september = "0.0"; }
+
+                    october = txtOctober.Text;
+                    if (october.Length <= 0) { october = "0.0"; }
+
+                    november = txtNovember.Text;
+                    if (november.Length <= 0) { november = "0.0"; }
+
+                    december = txtDecember.Text;
+                    if (december.Length <= 0) { december = "0.0"; }
+                    //budgyr = ddlYear.SelectedItem.Text.ToString();
+                    string inputString = ddlYear.SelectedItem.Text.ToString();
+                    budgyr = Regex.Replace(inputString, @"[^0-9]", "");
+
+                    january = txtjan.Text;
+                    if (january.Length <= 0) { january = "0.0"; }
+
+                    february = txtFeb.Text;
+                    if (february.Length <= 0) { february = "0.0"; }
+
+                    march = txtMarch.Text;
+                    if (march.Length <= 0) { march = "0.0"; }
+
+                    april = txtApril.Text;
+                    if (april.Length <= 0) { april = "0.0"; }
+
+                    may = txtMay.Text;
+                    if (may.Length <= 0) { may = "0.0"; }
+
+                    june = txtJune.Text;
+                    if (june.Length <= 0) { june = "0.0"; }
+
+
+
+                    string Productprice = "1";
+                    if (Productprice.Length <= 0) { Productprice = "0.0"; }
+
+
+
+                    string totqnt = txtBudgetQnt.Text;
+                    if (totqnt.Length <= 0) { totqnt = "0.0"; }
+
+                    string totAmount = txtTotalamntPromo.Text;
+
+                    if (totAmount.Length <= 0) { totAmount = "0.0"; }
+
+
+                    regionname = "no";
+                    areaname = "no";
+                    linename = "no";
+
+
+                    julyPromotion = txtJulyPromo.Text;
+                    if (julyPromotion.Length <= 0) { julyPromotion = "0.0"; }
+
+                    augestPromotion = txtAugestPromo.Text;
+                    if (augestPromotion.Length <= 0) { augestPromotion = "0.0"; }
+
+                    septemberPromotion = txtSeptemberPromo.Text;
+                    if (septemberPromotion.Length <= 0) { septemberPromotion = "0.0"; }
+
+                    octoberPromotion = txtOctoberPromo.Text;
+                    if (octoberPromotion.Length <= 0) { octoberPromotion = "0.0"; }
+
+                    novemberPromotion = txtNovemberPromo.Text;
+                    if (novemberPromotion.Length <= 0) { novemberPromotion = "0.0"; }
+
+                    decemberPromotion = txtDecemberPromo.Text;
+                    if (decemberPromotion.Length <= 0) { decemberPromotion = "0.0"; }
+                    //budgyr = ddlYear.SelectedItem.Text.ToString();
+
+                    januaryPromotion = txtJanuaryPromo.Text;
+                    if (januaryPromotion.Length <= 0) { januaryPromotion = "0.0"; }
+
+                    februaryPromotion = txtFebruaryPromo.Text;
+                    if (februaryPromotion.Length <= 0) { februaryPromotion = "0.0"; }
+
+                    marchPromotion = txtMarchPromo.Text;
+                    if (marchPromotion.Length <= 0) { marchPromotion = "0.0"; }
+
+                    aprilPromotion = txtAprilPromo.Text;
+                    if (aprilPromotion.Length <= 0) { aprilPromotion = "0.0"; }
+
+                    mayPromotion = txtMayPromo.Text;
+                    if (mayPromotion.Length <= 0) { mayPromotion = "0.0"; }
+
+                    junePromotion = txtJunePromo.Text;
+                    if (junePromotion.Length <= 0) { junePromotion = "0.0"; }
+
+                    string totqntProm = "0";
+                    if (totqntProm.Length <= 0) { totqntProm = "0.0"; }
+
+                    string totAmountProm = txtTotalamntPromo.Text;
+                    if (totAmountProm.Length <= 0) { totAmountProm = "0.0"; }
+
+                    if (int.Parse(budgettype) == 3 || int.Parse(budgettype) == 5)
+                    {
+                        Productprice = "1";
+                    }
+
+                    Createxml(budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid, july, augest, september, october, november, december,
+                    january, february, march, april, may, june, prdname, budgyr, Productprice, totqnt, totAmount, regionname, areaname, linename
+                    , julyPromotion, augestPromotion, septemberPromotion, octoberPromotion, novemberPromotion, decemberPromotion,
+                    januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion);
+                    clear();
+
                 }
-                else
-                {
-                    txtProductRate.Text = "0.0";
-                }
-
-
-
-
-
-                salesofficeid = ddlSlaesOffice.SelectedValue.ToString();
-                regionid = ddlRegion.SelectedValue.ToString();
-                areaid = drdlArea.SelectedValue.ToString();
-                prdlineid = drdlPrdouctLine.SelectedValue.ToString();
-                //prdlineid = "1";
-                costcneteid = ddlCostCenter.SelectedValue.ToString();
-                yrid = ddlYear.SelectedValue.ToString();
-              
-
-
-                july = txtJuly.Text;
-                if (july.Length <= 0) { july = "0.0"; }
-
-                augest = txtAugest.Text;
-                if (augest.Length <= 0) { augest = "0.0"; }
-
-                september = txtSpetmeber.Text;
-                if (september.Length <= 0) { september = "0.0"; }
-
-                october = txtOctober.Text;
-                if (october.Length <= 0) { october = "0.0"; }
-
-                november = txtNovember.Text;
-                if (november.Length <= 0) { november = "0.0"; }
-
-                december = txtDecember.Text;
-                if (december.Length <= 0) { december = "0.0"; }
-                //budgyr = ddlYear.SelectedItem.Text.ToString();
-                string inputString = ddlYear.SelectedItem.Text.ToString();
-                budgyr = Regex.Replace(inputString, @"[^0-9]", "");
-
-                january = txtjan.Text;
-                if (january.Length <= 0) { january = "0.0"; }
-
-                february = txtFeb.Text;
-                if (february.Length <= 0) { february = "0.0"; }
-
-                march = txtMarch.Text;
-                if (march.Length <= 0) { march = "0.0"; }
-
-                april = txtApril.Text;
-                if (april.Length <= 0) { april = "0.0"; }
-
-                may = txtMay.Text;
-                if (may.Length <= 0) { may = "0.0"; }
-
-                june = txtJune.Text;
-                if (june.Length <= 0) { june = "0.0"; }
-
-               
-
-                string Productprice = txtProductRate.Text;
-                if (Productprice.Length <= 0) { Productprice = "0.0"; }
-
-
-
-                string totqnt = txtBudgetQnt.Text;
-                if (totqnt.Length <= 0) { totqnt = "0.0"; }
-
-                string totAmount = txtTotal.Text;
-                if (totAmount.Length <= 0) { totAmount = "0.0"; }
-
-                //regionname ,string areaname,string linename
-                regionname = ddlRegion.SelectedItem.Text.ToString();
-                areaname = drdlArea.SelectedItem.Text.ToString();
-                linename = drdlPrdouctLine.SelectedItem.Text.ToString();
-
-
-                julyPromotion = txtJulyPromo.Text;
-                if (julyPromotion.Length <= 0) { julyPromotion = "0.0"; }
-
-                augestPromotion = txtAugestPromo.Text;
-                if (augestPromotion.Length <= 0) { augestPromotion = "0.0"; }
-
-                septemberPromotion = txtSeptemberPromo.Text;
-                if (septemberPromotion.Length <= 0) { septemberPromotion = "0.0"; }
-
-                octoberPromotion = txtOctoberPromo.Text;
-                if (octoberPromotion.Length <= 0) { octoberPromotion = "0.0"; }
-
-                novemberPromotion = txtNovemberPromo.Text;
-                if (novemberPromotion.Length <= 0) { novemberPromotion = "0.0"; }
-
-                decemberPromotion = txtDecemberPromo.Text;
-                if (decemberPromotion.Length <= 0) { decemberPromotion = "0.0"; }
-                //budgyr = ddlYear.SelectedItem.Text.ToString();
-
-                januaryPromotion = txtJanuaryPromo.Text;
-                if (januaryPromotion.Length <= 0) { januaryPromotion = "0.0"; }
-
-                februaryPromotion = txtFebruaryPromo.Text;
-                if (februaryPromotion.Length <= 0) { februaryPromotion = "0.0"; }
-
-                marchPromotion = txtMarchPromo.Text;
-                if (marchPromotion.Length <= 0) { marchPromotion = "0.0"; }
-
-                aprilPromotion = txtAprilPromo.Text;
-                if (aprilPromotion.Length <= 0) { aprilPromotion = "0.0"; }
-
-                mayPromotion = txtMayPromo.Text;
-                if (mayPromotion.Length <= 0) { mayPromotion = "0.0"; }
-
-                junePromotion = txtJunePromo.Text;
-                if (junePromotion.Length <= 0) { junePromotion = "0.0"; }
-
-                string totPromqnt = txtQntPromo.Text;
-                if (totPromqnt.Length <= 0) { totPromqnt = "0.0"; }
-
-                string totPromAmnt = txtTotalamntPromo.Text;
-                if (totPromAmnt.Length <= 0) { totPromAmnt = "0.0"; }
-
-                if (int.Parse(budgettype) == 3 || int.Parse(budgettype) == 5)
-                {
-                    Productprice = "1";
-                }
-
-                Createxml(budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid, july, augest, september, october, november, december,
-                january, february, march, april, may, june,  prdname, budgyr, Productprice, totqnt, totAmount,regionname,areaname,linename
-                , julyPromotion, augestPromotion, septemberPromotion, octoberPromotion, novemberPromotion, decemberPromotion,
-                januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion, totPromqnt, totPromAmnt);
-                clear();
-
-            }
             }
             else
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' Sorry-- Only allow for Finish Goods item Budget');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' Sorry-- Only allow for Raw Material and Expense Budget');", true);
             }
-
 
 
 
@@ -444,7 +474,7 @@ namespace UI.BudgetPlan
         string january, string february, string march, string april, string may, string june
             , string prdname, string budgyr, string productprice, string totqnt, string totamount, string regionname, string areaname, string linename
         , string julyPromotion, string augestPromotion, string septemberPromotion, string octoberPromotion, string novemberPromotion, string decemberPromotion,
-        string januaryPromotion, string februaryPromotion, string marchPromotion, string aprilPromotion, string mayPromotion, string junePromotion,string totPromqnt,string totPromAmnt)
+        string januaryPromotion, string februaryPromotion, string marchPromotion, string aprilPromotion, string mayPromotion, string junePromotion)
         {
             System.Xml.XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(xmlpath))
@@ -452,9 +482,9 @@ namespace UI.BudgetPlan
                 doc.Load(xmlpath);
                 XmlNode rootNode = doc.SelectSingleNode("SetupbaseBudget");
                 XmlNode addItem = CreateNode(doc, budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid, july, augest, september, october, november, december,
-                january, february, march, april, may, june,  prdname, budgyr, productprice,  totqnt,  totamount,  regionname,  areaname,  linename
+                january, february, march, april, may, june, prdname, budgyr, productprice, totqnt, totamount, regionname, areaname, linename
                 , julyPromotion, augestPromotion, septemberPromotion, octoberPromotion, novemberPromotion, decemberPromotion,
-         januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion,  totPromqnt,  totPromAmnt);
+         januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -465,7 +495,7 @@ namespace UI.BudgetPlan
                 XmlNode addItem = CreateNode(doc, budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid, july, augest, september, october, november, december,
                 january, february, march, april, may, june, prdname, budgyr, productprice, totqnt, totamount, regionname, areaname, linename
                 , julyPromotion, augestPromotion, septemberPromotion, octoberPromotion, novemberPromotion, decemberPromotion,
-         januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion,  totPromqnt,  totPromAmnt);
+         januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -473,10 +503,10 @@ namespace UI.BudgetPlan
             LoadGridwithXml();
         }
         private XmlNode CreateNode(XmlDocument doc, string budgettype, string itemid, string salesofficeid, string regionid, string areaid, string prdlineid, string costcneteid, string yrid,
-        string july, string augest , string september, string october, string november, string december,
-        string january, string february, string march, string april, string may, string june, string prdname, string budgyr,string productprice, string totqnt, string totamount, string regionname, string areaname, string linename
+        string july, string augest, string september, string october, string november, string december,
+        string january, string february, string march, string april, string may, string june, string prdname, string budgyr, string productprice, string totqnt, string totamount, string regionname, string areaname, string linename
         , string julyPromotion, string augestPromotion, string septemberPromotion, string octoberPromotion, string novemberPromotion, string decemberPromotion,
-        string januaryPromotion, string februaryPromotion, string marchPromotion, string aprilPromotion, string mayPromotion, string junePromotion,string  totPromqnt,string  totPromAmnt
+        string januaryPromotion, string februaryPromotion, string marchPromotion, string aprilPromotion, string mayPromotion, string junePromotion
 
 
             )
@@ -490,7 +520,7 @@ namespace UI.BudgetPlan
             XmlAttribute Prdlineid = doc.CreateAttribute("prdlineid"); Prdlineid.Value = prdlineid;
             XmlAttribute Costcneteid = doc.CreateAttribute("costcneteid"); Costcneteid.Value = costcneteid;
             XmlAttribute Yrid = doc.CreateAttribute("yrid"); Yrid.Value = yrid;
-          
+
             XmlAttribute July = doc.CreateAttribute("july"); July.Value = july;
             XmlAttribute Augest = doc.CreateAttribute("augest"); Augest.Value = augest;
             XmlAttribute September = doc.CreateAttribute("september"); September.Value = september;
@@ -528,8 +558,6 @@ namespace UI.BudgetPlan
             XmlAttribute MayPromotion = doc.CreateAttribute("mayPromotion"); MayPromotion.Value = mayPromotion;
             XmlAttribute JunePromotion = doc.CreateAttribute("junePromotion"); JunePromotion.Value = junePromotion;
 
-            XmlAttribute TotPromqnt = doc.CreateAttribute("totPromqnt"); TotPromqnt.Value = totPromqnt;
-            XmlAttribute TotPromAmnt = doc.CreateAttribute("totPromAmnt"); TotPromAmnt.Value = totPromAmnt;
 
 
             node.Attributes.Append(Budgettype);
@@ -553,7 +581,7 @@ namespace UI.BudgetPlan
             node.Attributes.Append(April);
             node.Attributes.Append(May);
             node.Attributes.Append(June);
-           
+
             node.Attributes.Append(Prdname);
             node.Attributes.Append(Budgyr);
             node.Attributes.Append(Productprice);
@@ -577,8 +605,7 @@ namespace UI.BudgetPlan
             node.Attributes.Append(AprilPromotion);
             node.Attributes.Append(MayPromotion);
             node.Attributes.Append(JunePromotion);
-            node.Attributes.Append(TotPromqnt);
-            node.Attributes.Append(TotPromAmnt);
+
 
 
             return node;
@@ -601,15 +628,15 @@ namespace UI.BudgetPlan
                 int budgettype = int.Parse(Session["budgetcatg"].ToString());
                 string inputString = ddlYear.SelectedItem.Text.ToString();
                 budgyr = Regex.Replace(inputString, @"[^0-9]", "");
-                if (budgettype==4)
-                {
-                    dt = obj.GetBudgetProductInfo(prdid);
-                    txtProductRate.Text = dt.Rows[0]["monprice"].ToString();
-                }
+                //if (budgettype == 4)
+                //{
+                //    dt = obj.GetBudgetProductInfo(prdid);
+                //    txtProductRate.Text = dt.Rows[0]["monprice"].ToString();
+                //}
 
-                else if (budgettype == 3)
+                 if (budgettype == 3)
                 {
-                    dt = obj.GetBudgetFGQntvsMaterialQnt(int.Parse(budgyr),prdid);
+                    dt = obj.GetBudgetFGQntvsMaterialQnt(int.Parse(budgyr), prdid);
                     txtJuly.Text = dt.Rows[0]["decMatQnt"].ToString();
                     txtAugest.Text = dt.Rows[1]["decMatQnt"].ToString();
                     txtSpetmeber.Text = dt.Rows[2]["decMatQnt"].ToString();
@@ -644,7 +671,7 @@ namespace UI.BudgetPlan
 
                 else
                 {
-                    txtProductRate.Text = "0.0";
+                    //txtProductRate.Text = "0.0";
                 }
 
             }
@@ -680,7 +707,7 @@ namespace UI.BudgetPlan
             catch { }
         }
 
-       
+
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -746,6 +773,7 @@ namespace UI.BudgetPlan
 
 
         }
-    }
+
 
     }
+}
