@@ -199,33 +199,33 @@ fieldset:disabled a.btn {
     border-color: #007bff;
 }
 
-    .btn-submit:hover {
-        color: #fff;
-        background-color: #0069d9;
-        border-color: #0062cc;
-    }
+.btn-submit:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
 
-    .btn-submit:focus, .btn-submit.focus {
-        box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
-    }
+.btn-submit:focus, .btn-submit.focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
 
-    .btn-submit.disabled, .btn-submit:disabled {
-        color: #fff;
-        background-color: #007bff;
-        border-color: #007bff;
-    }
+.btn-submit.disabled, .btn-submit:disabled {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
 
-    .btn-submit:not(:disabled):not(.disabled):active, .btn-submit:not(:disabled):not(.disabled).active,
-    .show > .btn-submit.dropdown-toggle {
-        color: #fff;
-        background-color: #0062cc;
-        border-color: #005cbf;
-    }
+.btn-submit:not(:disabled):not(.disabled):active, .btn-submit:not(:disabled):not(.disabled).active,
+.show > .btn-submit.dropdown-toggle {
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf;
+}
 
-        .btn-submit:not(:disabled):not(.disabled):active:focus, .btn-submit:not(:disabled):not(.disabled).active:focus,
-        .show > .btn-submit.dropdown-toggle:focus {
-            box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
-        }
+.btn-submit:not(:disabled):not(.disabled):active:focus, .btn-submit:not(:disabled):not(.disabled).active:focus,
+.show > .btn-submit.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
 
 .btn-add {
     color: #fff;
@@ -259,4 +259,10 @@ fieldset:disabled a.btn {
         .btn-add:not(:disabled):not(.disabled):active:focus, .btn-add:not(:disabled):not(.disabled).active:focus,
         .show > .btn-add.dropdown-toggle:focus {
             box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+        }
+
+        .txt-lbl{
+            font-size: 12px;
+            font-weight:bold;
+            color:black;
         }
