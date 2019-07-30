@@ -4,6 +4,7 @@ using SAD_BLL.Sales;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -38,6 +39,33 @@ namespace UI.BudgetPlan
 
         #endregion
 
+
+        protected void grdvSetupBaseBudget_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.RowIndex == 0)
+                    e.Row.Cells[1].BackColor = Color.GreenYellow;
+                e.Row.Cells[2].BackColor = Color.GreenYellow;
+                e.Row.Cells[3].BackColor = Color.GreenYellow;
+                e.Row.Cells[4].BackColor = Color.GreenYellow;
+                e.Row.Cells[5].BackColor = Color.GreenYellow;
+                e.Row.Cells[6].BackColor = Color.GreenYellow;
+                e.Row.Cells[7].BackColor = Color.GreenYellow;
+                e.Row.Cells[8].BackColor = Color.GreenYellow;
+                e.Row.Cells[9].BackColor = Color.GreenYellow;
+                e.Row.Cells[10].BackColor = Color.GreenYellow;
+                e.Row.Cells[11].BackColor = Color.GreenYellow;
+                e.Row.Cells[12].BackColor = Color.GreenYellow;
+                e.Row.Cells[13].BackColor = Color.GreenYellow;
+                e.Row.Cells[14].BackColor = Color.Red;
+                e.Row.Cells[15].BackColor = Color.Red;
+                e.Row.Cells[28].BackColor = Color.Red;
+                e.Row.Cells[29].BackColor = Color.Red;
+                if (e.Row.RowIndex == 1)
+                e.Row.Cells[14].BackColor = Color.Green;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -217,7 +245,7 @@ namespace UI.BudgetPlan
             txtProductRate.Text = "0.0";
             txtJulyPromo.Text = "0.0"; txtAugestPromo.Text = "0.0"; txtSeptemberPromo.Text = "0.0"; txtOctoberPromo.Text = "0.0"; txtNovemberPromo.Text = "0.0"; ; txtDecemberPromo.Text = "0.0";
             txtJanuaryPromo.Text = "0.0"; txtFebruaryPromo.Text = "0.0"; txtMarchPromo.Text = "0.0"; txtAprilPromo.Text = "0.0"; txtMayPromo.Text = "0.0"; ; txtJunePromo.Text = "0.0";
-
+            txtTotalamntPromo.Text = "0.0";
 
         }
 
@@ -245,9 +273,13 @@ namespace UI.BudgetPlan
             //budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid,
             //january, february, march, april, may, june, july, augest, september, october, november, december
 
-            if (hdnconfirm.Value == "1")
+            budgettype = ddlBudgetType.SelectedValue.ToString();
+            if (int.Parse(budgettype) == 4 )
             {
-                budgettype = ddlBudgetType.SelectedValue.ToString();
+
+                if (hdnconfirm.Value == "1")
+            {
+                
                 if (budgettype.Length <= 0) { budgettype = "0.0"; }
 
               
@@ -377,11 +409,11 @@ namespace UI.BudgetPlan
                 junePromotion = txtJunePromo.Text;
                 if (junePromotion.Length <= 0) { junePromotion = "0.0"; }
 
-                string totqntProm = txtQntPromo.Text;
-                if (totqntProm.Length <= 0) { totqntProm = "0.0"; }
+                string totPromqnt = txtQntPromo.Text;
+                if (totPromqnt.Length <= 0) { totPromqnt = "0.0"; }
 
-                string totAmountProm = txtTotalamntPromo.Text;
-                if (totAmountProm.Length <= 0) { totAmountProm = "0.0"; }
+                string totPromAmnt = txtTotalamntPromo.Text;
+                if (totPromAmnt.Length <= 0) { totPromAmnt = "0.0"; }
 
                 if (int.Parse(budgettype) == 3 || int.Parse(budgettype) == 5)
                 {
@@ -391,14 +423,16 @@ namespace UI.BudgetPlan
                 Createxml(budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid, july, augest, september, october, november, december,
                 january, february, march, april, may, june,  prdname, budgyr, Productprice, totqnt, totAmount,regionname,areaname,linename
                 , julyPromotion, augestPromotion, septemberPromotion, octoberPromotion, novemberPromotion, decemberPromotion,
-                januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion);
+                januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion, totPromqnt, totPromAmnt);
                 clear();
 
             }
-            //else
-            //{
-            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' Sorry-- wrong format data. plz check');", true);
-            //}
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' Sorry-- Only allow for Finish Goods item Budget');", true);
+            }
+
 
 
 
@@ -410,7 +444,7 @@ namespace UI.BudgetPlan
         string january, string february, string march, string april, string may, string june
             , string prdname, string budgyr, string productprice, string totqnt, string totamount, string regionname, string areaname, string linename
         , string julyPromotion, string augestPromotion, string septemberPromotion, string octoberPromotion, string novemberPromotion, string decemberPromotion,
-        string januaryPromotion, string februaryPromotion, string marchPromotion, string aprilPromotion, string mayPromotion, string junePromotion)
+        string januaryPromotion, string februaryPromotion, string marchPromotion, string aprilPromotion, string mayPromotion, string junePromotion,string totPromqnt,string totPromAmnt)
         {
             System.Xml.XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(xmlpath))
@@ -420,7 +454,7 @@ namespace UI.BudgetPlan
                 XmlNode addItem = CreateNode(doc, budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid, july, augest, september, october, november, december,
                 january, february, march, april, may, june,  prdname, budgyr, productprice,  totqnt,  totamount,  regionname,  areaname,  linename
                 , julyPromotion, augestPromotion, septemberPromotion, octoberPromotion, novemberPromotion, decemberPromotion,
-         januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion);
+         januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion,  totPromqnt,  totPromAmnt);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -431,7 +465,7 @@ namespace UI.BudgetPlan
                 XmlNode addItem = CreateNode(doc, budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid, july, augest, september, october, november, december,
                 january, february, march, april, may, june, prdname, budgyr, productprice, totqnt, totamount, regionname, areaname, linename
                 , julyPromotion, augestPromotion, septemberPromotion, octoberPromotion, novemberPromotion, decemberPromotion,
-         januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion);
+         januaryPromotion, februaryPromotion, marchPromotion, aprilPromotion, mayPromotion, junePromotion,  totPromqnt,  totPromAmnt);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -442,7 +476,7 @@ namespace UI.BudgetPlan
         string july, string augest , string september, string october, string november, string december,
         string january, string february, string march, string april, string may, string june, string prdname, string budgyr,string productprice, string totqnt, string totamount, string regionname, string areaname, string linename
         , string julyPromotion, string augestPromotion, string septemberPromotion, string octoberPromotion, string novemberPromotion, string decemberPromotion,
-        string januaryPromotion, string februaryPromotion, string marchPromotion, string aprilPromotion, string mayPromotion, string junePromotion
+        string januaryPromotion, string februaryPromotion, string marchPromotion, string aprilPromotion, string mayPromotion, string junePromotion,string  totPromqnt,string  totPromAmnt
 
 
             )
@@ -494,6 +528,8 @@ namespace UI.BudgetPlan
             XmlAttribute MayPromotion = doc.CreateAttribute("mayPromotion"); MayPromotion.Value = mayPromotion;
             XmlAttribute JunePromotion = doc.CreateAttribute("junePromotion"); JunePromotion.Value = junePromotion;
 
+            XmlAttribute TotPromqnt = doc.CreateAttribute("totPromqnt"); TotPromqnt.Value = totPromqnt;
+            XmlAttribute TotPromAmnt = doc.CreateAttribute("totPromAmnt"); TotPromAmnt.Value = totPromAmnt;
 
 
             node.Attributes.Append(Budgettype);
@@ -541,7 +577,8 @@ namespace UI.BudgetPlan
             node.Attributes.Append(AprilPromotion);
             node.Attributes.Append(MayPromotion);
             node.Attributes.Append(JunePromotion);
-
+            node.Attributes.Append(TotPromqnt);
+            node.Attributes.Append(TotPromAmnt);
 
 
             return node;

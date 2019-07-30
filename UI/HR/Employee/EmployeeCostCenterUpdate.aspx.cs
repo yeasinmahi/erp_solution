@@ -103,26 +103,7 @@ namespace UI.HR.Employee
         }
 
 
-        protected void btnUpdate_Click(object sender, EventArgs e)
-        {
-            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
-            string ProductId = gridView.DataKeys[row.RowIndex]?.Value.ToString();
-
-
-            TextBox QTY = row.FindControl("lblmontargetconvqty") as TextBox;
-            Label UOM = row.FindControl("lblpackqty") as Label;
-
-            string strqty = QTY.Text;
-            string strUOM = UOM.Text;
-
-            decimal pcs = Convert.ToDecimal(strqty) * Convert.ToDecimal(strUOM);
-
-            Label QTYPCS = row.FindControl("lblQTYPcs") as Label;
-
-            QTYPCS.Text = pcs.ToString();
-
-           
-        }
+     
 
         #endregion =======End Button========
 

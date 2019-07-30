@@ -179,13 +179,16 @@
     <Content Include="Accounts\Bank\BankReceive.aspx" />
     <Content Include="Accounts\Bank\ChequeBook.aspx" />
     <Content Include="Accounts\Bank\LoanType.aspx" />
+    <Content Include="Accounts\Bank\RoutingNumberEntry.aspx" />
     <Content Include="Accounts\ChartOfAccount\animatedcollapse.js" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx" />
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
+    <Content Include="Accounts\ChartOfAccount\GLCodeBridge.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
     <Content Include="Accounts\Import\ImportAdjustment.aspx" />
+    <Content Include="Accounts\MDSlip\MDSlipCustomization.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsPaymentOrder.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewAdjustment.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewCashCredit.aspx" />
@@ -318,6 +321,7 @@
     <Content Include="Asset\WorkOrderPartsPopUp.aspx" />
     <Content Include="BudgetPlan\BudgetDetalis_UI.aspx" />
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
+    <Content Include="BudgetPlan\BudgetForExpenseNRawMaterial.aspx" />
     <Content Include="BudgetPlan\BudgetInfoModification.aspx" />
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
     <Content Include="BudgetPlan\BudgetPlanning_Requesition.aspx" />
@@ -467,6 +471,7 @@
     <Content Include="Dairy\Milk_MRR_By_Factory.aspx" />
     <Content Include="Document Inventory\DocLocationConfigure.aspx" />
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
+    <Content Include="Factory\PetBottle\PBReceiveForm.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
@@ -619,6 +624,7 @@
     <Content Include="PaymentModule\ImportAdvice.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\AITReport.aspx" />
+    <Content Include="PaymentModule\AdviceReportPrint.aspx" />
     <Content Include="PaymentModule\SisterConsernReportbyUnit.aspx" />
     <Content Include="PaymentModule\SisterConsernReport.aspx" />
     <Content Include="PaymentModule\MDSlipDetails.aspx" />
@@ -650,6 +656,7 @@
     <Content Include="Property\AGLandMouzaSetup.aspx" />
     <Content Include="Property\AGLandPlotByMouzaSetup.aspx" />
     <Content Include="Property\AGLandTrxGeneral.aspx" />
+    <Content Include="Property\AGLandTrxGeneralED.aspx" />
     <Content Include="Property\AGLandTrxGeneralNew.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
@@ -1464,6 +1471,7 @@
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\BudgetForExpense.aspx" />
     <Content Include="SAD\Sales\Report\BudgetForFG.aspx" />
     <Content Include="SAD\Sales\Report\BudgetForMaterial.aspx" />
     <Content Include="SAD\Sales\Report\BudgetForPromotion.aspx" />
@@ -1781,6 +1789,7 @@
     <Content Include="Transport\TripvsCost\PumpFoodingBill.aspx" />
     <Content Include="Transport\TripvsCost\PumpFoodingBillReport.aspx" />
     <Content Include="Transport\TripvsCost\ThanaRateChecking.aspx" />
+    <Content Include="Transport\TripvsCost\Traller Bill.aspx" />
     <Content Include="Transport\TripvsCost\TripCost.aspx" />
     <Content Include="Transport\TripvsCost\TripCostDetaills.aspx" />
     <Content Include="Transport\TripvsCost\TripVsFuelCost.aspx" />
@@ -2023,6 +2032,13 @@
     <Compile Include="Accounts\Bank\LoanType.aspx.designer.cs">
       <DependentUpon>LoanType.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Bank\RoutingNumberEntry.aspx.cs">
+      <DependentUpon>RoutingNumberEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Bank\RoutingNumberEntry.aspx.designer.cs">
+      <DependentUpon>RoutingNumberEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx.cs">
       <DependentUpon>ChartOfAccounts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2051,6 +2067,13 @@
     <Compile Include="Accounts\ChartOfAccount\GetInfo.aspx.designer.cs">
       <DependentUpon>GetInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\ChartOfAccount\GLCodeBridge.aspx.cs">
+      <DependentUpon>GLCodeBridge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\GLCodeBridge.aspx.designer.cs">
+      <DependentUpon>GLCodeBridge.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\ChartOfAccount\Template.aspx.cs">
       <DependentUpon>Template.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2064,6 +2087,13 @@
     </Compile>
     <Compile Include="Accounts\Import\ImportAdjustment.aspx.designer.cs">
       <DependentUpon>ImportAdjustment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipCustomization.aspx.cs">
+      <DependentUpon>MDSlipCustomization.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\MDSlip\MDSlipCustomization.aspx.designer.cs">
+      <DependentUpon>MDSlipCustomization.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\MDSlip\MDSlipQuery.aspx.cs">
       <DependentUpon>MDSlipQuery.aspx</DependentUpon>
@@ -3094,6 +3124,13 @@
     <Compile Include="BudgetPlan\BudgetEntry.aspx.designer.cs">
       <DependentUpon>BudgetEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BudgetPlan\BudgetForExpenseNRawMaterial.aspx.cs">
+      <DependentUpon>BudgetForExpenseNRawMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetForExpenseNRawMaterial.aspx.designer.cs">
+      <DependentUpon>BudgetForExpenseNRawMaterial.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BudgetPlan\BudgetInfoModification.aspx.cs">
       <DependentUpon>BudgetInfoModification.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3254,6 +3291,13 @@
     </Compile>
     <Compile Include="Document Inventory\FileAndDocLocationCreate.aspx.designer.cs">
       <DependentUpon>FileAndDocLocationCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PBReceiveForm.aspx.cs">
+      <DependentUpon>PBReceiveForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PBReceiveForm.aspx.designer.cs">
+      <DependentUpon>PBReceiveForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Attendance\RealTimeAttendanceReport.aspx.cs">
       <DependentUpon>RealTimeAttendanceReport.aspx</DependentUpon>
@@ -4164,6 +4208,13 @@
     <Compile Include="PaymentModule\AITReport.aspx.designer.cs">
       <DependentUpon>AITReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\AdviceReportPrint.aspx.cs">
+      <DependentUpon>AdviceReportPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\AdviceReportPrint.aspx.designer.cs">
+      <DependentUpon>AdviceReportPrint.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\SisterConsernReportbyUnit.aspx.cs">
       <DependentUpon>SisterConsernReportbyUnit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4381,6 +4432,13 @@
     </Compile>
     <Compile Include="Property\AGLandTrxGeneral.aspx.designer.cs">
       <DependentUpon>AGLandTrxGeneral.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralED.aspx.cs">
+      <DependentUpon>AGLandTrxGeneralED.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralED.aspx.designer.cs">
+      <DependentUpon>AGLandTrxGeneralED.aspx</DependentUpon>
     </Compile>
     <Compile Include="Property\AGLandTrxGeneralNew.aspx.cs">
       <DependentUpon>AGLandTrxGeneralNew.aspx</DependentUpon>
@@ -7491,6 +7549,13 @@
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.designer.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\BudgetForExpense.aspx.cs">
+      <DependentUpon>BudgetForExpense.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\BudgetForExpense.aspx.designer.cs">
+      <DependentUpon>BudgetForExpense.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\BudgetForFG.aspx.cs">
       <DependentUpon>BudgetForFG.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9752,6 +9817,13 @@
     </Compile>
     <Compile Include="Transport\TripvsCost\ThanaRateChecking.aspx.designer.cs">
       <DependentUpon>ThanaRateChecking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\Traller Bill.aspx.cs">
+      <DependentUpon>Traller Bill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\Traller Bill.aspx.designer.cs">
+      <DependentUpon>Traller Bill.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\TripvsCost\TripCost.aspx.cs">
       <DependentUpon>TripCost.aspx</DependentUpon>

@@ -32,32 +32,38 @@ namespace UI.Property
         char[] delimiterChars = { '.' };
         string filen;
         string filePathForXMLDocUpload; string xmlStringDocUpload = ""; string xmlDocUpload;
-
-
-
         int intCount = 0;
-
-
-
         DateTime DeedDate;
+        private decimal PurchasedLand, DeedValue, AIT, Vat, MutationFee, ExtendedValue, OtherCost, Broker, RegistrationCost,
+            TotalExpense, AddPlotQty;
 
-        protected void txtPercentage_TextChanged(object sender, EventArgs e)
+        protected void gvLandTrxGeneral_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
-                decimal DeedValue = !string.IsNullOrEmpty(txtDeedValue.Text) ? decimal.Parse(txtDeedValue.Text.Trim()) : 1;
-                decimal percentage = !string.IsNullOrEmpty(txtPercentage.Text) ? decimal.Parse(txtPercentage.Text.Trim()): 1;
-                decimal registrationValue = (DeedValue * percentage / 100);
-                txtRegistrationCost.Text = registrationValue.ToString("#.##");
+                LoadGridWithXml();
+                DataSet dsGrid = (DataSet)gvLandTrxGeneral.DataSource;
+                dsGrid.Tables[0].Rows[gvLandTrxGeneral.Rows[e.RowIndex].DataItemIndex].Delete();
+                dsGrid.WriteXml(filePathForXML);
+                DataSet dsGridAfterDelete = (DataSet)gvLandTrxGeneral.DataSource;
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                {
+                    File.Delete(filePathForXML);
+                    gvLandTrxGeneral.DataSource = "";
+                    gvLandTrxGeneral.DataBind();
+                }
+                else
+                {
+                    LoadGridWithXml();
+                }
             }
             catch (Exception ex)
             {
-                
+                string sms = "Gridview Land Trx General: " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
             }
         }
 
-        private decimal PurchasedLand, DeedValue, AIT, Vat, MutationFee, ExtendedValue, OtherCost, Broker, RegistrationCost,
-            TotalExpense, AddPlotQty;
         #endregion
 
         #region Constructor
@@ -386,7 +392,6 @@ namespace UI.Property
         {
             FTPUpload();
         }
-
         protected void dgvFileUp_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -448,6 +453,21 @@ namespace UI.Property
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
             }
         }
+        protected void txtPercentage_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal DeedValue = !string.IsNullOrEmpty(txtDeedValue.Text) ? decimal.Parse(txtDeedValue.Text.Trim()) : 1;
+                decimal percentage = !string.IsNullOrEmpty(txtPercentage.Text) ? decimal.Parse(txtPercentage.Text.Trim()) : 1;
+                decimal registrationValue = (DeedValue * percentage / 100);
+                txtRegistrationCost.Text = registrationValue.ToString("#.##");
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        
         #endregion
 
 
@@ -716,7 +736,6 @@ namespace UI.Property
         {
             return true;
         }
-
         private void MasterClear()
         {
             ddlUnit.SelectedValue = "-1";
@@ -944,7 +963,6 @@ namespace UI.Property
             }
             catch { }
         }
-
         private void FTPUpload()
         {
             try
@@ -1178,6 +1196,10 @@ namespace UI.Property
                 File.Delete(Server.MapPath("~/Property/Files/") + fileName);
             }
             catch (Exception ex) { throw ex; }
+        }
+        private void FillExistLandData()
+        {
+
         }
         #endregion
     }

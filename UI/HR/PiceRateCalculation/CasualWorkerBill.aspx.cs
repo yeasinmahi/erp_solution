@@ -139,6 +139,9 @@ namespace UI.HR.PiceRateCalculation
             }
             _dt = _bll.PiecesRateSalaryGenarate(1, 0, 0, 0, unitId, 0);
 
+            string message=string.Empty;
+            _dt = _bll.PiecesRateSalaryGenarateFinal(0, DateTime.Now.FirstDay(), DateTime.Now.LastDay(), unitId, Enroll, ref message);
+            Toaster("Salary Generated Successfully",Common.TosterType.Success);
         }
     }
 }
