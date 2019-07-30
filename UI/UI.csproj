@@ -179,6 +179,7 @@
     <Content Include="Accounts\Bank\BankReceive.aspx" />
     <Content Include="Accounts\Bank\ChequeBook.aspx" />
     <Content Include="Accounts\Bank\LoanType.aspx" />
+    <Content Include="Accounts\Bank\RoutingNumberEntry.aspx" />
     <Content Include="Accounts\ChartOfAccount\animatedcollapse.js" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx" />
@@ -620,6 +621,7 @@
     <Content Include="PaymentModule\ImportAdvice.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\AITReport.aspx" />
+    <Content Include="PaymentModule\AdviceReportPrint.aspx" />
     <Content Include="PaymentModule\SisterConsernReportbyUnit.aspx" />
     <Content Include="PaymentModule\SisterConsernReport.aspx" />
     <Content Include="PaymentModule\MDSlipDetails.aspx" />
@@ -2022,6 +2024,13 @@
     </Compile>
     <Compile Include="Accounts\Bank\LoanType.aspx.designer.cs">
       <DependentUpon>LoanType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\RoutingNumberEntry.aspx.cs">
+      <DependentUpon>RoutingNumberEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Bank\RoutingNumberEntry.aspx.designer.cs">
+      <DependentUpon>RoutingNumberEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx.cs">
       <DependentUpon>ChartOfAccounts.aspx</DependentUpon>
@@ -4170,6 +4179,13 @@
     </Compile>
     <Compile Include="PaymentModule\AITReport.aspx.designer.cs">
       <DependentUpon>AITReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\AdviceReportPrint.aspx.cs">
+      <DependentUpon>AdviceReportPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\AdviceReportPrint.aspx.designer.cs">
+      <DependentUpon>AdviceReportPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\SisterConsernReportbyUnit.aspx.cs">
       <DependentUpon>SisterConsernReportbyUnit.aspx</DependentUpon>

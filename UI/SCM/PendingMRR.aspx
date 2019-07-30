@@ -110,8 +110,8 @@
                             </td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlType" Enabled="true" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
-                                                <asp:ListItem Value="QC">QC</asp:ListItem>
-                                                <asp:ListItem Value="Costing">Costing</asp:ListItem>
+                                                <%--<asp:ListItem Value="QC">QC</asp:ListItem>
+                                                <asp:ListItem Value="Costing">Costing</asp:ListItem>--%>
                                  </asp:DropDownList>
                             </td>
                            <%-- <td style="text-align: right;">

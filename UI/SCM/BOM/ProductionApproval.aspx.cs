@@ -24,10 +24,10 @@ namespace UI.SCM.BOM
         {
             if (!IsPostBack)
             {
-                dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, Enroll);
+                dt = objBom.GetBomData(20, xmlData, intwh, BomId, DateTime.Now, Enroll);
                 if (dt.Rows.Count > 0)
                 {
-                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
+                    hdnUnit.Value = dt.Rows[0]["Id"].ToString();
                     try { Session["Unit"] = hdnUnit.Value; } catch { }
                     ddlWH.DataSource = dt;
                     ddlWH.DataTextField = "strName";
