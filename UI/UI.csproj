@@ -185,6 +185,7 @@
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx" />
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
+    <Content Include="Accounts\ChartOfAccount\GLCodeBridge.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
     <Content Include="Accounts\Import\ImportAdjustment.aspx" />
     <Content Include="Accounts\MDSlip\MDSlipCustomization.aspx" />
@@ -468,6 +469,7 @@
     <Content Include="Dairy\Milk_MRR_By_Factory.aspx" />
     <Content Include="Document Inventory\DocLocationConfigure.aspx" />
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
+    <Content Include="Factory\PetBottle\PBReceiveForm.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
@@ -619,6 +621,7 @@
     <Content Include="PaymentModule\ImportAdvice.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\AITReport.aspx" />
+    <Content Include="PaymentModule\AdviceReportPrint.aspx" />
     <Content Include="PaymentModule\SisterConsernReportbyUnit.aspx" />
     <Content Include="PaymentModule\SisterConsernReport.aspx" />
     <Content Include="PaymentModule\MDSlipDetails.aspx" />
@@ -2057,6 +2060,13 @@
     <Compile Include="Accounts\ChartOfAccount\GetInfo.aspx.designer.cs">
       <DependentUpon>GetInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\ChartOfAccount\GLCodeBridge.aspx.cs">
+      <DependentUpon>GLCodeBridge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\GLCodeBridge.aspx.designer.cs">
+      <DependentUpon>GLCodeBridge.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\ChartOfAccount\Template.aspx.cs">
       <DependentUpon>Template.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3261,6 +3271,13 @@
     <Compile Include="Document Inventory\FileAndDocLocationCreate.aspx.designer.cs">
       <DependentUpon>FileAndDocLocationCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Factory\PetBottle\PBReceiveForm.aspx.cs">
+      <DependentUpon>PBReceiveForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PBReceiveForm.aspx.designer.cs">
+      <DependentUpon>PBReceiveForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Attendance\RealTimeAttendanceReport.aspx.cs">
       <DependentUpon>RealTimeAttendanceReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4162,6 +4179,13 @@
     </Compile>
     <Compile Include="PaymentModule\AITReport.aspx.designer.cs">
       <DependentUpon>AITReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\AdviceReportPrint.aspx.cs">
+      <DependentUpon>AdviceReportPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\AdviceReportPrint.aspx.designer.cs">
+      <DependentUpon>AdviceReportPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\SisterConsernReportbyUnit.aspx.cs">
       <DependentUpon>SisterConsernReportbyUnit.aspx</DependentUpon>
