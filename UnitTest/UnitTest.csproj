@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Inventory\WarehouseOperatorTdd.cs" />
     <Compile Include="Inventory\WarehouseTdd.cs" />
+    <Compile Include="Utility\DateTimeConverterTdd.cs" />
     <Compile Include="Utility\CommonTdd.cs" />
   </ItemGroup>
   <ItemGroup>
