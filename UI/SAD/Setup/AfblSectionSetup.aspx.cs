@@ -238,6 +238,7 @@ namespace UI.SAD.Setup
             DataTable dt = new DataTable();
             string codeNo = string.Empty;
             string phoneNO = string.Empty;
+            string desc = string.Empty;
             int lineId = 0;
             try
             {
@@ -247,8 +248,10 @@ namespace UI.SAD.Setup
                     lineId = Convert.ToInt32(ddlExSectionName.SelectedValue.ToString());
                     dt = objAfblDistributionBll.GetAFBLExistGeoInfo(lineId, part);
                     if (dt.Rows.Count > 0)
+                    {
                         phoneNO = dt.Rows[0].Field<string>(3);
-
+                        desc = dt.Rows[0].Field<string>(4);
+                    }
                     part = 13;
                     dt = objAfblDistributionBll.GetAFBLExistGeoInfo(lineId, part);
                     if (dt.Rows.Count > 0)
@@ -259,8 +262,10 @@ namespace UI.SAD.Setup
                 else
                     btnCreate.Visible = true;
 
+                txtSectionName.Text = desc;
                 txtExistCode.Text = codeNo;
                 txtPhoneNo.Text = phoneNO;
+                txtCode.Text = codeNo;
             }
             catch (Exception Ex)
             {

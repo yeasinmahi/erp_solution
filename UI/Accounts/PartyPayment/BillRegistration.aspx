@@ -105,7 +105,7 @@
             <td style="text-align:left;"><asp:TextBox ID="txtBillNo" Width="200" runat="server" CssClass="txtBox"></asp:TextBox></td>
 
             <td style="text-align:right;"><asp:Label ID="lblBillDate" runat="server" CssClass="lbl" Text="Bill Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtBillDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="200px"></asp:TextBox>
+            <td><asp:TextBox ID="txtBillDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="200px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtBillDate"></cc1:CalendarExtender></td>                                
         </tr>
         <tr class="tblrowodd">            

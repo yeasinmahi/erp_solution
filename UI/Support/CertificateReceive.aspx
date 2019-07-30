@@ -112,7 +112,7 @@
                 <td><asp:TextBox ID="txtName" BackColor="LightGray" runat="server" CssClass="txtBox" ReadOnly="true" Enabled="true" ></asp:TextBox></td>
 
                 <td style="text-align:right;"><asp:Label ID="lblJoiningDate" CssClass="lbl" runat="server" Text="Joining Date : "></asp:Label></td>
-                <td><asp:TextBox ID="txtJoiningDate" BackColor="LightGray" runat="server" CssClass="txtBox" ReadOnly="true" Enabled="true" ></asp:TextBox></td>                     
+                <td><asp:TextBox ID="txtJoiningDate" BackColor="LightGray" runat="server" CssClass="txtBox" ReadOnly="true" Enabled="true" autocomplete="off" ></asp:TextBox></td>                     
             </tr>  
         
             <tr class="tblroweven">  
@@ -157,11 +157,11 @@
             </tr>  
             <tr class="tblroweven"> 
                 <td style="text-align:right;"><asp:Label ID="lblRecDate" runat="server" CssClass="lbl" Text="Received Date :"></asp:Label></td>                
-                <td><asp:TextBox ID="txtRecDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+                <td><asp:TextBox ID="txtRecDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtRecDate"></cc1:CalendarExtender></td>                                
         
                 <td style="text-align:right;"><asp:Label ID="lblDelDate" runat="server" CssClass="lbl" Text="Delivery Date :"></asp:Label></td>                
-                <td><asp:TextBox ID="txtDeliveryDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
+                <td><asp:TextBox ID="txtDeliveryDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDeliveryDate"></cc1:CalendarExtender></td>                                               
             </tr> 
             <tr class="tblroweven">

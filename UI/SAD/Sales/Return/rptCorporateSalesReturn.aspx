@@ -53,9 +53,9 @@
     <table style="width:1000px";>
     <tr>
     <td style="text-align:right;" colspan="1"><asp:Label ID="lblfrmdte" CssClass="lbl" runat="server" Text="From Date : "></asp:Label></td>
-    <td><asp:TextBox ID="txtfrmdte" runat="server" CssClass="txtBox" Width="120px"></asp:TextBox><cc1:CalendarExtender ID="cefrmdte" runat="server" Format="yyyy-MM-dd" TargetControlID="txtfrmdte"></cc1:CalendarExtender><%--</td>--%>
+    <td><asp:TextBox ID="txtfrmdte" runat="server" CssClass="txtBox" Width="120px" autocomplete="off"></asp:TextBox><cc1:CalendarExtender ID="cefrmdte" runat="server" Format="yyyy-MM-dd" TargetControlID="txtfrmdte"></cc1:CalendarExtender><%--</td>--%>
     <%--<td style="text-align:right;" colspan="1">--%><asp:Label ID="lbltodte" CssClass="lbl" runat="server" Text="To Date : "></asp:Label><%--</td>--%>
-    <%--<td>--%><asp:TextBox ID="txttodte" runat="server" CssClass="txtBox" Width="120px"></asp:TextBox><cc1:CalendarExtender ID="cetodte" runat="server" Format="yyyy-MM-dd" TargetControlID="txttodte"></cc1:CalendarExtender></td>
+    <%--<td>--%><asp:TextBox ID="txttodte" runat="server" CssClass="txtBox" Width="120px" autocomplete="off"></asp:TextBox><cc1:CalendarExtender ID="cetodte" runat="server" Format="yyyy-MM-dd" TargetControlID="txttodte"></cc1:CalendarExtender></td>
     </tr>
     <tr><td style="text-align:right;"><asp:Label ID="lblsrch" CssClass="lbl" runat="server" Text="Customer Name : "></asp:Label></td>
     <td style="text-align:left;"><asp:TextBox ID="txtSearch" runat="server" AutoPostBack="true" Width="350px"  CssClass="txtBox" AutoCompleteType="Search"   Enabled="true" OnTextChanged="txtSearch_TextChanged"></asp:TextBox>

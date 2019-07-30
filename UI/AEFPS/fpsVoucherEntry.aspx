@@ -89,7 +89,7 @@
             </td>                                
 
             <td style="text-align:right;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Date :"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtfdatee" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox>
+            <td style="text-align:left;"><asp:TextBox ID="txtfdatee" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtfdatee"></cc1:CalendarExtender></td>              
         </tr>
         <tr>

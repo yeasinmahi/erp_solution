@@ -59,12 +59,12 @@
                                        <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
                                </td><td></td>
                                <td>
-                                   <asp:TextBox ID="txtFromDate" runat="server" ></asp:TextBox>
+                                   <asp:TextBox ID="txtFromDate" runat="server" autocomplete="off"></asp:TextBox>
                                    <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
 
                                </td><td></td>
                                <td>
-                                   <asp:TextBox ID="txtToDate" runat="server" ></asp:TextBox>
+                                   <asp:TextBox ID="txtToDate" runat="server" autocomplete="off"></asp:TextBox>
                                    <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
                                </td>
                                <td>

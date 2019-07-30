@@ -48,11 +48,11 @@
                                         <div class="col-md-6 col-sm-6">
                                             <asp:Label ID="Label6" runat="server" Text="Date"></asp:Label>
                                             <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                            <asp:TextBox ID="txtDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Date"></asp:TextBox>
+                                            <asp:TextBox ID="txtDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Date" ></asp:TextBox>
                                         </div>
 
                                         <div class="col-md-12 col-sm-12" style="padding-top: 10px">
-                                            <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-right" Text="Show" OnClientClick="return ValidateDate();" OnClick="btnShow_OnClick" />
+                                            <asp:Button ID="btnShow" runat="server"  class="btn btn-primary form-control pull-right" Text="Show" OnClientClick="return ValidateDate();" OnClick="btnShow_OnClick" />
                                         </div>
                                     </div>
                                 </div>
@@ -66,13 +66,13 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                       <%-- <div class="col-md-4 col-sm-4">
+                                        <%-- <div class="col-md-4 col-sm-4">
                                             <asp:Label ID="Label1" runat="server" Text="Select Month"></asp:Label>
                                             <span style="color: red; font-size: 14px; text-align: left">*</span>
                                             <asp:TextBox ID="txtMonth" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autocomplete="off" placeholder="Select Month"></asp:TextBox>
 
                                         </div>--%>
-                                         <div class="col-md-4 col-sm-4">
+                                        <div class="col-md-4 col-sm-4">
                                             <asp:Label ID="Label1" runat="server" Text="From Date"></asp:Label>
                                             <span style="color: red; font-size: 14px; text-align: left">*</span>
                                             <asp:TextBox ID="txtFDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autocomplete="off" placeholder="Select From Date"></asp:TextBox>
@@ -93,7 +93,8 @@
 
                                         <div class="col-md-12 col-sm-12" style="padding-top: 10px">
                                             <asp:Button ID="btnShowIndividualReport" runat="server" class="btn btn-primary form-control pull-left" Text="Individual Report" OnClientClick="return ValidateEnrollAndMonth();" OnClick="btnShowIndividualReport_OnClick" />
-                                            <asp:Button ID="btnShowAllReport" runat="server" class="btn btn-primary form-control pull-right" Text="All Report" OnClientClick="return ValidateMonth();" OnClick="btnShowAllReport_OnClick" />
+                                            <asp:Button ID="btnShowAllReport"  runat="server" class="btn btn-primary form-control pull-right" Text="All Report" OnClientClick="return ValidateMonth();" OnClick="btnShowAllReport_OnClick" />
+                                            <asp:Button ID="btnGenarateSalary"  runat="server" class="btn btn-primary form-control pull-right" Visible="false" Text="Salary Genarate" OnClick="btnGenarateSalary_Click" />
                                         </div>
                                     </div>
 
@@ -173,7 +174,7 @@
                             <asp:Label runat="server" ID="lblHeader" Text="Worker Bill Individual Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>                          
+                            <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 0px solid red;"></iframe>
                         </div>
 
                     </div>
@@ -206,9 +207,9 @@
             function ValidateEnrollAndMonth() {
                 var txtEnroll = document.getElementById("txtEnroll").value;
                 var txtFDate = document.getElementById("txtFDate").value;
-                 var txtTDate = document.getElementById("txtTDate").value;
+                var txtTDate = document.getElementById("txtTDate").value;
                 if (txtEnroll === null || txtEnroll === "") {
-                    ShowNotification('Enroll can not be blank', 'Casual Worker Bill', 'warning');
+                    ShowNotification('Employee code can not be blank', 'Casual Worker Bill', 'warning');
                     return false;
                 }
                 if (txtFDate === null || txtFDate === "") {
@@ -223,7 +224,12 @@
                 Init();
                 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
             });
-
+            function stopRKey(evt) {
+                var evt = (evt) ? evt : ((event) ? event : null);
+                var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+                if ((evt.keyCode == 13) && (node.type == "text")) { return false; }
+            }
+            
             function Init() {
                 $('#txtFDate').datepicker({
                     dateFormat: 'yy-mm-dd'
@@ -254,16 +260,16 @@
                 $("#txtMonth").focus(function () {
                     $(".ui-datepicker-calendar").hide();
                 });
-
+                document.onkeypress = stopRKey;
             }
             function loadIframe(iframeName, url) {
-            var $iframe = $('#' + iframeName);
-            if ($iframe.length) {
-                $iframe.attr('src', url); 
-                return false;
+                var $iframe = $('#' + iframeName);
+                if ($iframe.length) {
+                    $iframe.attr('src', url);
+                    return false;
+                }
+                return true;
             }
-            return true;
-        }
 
         </script>
     </form>

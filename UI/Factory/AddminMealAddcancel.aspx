@@ -199,7 +199,7 @@
                             </td>
 <td align="right" class="auto-style11">
                                 From
-                                <asp:TextBox ID="txtFrom" Enabled="false" CssClass="txtbox" runat="server" OnTextChanged="txtFrom_TextChanged1"></asp:TextBox>
+                                <asp:TextBox ID="txtFrom" Enabled="false" CssClass="txtbox" runat="server" OnTextChanged="txtFrom_TextChanged1" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="yyyy/MM/dd"
                                     PopupButtonID="imgCal_1" ID="CalendarExtender1" runat="server" EnableViewState="true">
                                 </cc1:CalendarExtender><img id="imgCal_1" src="../Content/images/img/calbtn.gif" style="border: 0px;
@@ -208,7 +208,7 @@
                             </td>
                             <td class="auto-style8">
                                 <asp:HiddenField ID="hdntodate" runat="server" /> To
-                                <asp:TextBox ID="txtTo" Enabled="false"  runat="server" CssClass="txtbox" OnTextChanged="txtTo_TextChanged1"></asp:TextBox>
+                                <asp:TextBox ID="txtTo" Enabled="false"  runat="server" CssClass="txtbox" OnTextChanged="txtTo_TextChanged1" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtTo" Format="yyyy/MM/dd"
                                     PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server" EnableViewState="true">
                                 </cc1:CalendarExtender>

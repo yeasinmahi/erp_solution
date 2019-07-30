@@ -58,7 +58,7 @@
             </td>                                
 
             <td style="text-align:right;"><asp:Label ID="lblQty" runat="server" CssClass="lbl" Text="Date :"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtfdate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox>
+            <td style="text-align:left;"><asp:TextBox ID="txtfdate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtfdate"></cc1:CalendarExtender></td>              
         </tr>
        

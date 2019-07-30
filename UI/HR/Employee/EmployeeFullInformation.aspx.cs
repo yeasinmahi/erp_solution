@@ -25,6 +25,7 @@ namespace UI.HR.Employee
             Page.Form.Attributes.Add("enctype", "multipart/form-data");
             if (!IsPostBack)
             {
+                LoadDashBoard();
                 employeeBll = new EmployeeBll();
                 txtEnroll.Text = Enroll.ToString();
 
@@ -46,6 +47,31 @@ namespace UI.HR.Employee
                 LoadWorkInfo();
                 LoadImage();
             }
+        }
+        public void LoadTodaysAttendance()
+        {
+            _dt = _bll.GetTodatysAttendance(Enroll);
+            if (_dt.Rows.Count > 0)
+            {
+                spanTodaysAttendance.InnerText = _dt.GetValue<string>("dteAttendanceTime");
+            }
+           
+        }
+        public void LoadDashBoard()
+        {
+            lblName.Text = UserFullName;
+            lblUnit.Text = UnitName;
+            lblDesignation.Text = Designation;
+            lblDepartment.Text = Department;
+            lblJoiningDate.Text = JoiningDate;
+            lblEmail.Text = UserEmail;
+            lblContact.Text = ContactNumber;
+            lblJobType.Text = JobType;
+            lblSupervisor.Text = Supervisor;
+            lblEnroll.Text = Enroll.ToString();
+            lblCode.Text = Code;
+
+            LoadTodaysAttendance();
         }
         #region Tab 1: Personal Info
         private void LoadDepartment()

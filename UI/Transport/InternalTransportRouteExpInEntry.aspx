@@ -323,7 +323,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblInDate" runat="server" CssClass="lbl" Text="In Date :"></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtInDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox>
+                                <asp:TextBox ID="txtInDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtInDate"></cc1:CalendarExtender>
                             </td>
 
@@ -826,7 +826,7 @@
                         </tr>
                         <tr style="background-color: lightgray">
                             <td colspan="10">
-                                <asp:Button ID="btnSubmit" runat="server" class="nextclick" Font-Bold="true" ForeColor="Green" OnClientClick="FTPUpload1()" Text="Submit" />
+                                <asp:Button ID="btnSubmit" runat="server" class="nextclick" Font-Bold="true" ForeColor="Green" OnClientClick="FTPUpload1()" Text="Submit"/>
                             </td>
                         </tr>
                         </tr> 

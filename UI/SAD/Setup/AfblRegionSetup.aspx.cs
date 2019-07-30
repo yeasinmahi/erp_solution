@@ -96,6 +96,8 @@ namespace UI.SAD.Setup
         {
             DataTable dt = new DataTable();
             string phoneNo = string.Empty;
+            string desc = string.Empty;
+
             int lineId = 0;
             try
             {
@@ -105,13 +107,17 @@ namespace UI.SAD.Setup
                     lineId = Convert.ToInt32(ddlExRegion.SelectedValue.ToString());
                     dt = objAfblDistributionBll.GetAFBLExistGeoInfo(lineId, part);
                     if (dt.Rows.Count > 0)
+                    {
                         phoneNo = dt.Rows[0].Field<string>(3);
-
+                        desc = dt.Rows[0].Field<string>(4);
+                    }
                     btnCreate.Visible = false;
                 }
                 else
                     btnCreate.Visible = true;
+
                 txtPhoneNo.Text = phoneNo;
+                txtRegion.Text = desc;
             }
             catch (Exception Ex)
             {

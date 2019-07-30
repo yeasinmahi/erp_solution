@@ -58,7 +58,7 @@
                <tr>
                    <td style="text-align:right;"><asp:Label ID="lblReturnDate" runat="server" Text="Return Date:"></asp:Label></td>
                    <td class="auto-style1">
-                   <asp:TextBox ID="txtReturnDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                   <asp:TextBox ID="txtReturnDate" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                    <cc1:CalendarExtender ID="dtpReturnDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtReturnDate"></cc1:CalendarExtender>
                    </td>
                </tr>

@@ -328,5 +328,18 @@ namespace Projects_BLL
             catch (Exception e){ msg = e.ToString(); }
             return msg;
         }
+
+        public void SaveWOCondition(int salesOId, int whId, string condition, int insertBy, DateTime dt)
+        {
+            tblSalesOrderCondition1TableAdapter obj = new tblSalesOrderCondition1TableAdapter();
+            try
+            {
+                obj.SaveWOCondition(salesOId, whId, condition, insertBy, dt);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

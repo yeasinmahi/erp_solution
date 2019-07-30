@@ -86,6 +86,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DmageTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ImportAdvice.cs">
+      <DependentUpon>ImportAdvice.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportAdvice.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportAdvice.xsd</DependentUpon>
+    </Compile>
     <Compile Include="IndentTDS.cs">
       <DependentUpon>IndentTDS.xsd</DependentUpon>
     </Compile>
@@ -241,6 +249,17 @@
     </None>
     <None Include="DmageTDS.xss">
       <DependentUpon>DmageTDS.xsd</DependentUpon>
+    </None>
+    <None Include="ImportAdvice.xsc">
+      <DependentUpon>ImportAdvice.xsd</DependentUpon>
+    </None>
+    <None Include="ImportAdvice.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportAdvice.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportAdvice.xss">
+      <DependentUpon>ImportAdvice.xsd</DependentUpon>
     </None>
     <None Include="IndentTDS.xsc">
       <DependentUpon>IndentTDS.xsd</DependentUpon>

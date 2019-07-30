@@ -50,7 +50,7 @@
     <tr><td colspan="4"><hr /></td></tr>      
     <tr>
         <td style="text-align:right;"><asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="Date:"></asp:Label></td>
-        <td><asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px"></asp:TextBox>
+        <td><asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="dt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender></td>                                
 
         <td style="text-align:right;"><asp:Label ID="lblDept" runat="server" CssClass="lbl" Text="Department :"></asp:Label></td>

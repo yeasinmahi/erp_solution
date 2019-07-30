@@ -44,9 +44,10 @@
         }
     </script>
      <script type="text/javascript">
-        function DO_Edit(intid, intCusID, strReportType, ShipPointID, PopupType) {
-            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
-        }
+        function DO_Edit(intid, intCusID, strReportType, ShipPointID, PopupType,orderType) {
+            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType+'&orderType='+orderType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+         }
+
 </script>
 
 <script language="javascript" type="text/javascript">
@@ -150,6 +151,13 @@
                     <asp:ListItem Value="2"> Unapproved</asp:ListItem>
                     </asp:RadioButtonList>
                 </td>
+
+            <td style="text-align:right;">Order Type</td>
+            <td>
+                <asp:DropDownList ID="ddlOrderType" runat="server" AutoPostBack="True" DataSourceID="OrderType" DataTextField="strType" DataValueField="intId"></asp:DropDownList>                 
+                <asp:ObjectDataSource ID="OrderType" runat="server" SelectMethod="OrderType" TypeName="SAD_BLL.Sales.Delivery_BLL"></asp:ObjectDataSource>
+            </td>
+
             <td align="right">From</td>
             <td><asp:TextBox ID="txtFrom" runat="server" Enabled="false" Width="120px"></asp:TextBox>
                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
@@ -268,6 +276,7 @@
     <asp:ControlParameter ControlID="rdoComplete" Name="intReportType" PropertyName="SelectedValue" Type="Int32" />
     <asp:ControlParameter ControlID="ddlShip" Name="shippingPoint" PropertyName="SelectedValue" Type="String" />
     <asp:ControlParameter ControlID="ddlSo" Name="salesOffice" PropertyName="SelectedValue" Type="String" />
+    <asp:ControlParameter ControlID="ddlOrderType" Name="ordertype" PropertyName="SelectedValue" Type="String" />
     </SelectParameters></asp:ObjectDataSource>
     <asp:CustomValidator ID="cvtCom" runat="server" ClientValidationFunction="ValidateComplete"
     ValidationGroup="valCom"></asp:CustomValidator>

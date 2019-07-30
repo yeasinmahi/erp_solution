@@ -19,6 +19,15 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetPartyAdviceForSCB(int intUnitID, DateTime dteDate, int intWork, string strAccountMandatory, string strBankName, int ysnCompleted)
+        {
+            try
+            {
+                sprAdviceForBFTNNewNewTableAdapter adp = new sprAdviceForBFTNNewNewTableAdapter();
+                return adp.GetAdviceDataForSCB(intUnitID,dteDate,intWork,strAccountMandatory,strBankName,ysnCompleted);
+            }
+            catch { return new DataTable(); }
+        }
         public DataTable GetUnitAddress(int intUnitID)
         {
             try
@@ -55,12 +64,12 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
-        public DataTable GetAdviceData(int intActionBy)
+        public DataTable GetAdviceData(int type,int intActionBy)
         {
             try
             {
                 AdviceDataTableAdapter adp = new AdviceDataTableAdapter();
-                return adp.GetAdviceData(intActionBy);
+                return adp.GetAdviceData(type,intActionBy);
             }
             catch { return new DataTable(); }
         }

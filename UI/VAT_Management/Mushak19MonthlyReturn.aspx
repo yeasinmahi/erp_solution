@@ -64,7 +64,7 @@
                         <asp:DropDownList ID="ddlVatAccount" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlVatAccount_SelectedIndexChanged"></asp:DropDownList>                                                                                       
                         </td>
                         <td style="text-align:right;"><asp:Label ID="Label10" runat="server" Text="Date :" CssClass="lbl"></asp:Label></td>               
-                        <td style="text-align:center;"><asp:TextBox ID="txtDate" runat="server" AutoPostBack="true" CssClass="txtBox1" Enabled="true" Width="110px" OnTextChanged="txtDate_TextChanged"></asp:TextBox>
+                        <td style="text-align:center;"><asp:TextBox ID="txtDate" runat="server" AutoPostBack="true" CssClass="txtBox1" Enabled="true" Width="110px" OnTextChanged="txtDate_TextChanged" autocomplete="off"></asp:TextBox>
                         <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender></td>
 
                         <td style="text-align:right;  padding-top:5px; padding-bottom:7px; padding-left:15px"><asp:Button ID="btnM11Save" runat="server" class="myButton" Text="Prepare" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnM11Save_Click"/></td>

@@ -110,7 +110,7 @@ namespace UI.HR.PiceRateCalculation
             DateTime dateTime = txtFDate.Text.ToDateTime("yyyy-MM-dd");
             lblHeader.Text = "Worker Bill All Report";
             string url;
-            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_ALL_Pice_Rate_Report" + "&unitId=" + unitId + "&month=" + txtFDate.Text +  "&rc:LinkTarget=_self";
+            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_ALL_Pice_Rate_Report" + "&unitId=" + unitId + "&dteStartDate=" + txtFDate.Text + "&dteEndDate=" + txtTDate.Text + "&rc:LinkTarget=_self";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
             HidePanel();
         }
@@ -126,6 +126,19 @@ namespace UI.HR.PiceRateCalculation
             SetVisibility("panel", gridView.Rows.Count > 0);
             //SetVisibility("itemPanel2", gridViewIndividualReport.Rows.Count > 0);
             //SetVisibility("itemPanel", gridViewReport.Rows.Count > 0);
+        }
+
+        protected void btnGenarateSalary_Click(object sender, EventArgs e)
+        {
+            int unitId = ddlUnit.SelectedValue();
+            _dt = _bll.PiecesRateSalaryGenarate(3, 0, 0, 0, unitId, 0);
+            if (_dt.Rows.Count > 0)
+            {
+                Toaster("Already Salary Generated This Month.");
+                return;
+            }
+            _dt = _bll.PiecesRateSalaryGenarate(1, 0, 0, 0, unitId, 0);
+
         }
     }
 }

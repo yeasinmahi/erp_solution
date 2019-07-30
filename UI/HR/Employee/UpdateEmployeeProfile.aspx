@@ -248,7 +248,7 @@
                 </tr>
 
                 <tr><td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Date Of Birth : "></asp:Label></td>
-                <td><asp:TextBox ID="txtDOB" runat="server" CssClass="txtBox"></asp:TextBox>
+                <td><asp:TextBox ID="txtDOB" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                 <cc1:CalendarExtender ID="CEB" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDOB"></cc1:CalendarExtender></td>
                 <td class="lbl" colspan="2"><asp:CheckBox ID="chkActive" runat="server" Text="Active"></asp:CheckBox>               
                 <asp:CheckBox ID="chkHold" runat="server" Text="Salary-Hold  "></asp:CheckBox><asp:HiddenField ID="hdnAction" runat="server" /></td>

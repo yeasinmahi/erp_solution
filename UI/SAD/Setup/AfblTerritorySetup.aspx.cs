@@ -59,7 +59,7 @@ namespace UI.SAD.Setup
                 else if (string.IsNullOrEmpty(ddlExArea.SelectedValue))
                     vMsg = "Select  Area";
                 else if (string.IsNullOrEmpty(ddlExTerritory.SelectedValue))
-                    vMsg = "Select Exist Area";
+                    vMsg = "Select Exist Territory";
                 else if (string.IsNullOrEmpty(txtTerritory.Text))
                     vMsg = "Provide New Territory Name";
 
@@ -162,6 +162,7 @@ namespace UI.SAD.Setup
         {
             DataTable dt = new DataTable();
             string phoneNo = string.Empty;
+            string desc = string.Empty;
             int lineId = 0;
             try
             {
@@ -171,12 +172,16 @@ namespace UI.SAD.Setup
                     lineId = Convert.ToInt32(ddlExTerritory.SelectedValue.ToString());
                     dt = objAfblDistributionBll.GetAFBLExistGeoInfo(lineId, part);
                     if (dt.Rows.Count > 0)
+                    {
                         phoneNo = dt.Rows[0].Field<string>(3);
-
+                        desc = dt.Rows[0].Field<string>(4);
+                    }
                     btnCreate.Visible = false;
                 }
                 else
                     btnCreate.Visible = true;
+
+                txtTerritory.Text = desc;
                 txtPhoneNo.Text = phoneNo;
             }
             catch (Exception Ex)

@@ -36,10 +36,10 @@
         <table border="0"; style="width:Auto"; >
         <tr class="tblrowodd">
         <td style="text-align:right;"><asp:Label ID="lblfdt" CssClass="lbl" runat="server" Text="From Date : "></asp:Label></td>
-        <td><asp:TextBox ID="txtFDate" runat="server" CssClass="txtBox" Width="100px"></asp:TextBox>
+        <td><asp:TextBox ID="txtFDate" runat="server" CssClass="txtBox" Width="100px" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFDate"></cc1:CalendarExtender></td>
         <td style="text-align:right;"><asp:Label ID="lbltdt" CssClass="lbl" runat="server" Text="To Date : "></asp:Label></td>
-        <td><asp:TextBox ID="txtTDate" runat="server" CssClass="txtBox"  Width="100px"></asp:TextBox>
+        <td><asp:TextBox ID="txtTDate" runat="server" CssClass="txtBox"  Width="100px" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="tdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtTDate"></cc1:CalendarExtender></td>            
         </tr>
         <tr><td style="text-align:right;" colspan="4"><asp:Button ID="btnShow" runat="server" Text="Show" Font-Bold="true" OnClick="btnShow_Click"></asp:Button></td></tr>

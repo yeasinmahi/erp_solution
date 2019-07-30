@@ -118,6 +118,7 @@
     <Compile Include="Document Inventory\documentdownload.cs" />
     <Compile Include="Document Inventory\documentupload.cs" />
     <Compile Include="DocumentTracking\DocumentTrackingBLL.cs" />
+    <Compile Include="Employee\EmpCostCenterBLL.cs" />
     <Compile Include="Employee\EmployeeBasicInfo.cs" />
     <Compile Include="Employee\EmployeeDetails.cs" />
     <Compile Include="Employee\EmployeeFullInformationBll.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="Global\UnitOOP.cs" />
     <Compile Include="Global\Unit.cs" />
     <Compile Include="Global\UserInfoOOP.cs" />
+    <Compile Include="Global\WareHouse.cs" />
     <Compile Include="HolidayCalendar\HolidayGroupPermission.cs" />
     <Compile Include="HolidayCalendar\HolidaySetup.cs" />
     <Compile Include="Internal\InternalAutoSearch_BLL.cs" />

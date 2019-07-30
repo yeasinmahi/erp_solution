@@ -226,7 +226,7 @@
         </tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblFuelPurchaeDate" runat="server" CssClass="lbl" Text="Fuel Purchae Date :"></asp:Label></td>                
-            <td><asp:TextBox ID="txtFuelPurchaeDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox>
+            <td><asp:TextBox ID="txtFuelPurchaeDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFuelPurchaeDate"></cc1:CalendarExtender></td>                                
 
             <td style="text-align:right;"><asp:Label ID="lblDieselCredit" runat="server" CssClass="lbl" Text="Diesel Credit :"></asp:Label></td>

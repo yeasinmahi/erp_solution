@@ -1,13 +1,17 @@
 ﻿using Flogging.Core;
 using GLOBAL_BLL;
+using HR_BLL.Global;
 using SCM_BLL;
 using SCM_DAL.MrrReceiveTDSTableAdapters;
 using System;
 using System.Data;
+using System.IO;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -16,9 +20,12 @@ namespace UI.SCM
         #region INIT
         private object lockObj = new object();
         private MrrReceive_BLL obj = new MrrReceive_BLL();
-
+        public InventoryTransfer_BLL mirObj = new InventoryTransfer_BLL();
+        DaysOfWeek bllobj = new DaysOfWeek();
         private DataTable dt = new DataTable();
         private int enroll, intWh, Mrrid;
+        string xmlpath;
+        string message = "";
         PendingMRRTableAdapter adapter = new PendingMRRTableAdapter();
         FactoryReceiveMRRItemDetailTableAdapter fmrridtAdapter = new FactoryReceiveMRRItemDetailTableAdapter();
         sprInventoryGetMissingCostTableAdapter mcAdapter = new sprInventoryGetMissingCostTableAdapter();
@@ -33,6 +40,9 @@ namespace UI.SCM
         #region Constructor
         protected void Page_Load(object sender, EventArgs e)
         {
+            xmlpath = Server.MapPath("~/Inventory/Data/INSBY_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_PO.xml");
+
+
             if (!IsPostBack)
             {
                 txtDteFrom.Text = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd");
@@ -45,19 +55,24 @@ namespace UI.SCM
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataBind();
 
-                //dt = obj.DataView(2, "", intWh, 0, DateTime.Now, enroll);
-                //ddlDept.DataSource = dt;
-                //ddlDept.DataTextField = "strName";
-                //ddlDept.DataValueField = "Id";
-                //ddlDept.DataBind();
-                ddlDept.Items.Clear();
-                ddlDept.Items.Insert(0, new ListItem("Import", "2"));
+                LoadDeptOnWH();
+                hdnpoid.Value = "0";
+                hdnmrrid.Value = "0";
+                try
+                {
+                    File.Delete(xmlpath);
+                }
+                catch
+                {
+
+                }
+                pnlUpperControl.DataBind();
             }
             else { }
         }
         #endregion
 
-        #region Event
+        #region Button Event
         protected void btnAttachment_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnAttachment_Click Upload", null);
@@ -164,7 +179,7 @@ namespace UI.SCM
                 Toaster(sms, Utility.Common.TosterType.Error);
             }
 
-            
+
         }
         protected void btnStatement_Click(object sender, EventArgs e)
         {
@@ -175,29 +190,39 @@ namespace UI.SCM
             dgvIndent.Visible = true;
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                intWh = int.Parse(ddlWH.SelectedValue);
-                DateTime dteFrom = DateTime.Now.AddMonths(-1);
-                DateTime dteTo = DateTime.Now;
-                if (!string.IsNullOrWhiteSpace(txtDteFrom.Text) && !string.IsNullOrWhiteSpace(txtdteTo.Text))
-                {
-                    dteFrom = DateTime.Parse(txtDteFrom.Text);
-                    dteTo = DateTime.Parse(txtdteTo.Text);
-                }
+                LoadGrid();
 
-                string dept = ddlDept.SelectedItem.ToString();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnStatement_Click", ex);
+                Flogger.WriteError(efd);
+            }
 
-                //string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                //try
-                //{
-                //    Mrrid = int.Parse(txtMrrNo.Text);
-                //}
-                //catch
-                //{
-                //    Mrrid = 0;
-                //}
-                //dt = obj.DataView(12, xmlData, intWh, Mrrid, dteFrom, enroll);
-                dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh);
+            fd = log.GetFlogDetail(stop, location, "btnStatement_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
+
+        public void LoadGrid()
+        {
+            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            intWh = int.Parse(ddlWH.SelectedValue);
+            DateTime dteFrom = DateTime.Now.AddMonths(-1);
+            DateTime dteTo = DateTime.Now;
+            if (!string.IsNullOrWhiteSpace(txtDteFrom.Text) && !string.IsNullOrWhiteSpace(txtdteTo.Text))
+            {
+                dteFrom = DateTime.Parse(txtDteFrom.Text);
+                dteTo = DateTime.Parse(txtdteTo.Text);
+            }
+
+            string dept = ddlDept.SelectedItem.ToString();
+
+            dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh, dept);
+
+            if (dt.Rows.Count > 0)
+            {
                 dt.Columns.Add(new DataColumn("missingCost", typeof(string)));
 
                 if (dt != null)
@@ -216,25 +241,16 @@ namespace UI.SCM
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();
             }
-            catch (Exception ex)
+            else
             {
-                var efd = log.GetFlogDetail(stop, location, "btnStatement_Click", ex);
-                Flogger.WriteError(efd);
+                dgvIndent.UnLoad();
+                Toaster("Sorry! There is no data exist.", "Pending MRR", Common.TosterType.Warning);
             }
-
-            fd = log.GetFlogDetail(stop, location, "btnStatement_Click", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
         }
-
-        
-
         protected void dgvIndent_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnDetalis_Click", null);
@@ -248,10 +264,49 @@ namespace UI.SCM
 
                 Label lblMrrId = row.FindControl("lblMrrId") as Label;
 
+                Label lblPo = row.FindControl("lblPo") as Label;
+                string poid = lblPo.Text;
                 string MrrId = lblMrrId.Text;
+                hdnmrrid.Value = MrrId;
+                Session["MrrID"] = lblMrrId.Text;
 
-                Session["MrrID"] = lblMrrId;
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + MrrId + "');", true);
+                Label mrrid = FindControl("lblMrr") as Label;
+                mrrid.Text = " MRR No: "+MrrId;
+
+                if (ddlType.SelectedValue == "Costing")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + MrrId + "');", true);
+                }
+                else if (ddlType.SelectedValue == "QC")
+                {
+                    dt = mirObj.GetPermissionForQC(Enroll, Convert.ToInt32(ddlWH.SelectedValue));
+                    string is_QC = "";
+                    try
+                    {
+                        is_QC = dt.Rows[0]["ysnQC"].ToString();
+                    }
+                    catch
+                    {
+                        is_QC = "False";
+                    }
+                    if (is_QC == "True")
+                    {
+                        dt = mirObj.GetItem(int.Parse(MrrId));
+                        if (dt.Rows.Count > 0)
+                        {
+                            dgv.DataSource = dt;
+                            dgv.DataBind();
+                        }
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ShowDetailsDiv('" + poid + "');", true);
+
+                    }
+                    else
+                    {
+                        message = "You dont have QC permission for " + ddlWH.SelectedItem.Text;
+                        Toaster(message, "Pending MRR", Common.TosterType.Warning);
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -263,6 +318,122 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            int type = 0; string msg = "";
+            if (hdnconf.Value == "1")
+            {
+                try
+                {
+                    for (int index = 0; index < dgv.Rows.Count; index++)
+                    {
+                        bool ysnChecked = false;
+                        string proceed = "0";
+                        string quantity = "", Rejectquantity = "";
+                        int MIRQty = 0, RejectQty = 0, total = 0, mrrQty;
+                        string itemid = ((Label)dgv.Rows[index].FindControl("lblitmno")).Text.ToString();
+                        string poqnty = ((Label)dgv.Rows[index].FindControl("lblpoqnty")).Text.ToString();
+                        string mrrqnty = ((Label)dgv.Rows[index].FindControl("lblmrrqnty")).Text.ToString();
+                        mrrQty = int.Parse(mrrqnty);
+                        string remarks = ((TextBox)dgv.Rows[index].FindControl("txtRemarks")).Text.ToString();
+                        string unitid = ((Label)dgv.Rows[index].FindControl("lblintUnitID")).Text.ToString();
+                        string locationid = ((Label)dgv.Rows[index].FindControl("lblLocationId")).Text.ToString();
+                        string value = ((Label)dgv.Rows[index].FindControl("lblmonBDTTotal")).Text.ToString();
+
+                        ysnChecked = ((CheckBox)dgv.Rows[index].Cells[11].Controls[0]).Checked;
+
+                        try
+                        {
+                            quantity = ((TextBox)dgv.Rows[index].FindControl("txtChkQuantity")).Text.ToString();
+                            MIRQty = int.Parse(quantity);
+                        }
+                        catch
+                        {
+                            MIRQty = 0;
+                        }
+                        try
+                        {
+                            Rejectquantity = ((TextBox)dgv.Rows[index].FindControl("txtRejectQuantity")).Text.ToString();
+                            RejectQty = int.Parse(Rejectquantity);
+                        }
+                        catch
+                        {
+                            RejectQty = 0;
+                        }
+                        if (MIRQty > mrrQty || RejectQty > mrrQty)
+                        {
+                            if(MIRQty > mrrQty)
+                            {
+                                Toaster("MIR Qty cannot be greater than MRR Qty", "Pending MRR", Common.TosterType.Warning);
+                            }
+                            else if(RejectQty > mrrQty)
+                            {
+                                Toaster("Reject Qty cannot be greater than MRR Qty", "Pending MRR", Common.TosterType.Warning);
+                            }
+                            
+                        }
+                        else
+                        {
+                            if (RejectQty == 0)
+                            {
+                                RejectQty = mrrQty - MIRQty;
+                            }
+
+                            total = MIRQty + RejectQty;
+
+                            if (ysnChecked)
+                            {
+                                proceed = "1";
+
+                                if (quantity.Length <= 0)
+                                {
+                                    quantity = "0";
+                                }
+                                if (total == mrrQty)
+                                {
+
+                                    dt = mirObj.GetMIRDetails(Convert.ToInt32(hdnmrrid.Value), Convert.ToInt32(itemid));
+                                    if (dt.Rows.Count > 0)
+                                    {
+                                        string qty = dt.Rows[0]["intMRRID"].ToString();
+                                        string item = dt.Rows[0]["intItemID"].ToString();
+                                        message = "Item ID " + item + " for MRR No " + qty + " already submitted";
+                                        Toaster(message, "Pending MRR", Common.TosterType.Warning);
+                                    }
+                                    else
+                                    {
+                                        CreateXml(hdnpoid.Value, hdnmrrid.Value, itemid, poqnty, MIRQty.ToString(), remarks, proceed, unitid, locationid, value, mrrqnty, RejectQty.ToString());
+                                    }
+
+
+                                }
+                            }
+                            
+
+                        }
+
+                        
+                    }
+
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(xmlpath); int actionby = Enroll;
+                    XmlNode nd = doc.SelectSingleNode("Inspection");
+                    string xmlString = nd.InnerXml;
+                    xmlString = "<Inspection>" + xmlString + "</Inspection>";
+                    msg = mirObj.SaveMIR(xmlString, Convert.ToInt32(ddlWH.SelectedValue), actionby);
+                    File.Delete(xmlpath);
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "HideReasonDiv('" + msg + "');", true);
+
+
+                }
+                catch (Exception ex)
+                {
+                    string mg = ex.Message;
+                    Toaster(mg, "Pending MRR", Common.TosterType.Warning);
+                }
+            }
         }
         #endregion
 
@@ -294,7 +465,7 @@ namespace UI.SCM
         {
             e.Row.Cells[10].Visible = false;
             e.Row.Cells[11].Visible = false;
-            
+
         }
 
         private string GetMRRMissingCost(int poId, int shipmentId)
@@ -331,6 +502,148 @@ namespace UI.SCM
             }
             return ImportCostingRate;
         }
+
+        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDepartment();
+            HideShowGridColumn();
+            dgvIndent.UnLoad();
+        }
+
+        public void LoadDepartment()
+        {
+            if (ddlType.SelectedItem.Text == "QC")
+            {
+                ddlDept.Items.Clear();
+                ddlDept.Items.Insert(0, new ListItem("Local", "1"));
+                ddlDept.Items.Insert(1, new ListItem("Import", "2"));
+                ddlDept.Items.Insert(2, new ListItem("Fabrication", "3"));
+            }
+            else if (ddlType.SelectedItem.Text == "Costing")
+            {
+                ddlDept.Items.Clear();
+                ddlDept.Items.Insert(0, new ListItem("Import", "2"));
+            }
+        }
+        public void HideShowGridColumn()
+        {
+            if (ddlType.SelectedItem.Value == "QC")
+            {
+                dgvIndent.Columns[7].Visible = false;
+                dgvIndent.Columns[9].Visible = false;
+            }
+            else if (ddlType.SelectedItem.Value == "Costing")
+            {
+                dgvIndent.Columns[7].Visible = true;
+                dgvIndent.Columns[9].Visible = true;
+            }
+        }
+        public void LoadDeptOnWH()
+        {
+            dt = mirObj.GetWHQC(Convert.ToInt32(ddlWH.SelectedItem.Value));
+            string is_QC = "";
+            try
+            {
+                is_QC = dt.Rows[0]["ysnQC"].ToString();
+            }
+            catch
+            {
+                is_QC = "False";
+            }
+            if (is_QC == "True")
+            {
+                ddlType.Items.Clear();
+                ddlType.Items.Insert(0, new ListItem("--Please Select--", "0"));
+                ddlType.Items.Insert(1, new ListItem("QC", "QC"));
+                ddlType.Items.Insert(2, new ListItem("Costing", "Costing"));
+            }
+            else
+            {
+                ddlType.Items.Clear();
+                ddlType.Items.Insert(0, new ListItem("--Please Select--", "0"));
+                ddlType.Items.Insert(1, new ListItem("Costing", "Costing"));
+            }
+
+            LoadDepartment();
+            HideShowGridColumn();
+        }
+        protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDeptOnWH();
+        }
+
         #endregion
+
+        #region === XML Bind ========
+        private void CreateXml(string poid, string mrrid, string itemid, string poqnty, string quantity, string remarks, string proceed, string unitid, string locationid, string value, string mrrqnty, string Rejectquantity)
+        {
+            XmlDocument doc = new XmlDocument();
+            if (System.IO.File.Exists(xmlpath))
+            {
+                doc.Load(xmlpath);
+                XmlNode rootNode = doc.SelectSingleNode("Inspection");
+                XmlNode addItem = CreateNode(doc, poid, mrrid, itemid, poqnty, quantity, remarks, proceed, unitid, locationid, value, mrrqnty, Rejectquantity);
+                rootNode.AppendChild(addItem);
+            }
+            else
+            {
+                XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
+                doc.AppendChild(xmldeclerationNode);
+                XmlNode rootNode = doc.CreateElement("Inspection");
+                XmlNode addItem = CreateNode(doc, poid, mrrid, itemid, poqnty, quantity, remarks, proceed, unitid, locationid, value, mrrqnty, Rejectquantity);
+                rootNode.AppendChild(addItem);
+                doc.AppendChild(rootNode);
+            }
+            doc.Save(xmlpath);
+        }
+        private XmlNode CreateNode(XmlDocument doc, string poid, string mrrid, string itemid, string poqnty, string quantity, string remarks, string proceed, string unitid, string locationid, string value, string mrrqnty, string Rejectquantity)
+        {
+            XmlNode node = doc.CreateElement("items");
+            XmlAttribute POId = doc.CreateAttribute("poid");
+            POId.Value = poid;
+            XmlAttribute MRRId = doc.CreateAttribute("mrrid");
+            MRRId.Value = mrrid;
+            XmlAttribute Itemid = doc.CreateAttribute("itemid");
+            Itemid.Value = itemid;
+            XmlAttribute POqnty = doc.CreateAttribute("poqnty");
+            POqnty.Value = poqnty;
+            XmlAttribute Quantity = doc.CreateAttribute("quantity");
+            Quantity.Value = quantity;
+            XmlAttribute Remarks = doc.CreateAttribute("remarks");
+            Remarks.Value = remarks;
+            XmlAttribute Proceed = doc.CreateAttribute("proceed");
+            Proceed.Value = proceed;
+            XmlAttribute UnitId = doc.CreateAttribute("unitid");
+            UnitId.Value = unitid;
+            XmlAttribute LocationId = doc.CreateAttribute("locationid");
+            LocationId.Value = locationid;
+            XmlAttribute monValue = doc.CreateAttribute("value");
+            monValue.Value = value;
+            XmlAttribute MRRQty = doc.CreateAttribute("mrrqnty");
+            MRRQty.Value = mrrqnty;
+
+            XmlAttribute RejectQuantity = doc.CreateAttribute("Rejectquantity");
+            RejectQuantity.Value = Rejectquantity;
+
+            node.Attributes.Append(POId);
+            node.Attributes.Append(MRRId);
+            node.Attributes.Append(Itemid);
+            node.Attributes.Append(POqnty);
+            node.Attributes.Append(Quantity);
+            node.Attributes.Append(Remarks);
+            node.Attributes.Append(Proceed);
+
+            node.Attributes.Append(UnitId);
+            node.Attributes.Append(LocationId);
+            node.Attributes.Append(monValue);
+            node.Attributes.Append(MRRQty);
+            node.Attributes.Append(RejectQuantity);
+
+            return node;
+        }
+
+        #endregion === End XML =========
     }
+
+
 }

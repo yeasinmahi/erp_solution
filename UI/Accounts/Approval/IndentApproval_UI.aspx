@@ -88,10 +88,10 @@
         <tr>
                 
         <td style="text-align:right;"><asp:Label ID="lblfdate" runat="server" CssClass="lbl"  Font-Bold="true" Text="From Date"></asp:Label></td>
-        <td><asp:TextBox ID="txtFdate" runat="server" Font-Bold="true" CssClass="txtBox"></asp:TextBox>
+        <td><asp:TextBox ID="txtFdate" runat="server" Font-Bold="true" CssClass="txtBox" autocomplete="off"></asp:TextBox>
         <cc1:CalendarExtender ID="CalendarExtenderMonthly" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFdate"></cc1:CalendarExtender></td>
 
-        <td style="text-align:right;"><asp:Label ID="lblTodate" runat="server" CssClass="lbl"  Font-Bold="true" Text="To Date"></asp:Label></td>
+        <td style="text-align:right;"><asp:Label ID="lblTodate" runat="server" CssClass="lbl"  Font-Bold="true" Text="To Date" autocomplete="off"></asp:Label></td>
         <td><asp:TextBox ID="txtTodate" runat="server" Font-Bold="true" CssClass="txtBox"></asp:TextBox>
         <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtTodate"></cc1:CalendarExtender></td></tr>
         <tr>

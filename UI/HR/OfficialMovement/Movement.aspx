@@ -174,7 +174,7 @@
                                 <asp:Label ID="Label9" runat="server" Text="Date from" CssClass="label"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtFromDate" runat="server" AutoPostBack="false" Width="60px"></asp:TextBox>
+                                <asp:TextBox ID="txtFromDate" runat="server" AutoPostBack="false" Width="60px" autocomplete="off"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CE1" runat="server" CssClass="cal_Theme1" Format="MM/dd/yyyy"
                                     TargetControlID="txtFromDate">
                                 </ajaxToolkit:CalendarExtender>
@@ -187,7 +187,7 @@
                                 <asp:Label ID="Label12" runat="server" CssClass="label" Text="To"></asp:Label>
                             </td>
                             <td>
-                                <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="false" Width="60px"></asp:TextBox>
+                                <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="false" Width="60px" autocomplete="off"></asp:TextBox>
                                 <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" CssClass="cal_Theme1"
                                     Format="MM/dd/yyyy" TargetControlID="txtToDate">
                                 </ajaxToolkit:CalendarExtender>

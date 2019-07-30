@@ -107,7 +107,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Sales Order Date"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox1"></asp:TextBox></td>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox1" autocomplete="off"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">
@@ -119,7 +119,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label10" runat="server" Text="Sales Date" CssClass="lbl"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                             <td>
-                                <asp:TextBox ID="txtSODate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+                                <asp:TextBox ID="txtSODate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtSODate"></cc1:CalendarExtender>
                             </td>
                         </tr>

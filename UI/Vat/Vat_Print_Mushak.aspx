@@ -43,7 +43,7 @@
                                        
                                     </asp:DropDownList>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <asp:Label ID="Label4" runat="server" Text="Type" CssClass="col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" AutoPostBack="True" OnSelectedIndexChanged="ddlType_OnSelectedIndexChanged"> 
                                         <asp:ListItem Value="0">--Select Type--</asp:ListItem>
@@ -51,7 +51,7 @@
                                         <asp:ListItem Value="2">Transfer</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                       <asp:Label ID="Label2" runat="server" Text="Challan" CssClass="col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                       <asp:DropDownList ID="ddlChallan" runat="server" CssClass="form-control col-md-6 col-sm-6 col-xs-6" AutoPostBack="True" OnSelectedIndexChanged="ddlChallan_OnSelectedIndexChanged">                                      
                                       </asp:DropDownList>
@@ -59,7 +59,7 @@
                                  </div>
                                 <div class="col-md-3 hidden">
                                     <asp:Label ID="Label5" runat="server" Text="Actual Delivery Date"></asp:Label>
-                                    <asp:TextBox runat="server" ID="txtActualDeliveryDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Actual Delivery Date"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtActualDeliveryDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Actual Delivery Date" autocomplete="off"></asp:TextBox>
                                 </div>
                                 <div class="col-md-3 hidden">
                                     <asp:Label ID="Label6" runat="server" Text="Customer BIN No"></asp:Label>

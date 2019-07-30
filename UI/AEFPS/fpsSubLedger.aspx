@@ -79,11 +79,11 @@
         <tr><td colspan="4">&nbsp;</td></tr> 
         <tr>
             <td style="text-align:right;">From Date</td>                
-            <td><asp:TextBox ID="txtfdate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox>
+            <td><asp:TextBox ID="txtfdate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtfdate"></cc1:CalendarExtender></td>                                
 
             <td style="text-align:right;"><asp:Label ID="lblQty" runat="server" CssClass="lbl" Text="To Date :"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txttdate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px"></asp:TextBox>
+            <td style="text-align:left;"><asp:TextBox ID="txttdate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="190px" autocomplete="off"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txttdate"></cc1:CalendarExtender></td>              
         </tr>
         <tr>

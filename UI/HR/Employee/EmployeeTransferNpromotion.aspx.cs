@@ -103,6 +103,25 @@ namespace UI.HR.Employee
         }
 
         #region New Employee Transfer
+        protected void ddlNETDesignation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(int.Parse(ddlNETDesignation.SelectedValue) > 0)
+                {
+                    ETAccess(ddlNETDesignation.SelectedIndex);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You are not Selected Any Designation!');", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "New Employee Transfer Designation : " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
+        }
         protected void ddlNETRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dtr = new DataTable();
@@ -257,6 +276,26 @@ namespace UI.HR.Employee
         #endregion
 
         #region  Employee Promotion
+        protected void ddlEPoldDesignation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(int.Parse(ddlEPoldDesignation.SelectedValue) > 0)
+                {
+                    EPAccess(ddlEPoldDesignation.SelectedIndex);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You are not Selected Old Designation!');", true);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                string sms = "Employee Promotion Old Designation : " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
+        }
         protected void ddlEPoldRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dtr = new DataTable();
@@ -507,6 +546,25 @@ namespace UI.HR.Employee
         #endregion
 
         #region Old Employee Transfer
+        protected void ddlOETOldDesignation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (int.Parse(ddlOETOldDesignation.SelectedValue) > 0)
+                {
+                    OETAccess(ddlOETOldDesignation.SelectedIndex);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You are not Selected Old Designation!');", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Old Employee Transfer Old Designation : " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
+        }
         protected void ddlOETOldRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dtr = new DataTable();
@@ -523,7 +581,7 @@ namespace UI.HR.Employee
                         ddlOETOldArea.DataValueField = "ID";
                         ddlOETOldArea.DataBind();
                     }
-
+                    
                 }
                 else
                 {
@@ -761,6 +819,25 @@ namespace UI.HR.Employee
         #endregion
 
         #region Old Employee Resign
+        protected void ddlOERDesignation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if(int.Parse(ddlOERDesignation.SelectedValue) > 0)
+                {
+                    OERAccess(ddlOERDesignation.SelectedIndex);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You are not Selected Designation!');", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                string sms = "Old Employee Resign Designation : " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
+        }
         protected void ddlOERRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dtr = new DataTable();
@@ -1354,6 +1431,7 @@ namespace UI.HR.Employee
             int OldGeoID = 0;
             int NewChannel = 0;
             int OldChannel = 0;
+            int LevelID = 0;
 
             DateTime PromotionDate = DateTime.MinValue;
             int EmployeeID = 0;
@@ -1367,21 +1445,25 @@ namespace UI.HR.Employee
                 {
                     NewGeoID = int.Parse(ddlEPnewPoint.SelectedValue);
                     OldGeoID = int.Parse(ddlEPoldPoint.SelectedValue);
+                    LevelID = 4;
                 }
                 else if (NewDesignationId == 1492)
                 {
                     NewGeoID = int.Parse(ddlEPnewTerritory.SelectedValue);
                     OldGeoID = int.Parse(ddlEPoldTerritory.SelectedValue);
+                    LevelID = 3;
                 }
                 else if (NewDesignationId == 1491)
                 {
                     NewGeoID = int.Parse(ddlEPnewArea.SelectedValue);
                     OldGeoID = int.Parse(ddlEPoldArea.SelectedValue);
+                    LevelID = 2;
                 }
                 else if (NewDesignationId == 1490)
                 {
                     NewGeoID = int.Parse(ddlEPnewRegion.SelectedValue);
                     OldGeoID = int.Parse(ddlEPoldRegion.SelectedValue);
+                    LevelID = 1;
                 }
 
                 NewChannel = int.Parse(ddlEPnewChannel.SelectedValue);
@@ -1409,7 +1491,7 @@ namespace UI.HR.Employee
                 //    OldDesignationId, UserId, NewDesignationId);
                 //}
                 result = objBLL.EmployeePromotionAction(EmployeeID, PromotionDate, NewDesignationId, NewChannel, OldChannel, NewGeoID,
-                    OldGeoID, UserId);
+                    OldGeoID, UserId, LevelID);
             }
             catch (Exception ex)
             {
@@ -1546,6 +1628,7 @@ namespace UI.HR.Employee
             int OldGeoID = 0;
             int NewChannel = 0;
             int OldChannel = 0;
+            int LevelID = 0;
 
             DateTime TransferDate = DateTime.MinValue;
             int EmployeeID = 0;
@@ -1559,21 +1642,25 @@ namespace UI.HR.Employee
                 {
                     NewGeoID = int.Parse(ddlOETNewPoint.SelectedValue);
                     OldGeoID = int.Parse(ddlOETOldPoint.SelectedValue);
+                    LevelID = 4;
                 }
                 else if (DesignationId == 1492)
                 {
                     NewGeoID = int.Parse(ddlOETNewTerritory.SelectedValue);
                     OldGeoID = int.Parse(ddlOETOldTerritory.SelectedValue);
+                    LevelID = 3;
                 }
                 else if (DesignationId == 1491)
                 {
                     NewGeoID = int.Parse(ddlOETNewArea.SelectedValue);
                     OldGeoID = int.Parse(ddlOETOldArea.SelectedValue);
+                    LevelID = 2;
                 }
                 else if (DesignationId == 1490)
                 {
                     NewGeoID = int.Parse(ddlOETnewRegion.SelectedValue);
                     OldGeoID = int.Parse(ddlOETOldRegion.SelectedValue);
+                    LevelID = 1;
                 }
 
                 NewChannel = int.Parse(ddlOETNewChannel.SelectedValue);
@@ -1584,7 +1671,7 @@ namespace UI.HR.Employee
                 UserId = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
 
                 result = objBLL.OldEmployeeTransferAction(EmployeeID, TransferDate, DesignationId, NewChannel, OldChannel, NewGeoID,
-                    OldGeoID, UserId);
+                    OldGeoID, UserId, LevelID);
             }
             catch (Exception ex)
             {
@@ -1687,6 +1774,7 @@ namespace UI.HR.Employee
             int DesignationId = 0;
             int GeoID = 0;
             int Channel = 0;
+            int LevelID = 0;
 
             DateTime ResignDate = DateTime.MinValue;
             int EmployeeID = 0;
@@ -1698,18 +1786,22 @@ namespace UI.HR.Employee
                 if (DesignationId > 1492)
                 {
                     GeoID = int.Parse(ddlOERPoint.SelectedValue);
+                    LevelID = 4;
                 }
                 else if (DesignationId == 1492)
                 {
                     GeoID = int.Parse(ddlOERTerritory.SelectedValue);
+                    LevelID = 3;
                 }
                 else if (DesignationId == 1491)
                 {
                     GeoID = int.Parse(ddlOERArea.SelectedValue);
+                    LevelID = 2;
                 }
                 else if (DesignationId == 1490)
                 {
                     GeoID = int.Parse(ddlOERRegion.SelectedValue);
+                    LevelID = 1;
                 }
 
                 Channel = int.Parse(ddlOERChannel.SelectedValue);
@@ -1718,7 +1810,7 @@ namespace UI.HR.Employee
                 EmployeeID = int.Parse(txtOETEmpEnroll.Text.Trim());
                 UserId = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
 
-                result = objBLL.OldEmployeeResignAction(EmployeeID, ResignDate, DesignationId, Channel, GeoID, UserId);
+                result = objBLL.OldEmployeeResignAction(EmployeeID, ResignDate, DesignationId, Channel, GeoID, UserId, LevelID);
             }
             catch (Exception ex)
             {
@@ -1739,9 +1831,125 @@ namespace UI.HR.Employee
             txtOERDate.Text = string.Empty;
         }
 
+        private void EPAccess(int ID)
+        {
+            if(ID == 1)
+            {
+                ddlEPoldArea.Enabled = false;
+                ddlEPnewArea.Enabled = false;
+                ddlEPoldTerritory.Enabled = false;
+                ddlEPnewTerritory.Enabled = false;
+                ddlEPoldPoint.Enabled = false;
+                ddlEPnewPoint.Enabled = false;
+            }
+            else if (ID == 2)
+            {
+                ddlEPoldTerritory.Enabled = false;
+                ddlEPnewTerritory.Enabled = false;
+                ddlEPoldPoint.Enabled = false;
+                ddlEPnewPoint.Enabled = false;
+            }
+            else if (ID == 3)
+            {
+                ddlEPoldPoint.Enabled = false;
+                ddlEPnewPoint.Enabled = false;
+            }
+            else
+            {
+                ddlEPoldArea.Enabled = true;
+                ddlEPnewArea.Enabled = true;
+                ddlEPoldTerritory.Enabled = true;
+                ddlEPnewTerritory.Enabled = true;
+                ddlEPoldPoint.Enabled = true;
+                ddlEPnewPoint.Enabled = true;
+            }
+        }
+        private void OETAccess(int ID)
+        {
+            if (ID == 1)
+            {
+                ddlOETOldArea.Enabled = false;
+                ddlOETNewArea.Enabled = false;
+                ddlOETOldTerritory.Enabled = false;
+                ddlOETNewTerritory.Enabled = false;
+                ddlOETOldPoint.Enabled = false;
+                ddlOETNewPoint.Enabled = false;
+            }
+            else if (ID == 2)
+            {
+                ddlOETOldTerritory.Enabled = false;
+                ddlOETNewTerritory.Enabled = false;
+                ddlOETOldPoint.Enabled = false;
+                ddlOETNewPoint.Enabled = false;
+            }
+            else if (ID == 3)
+            {
+                ddlOETOldPoint.Enabled = false;
+                ddlOETNewPoint.Enabled = false;
+            }
+            else
+            {
+                ddlOETOldArea.Enabled = true;
+                ddlOETNewArea.Enabled = true;
+                ddlOETOldTerritory.Enabled = true;
+                ddlOETNewTerritory.Enabled = true;
+                ddlOETOldPoint.Enabled = true;
+                ddlOETNewPoint.Enabled = true;
+            }
+        }
+        private void ETAccess(int ID)
+        {
+            if (ID == 1)
+            {
+                ddlNETArea.Enabled = false;
+                ddlNETTerritory.Enabled = false;
+                ddlNETPoint.Enabled = false;
+            }
+            else if (ID == 2)
+            {
+                ddlNETTerritory.Enabled = false;
+                ddlNETPoint.Enabled = false;
+            }
+            else if (ID == 3)
+            {
+                ddlNETPoint.Enabled = false;
+            }
+            else
+            {
+                ddlNETArea.Enabled = true;
+                ddlNETTerritory.Enabled = true;
+                ddlNETPoint.Enabled = true;
+            }
+        }
+        private void OERAccess(int ID)
+        {
+            if (ID == 1)
+            {
+                ddlOERArea.Enabled = false;
+                ddlOERTerritory.Enabled = false;
+                ddlOERPoint.Enabled = false;
+            }
+            else if (ID == 2)
+            {
+                ddlOERTerritory.Enabled = false;
+                ddlOERPoint.Enabled = false;
+            }
+            else if (ID == 3)
+            {
+                ddlOERPoint.Enabled = false;
+            }
+            else
+            {
+                ddlOERArea.Enabled = true;
+                ddlOERTerritory.Enabled = true;
+                ddlOERPoint.Enabled = true;
+            }
+        }
+
+
 
         #endregion
 
-
+        
     }
 }

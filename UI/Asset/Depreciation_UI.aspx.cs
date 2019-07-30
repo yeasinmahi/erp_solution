@@ -10,12 +10,13 @@ using UI.ClassFiles;
 using System.Web.Services;
 using System.Web.Script.Services;
 using System.Text.RegularExpressions;
-
+using UI.ClassFiles;
 using System.Xml;
 using System.IO;
 using System.Drawing;
 using GLOBAL_BLL;
 using Flogging.Core;
+using Utility;
 
 namespace UI.Asset
 {
@@ -26,7 +27,7 @@ namespace UI.Asset
         DataTable dt = new DataTable();
         int intType;
         SeriLog log = new SeriLog();
-        string location = "Asset";
+        string location = "Asset", xmlString;
         string start = "starting Asset\\Depreciation_UI";
         string stop = "stopping Asset\\Depreciation_UI";
         string[] arrayKey; char[] delimiterChars = { '[', ']' };
@@ -41,6 +42,13 @@ namespace UI.Asset
                 ddlunit.DataTextField = "strName";
                 ddlunit.DataValueField = "Id";
                 ddlunit.DataBind();
+
+                dt = objdep.AssetType();
+                ddlCat.DataSource = dt;
+                ddlCat.DataTextField = "strAssetTypeName";
+                ddlCat.DataValueField = "intAssetTypeID";
+                ddlCat.DataBind();
+
                 ddlunit.Items.Insert(0, new ListItem("Select", "0"));
                 try
                 {
@@ -67,8 +75,8 @@ namespace UI.Asset
         #endregion===============Close================================
         protected void ddltype_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
-            dgvGridView.DataSource = ""; dgvGridView.DataBind();
+            dgvGridView.UnLoad();
+             
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -81,27 +89,43 @@ namespace UI.Asset
                 fd.Product, fd.Layer);
             try
             {
-                string assetcode, xmlString;
+               // string assetcode;
                 string strSearchKey = txtAssetID.Text;
                 string[] searchKey = Regex.Split(strSearchKey, ";");
-                arrayKey = txtAssetID.Text.Split(delimiterChars);
+                arrayKey = txtAssetID.Text.Split(delimiterChars); 
+                string assetid = "0";
+                string assetName = "";
+                string assetType = "";
+                int assetAutoId = 0;
 
-                string assetid = "0"; string assetName = ""; string assetType = ""; int assetAutoId = 0;
-                if (arrayKey.Length > 0)
-                { assetName = arrayKey[0].ToString(); assetid = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
-                
+                try
+                {
+                    if (arrayKey.Length >5)
+                    {
+                        // assetName = arrayKey[0].ToString();
+                        //  assetAutoId = int.Parse(arrayKey[3].ToString());
+                        // assetType = arrayKey[5].ToString(); 
 
-
-                xmlString = "<voucher><voucherentry AssetCOA=" + '"' + assetid + '"' + "/></voucher>".ToString();
+                        assetid = arrayKey[1];
+                        xmlString = "<voucher><voucherentry AssetId=" + '"' + assetid + '"' + "/></voucher>".ToString();
+                    }
+                    else
+                    {
+                        xmlString = "<voucher><voucherentry AssetId=" + '"' + 0 + '"' + "/></voucher>".ToString();
+                    }
+                }
+                catch { } 
+              
                 if (int.Parse(ddltype.SelectedValue) == 1)
                 {
-                    dt = objdep.DepreciationView(6, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), 0, 0); 
+                    dt = objdep.DepreciationView(6, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), 0, int.Parse(ddlCat.SelectedValue.ToString())); 
                 }
                 else
                 { 
-                    dt = objdep.DepreciationView(6, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), int.Parse(ddlunit.SelectedValue), 0);
+                    dt = objdep.DepreciationView(6, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), int.Parse(ddlunit.SelectedValue), int.Parse(ddlCat.SelectedValue.ToString()));
                     //  ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true); 
                 }
+
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
             }
@@ -126,8 +150,8 @@ namespace UI.Asset
             }
             catch { }
 
-            dgvGridView.DataSource = ""; dgvGridView.DataBind();
-            
+            dgvGridView.UnLoad();
+
         }
 
         protected void btnDepSubmit_Click(object sender, EventArgs e)
@@ -140,6 +164,8 @@ namespace UI.Asset
                 fd.Product, fd.Layer);
             try
             {
+
+
                 string assetcode, xmlString;
                 string strSearchKey = txtAssetID.Text;
                 string[] searchKey = Regex.Split(strSearchKey, ";");
@@ -164,8 +190,7 @@ namespace UI.Asset
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
                 }
-                dgvGridView.DataSource = "";
-                dgvGridView.DataBind();
+                dgvGridView.UnLoad();
 
             }
             catch (Exception ex)
@@ -192,6 +217,11 @@ namespace UI.Asset
 
             }
 
+        }
+
+        protected void ddlCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvGridView.UnLoad();
         }
 
         protected void btnImpairment_Click(object sender, EventArgs e)

@@ -233,6 +233,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DocumentTrackingTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Employee\EmpCostCenterTDS.cs">
+      <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmpCostCenterTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Employee\Employee.cs">
       <DependentUpon>Employee.xsd</DependentUpon>
     </Compile>
@@ -398,6 +406,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UserInfoTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Global\WareHouse.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WareHouse.xsd</DependentUpon>
     </Compile>
     <Compile Include="HolidayCalendar\HolidayGroupPermissionTDS1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -939,6 +952,17 @@
     <None Include="DocumentTracking\DocumentTrackingTDS.xss">
       <DependentUpon>DocumentTrackingTDS.xsd</DependentUpon>
     </None>
+    <None Include="Employee\EmpCostCenterTDS.xsc">
+      <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Employee\EmpCostCenterTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmpCostCenterTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Employee\EmpCostCenterTDS.xss">
+      <DependentUpon>EmpCostCenterTDS.xsd</DependentUpon>
+    </None>
     <None Include="Employee\Employee.xsc">
       <DependentUpon>Employee.xsd</DependentUpon>
     </None>
@@ -1165,7 +1189,6 @@
     <None Include="Global\InventoryTDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>InventoryTDS.Designer.cs</LastGenOutput>
     </None>
     <None Include="Global\InventoryTDS.xss">
       <DependentUpon>InventoryTDS.xsd</DependentUpon>
@@ -1257,6 +1280,17 @@
     </None>
     <None Include="Global\UserInfoTDS.xss">
       <DependentUpon>UserInfoTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Global\WareHouse.xsc">
+      <DependentUpon>WareHouse.xsd</DependentUpon>
+    </None>
+    <None Include="Global\WareHouse.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WareHouse.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Global\WareHouse.xss">
+      <DependentUpon>WareHouse.xsd</DependentUpon>
     </None>
     <None Include="HolidayCalendar\HolidayGroupPermissionTDS.xsc">
       <DependentUpon>HolidayGroupPermissionTDS.xsd</DependentUpon>

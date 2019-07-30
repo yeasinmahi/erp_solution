@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprEmployeeAutoSearchTableAdapter" GeneratorDataComponentClassName="sprEmployeeAutoSearchTableAdapter" Name="sprEmployeeAutoSearch" UserDataComponentName="sprEmployeeAutoSearchTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.sprEmployeeAutoSearch" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.sprEmployeeAutoSearch" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprEmployeeAutoSearch</CommandText>
@@ -27,6 +27,11 @@
               <Mapping SourceColumn="intEmployeeID" DataSetColumn="intEmployeeID" />
               <Mapping SourceColumn="strEmployeeCode" DataSetColumn="strEmployeeCode" />
               <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+              <Mapping SourceColumn="strOfficeEmail" DataSetColumn="strOfficeEmail" />
+              <Mapping SourceColumn="strJobStationName" DataSetColumn="strJobStationName" />
+              <Mapping SourceColumn="strDepatrment" DataSetColumn="strDepatrment" />
+              <Mapping SourceColumn="strUnit" DataSetColumn="strUnit" />
+              <Mapping SourceColumn="strDesignation" DataSetColumn="strDesignation" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -38,7 +43,7 @@
   <xs:element name="EmployeeTds" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="EmployeeTds" msprop:Generator_UserDSName="EmployeeTds">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="sprEmployeeAutoSearch" msprop:Generator_TableClassName="sprEmployeeAutoSearchDataTable" msprop:Generator_TableVarName="tablesprEmployeeAutoSearch" msprop:Generator_TablePropName="sprEmployeeAutoSearch" msprop:Generator_RowDeletingName="sprEmployeeAutoSearchRowDeleting" msprop:Generator_RowChangingName="sprEmployeeAutoSearchRowChanging" msprop:Generator_RowEvHandlerName="sprEmployeeAutoSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="sprEmployeeAutoSearchRowDeleted" msprop:Generator_UserTableName="sprEmployeeAutoSearch" msprop:Generator_RowChangedName="sprEmployeeAutoSearchRowChanged" msprop:Generator_RowEvArgName="sprEmployeeAutoSearchRowChangeEvent" msprop:Generator_RowClassName="sprEmployeeAutoSearchRow">
+        <xs:element name="sprEmployeeAutoSearch" msprop:Generator_TableClassName="sprEmployeeAutoSearchDataTable" msprop:Generator_TableVarName="tablesprEmployeeAutoSearch" msprop:Generator_RowChangedName="sprEmployeeAutoSearchRowChanged" msprop:Generator_TablePropName="sprEmployeeAutoSearch" msprop:Generator_RowDeletingName="sprEmployeeAutoSearchRowDeleting" msprop:Generator_RowChangingName="sprEmployeeAutoSearchRowChanging" msprop:Generator_RowEvHandlerName="sprEmployeeAutoSearchRowChangeEventHandler" msprop:Generator_RowDeletedName="sprEmployeeAutoSearchRowDeleted" msprop:Generator_RowClassName="sprEmployeeAutoSearchRow" msprop:Generator_UserTableName="sprEmployeeAutoSearch" msprop:Generator_RowEvArgName="sprEmployeeAutoSearchRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intEmployeeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintEmployeeID" msprop:Generator_ColumnPropNameInRow="intEmployeeID" msprop:Generator_ColumnPropNameInTable="intEmployeeIDColumn" msprop:Generator_UserColumnName="intEmployeeID" type="xs:int" />
@@ -53,6 +58,41 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strOfficeEmail" msprop:Generator_ColumnVarNameInTable="columnstrOfficeEmail" msprop:Generator_ColumnPropNameInRow="strOfficeEmail" msprop:Generator_ColumnPropNameInTable="strOfficeEmailColumn" msprop:Generator_UserColumnName="strOfficeEmail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strJobStationName" msprop:Generator_ColumnVarNameInTable="columnstrJobStationName" msprop:Generator_ColumnPropNameInRow="strJobStationName" msprop:Generator_ColumnPropNameInTable="strJobStationNameColumn" msprop:Generator_UserColumnName="strJobStationName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strDepatrment" msprop:Generator_ColumnVarNameInTable="columnstrDepatrment" msprop:Generator_ColumnPropNameInRow="strDepatrment" msprop:Generator_ColumnPropNameInTable="strDepatrmentColumn" msprop:Generator_UserColumnName="strDepatrment" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strUnit" msprop:Generator_ColumnVarNameInTable="columnstrUnit" msprop:Generator_ColumnPropNameInRow="strUnit" msprop:Generator_ColumnPropNameInTable="strUnitColumn" msprop:Generator_UserColumnName="strUnit" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strDesignation" msprop:Generator_ColumnVarNameInTable="columnstrDesignation" msprop:Generator_ColumnPropNameInRow="strDesignation" msprop:Generator_ColumnPropNameInTable="strDesignationColumn" msprop:Generator_UserColumnName="strDesignation" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

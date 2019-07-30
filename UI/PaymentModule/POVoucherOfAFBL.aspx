@@ -101,7 +101,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="Pay Date :" Width="70px"></asp:Label></td>
                             <td colspan="6">
-                                <asp:TextBox ID="txtAllPayDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="90px"></asp:TextBox>
+                                <asp:TextBox ID="txtAllPayDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="90px" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtAllPayDate"></cc1:CalendarExtender>
                                 <span style="padding-left: 15px">
                                     <asp:Button ID="btnPreAllVoucher" runat="server" class="myButton" Text="Prepare All Voucher" Height="30px" OnClientClick="ConfirmAll()" OnClick="btnPrepareAllVoucher_Click" /></span>

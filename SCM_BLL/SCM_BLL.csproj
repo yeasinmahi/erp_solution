@@ -67,6 +67,7 @@
     <Compile Include="Bom_BLL.cs" />
     <Compile Include="ComparativeStatementBll.cs" />
     <Compile Include="FGTransferBll.cs" />
+    <Compile Include="ImportAdviceBll.cs" />
     <Compile Include="Indents_BLL.cs" />
     <Compile Include="InventoryTransfer_BLL.cs" />
     <Compile Include="Location_BLL.cs" />
