@@ -303,8 +303,8 @@
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
     <Content Include="Asset\Report\AssetAccountingReport.aspx" />
     <Content Include="Asset\Report\AssetCheckInOutReport.aspx" />
+    <Content Include="Asset\Report\AssetCheckInOutResponsiblePerson.aspx" />
     <Content Include="Asset\Report\AssetTaggingReport.aspx" />
-    <Content Include="Asset\Report\Asset_CheckInOut_Report.aspx" />
     <Content Include="Asset\Report\JobCardInfo.aspx" />
     <Content Include="Asset\Report\VehicleMaintenanceSummary.aspx" />
     <Content Include="Asset\Report\VehicleMaintenanceSummaryByUnit.aspx" />
@@ -2998,19 +2998,19 @@
     <Compile Include="Asset\Report\AssetCheckInOutReport.aspx.designer.cs">
       <DependentUpon>AssetCheckInOutReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Asset\Report\AssetCheckInOutResponsiblePerson.aspx.cs">
+      <DependentUpon>AssetCheckInOutResponsiblePerson.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\AssetCheckInOutResponsiblePerson.aspx.designer.cs">
+      <DependentUpon>AssetCheckInOutResponsiblePerson.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Asset\Report\AssetTaggingReport.aspx.cs">
       <DependentUpon>AssetTaggingReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Asset\Report\AssetTaggingReport.aspx.designer.cs">
       <DependentUpon>AssetTaggingReport.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Asset\Report\Asset_CheckInOut_Report.aspx.cs">
-      <DependentUpon>Asset_CheckInOut_Report.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Asset\Report\Asset_CheckInOut_Report.aspx.designer.cs">
-      <DependentUpon>Asset_CheckInOut_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\Report\JobCardInfo.aspx.cs">
       <DependentUpon>JobCardInfo.aspx</DependentUpon>

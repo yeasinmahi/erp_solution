@@ -1,13 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Asset_CheckInOut_Report.aspx.cs" Inherits="UI.Asset.Report.Asset_CheckInOut_Report" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AssetCheckInOutResponsiblePerson.aspx.cs" Inherits="UI.Asset.Report.AssetCheckInOutResponsiblePerson" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>.:  :.</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="X-Frame-Options" content="allow"/>
+    <title>.: Employee Leave Movement Details :.</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta http-equiv="X-Frame-Options" content="allow"/>
     <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference0" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/hrCSS" />
@@ -44,5 +43,4 @@
     </form>
 </body>
 </html>
-
 

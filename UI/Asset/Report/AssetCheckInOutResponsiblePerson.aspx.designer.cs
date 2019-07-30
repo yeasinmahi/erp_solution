@@ -10,7 +10,7 @@
 namespace UI.Asset.Report {
     
     
-    public partial class Asset_CheckInOut_Report {
+    public partial class AssetCheckInOutResponsiblePerson {
         
         /// <summary>
         /// PlaceHolder0 control.
