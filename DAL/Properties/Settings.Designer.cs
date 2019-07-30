@@ -130,5 +130,16 @@ namespace DAL.Properties {
                 return ((string)(this["ERP_MISConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_WoodPurchase;Persist Security Info=True;User " +
+            "ID=rNwUs@Ag;Password=a2sLs@Ag")]
+        public string AG_WoodPurchaseConnectionString {
+            get {
+                return ((string)(this["AG_WoodPurchaseConnectionString"]));
+            }
+        }
     }
 }

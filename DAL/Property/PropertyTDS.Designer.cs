@@ -5795,6 +5795,18 @@ namespace DAL.Property {
             
             private global::System.Data.DataColumn columnEmployee;
             
+            private global::System.Data.DataColumn columnintLandGeneralPK;
+            
+            private global::System.Data.DataColumn columnintMouzaId;
+            
+            private global::System.Data.DataColumn columnintPlotTypeId;
+            
+            private global::System.Data.DataColumn columnstrSellerName;
+            
+            private global::System.Data.DataColumn columnintUnitId;
+            
+            private global::System.Data.DataColumn columnstrUnit;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ShowLandInsertedMainDataDataTable() {
@@ -5902,6 +5914,54 @@ namespace DAL.Property {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intLandGeneralPKColumn {
+                get {
+                    return this.columnintLandGeneralPK;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intMouzaIdColumn {
+                get {
+                    return this.columnintMouzaId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intPlotTypeIdColumn {
+                get {
+                    return this.columnintPlotTypeId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strSellerNameColumn {
+                get {
+                    return this.columnstrSellerName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intUnitIdColumn {
+                get {
+                    return this.columnintUnitId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strUnitColumn {
+                get {
+                    return this.columnstrUnit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5937,7 +5997,7 @@ namespace DAL.Property {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ShowLandInsertedMainDataRow AddShowLandInsertedMainDataRow(string strMouza, string strDeedNo, string strPlotType, string strPlotNo, decimal numPurchasedPlotArea, int intBanglaYear, string dteInsertDate, string strFilePath, string Employee) {
+            public ShowLandInsertedMainDataRow AddShowLandInsertedMainDataRow(string strMouza, string strDeedNo, string strPlotType, string strPlotNo, decimal numPurchasedPlotArea, int intBanglaYear, string dteInsertDate, string strFilePath, string Employee, int intMouzaId, string strSellerName, int intUnitId, string strUnit) {
                 ShowLandInsertedMainDataRow rowShowLandInsertedMainDataRow = ((ShowLandInsertedMainDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strMouza,
@@ -5948,7 +6008,13 @@ namespace DAL.Property {
                         intBanglaYear,
                         dteInsertDate,
                         strFilePath,
-                        Employee};
+                        Employee,
+                        null,
+                        intMouzaId,
+                        null,
+                        strSellerName,
+                        intUnitId,
+                        strUnit};
                 rowShowLandInsertedMainDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowShowLandInsertedMainDataRow);
                 return rowShowLandInsertedMainDataRow;
@@ -5980,6 +6046,12 @@ namespace DAL.Property {
                 this.columndteInsertDate = base.Columns["dteInsertDate"];
                 this.columnstrFilePath = base.Columns["strFilePath"];
                 this.columnEmployee = base.Columns["Employee"];
+                this.columnintLandGeneralPK = base.Columns["intLandGeneralPK"];
+                this.columnintMouzaId = base.Columns["intMouzaId"];
+                this.columnintPlotTypeId = base.Columns["intPlotTypeId"];
+                this.columnstrSellerName = base.Columns["strSellerName"];
+                this.columnintUnitId = base.Columns["intUnitId"];
+                this.columnstrUnit = base.Columns["strUnit"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6003,6 +6075,18 @@ namespace DAL.Property {
                 base.Columns.Add(this.columnstrFilePath);
                 this.columnEmployee = new global::System.Data.DataColumn("Employee", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmployee);
+                this.columnintLandGeneralPK = new global::System.Data.DataColumn("intLandGeneralPK", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintLandGeneralPK);
+                this.columnintMouzaId = new global::System.Data.DataColumn("intMouzaId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintMouzaId);
+                this.columnintPlotTypeId = new global::System.Data.DataColumn("intPlotTypeId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintPlotTypeId);
+                this.columnstrSellerName = new global::System.Data.DataColumn("strSellerName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrSellerName);
+                this.columnintUnitId = new global::System.Data.DataColumn("intUnitId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintUnitId);
+                this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUnit);
                 this.columnstrMouza.AllowDBNull = false;
                 this.columnstrMouza.MaxLength = 50;
                 this.columnstrDeedNo.AllowDBNull = false;
@@ -6018,6 +6102,22 @@ namespace DAL.Property {
                 this.columnstrFilePath.MaxLength = 500;
                 this.columnEmployee.ReadOnly = true;
                 this.columnEmployee.MaxLength = 1033;
+                this.columnintLandGeneralPK.AutoIncrement = true;
+                this.columnintLandGeneralPK.AutoIncrementSeed = -1;
+                this.columnintLandGeneralPK.AutoIncrementStep = -1;
+                this.columnintLandGeneralPK.AllowDBNull = false;
+                this.columnintLandGeneralPK.ReadOnly = true;
+                this.columnintMouzaId.AllowDBNull = false;
+                this.columnintPlotTypeId.AutoIncrement = true;
+                this.columnintPlotTypeId.AutoIncrementSeed = -1;
+                this.columnintPlotTypeId.AutoIncrementStep = -1;
+                this.columnintPlotTypeId.AllowDBNull = false;
+                this.columnintPlotTypeId.ReadOnly = true;
+                this.columnstrSellerName.AllowDBNull = false;
+                this.columnstrSellerName.MaxLength = 100;
+                this.columnintUnitId.AllowDBNull = false;
+                this.columnstrUnit.AllowDBNull = false;
+                this.columnstrUnit.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7342,6 +7442,72 @@ namespace DAL.Property {
                 }
                 set {
                     this[this.tableShowLandInsertedMainData.EmployeeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intLandGeneralPK {
+                get {
+                    return ((int)(this[this.tableShowLandInsertedMainData.intLandGeneralPKColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.intLandGeneralPKColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intMouzaId {
+                get {
+                    return ((int)(this[this.tableShowLandInsertedMainData.intMouzaIdColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.intMouzaIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intPlotTypeId {
+                get {
+                    return ((int)(this[this.tableShowLandInsertedMainData.intPlotTypeIdColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.intPlotTypeIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strSellerName {
+                get {
+                    return ((string)(this[this.tableShowLandInsertedMainData.strSellerNameColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.strSellerNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intUnitId {
+                get {
+                    return ((int)(this[this.tableShowLandInsertedMainData.intUnitIdColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.intUnitIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strUnit {
+                get {
+                    return ((string)(this[this.tableShowLandInsertedMainData.strUnitColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.strUnitColumn] = value;
                 }
             }
             
@@ -11567,6 +11733,12 @@ WHERE        (pm.intMouzaId = @MouzaID) AND (pm.ysnActive = 1)";
             tableMapping.ColumnMappings.Add("dteInsertDate", "dteInsertDate");
             tableMapping.ColumnMappings.Add("strFilePath", "strFilePath");
             tableMapping.ColumnMappings.Add("Employee", "Employee");
+            tableMapping.ColumnMappings.Add("intLandGeneralPK", "intLandGeneralPK");
+            tableMapping.ColumnMappings.Add("intMouzaId", "intMouzaId");
+            tableMapping.ColumnMappings.Add("intPlotTypeId", "intPlotTypeId");
+            tableMapping.ColumnMappings.Add("strSellerName", "strSellerName");
+            tableMapping.ColumnMappings.Add("intUnitId", "intUnitId");
+            tableMapping.ColumnMappings.Add("strUnit", "strUnit");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

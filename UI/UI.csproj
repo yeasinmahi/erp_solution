@@ -184,6 +184,7 @@
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx" />
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
+    <Content Include="Accounts\ChartOfAccount\GLCodeBridge.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
     <Content Include="Accounts\Import\ImportAdjustment.aspx" />
     <Content Include="Accounts\MDSlip\MDSlipCustomization.aspx" />
@@ -467,6 +468,7 @@
     <Content Include="Dairy\Milk_MRR_By_Factory.aspx" />
     <Content Include="Document Inventory\DocLocationConfigure.aspx" />
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
+    <Content Include="Factory\PetBottle\PBReceiveForm.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
@@ -2049,6 +2051,13 @@
     <Compile Include="Accounts\ChartOfAccount\GetInfo.aspx.designer.cs">
       <DependentUpon>GetInfo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\ChartOfAccount\GLCodeBridge.aspx.cs">
+      <DependentUpon>GLCodeBridge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\GLCodeBridge.aspx.designer.cs">
+      <DependentUpon>GLCodeBridge.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\ChartOfAccount\Template.aspx.cs">
       <DependentUpon>Template.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3252,6 +3261,13 @@
     </Compile>
     <Compile Include="Document Inventory\FileAndDocLocationCreate.aspx.designer.cs">
       <DependentUpon>FileAndDocLocationCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PBReceiveForm.aspx.cs">
+      <DependentUpon>PBReceiveForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PBReceiveForm.aspx.designer.cs">
+      <DependentUpon>PBReceiveForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Attendance\RealTimeAttendanceReport.aspx.cs">
       <DependentUpon>RealTimeAttendanceReport.aspx</DependentUpon>
