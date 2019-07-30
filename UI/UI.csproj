@@ -320,6 +320,7 @@
     <Content Include="Asset\WorkOrderPartsPopUp.aspx" />
     <Content Include="BudgetPlan\BudgetDetalis_UI.aspx" />
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
+    <Content Include="BudgetPlan\BudgetForExpenseNRawMaterial.aspx" />
     <Content Include="BudgetPlan\BudgetInfoModification.aspx" />
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
     <Content Include="BudgetPlan\BudgetPlanning_Requesition.aspx" />
@@ -1468,6 +1469,7 @@
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\BudgetForExpense.aspx" />
     <Content Include="SAD\Sales\Report\BudgetForFG.aspx" />
     <Content Include="SAD\Sales\Report\BudgetForMaterial.aspx" />
     <Content Include="SAD\Sales\Report\BudgetForPromotion.aspx" />
@@ -1785,6 +1787,7 @@
     <Content Include="Transport\TripvsCost\PumpFoodingBill.aspx" />
     <Content Include="Transport\TripvsCost\PumpFoodingBillReport.aspx" />
     <Content Include="Transport\TripvsCost\ThanaRateChecking.aspx" />
+    <Content Include="Transport\TripvsCost\Traller Bill.aspx" />
     <Content Include="Transport\TripvsCost\TripCost.aspx" />
     <Content Include="Transport\TripvsCost\TripCostDetaills.aspx" />
     <Content Include="Transport\TripvsCost\TripVsFuelCost.aspx" />
@@ -3109,6 +3112,13 @@
     </Compile>
     <Compile Include="BudgetPlan\BudgetEntry.aspx.designer.cs">
       <DependentUpon>BudgetEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetForExpenseNRawMaterial.aspx.cs">
+      <DependentUpon>BudgetForExpenseNRawMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetForExpenseNRawMaterial.aspx.designer.cs">
+      <DependentUpon>BudgetForExpenseNRawMaterial.aspx</DependentUpon>
     </Compile>
     <Compile Include="BudgetPlan\BudgetInfoModification.aspx.cs">
       <DependentUpon>BudgetInfoModification.aspx</DependentUpon>
@@ -7521,6 +7531,13 @@
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.designer.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\BudgetForExpense.aspx.cs">
+      <DependentUpon>BudgetForExpense.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\BudgetForExpense.aspx.designer.cs">
+      <DependentUpon>BudgetForExpense.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\BudgetForFG.aspx.cs">
       <DependentUpon>BudgetForFG.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9782,6 +9799,13 @@
     </Compile>
     <Compile Include="Transport\TripvsCost\ThanaRateChecking.aspx.designer.cs">
       <DependentUpon>ThanaRateChecking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\Traller Bill.aspx.cs">
+      <DependentUpon>Traller Bill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TripvsCost\Traller Bill.aspx.designer.cs">
+      <DependentUpon>Traller Bill.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\TripvsCost\TripCost.aspx.cs">
       <DependentUpon>TripCost.aspx</DependentUpon>
