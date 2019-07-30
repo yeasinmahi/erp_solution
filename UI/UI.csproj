@@ -186,6 +186,7 @@
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx" />
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
     <Content Include="Accounts\ChartOfAccount\GLCodeBridge.aspx" />
+    <Content Include="Accounts\ChartOfAccount\GLCodeEntryNreport.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
     <Content Include="Accounts\Import\ImportAdjustment.aspx" />
     <Content Include="Accounts\MDSlip\MDSlipCustomization.aspx" />
@@ -2073,6 +2074,13 @@
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\GLCodeBridge.aspx.designer.cs">
       <DependentUpon>GLCodeBridge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\GLCodeEntryNreport.aspx.cs">
+      <DependentUpon>GLCodeEntryNreport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\GLCodeEntryNreport.aspx.designer.cs">
+      <DependentUpon>GLCodeEntryNreport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\Template.aspx.cs">
       <DependentUpon>Template.aspx</DependentUpon>
