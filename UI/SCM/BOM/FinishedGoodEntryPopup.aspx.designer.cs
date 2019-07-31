@@ -121,6 +121,24 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.HiddenField hfTotalQty;
         
         /// <summary>
+        /// hdnProductionId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnProductionId;
+        
+        /// <summary>
+        /// hdnItemId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnItemId;
+        
+        /// <summary>
         /// txtDate control.
         /// </summary>
         /// <remarks>
