@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace SAD_DAL.Global {
+namespace DAL.Accounts.ChartOfAccount {
     
     
     /// <summary>
@@ -20,23 +20,23 @@ namespace SAD_DAL.Global {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("SalesOfficeTDS")]
+    [global::System.Xml.Serialization.XmlRootAttribute("GLCodeTDS")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class SalesOfficeTDS : global::System.Data.DataSet {
+    public partial class GLCodeTDS : global::System.Data.DataSet {
         
-        private QrySalesOfficeByShipPointDataTable tableQrySalesOfficeByShipPoint;
+        private QRYEMPLOYEEPROFILEALLDataTable tableQRYEMPLOYEEPROFILEALL;
         
-        private TblSalesOfficeDataTable tableTblSalesOffice;
+        private sprGLCodeConfitReportDataTable tablesprGLCodeConfitReport;
         
-        private SprSalesOfficeByUserDataTable tableSprSalesOfficeByUser;
+        private SprGLCodeBridgeDataTable tableSprGLCodeBridge;
         
-        private tblEmployeeDataTable tabletblEmployee;
+        private SprGetUnitDataTable tableSprGetUnit;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SalesOfficeTDS() {
+        public GLCodeTDS() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -47,7 +47,7 @@ namespace SAD_DAL.Global {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected SalesOfficeTDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected GLCodeTDS(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -60,17 +60,17 @@ namespace SAD_DAL.Global {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["QrySalesOfficeByShipPoint"] != null)) {
-                    base.Tables.Add(new QrySalesOfficeByShipPointDataTable(ds.Tables["QrySalesOfficeByShipPoint"]));
+                if ((ds.Tables["QRYEMPLOYEEPROFILEALL"] != null)) {
+                    base.Tables.Add(new QRYEMPLOYEEPROFILEALLDataTable(ds.Tables["QRYEMPLOYEEPROFILEALL"]));
                 }
-                if ((ds.Tables["TblSalesOffice"] != null)) {
-                    base.Tables.Add(new TblSalesOfficeDataTable(ds.Tables["TblSalesOffice"]));
+                if ((ds.Tables["sprGLCodeConfitReport"] != null)) {
+                    base.Tables.Add(new sprGLCodeConfitReportDataTable(ds.Tables["sprGLCodeConfitReport"]));
                 }
-                if ((ds.Tables["SprSalesOfficeByUser"] != null)) {
-                    base.Tables.Add(new SprSalesOfficeByUserDataTable(ds.Tables["SprSalesOfficeByUser"]));
+                if ((ds.Tables["SprGLCodeBridge"] != null)) {
+                    base.Tables.Add(new SprGLCodeBridgeDataTable(ds.Tables["SprGLCodeBridge"]));
                 }
-                if ((ds.Tables["tblEmployee"] != null)) {
-                    base.Tables.Add(new tblEmployeeDataTable(ds.Tables["tblEmployee"]));
+                if ((ds.Tables["SprGetUnit"] != null)) {
+                    base.Tables.Add(new SprGetUnitDataTable(ds.Tables["SprGetUnit"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -94,9 +94,9 @@ namespace SAD_DAL.Global {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public QrySalesOfficeByShipPointDataTable QrySalesOfficeByShipPoint {
+        public QRYEMPLOYEEPROFILEALLDataTable QRYEMPLOYEEPROFILEALL {
             get {
-                return this.tableQrySalesOfficeByShipPoint;
+                return this.tableQRYEMPLOYEEPROFILEALL;
             }
         }
         
@@ -104,9 +104,9 @@ namespace SAD_DAL.Global {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TblSalesOfficeDataTable TblSalesOffice {
+        public sprGLCodeConfitReportDataTable sprGLCodeConfitReport {
             get {
-                return this.tableTblSalesOffice;
+                return this.tablesprGLCodeConfitReport;
             }
         }
         
@@ -114,9 +114,9 @@ namespace SAD_DAL.Global {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SprSalesOfficeByUserDataTable SprSalesOfficeByUser {
+        public SprGLCodeBridgeDataTable SprGLCodeBridge {
             get {
-                return this.tableSprSalesOfficeByUser;
+                return this.tableSprGLCodeBridge;
             }
         }
         
@@ -124,9 +124,9 @@ namespace SAD_DAL.Global {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public tblEmployeeDataTable tblEmployee {
+        public SprGetUnitDataTable SprGetUnit {
             get {
-                return this.tabletblEmployee;
+                return this.tableSprGetUnit;
             }
         }
         
@@ -172,7 +172,7 @@ namespace SAD_DAL.Global {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            SalesOfficeTDS cln = ((SalesOfficeTDS)(base.Clone()));
+            GLCodeTDS cln = ((GLCodeTDS)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -197,17 +197,17 @@ namespace SAD_DAL.Global {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["QrySalesOfficeByShipPoint"] != null)) {
-                    base.Tables.Add(new QrySalesOfficeByShipPointDataTable(ds.Tables["QrySalesOfficeByShipPoint"]));
+                if ((ds.Tables["QRYEMPLOYEEPROFILEALL"] != null)) {
+                    base.Tables.Add(new QRYEMPLOYEEPROFILEALLDataTable(ds.Tables["QRYEMPLOYEEPROFILEALL"]));
                 }
-                if ((ds.Tables["TblSalesOffice"] != null)) {
-                    base.Tables.Add(new TblSalesOfficeDataTable(ds.Tables["TblSalesOffice"]));
+                if ((ds.Tables["sprGLCodeConfitReport"] != null)) {
+                    base.Tables.Add(new sprGLCodeConfitReportDataTable(ds.Tables["sprGLCodeConfitReport"]));
                 }
-                if ((ds.Tables["SprSalesOfficeByUser"] != null)) {
-                    base.Tables.Add(new SprSalesOfficeByUserDataTable(ds.Tables["SprSalesOfficeByUser"]));
+                if ((ds.Tables["SprGLCodeBridge"] != null)) {
+                    base.Tables.Add(new SprGLCodeBridgeDataTable(ds.Tables["SprGLCodeBridge"]));
                 }
-                if ((ds.Tables["tblEmployee"] != null)) {
-                    base.Tables.Add(new tblEmployeeDataTable(ds.Tables["tblEmployee"]));
+                if ((ds.Tables["SprGetUnit"] != null)) {
+                    base.Tables.Add(new SprGetUnitDataTable(ds.Tables["SprGetUnit"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -242,28 +242,28 @@ namespace SAD_DAL.Global {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableQrySalesOfficeByShipPoint = ((QrySalesOfficeByShipPointDataTable)(base.Tables["QrySalesOfficeByShipPoint"]));
+            this.tableQRYEMPLOYEEPROFILEALL = ((QRYEMPLOYEEPROFILEALLDataTable)(base.Tables["QRYEMPLOYEEPROFILEALL"]));
             if ((initTable == true)) {
-                if ((this.tableQrySalesOfficeByShipPoint != null)) {
-                    this.tableQrySalesOfficeByShipPoint.InitVars();
+                if ((this.tableQRYEMPLOYEEPROFILEALL != null)) {
+                    this.tableQRYEMPLOYEEPROFILEALL.InitVars();
                 }
             }
-            this.tableTblSalesOffice = ((TblSalesOfficeDataTable)(base.Tables["TblSalesOffice"]));
+            this.tablesprGLCodeConfitReport = ((sprGLCodeConfitReportDataTable)(base.Tables["sprGLCodeConfitReport"]));
             if ((initTable == true)) {
-                if ((this.tableTblSalesOffice != null)) {
-                    this.tableTblSalesOffice.InitVars();
+                if ((this.tablesprGLCodeConfitReport != null)) {
+                    this.tablesprGLCodeConfitReport.InitVars();
                 }
             }
-            this.tableSprSalesOfficeByUser = ((SprSalesOfficeByUserDataTable)(base.Tables["SprSalesOfficeByUser"]));
+            this.tableSprGLCodeBridge = ((SprGLCodeBridgeDataTable)(base.Tables["SprGLCodeBridge"]));
             if ((initTable == true)) {
-                if ((this.tableSprSalesOfficeByUser != null)) {
-                    this.tableSprSalesOfficeByUser.InitVars();
+                if ((this.tableSprGLCodeBridge != null)) {
+                    this.tableSprGLCodeBridge.InitVars();
                 }
             }
-            this.tabletblEmployee = ((tblEmployeeDataTable)(base.Tables["tblEmployee"]));
+            this.tableSprGetUnit = ((SprGetUnitDataTable)(base.Tables["SprGetUnit"]));
             if ((initTable == true)) {
-                if ((this.tabletblEmployee != null)) {
-                    this.tabletblEmployee.InitVars();
+                if ((this.tableSprGetUnit != null)) {
+                    this.tableSprGetUnit.InitVars();
                 }
             }
         }
@@ -271,42 +271,42 @@ namespace SAD_DAL.Global {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "SalesOfficeTDS";
+            this.DataSetName = "GLCodeTDS";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/SalesOfficeTDS.xsd";
+            this.Namespace = "http://tempuri.org/GLCodeTDS.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableQrySalesOfficeByShipPoint = new QrySalesOfficeByShipPointDataTable();
-            base.Tables.Add(this.tableQrySalesOfficeByShipPoint);
-            this.tableTblSalesOffice = new TblSalesOfficeDataTable();
-            base.Tables.Add(this.tableTblSalesOffice);
-            this.tableSprSalesOfficeByUser = new SprSalesOfficeByUserDataTable();
-            base.Tables.Add(this.tableSprSalesOfficeByUser);
-            this.tabletblEmployee = new tblEmployeeDataTable();
-            base.Tables.Add(this.tabletblEmployee);
+            this.tableQRYEMPLOYEEPROFILEALL = new QRYEMPLOYEEPROFILEALLDataTable();
+            base.Tables.Add(this.tableQRYEMPLOYEEPROFILEALL);
+            this.tablesprGLCodeConfitReport = new sprGLCodeConfitReportDataTable();
+            base.Tables.Add(this.tablesprGLCodeConfitReport);
+            this.tableSprGLCodeBridge = new SprGLCodeBridgeDataTable();
+            base.Tables.Add(this.tableSprGLCodeBridge);
+            this.tableSprGetUnit = new SprGetUnitDataTable();
+            base.Tables.Add(this.tableSprGetUnit);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeQrySalesOfficeByShipPoint() {
+        private bool ShouldSerializeQRYEMPLOYEEPROFILEALL() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeTblSalesOffice() {
+        private bool ShouldSerializesprGLCodeConfitReport() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeSprSalesOfficeByUser() {
+        private bool ShouldSerializeSprGLCodeBridge() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializetblEmployee() {
+        private bool ShouldSerializeSprGetUnit() {
             return false;
         }
         
@@ -321,7 +321,7 @@ namespace SAD_DAL.Global {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            SalesOfficeTDS ds = new SalesOfficeTDS();
+            GLCodeTDS ds = new GLCodeTDS();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -366,38 +366,42 @@ namespace SAD_DAL.Global {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void QrySalesOfficeByShipPointRowChangeEventHandler(object sender, QrySalesOfficeByShipPointRowChangeEvent e);
+        public delegate void QRYEMPLOYEEPROFILEALLRowChangeEventHandler(object sender, QRYEMPLOYEEPROFILEALLRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void TblSalesOfficeRowChangeEventHandler(object sender, TblSalesOfficeRowChangeEvent e);
+        public delegate void sprGLCodeConfitReportRowChangeEventHandler(object sender, sprGLCodeConfitReportRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void SprSalesOfficeByUserRowChangeEventHandler(object sender, SprSalesOfficeByUserRowChangeEvent e);
+        public delegate void SprGLCodeBridgeRowChangeEventHandler(object sender, SprGLCodeBridgeRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void tblEmployeeRowChangeEventHandler(object sender, tblEmployeeRowChangeEvent e);
+        public delegate void SprGetUnitRowChangeEventHandler(object sender, SprGetUnitRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class QrySalesOfficeByShipPointDataTable : global::System.Data.TypedTableBase<QrySalesOfficeByShipPointRow> {
+        public partial class QRYEMPLOYEEPROFILEALLDataTable : global::System.Data.TypedTableBase<QRYEMPLOYEEPROFILEALLRow> {
             
-            private global::System.Data.DataColumn columnintShippingPointId;
+            private global::System.Data.DataColumn columnstrOfficeEmail;
             
-            private global::System.Data.DataColumn columnintSalesOfficeId;
+            private global::System.Data.DataColumn columnstrEmployeeName;
             
-            private global::System.Data.DataColumn columnstrName;
+            private global::System.Data.DataColumn columnstrDesignation;
             
-            private global::System.Data.DataColumn columnintUnitId;
+            private global::System.Data.DataColumn columnstrDepatrment;
             
-            private global::System.Data.DataColumn columnysnEnable;
+            private global::System.Data.DataColumn columnstrUnit;
+            
+            private global::System.Data.DataColumn columnstrJobStationName;
+            
+            private global::System.Data.DataColumn columnstrStatus;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QrySalesOfficeByShipPointDataTable() {
-                this.TableName = "QrySalesOfficeByShipPoint";
+            public QRYEMPLOYEEPROFILEALLDataTable() {
+                this.TableName = "QRYEMPLOYEEPROFILEALL";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -405,7 +409,7 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal QrySalesOfficeByShipPointDataTable(global::System.Data.DataTable table) {
+            internal QRYEMPLOYEEPROFILEALLDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -422,48 +426,64 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected QrySalesOfficeByShipPointDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected QRYEMPLOYEEPROFILEALLDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intShippingPointIdColumn {
+            public global::System.Data.DataColumn strOfficeEmailColumn {
                 get {
-                    return this.columnintShippingPointId;
+                    return this.columnstrOfficeEmail;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intSalesOfficeIdColumn {
+            public global::System.Data.DataColumn strEmployeeNameColumn {
                 get {
-                    return this.columnintSalesOfficeId;
+                    return this.columnstrEmployeeName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strNameColumn {
+            public global::System.Data.DataColumn strDesignationColumn {
                 get {
-                    return this.columnstrName;
+                    return this.columnstrDesignation;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intUnitIdColumn {
+            public global::System.Data.DataColumn strDepatrmentColumn {
                 get {
-                    return this.columnintUnitId;
+                    return this.columnstrDepatrment;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ysnEnableColumn {
+            public global::System.Data.DataColumn strUnitColumn {
                 get {
-                    return this.columnysnEnable;
+                    return this.columnstrUnit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strJobStationNameColumn {
+                get {
+                    return this.columnstrJobStationName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strStatusColumn {
+                get {
+                    return this.columnstrStatus;
                 }
             }
             
@@ -478,57 +498,51 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QrySalesOfficeByShipPointRow this[int index] {
+            public QRYEMPLOYEEPROFILEALLRow this[int index] {
                 get {
-                    return ((QrySalesOfficeByShipPointRow)(this.Rows[index]));
+                    return ((QRYEMPLOYEEPROFILEALLRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event QrySalesOfficeByShipPointRowChangeEventHandler QrySalesOfficeByShipPointRowChanging;
+            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event QrySalesOfficeByShipPointRowChangeEventHandler QrySalesOfficeByShipPointRowChanged;
+            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event QrySalesOfficeByShipPointRowChangeEventHandler QrySalesOfficeByShipPointRowDeleting;
+            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event QrySalesOfficeByShipPointRowChangeEventHandler QrySalesOfficeByShipPointRowDeleted;
+            public event QRYEMPLOYEEPROFILEALLRowChangeEventHandler QRYEMPLOYEEPROFILEALLRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddQrySalesOfficeByShipPointRow(QrySalesOfficeByShipPointRow row) {
+            public void AddQRYEMPLOYEEPROFILEALLRow(QRYEMPLOYEEPROFILEALLRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QrySalesOfficeByShipPointRow AddQrySalesOfficeByShipPointRow(int intShippingPointId, int intSalesOfficeId, string strName, int intUnitId, bool ysnEnable) {
-                QrySalesOfficeByShipPointRow rowQrySalesOfficeByShipPointRow = ((QrySalesOfficeByShipPointRow)(this.NewRow()));
+            public QRYEMPLOYEEPROFILEALLRow AddQRYEMPLOYEEPROFILEALLRow(string strOfficeEmail, string strEmployeeName, string strDesignation, string strDepatrment, string strUnit, string strJobStationName, string strStatus) {
+                QRYEMPLOYEEPROFILEALLRow rowQRYEMPLOYEEPROFILEALLRow = ((QRYEMPLOYEEPROFILEALLRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        intShippingPointId,
-                        intSalesOfficeId,
-                        strName,
-                        intUnitId,
-                        ysnEnable};
-                rowQrySalesOfficeByShipPointRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowQrySalesOfficeByShipPointRow);
-                return rowQrySalesOfficeByShipPointRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QrySalesOfficeByShipPointRow FindByintShippingPointIdintSalesOfficeId(int intShippingPointId, int intSalesOfficeId) {
-                return ((QrySalesOfficeByShipPointRow)(this.Rows.Find(new object[] {
-                            intShippingPointId,
-                            intSalesOfficeId})));
+                        strOfficeEmail,
+                        strEmployeeName,
+                        strDesignation,
+                        strDepatrment,
+                        strUnit,
+                        strJobStationName,
+                        strStatus};
+                rowQRYEMPLOYEEPROFILEALLRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowQRYEMPLOYEEPROFILEALLRow);
+                return rowQRYEMPLOYEEPROFILEALLRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                QrySalesOfficeByShipPointDataTable cln = ((QrySalesOfficeByShipPointDataTable)(base.Clone()));
+                QRYEMPLOYEEPROFILEALLDataTable cln = ((QRYEMPLOYEEPROFILEALLDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -536,64 +550,71 @@ namespace SAD_DAL.Global {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new QrySalesOfficeByShipPointDataTable();
+                return new QRYEMPLOYEEPROFILEALLDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnintShippingPointId = base.Columns["intShippingPointId"];
-                this.columnintSalesOfficeId = base.Columns["intSalesOfficeId"];
-                this.columnstrName = base.Columns["strName"];
-                this.columnintUnitId = base.Columns["intUnitId"];
-                this.columnysnEnable = base.Columns["ysnEnable"];
+                this.columnstrOfficeEmail = base.Columns["strOfficeEmail"];
+                this.columnstrEmployeeName = base.Columns["strEmployeeName"];
+                this.columnstrDesignation = base.Columns["strDesignation"];
+                this.columnstrDepatrment = base.Columns["strDepatrment"];
+                this.columnstrUnit = base.Columns["strUnit"];
+                this.columnstrJobStationName = base.Columns["strJobStationName"];
+                this.columnstrStatus = base.Columns["strStatus"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnintShippingPointId = new global::System.Data.DataColumn("intShippingPointId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintShippingPointId);
-                this.columnintSalesOfficeId = new global::System.Data.DataColumn("intSalesOfficeId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintSalesOfficeId);
-                this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrName);
-                this.columnintUnitId = new global::System.Data.DataColumn("intUnitId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintUnitId);
-                this.columnysnEnable = new global::System.Data.DataColumn("ysnEnable", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnysnEnable);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintShippingPointId,
-                                this.columnintSalesOfficeId}, true));
-                this.columnintShippingPointId.AllowDBNull = false;
-                this.columnintSalesOfficeId.AllowDBNull = false;
-                this.columnstrName.MaxLength = 100;
+                this.columnstrOfficeEmail = new global::System.Data.DataColumn("strOfficeEmail", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrOfficeEmail);
+                this.columnstrEmployeeName = new global::System.Data.DataColumn("strEmployeeName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrEmployeeName);
+                this.columnstrDesignation = new global::System.Data.DataColumn("strDesignation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDesignation);
+                this.columnstrDepatrment = new global::System.Data.DataColumn("strDepatrment", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDepatrment);
+                this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUnit);
+                this.columnstrJobStationName = new global::System.Data.DataColumn("strJobStationName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrJobStationName);
+                this.columnstrStatus = new global::System.Data.DataColumn("strStatus", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrStatus);
+                this.columnstrOfficeEmail.MaxLength = 1000;
+                this.columnstrEmployeeName.MaxLength = 1000;
+                this.columnstrDesignation.MaxLength = 100;
+                this.columnstrDepatrment.MaxLength = 100;
+                this.columnstrUnit.MaxLength = 50;
+                this.columnstrJobStationName.MaxLength = 250;
+                this.columnstrStatus.MaxLength = 20;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QrySalesOfficeByShipPointRow NewQrySalesOfficeByShipPointRow() {
-                return ((QrySalesOfficeByShipPointRow)(this.NewRow()));
+            public QRYEMPLOYEEPROFILEALLRow NewQRYEMPLOYEEPROFILEALLRow() {
+                return ((QRYEMPLOYEEPROFILEALLRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new QrySalesOfficeByShipPointRow(builder);
+                return new QRYEMPLOYEEPROFILEALLRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(QrySalesOfficeByShipPointRow);
+                return typeof(QRYEMPLOYEEPROFILEALLRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.QrySalesOfficeByShipPointRowChanged != null)) {
-                    this.QrySalesOfficeByShipPointRowChanged(this, new QrySalesOfficeByShipPointRowChangeEvent(((QrySalesOfficeByShipPointRow)(e.Row)), e.Action));
+                if ((this.QRYEMPLOYEEPROFILEALLRowChanged != null)) {
+                    this.QRYEMPLOYEEPROFILEALLRowChanged(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
                 }
             }
             
@@ -601,8 +622,8 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.QrySalesOfficeByShipPointRowChanging != null)) {
-                    this.QrySalesOfficeByShipPointRowChanging(this, new QrySalesOfficeByShipPointRowChangeEvent(((QrySalesOfficeByShipPointRow)(e.Row)), e.Action));
+                if ((this.QRYEMPLOYEEPROFILEALLRowChanging != null)) {
+                    this.QRYEMPLOYEEPROFILEALLRowChanging(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
                 }
             }
             
@@ -610,8 +631,8 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.QrySalesOfficeByShipPointRowDeleted != null)) {
-                    this.QrySalesOfficeByShipPointRowDeleted(this, new QrySalesOfficeByShipPointRowChangeEvent(((QrySalesOfficeByShipPointRow)(e.Row)), e.Action));
+                if ((this.QRYEMPLOYEEPROFILEALLRowDeleted != null)) {
+                    this.QRYEMPLOYEEPROFILEALLRowDeleted(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
                 }
             }
             
@@ -619,14 +640,14 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.QrySalesOfficeByShipPointRowDeleting != null)) {
-                    this.QrySalesOfficeByShipPointRowDeleting(this, new QrySalesOfficeByShipPointRowChangeEvent(((QrySalesOfficeByShipPointRow)(e.Row)), e.Action));
+                if ((this.QRYEMPLOYEEPROFILEALLRowDeleting != null)) {
+                    this.QRYEMPLOYEEPROFILEALLRowDeleting(this, new QRYEMPLOYEEPROFILEALLRowChangeEvent(((QRYEMPLOYEEPROFILEALLRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveQrySalesOfficeByShipPointRow(QrySalesOfficeByShipPointRow row) {
+            public void RemoveQRYEMPLOYEEPROFILEALLRow(QRYEMPLOYEEPROFILEALLRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -635,7 +656,7 @@ namespace SAD_DAL.Global {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                SalesOfficeTDS ds = new SalesOfficeTDS();
+                GLCodeTDS ds = new GLCodeTDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -653,7 +674,7 @@ namespace SAD_DAL.Global {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "QrySalesOfficeByShipPointDataTable";
+                attribute2.FixedValue = "QRYEMPLOYEEPROFILEALLDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -699,36 +720,20 @@ namespace SAD_DAL.Global {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TblSalesOfficeDataTable : global::System.Data.TypedTableBase<TblSalesOfficeRow> {
+        public partial class sprGLCodeConfitReportDataTable : global::System.Data.TypedTableBase<sprGLCodeConfitReportRow> {
             
-            private global::System.Data.DataColumn columnintId;
+            private global::System.Data.DataColumn columnintGLCodeID;
             
-            private global::System.Data.DataColumn columnintUnitId;
+            private global::System.Data.DataColumn columnstrAdditionDeduction;
             
-            private global::System.Data.DataColumn columnintParentId;
+            private global::System.Data.DataColumn columnstrAccName;
             
-            private global::System.Data.DataColumn columnstrName;
-            
-            private global::System.Data.DataColumn columnstrDescription;
-            
-            private global::System.Data.DataColumn columnysnEnable;
-            
-            private global::System.Data.DataColumn columnintInsertedBy;
-            
-            private global::System.Data.DataColumn columndteInsertionTime;
-            
-            private global::System.Data.DataColumn columnintLastModifiedBy;
-            
-            private global::System.Data.DataColumn columndteLastModificationTime;
-            
-            private global::System.Data.DataColumn columnstrPrefix;
-            
-            private global::System.Data.DataColumn columnstrCodeFor;
+            private global::System.Data.DataColumn columnGLCode;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblSalesOfficeDataTable() {
-                this.TableName = "TblSalesOffice";
+            public sprGLCodeConfitReportDataTable() {
+                this.TableName = "sprGLCodeConfitReport";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -736,7 +741,7 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal TblSalesOfficeDataTable(global::System.Data.DataTable table) {
+            internal sprGLCodeConfitReportDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -753,104 +758,40 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected TblSalesOfficeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected sprGLCodeConfitReportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intIdColumn {
+            public global::System.Data.DataColumn intGLCodeIDColumn {
                 get {
-                    return this.columnintId;
+                    return this.columnintGLCodeID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intUnitIdColumn {
+            public global::System.Data.DataColumn strAdditionDeductionColumn {
                 get {
-                    return this.columnintUnitId;
+                    return this.columnstrAdditionDeduction;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intParentIdColumn {
+            public global::System.Data.DataColumn strAccNameColumn {
                 get {
-                    return this.columnintParentId;
+                    return this.columnstrAccName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strNameColumn {
+            public global::System.Data.DataColumn GLCodeColumn {
                 get {
-                    return this.columnstrName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strDescriptionColumn {
-                get {
-                    return this.columnstrDescription;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ysnEnableColumn {
-                get {
-                    return this.columnysnEnable;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intInsertedByColumn {
-                get {
-                    return this.columnintInsertedBy;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn dteInsertionTimeColumn {
-                get {
-                    return this.columndteInsertionTime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intLastModifiedByColumn {
-                get {
-                    return this.columnintLastModifiedBy;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn dteLastModificationTimeColumn {
-                get {
-                    return this.columndteLastModificationTime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strPrefixColumn {
-                get {
-                    return this.columnstrPrefix;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strCodeForColumn {
-                get {
-                    return this.columnstrCodeFor;
+                    return this.columnGLCode;
                 }
             }
             
@@ -865,63 +806,48 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblSalesOfficeRow this[int index] {
+            public sprGLCodeConfitReportRow this[int index] {
                 get {
-                    return ((TblSalesOfficeRow)(this.Rows[index]));
+                    return ((sprGLCodeConfitReportRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TblSalesOfficeRowChangeEventHandler TblSalesOfficeRowChanging;
+            public event sprGLCodeConfitReportRowChangeEventHandler sprGLCodeConfitReportRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TblSalesOfficeRowChangeEventHandler TblSalesOfficeRowChanged;
+            public event sprGLCodeConfitReportRowChangeEventHandler sprGLCodeConfitReportRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TblSalesOfficeRowChangeEventHandler TblSalesOfficeRowDeleting;
+            public event sprGLCodeConfitReportRowChangeEventHandler sprGLCodeConfitReportRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event TblSalesOfficeRowChangeEventHandler TblSalesOfficeRowDeleted;
+            public event sprGLCodeConfitReportRowChangeEventHandler sprGLCodeConfitReportRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddTblSalesOfficeRow(TblSalesOfficeRow row) {
+            public void AddsprGLCodeConfitReportRow(sprGLCodeConfitReportRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblSalesOfficeRow AddTblSalesOfficeRow(int intUnitId, int intParentId, string strName, string strDescription, bool ysnEnable, int intInsertedBy, System.DateTime dteInsertionTime, int intLastModifiedBy, System.DateTime dteLastModificationTime, string strPrefix, string strCodeFor) {
-                TblSalesOfficeRow rowTblSalesOfficeRow = ((TblSalesOfficeRow)(this.NewRow()));
+            public sprGLCodeConfitReportRow AddsprGLCodeConfitReportRow(int intGLCodeID, string strAdditionDeduction, string strAccName, string GLCode) {
+                sprGLCodeConfitReportRow rowsprGLCodeConfitReportRow = ((sprGLCodeConfitReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        intUnitId,
-                        intParentId,
-                        strName,
-                        strDescription,
-                        ysnEnable,
-                        intInsertedBy,
-                        dteInsertionTime,
-                        intLastModifiedBy,
-                        dteLastModificationTime,
-                        strPrefix,
-                        strCodeFor};
-                rowTblSalesOfficeRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTblSalesOfficeRow);
-                return rowTblSalesOfficeRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblSalesOfficeRow FindByintId(int intId) {
-                return ((TblSalesOfficeRow)(this.Rows.Find(new object[] {
-                            intId})));
+                        intGLCodeID,
+                        strAdditionDeduction,
+                        strAccName,
+                        GLCode};
+                rowsprGLCodeConfitReportRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsprGLCodeConfitReportRow);
+                return rowsprGLCodeConfitReportRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                TblSalesOfficeDataTable cln = ((TblSalesOfficeDataTable)(base.Clone()));
+                sprGLCodeConfitReportDataTable cln = ((sprGLCodeConfitReportDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -929,97 +855,58 @@ namespace SAD_DAL.Global {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new TblSalesOfficeDataTable();
+                return new sprGLCodeConfitReportDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnintId = base.Columns["intId"];
-                this.columnintUnitId = base.Columns["intUnitId"];
-                this.columnintParentId = base.Columns["intParentId"];
-                this.columnstrName = base.Columns["strName"];
-                this.columnstrDescription = base.Columns["strDescription"];
-                this.columnysnEnable = base.Columns["ysnEnable"];
-                this.columnintInsertedBy = base.Columns["intInsertedBy"];
-                this.columndteInsertionTime = base.Columns["dteInsertionTime"];
-                this.columnintLastModifiedBy = base.Columns["intLastModifiedBy"];
-                this.columndteLastModificationTime = base.Columns["dteLastModificationTime"];
-                this.columnstrPrefix = base.Columns["strPrefix"];
-                this.columnstrCodeFor = base.Columns["strCodeFor"];
+                this.columnintGLCodeID = base.Columns["intGLCodeID"];
+                this.columnstrAdditionDeduction = base.Columns["strAdditionDeduction"];
+                this.columnstrAccName = base.Columns["strAccName"];
+                this.columnGLCode = base.Columns["GLCode"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnintId = new global::System.Data.DataColumn("intId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintId);
-                this.columnintUnitId = new global::System.Data.DataColumn("intUnitId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintUnitId);
-                this.columnintParentId = new global::System.Data.DataColumn("intParentId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintParentId);
-                this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrName);
-                this.columnstrDescription = new global::System.Data.DataColumn("strDescription", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrDescription);
-                this.columnysnEnable = new global::System.Data.DataColumn("ysnEnable", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnysnEnable);
-                this.columnintInsertedBy = new global::System.Data.DataColumn("intInsertedBy", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintInsertedBy);
-                this.columndteInsertionTime = new global::System.Data.DataColumn("dteInsertionTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndteInsertionTime);
-                this.columnintLastModifiedBy = new global::System.Data.DataColumn("intLastModifiedBy", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintLastModifiedBy);
-                this.columndteLastModificationTime = new global::System.Data.DataColumn("dteLastModificationTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndteLastModificationTime);
-                this.columnstrPrefix = new global::System.Data.DataColumn("strPrefix", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrPrefix);
-                this.columnstrCodeFor = new global::System.Data.DataColumn("strCodeFor", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrCodeFor);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintId}, true));
-                this.columnintId.AutoIncrement = true;
-                this.columnintId.AutoIncrementSeed = -1;
-                this.columnintId.AutoIncrementStep = -1;
-                this.columnintId.AllowDBNull = false;
-                this.columnintId.ReadOnly = true;
-                this.columnintId.Unique = true;
-                this.columnintUnitId.AllowDBNull = false;
-                this.columnintParentId.AllowDBNull = false;
-                this.columnstrName.AllowDBNull = false;
-                this.columnstrName.MaxLength = 100;
-                this.columnstrDescription.MaxLength = 500;
-                this.columnysnEnable.AllowDBNull = false;
-                this.columnintInsertedBy.AllowDBNull = false;
-                this.columndteInsertionTime.AllowDBNull = false;
-                this.columnstrPrefix.MaxLength = 10;
-                this.columnstrCodeFor.MaxLength = 50;
+                this.columnintGLCodeID = new global::System.Data.DataColumn("intGLCodeID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintGLCodeID);
+                this.columnstrAdditionDeduction = new global::System.Data.DataColumn("strAdditionDeduction", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrAdditionDeduction);
+                this.columnstrAccName = new global::System.Data.DataColumn("strAccName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrAccName);
+                this.columnGLCode = new global::System.Data.DataColumn("GLCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnGLCode);
+                this.columnstrAdditionDeduction.MaxLength = 250;
+                this.columnstrAccName.MaxLength = 200;
+                this.columnGLCode.MaxLength = 150;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblSalesOfficeRow NewTblSalesOfficeRow() {
-                return ((TblSalesOfficeRow)(this.NewRow()));
+            public sprGLCodeConfitReportRow NewsprGLCodeConfitReportRow() {
+                return ((sprGLCodeConfitReportRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new TblSalesOfficeRow(builder);
+                return new sprGLCodeConfitReportRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(TblSalesOfficeRow);
+                return typeof(sprGLCodeConfitReportRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.TblSalesOfficeRowChanged != null)) {
-                    this.TblSalesOfficeRowChanged(this, new TblSalesOfficeRowChangeEvent(((TblSalesOfficeRow)(e.Row)), e.Action));
+                if ((this.sprGLCodeConfitReportRowChanged != null)) {
+                    this.sprGLCodeConfitReportRowChanged(this, new sprGLCodeConfitReportRowChangeEvent(((sprGLCodeConfitReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1027,8 +914,8 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.TblSalesOfficeRowChanging != null)) {
-                    this.TblSalesOfficeRowChanging(this, new TblSalesOfficeRowChangeEvent(((TblSalesOfficeRow)(e.Row)), e.Action));
+                if ((this.sprGLCodeConfitReportRowChanging != null)) {
+                    this.sprGLCodeConfitReportRowChanging(this, new sprGLCodeConfitReportRowChangeEvent(((sprGLCodeConfitReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1036,8 +923,8 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.TblSalesOfficeRowDeleted != null)) {
-                    this.TblSalesOfficeRowDeleted(this, new TblSalesOfficeRowChangeEvent(((TblSalesOfficeRow)(e.Row)), e.Action));
+                if ((this.sprGLCodeConfitReportRowDeleted != null)) {
+                    this.sprGLCodeConfitReportRowDeleted(this, new sprGLCodeConfitReportRowChangeEvent(((sprGLCodeConfitReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1045,14 +932,14 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.TblSalesOfficeRowDeleting != null)) {
-                    this.TblSalesOfficeRowDeleting(this, new TblSalesOfficeRowChangeEvent(((TblSalesOfficeRow)(e.Row)), e.Action));
+                if ((this.sprGLCodeConfitReportRowDeleting != null)) {
+                    this.sprGLCodeConfitReportRowDeleting(this, new sprGLCodeConfitReportRowChangeEvent(((sprGLCodeConfitReportRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveTblSalesOfficeRow(TblSalesOfficeRow row) {
+            public void RemovesprGLCodeConfitReportRow(sprGLCodeConfitReportRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1061,7 +948,7 @@ namespace SAD_DAL.Global {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                SalesOfficeTDS ds = new SalesOfficeTDS();
+                GLCodeTDS ds = new GLCodeTDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1079,7 +966,7 @@ namespace SAD_DAL.Global {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "TblSalesOfficeDataTable";
+                attribute2.FixedValue = "sprGLCodeConfitReportDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1125,20 +1012,12 @@ namespace SAD_DAL.Global {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SprSalesOfficeByUserDataTable : global::System.Data.TypedTableBase<SprSalesOfficeByUserRow> {
-            
-            private global::System.Data.DataColumn columnintSalesOffId;
-            
-            private global::System.Data.DataColumn columnstrName;
-            
-            private global::System.Data.DataColumn columnintUnitId;
-            
-            private global::System.Data.DataColumn columnysnEnable;
+        public partial class SprGLCodeBridgeDataTable : global::System.Data.TypedTableBase<SprGLCodeBridgeRow> {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesOfficeByUserDataTable() {
-                this.TableName = "SprSalesOfficeByUser";
+            public SprGLCodeBridgeDataTable() {
+                this.TableName = "SprGLCodeBridge";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1146,7 +1025,7 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprSalesOfficeByUserDataTable(global::System.Data.DataTable table) {
+            internal SprGLCodeBridgeDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1163,41 +1042,9 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected SprSalesOfficeByUserDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected SprGLCodeBridgeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intSalesOffIdColumn {
-                get {
-                    return this.columnintSalesOffId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strNameColumn {
-                get {
-                    return this.columnstrName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intUnitIdColumn {
-                get {
-                    return this.columnintUnitId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ysnEnableColumn {
-                get {
-                    return this.columnysnEnable;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1211,48 +1058,44 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesOfficeByUserRow this[int index] {
+            public SprGLCodeBridgeRow this[int index] {
                 get {
-                    return ((SprSalesOfficeByUserRow)(this.Rows[index]));
+                    return ((SprGLCodeBridgeRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesOfficeByUserRowChangeEventHandler SprSalesOfficeByUserRowChanging;
+            public event SprGLCodeBridgeRowChangeEventHandler SprGLCodeBridgeRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesOfficeByUserRowChangeEventHandler SprSalesOfficeByUserRowChanged;
+            public event SprGLCodeBridgeRowChangeEventHandler SprGLCodeBridgeRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesOfficeByUserRowChangeEventHandler SprSalesOfficeByUserRowDeleting;
+            public event SprGLCodeBridgeRowChangeEventHandler SprGLCodeBridgeRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesOfficeByUserRowChangeEventHandler SprSalesOfficeByUserRowDeleted;
+            public event SprGLCodeBridgeRowChangeEventHandler SprGLCodeBridgeRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddSprSalesOfficeByUserRow(SprSalesOfficeByUserRow row) {
+            public void AddSprGLCodeBridgeRow(SprGLCodeBridgeRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesOfficeByUserRow AddSprSalesOfficeByUserRow(int intSalesOffId, string strName, int intUnitId, bool ysnEnable) {
-                SprSalesOfficeByUserRow rowSprSalesOfficeByUserRow = ((SprSalesOfficeByUserRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        intSalesOffId,
-                        strName,
-                        intUnitId,
-                        ysnEnable};
-                rowSprSalesOfficeByUserRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSprSalesOfficeByUserRow);
-                return rowSprSalesOfficeByUserRow;
+            public SprGLCodeBridgeRow AddSprGLCodeBridgeRow() {
+                SprGLCodeBridgeRow rowSprGLCodeBridgeRow = ((SprGLCodeBridgeRow)(this.NewRow()));
+                object[] columnValuesArray = new object[0];
+                rowSprGLCodeBridgeRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprGLCodeBridgeRow);
+                return rowSprGLCodeBridgeRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                SprSalesOfficeByUserDataTable cln = ((SprSalesOfficeByUserDataTable)(base.Clone()));
+                SprGLCodeBridgeDataTable cln = ((SprGLCodeBridgeDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1260,60 +1103,43 @@ namespace SAD_DAL.Global {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new SprSalesOfficeByUserDataTable();
+                return new SprGLCodeBridgeDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnintSalesOffId = base.Columns["intSalesOffId"];
-                this.columnstrName = base.Columns["strName"];
-                this.columnintUnitId = base.Columns["intUnitId"];
-                this.columnysnEnable = base.Columns["ysnEnable"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnintSalesOffId = new global::System.Data.DataColumn("intSalesOffId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintSalesOffId);
-                this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrName);
-                this.columnintUnitId = new global::System.Data.DataColumn("intUnitId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintUnitId);
-                this.columnysnEnable = new global::System.Data.DataColumn("ysnEnable", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnysnEnable);
-                this.columnintSalesOffId.AllowDBNull = false;
-                this.columnstrName.AllowDBNull = false;
-                this.columnstrName.MaxLength = 100;
-                this.columnintUnitId.AllowDBNull = false;
-                this.columnysnEnable.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesOfficeByUserRow NewSprSalesOfficeByUserRow() {
-                return ((SprSalesOfficeByUserRow)(this.NewRow()));
+            public SprGLCodeBridgeRow NewSprGLCodeBridgeRow() {
+                return ((SprGLCodeBridgeRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SprSalesOfficeByUserRow(builder);
+                return new SprGLCodeBridgeRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(SprSalesOfficeByUserRow);
+                return typeof(SprGLCodeBridgeRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.SprSalesOfficeByUserRowChanged != null)) {
-                    this.SprSalesOfficeByUserRowChanged(this, new SprSalesOfficeByUserRowChangeEvent(((SprSalesOfficeByUserRow)(e.Row)), e.Action));
+                if ((this.SprGLCodeBridgeRowChanged != null)) {
+                    this.SprGLCodeBridgeRowChanged(this, new SprGLCodeBridgeRowChangeEvent(((SprGLCodeBridgeRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1321,8 +1147,8 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.SprSalesOfficeByUserRowChanging != null)) {
-                    this.SprSalesOfficeByUserRowChanging(this, new SprSalesOfficeByUserRowChangeEvent(((SprSalesOfficeByUserRow)(e.Row)), e.Action));
+                if ((this.SprGLCodeBridgeRowChanging != null)) {
+                    this.SprGLCodeBridgeRowChanging(this, new SprGLCodeBridgeRowChangeEvent(((SprGLCodeBridgeRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1330,8 +1156,8 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.SprSalesOfficeByUserRowDeleted != null)) {
-                    this.SprSalesOfficeByUserRowDeleted(this, new SprSalesOfficeByUserRowChangeEvent(((SprSalesOfficeByUserRow)(e.Row)), e.Action));
+                if ((this.SprGLCodeBridgeRowDeleted != null)) {
+                    this.SprGLCodeBridgeRowDeleted(this, new SprGLCodeBridgeRowChangeEvent(((SprGLCodeBridgeRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1339,14 +1165,14 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.SprSalesOfficeByUserRowDeleting != null)) {
-                    this.SprSalesOfficeByUserRowDeleting(this, new SprSalesOfficeByUserRowChangeEvent(((SprSalesOfficeByUserRow)(e.Row)), e.Action));
+                if ((this.SprGLCodeBridgeRowDeleting != null)) {
+                    this.SprGLCodeBridgeRowDeleting(this, new SprGLCodeBridgeRowChangeEvent(((SprGLCodeBridgeRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveSprSalesOfficeByUserRow(SprSalesOfficeByUserRow row) {
+            public void RemoveSprGLCodeBridgeRow(SprGLCodeBridgeRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1355,7 +1181,7 @@ namespace SAD_DAL.Global {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                SalesOfficeTDS ds = new SalesOfficeTDS();
+                GLCodeTDS ds = new GLCodeTDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1373,7 +1199,7 @@ namespace SAD_DAL.Global {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SprSalesOfficeByUserDataTable";
+                attribute2.FixedValue = "SprGLCodeBridgeDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1419,16 +1245,16 @@ namespace SAD_DAL.Global {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class tblEmployeeDataTable : global::System.Data.TypedTableBase<tblEmployeeRow> {
+        public partial class SprGetUnitDataTable : global::System.Data.TypedTableBase<SprGetUnitRow> {
             
-            private global::System.Data.DataColumn columnintEmployeeID;
+            private global::System.Data.DataColumn columnintUnitID;
             
-            private global::System.Data.DataColumn columnstrEmployeeID;
+            private global::System.Data.DataColumn columnstrUnit;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblEmployeeDataTable() {
-                this.TableName = "tblEmployee";
+            public SprGetUnitDataTable() {
+                this.TableName = "SprGetUnit";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1436,7 +1262,7 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal tblEmployeeDataTable(global::System.Data.DataTable table) {
+            internal SprGetUnitDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1453,24 +1279,24 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected tblEmployeeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected SprGetUnitDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intEmployeeIDColumn {
+            public global::System.Data.DataColumn intUnitIDColumn {
                 get {
-                    return this.columnintEmployeeID;
+                    return this.columnintUnitID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strEmployeeIDColumn {
+            public global::System.Data.DataColumn strUnitColumn {
                 get {
-                    return this.columnstrEmployeeID;
+                    return this.columnstrUnit;
                 }
             }
             
@@ -1485,54 +1311,46 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblEmployeeRow this[int index] {
+            public SprGetUnitRow this[int index] {
                 get {
-                    return ((tblEmployeeRow)(this.Rows[index]));
+                    return ((SprGetUnitRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblEmployeeRowChangeEventHandler tblEmployeeRowChanging;
+            public event SprGetUnitRowChangeEventHandler SprGetUnitRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblEmployeeRowChangeEventHandler tblEmployeeRowChanged;
+            public event SprGetUnitRowChangeEventHandler SprGetUnitRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblEmployeeRowChangeEventHandler tblEmployeeRowDeleting;
+            public event SprGetUnitRowChangeEventHandler SprGetUnitRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event tblEmployeeRowChangeEventHandler tblEmployeeRowDeleted;
+            public event SprGetUnitRowChangeEventHandler SprGetUnitRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddtblEmployeeRow(tblEmployeeRow row) {
+            public void AddSprGetUnitRow(SprGetUnitRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblEmployeeRow AddtblEmployeeRow() {
-                tblEmployeeRow rowtblEmployeeRow = ((tblEmployeeRow)(this.NewRow()));
+            public SprGetUnitRow AddSprGetUnitRow(int intUnitID, string strUnit) {
+                SprGetUnitRow rowSprGetUnitRow = ((SprGetUnitRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
-                        null};
-                rowtblEmployeeRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowtblEmployeeRow);
-                return rowtblEmployeeRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblEmployeeRow FindByintEmployeeIDstrEmployeeID(int intEmployeeID, int strEmployeeID) {
-                return ((tblEmployeeRow)(this.Rows.Find(new object[] {
-                            intEmployeeID,
-                            strEmployeeID})));
+                        intUnitID,
+                        strUnit};
+                rowSprGetUnitRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprGetUnitRow);
+                return rowSprGetUnitRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                tblEmployeeDataTable cln = ((tblEmployeeDataTable)(base.Clone()));
+                SprGetUnitDataTable cln = ((SprGetUnitDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1540,62 +1358,52 @@ namespace SAD_DAL.Global {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new tblEmployeeDataTable();
+                return new SprGetUnitDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnintEmployeeID = base.Columns["intEmployeeID"];
-                this.columnstrEmployeeID = base.Columns["strEmployeeID"];
+                this.columnintUnitID = base.Columns["intUnitID"];
+                this.columnstrUnit = base.Columns["strUnit"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnintEmployeeID = new global::System.Data.DataColumn("intEmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintEmployeeID);
-                this.columnstrEmployeeID = new global::System.Data.DataColumn("strEmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrEmployeeID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintEmployeeID,
-                                this.columnstrEmployeeID}, true));
-                this.columnintEmployeeID.AutoIncrement = true;
-                this.columnintEmployeeID.AutoIncrementSeed = -1;
-                this.columnintEmployeeID.AutoIncrementStep = -1;
-                this.columnintEmployeeID.AllowDBNull = false;
-                this.columnintEmployeeID.ReadOnly = true;
-                this.columnstrEmployeeID.AutoIncrement = true;
-                this.columnstrEmployeeID.AutoIncrementSeed = -1;
-                this.columnstrEmployeeID.AutoIncrementStep = -1;
-                this.columnstrEmployeeID.AllowDBNull = false;
-                this.columnstrEmployeeID.ReadOnly = true;
+                this.columnintUnitID = new global::System.Data.DataColumn("intUnitID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintUnitID);
+                this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUnit);
+                this.columnintUnitID.ReadOnly = true;
+                this.columnstrUnit.ReadOnly = true;
+                this.columnstrUnit.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblEmployeeRow NewtblEmployeeRow() {
-                return ((tblEmployeeRow)(this.NewRow()));
+            public SprGetUnitRow NewSprGetUnitRow() {
+                return ((SprGetUnitRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new tblEmployeeRow(builder);
+                return new SprGetUnitRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(tblEmployeeRow);
+                return typeof(SprGetUnitRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.tblEmployeeRowChanged != null)) {
-                    this.tblEmployeeRowChanged(this, new tblEmployeeRowChangeEvent(((tblEmployeeRow)(e.Row)), e.Action));
+                if ((this.SprGetUnitRowChanged != null)) {
+                    this.SprGetUnitRowChanged(this, new SprGetUnitRowChangeEvent(((SprGetUnitRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1603,8 +1411,8 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.tblEmployeeRowChanging != null)) {
-                    this.tblEmployeeRowChanging(this, new tblEmployeeRowChangeEvent(((tblEmployeeRow)(e.Row)), e.Action));
+                if ((this.SprGetUnitRowChanging != null)) {
+                    this.SprGetUnitRowChanging(this, new SprGetUnitRowChangeEvent(((SprGetUnitRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1612,8 +1420,8 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.tblEmployeeRowDeleted != null)) {
-                    this.tblEmployeeRowDeleted(this, new tblEmployeeRowChangeEvent(((tblEmployeeRow)(e.Row)), e.Action));
+                if ((this.SprGetUnitRowDeleted != null)) {
+                    this.SprGetUnitRowDeleted(this, new SprGetUnitRowChangeEvent(((SprGetUnitRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1621,14 +1429,14 @@ namespace SAD_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.tblEmployeeRowDeleting != null)) {
-                    this.tblEmployeeRowDeleting(this, new tblEmployeeRowChangeEvent(((tblEmployeeRow)(e.Row)), e.Action));
+                if ((this.SprGetUnitRowDeleting != null)) {
+                    this.SprGetUnitRowDeleting(this, new SprGetUnitRowChangeEvent(((SprGetUnitRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemovetblEmployeeRow(tblEmployeeRow row) {
+            public void RemoveSprGetUnitRow(SprGetUnitRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1637,7 +1445,7 @@ namespace SAD_DAL.Global {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                SalesOfficeTDS ds = new SalesOfficeTDS();
+                GLCodeTDS ds = new GLCodeTDS();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1655,7 +1463,7 @@ namespace SAD_DAL.Global {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "tblEmployeeDataTable";
+                attribute2.FixedValue = "SprGetUnitDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1699,450 +1507,429 @@ namespace SAD_DAL.Global {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class QrySalesOfficeByShipPointRow : global::System.Data.DataRow {
+        public partial class QRYEMPLOYEEPROFILEALLRow : global::System.Data.DataRow {
             
-            private QrySalesOfficeByShipPointDataTable tableQrySalesOfficeByShipPoint;
+            private QRYEMPLOYEEPROFILEALLDataTable tableQRYEMPLOYEEPROFILEALL;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal QrySalesOfficeByShipPointRow(global::System.Data.DataRowBuilder rb) : 
+            internal QRYEMPLOYEEPROFILEALLRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableQrySalesOfficeByShipPoint = ((QrySalesOfficeByShipPointDataTable)(this.Table));
+                this.tableQRYEMPLOYEEPROFILEALL = ((QRYEMPLOYEEPROFILEALLDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intShippingPointId {
-                get {
-                    return ((int)(this[this.tableQrySalesOfficeByShipPoint.intShippingPointIdColumn]));
-                }
-                set {
-                    this[this.tableQrySalesOfficeByShipPoint.intShippingPointIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intSalesOfficeId {
-                get {
-                    return ((int)(this[this.tableQrySalesOfficeByShipPoint.intSalesOfficeIdColumn]));
-                }
-                set {
-                    this[this.tableQrySalesOfficeByShipPoint.intSalesOfficeIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strName {
+            public string strOfficeEmail {
                 get {
                     try {
-                        return ((string)(this[this.tableQrySalesOfficeByShipPoint.strNameColumn]));
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strOfficeEmailColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strName\' in table \'QrySalesOfficeByShipPoint\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strOfficeEmail\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tableQrySalesOfficeByShipPoint.strNameColumn] = value;
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strOfficeEmailColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intUnitId {
+            public string strEmployeeName {
                 get {
                     try {
-                        return ((int)(this[this.tableQrySalesOfficeByShipPoint.intUnitIdColumn]));
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intUnitId\' in table \'QrySalesOfficeByShipPoint\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strEmployeeName\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tableQrySalesOfficeByShipPoint.intUnitIdColumn] = value;
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool ysnEnable {
+            public string strDesignation {
                 get {
                     try {
-                        return ((bool)(this[this.tableQrySalesOfficeByShipPoint.ysnEnableColumn]));
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ysnEnable\' in table \'QrySalesOfficeByShipPoint\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDesignation\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tableQrySalesOfficeByShipPoint.ysnEnableColumn] = value;
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrNameNull() {
-                return this.IsNull(this.tableQrySalesOfficeByShipPoint.strNameColumn);
+            public string strDepatrment {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strDepatrmentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDepatrment\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strDepatrmentColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrNameNull() {
-                this[this.tableQrySalesOfficeByShipPoint.strNameColumn] = global::System.Convert.DBNull;
+            public string strUnit {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strUnitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strUnit\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strUnitColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintUnitIdNull() {
-                return this.IsNull(this.tableQrySalesOfficeByShipPoint.intUnitIdColumn);
+            public string strJobStationName {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strJobStationNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strJobStationName\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strJobStationNameColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintUnitIdNull() {
-                this[this.tableQrySalesOfficeByShipPoint.intUnitIdColumn] = global::System.Convert.DBNull;
+            public string strStatus {
+                get {
+                    try {
+                        return ((string)(this[this.tableQRYEMPLOYEEPROFILEALL.strStatusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strStatus\' in table \'QRYEMPLOYEEPROFILEALL\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQRYEMPLOYEEPROFILEALL.strStatusColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsysnEnableNull() {
-                return this.IsNull(this.tableQrySalesOfficeByShipPoint.ysnEnableColumn);
+            public bool IsstrOfficeEmailNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strOfficeEmailColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetysnEnableNull() {
-                this[this.tableQrySalesOfficeByShipPoint.ysnEnableColumn] = global::System.Convert.DBNull;
+            public void SetstrOfficeEmailNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strOfficeEmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrEmployeeNameNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrEmployeeNameNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strEmployeeNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDesignationNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDesignationNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strDesignationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDepatrmentNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strDepatrmentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDepatrmentNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strDepatrmentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrUnitNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strUnitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrUnitNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strUnitColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrJobStationNameNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strJobStationNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrJobStationNameNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strJobStationNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrStatusNull() {
+                return this.IsNull(this.tableQRYEMPLOYEEPROFILEALL.strStatusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrStatusNull() {
+                this[this.tableQRYEMPLOYEEPROFILEALL.strStatusColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class TblSalesOfficeRow : global::System.Data.DataRow {
+        public partial class sprGLCodeConfitReportRow : global::System.Data.DataRow {
             
-            private TblSalesOfficeDataTable tableTblSalesOffice;
+            private sprGLCodeConfitReportDataTable tablesprGLCodeConfitReport;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal TblSalesOfficeRow(global::System.Data.DataRowBuilder rb) : 
+            internal sprGLCodeConfitReportRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTblSalesOffice = ((TblSalesOfficeDataTable)(this.Table));
+                this.tablesprGLCodeConfitReport = ((sprGLCodeConfitReportDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intId {
-                get {
-                    return ((int)(this[this.tableTblSalesOffice.intIdColumn]));
-                }
-                set {
-                    this[this.tableTblSalesOffice.intIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intUnitId {
-                get {
-                    return ((int)(this[this.tableTblSalesOffice.intUnitIdColumn]));
-                }
-                set {
-                    this[this.tableTblSalesOffice.intUnitIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intParentId {
-                get {
-                    return ((int)(this[this.tableTblSalesOffice.intParentIdColumn]));
-                }
-                set {
-                    this[this.tableTblSalesOffice.intParentIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strName {
-                get {
-                    return ((string)(this[this.tableTblSalesOffice.strNameColumn]));
-                }
-                set {
-                    this[this.tableTblSalesOffice.strNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strDescription {
+            public int intGLCodeID {
                 get {
                     try {
-                        return ((string)(this[this.tableTblSalesOffice.strDescriptionColumn]));
+                        return ((int)(this[this.tablesprGLCodeConfitReport.intGLCodeIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strDescription\' in table \'TblSalesOffice\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'intGLCodeID\' in table \'sprGLCodeConfitReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTblSalesOffice.strDescriptionColumn] = value;
+                    this[this.tablesprGLCodeConfitReport.intGLCodeIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool ysnEnable {
-                get {
-                    return ((bool)(this[this.tableTblSalesOffice.ysnEnableColumn]));
-                }
-                set {
-                    this[this.tableTblSalesOffice.ysnEnableColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intInsertedBy {
-                get {
-                    return ((int)(this[this.tableTblSalesOffice.intInsertedByColumn]));
-                }
-                set {
-                    this[this.tableTblSalesOffice.intInsertedByColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime dteInsertionTime {
-                get {
-                    return ((global::System.DateTime)(this[this.tableTblSalesOffice.dteInsertionTimeColumn]));
-                }
-                set {
-                    this[this.tableTblSalesOffice.dteInsertionTimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intLastModifiedBy {
+            public string strAdditionDeduction {
                 get {
                     try {
-                        return ((int)(this[this.tableTblSalesOffice.intLastModifiedByColumn]));
+                        return ((string)(this[this.tablesprGLCodeConfitReport.strAdditionDeductionColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intLastModifiedBy\' in table \'TblSalesOffice\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strAdditionDeduction\' in table \'sprGLCodeConfitReport\' is D" +
+                                "BNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTblSalesOffice.intLastModifiedByColumn] = value;
+                    this[this.tablesprGLCodeConfitReport.strAdditionDeductionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime dteLastModificationTime {
+            public string strAccName {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableTblSalesOffice.dteLastModificationTimeColumn]));
+                        return ((string)(this[this.tablesprGLCodeConfitReport.strAccNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'dteLastModificationTime\' in table \'TblSalesOffice\' is DBNul" +
-                                "l.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strAccName\' in table \'sprGLCodeConfitReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTblSalesOffice.dteLastModificationTimeColumn] = value;
+                    this[this.tablesprGLCodeConfitReport.strAccNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strPrefix {
+            public string GLCode {
                 get {
                     try {
-                        return ((string)(this[this.tableTblSalesOffice.strPrefixColumn]));
+                        return ((string)(this[this.tablesprGLCodeConfitReport.GLCodeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strPrefix\' in table \'TblSalesOffice\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'GLCode\' in table \'sprGLCodeConfitReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTblSalesOffice.strPrefixColumn] = value;
+                    this[this.tablesprGLCodeConfitReport.GLCodeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strCodeFor {
-                get {
-                    try {
-                        return ((string)(this[this.tableTblSalesOffice.strCodeForColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strCodeFor\' in table \'TblSalesOffice\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTblSalesOffice.strCodeForColumn] = value;
-                }
+            public bool IsintGLCodeIDNull() {
+                return this.IsNull(this.tablesprGLCodeConfitReport.intGLCodeIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrDescriptionNull() {
-                return this.IsNull(this.tableTblSalesOffice.strDescriptionColumn);
+            public void SetintGLCodeIDNull() {
+                this[this.tablesprGLCodeConfitReport.intGLCodeIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrDescriptionNull() {
-                this[this.tableTblSalesOffice.strDescriptionColumn] = global::System.Convert.DBNull;
+            public bool IsstrAdditionDeductionNull() {
+                return this.IsNull(this.tablesprGLCodeConfitReport.strAdditionDeductionColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintLastModifiedByNull() {
-                return this.IsNull(this.tableTblSalesOffice.intLastModifiedByColumn);
+            public void SetstrAdditionDeductionNull() {
+                this[this.tablesprGLCodeConfitReport.strAdditionDeductionColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintLastModifiedByNull() {
-                this[this.tableTblSalesOffice.intLastModifiedByColumn] = global::System.Convert.DBNull;
+            public bool IsstrAccNameNull() {
+                return this.IsNull(this.tablesprGLCodeConfitReport.strAccNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsdteLastModificationTimeNull() {
-                return this.IsNull(this.tableTblSalesOffice.dteLastModificationTimeColumn);
+            public void SetstrAccNameNull() {
+                this[this.tablesprGLCodeConfitReport.strAccNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetdteLastModificationTimeNull() {
-                this[this.tableTblSalesOffice.dteLastModificationTimeColumn] = global::System.Convert.DBNull;
+            public bool IsGLCodeNull() {
+                return this.IsNull(this.tablesprGLCodeConfitReport.GLCodeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrPrefixNull() {
-                return this.IsNull(this.tableTblSalesOffice.strPrefixColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrPrefixNull() {
-                this[this.tableTblSalesOffice.strPrefixColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrCodeForNull() {
-                return this.IsNull(this.tableTblSalesOffice.strCodeForColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrCodeForNull() {
-                this[this.tableTblSalesOffice.strCodeForColumn] = global::System.Convert.DBNull;
+            public void SetGLCodeNull() {
+                this[this.tablesprGLCodeConfitReport.GLCodeColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SprSalesOfficeByUserRow : global::System.Data.DataRow {
+        public partial class SprGLCodeBridgeRow : global::System.Data.DataRow {
             
-            private SprSalesOfficeByUserDataTable tableSprSalesOfficeByUser;
+            private SprGLCodeBridgeDataTable tableSprGLCodeBridge;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprSalesOfficeByUserRow(global::System.Data.DataRowBuilder rb) : 
+            internal SprGLCodeBridgeRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableSprSalesOfficeByUser = ((SprSalesOfficeByUserDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intSalesOffId {
-                get {
-                    return ((int)(this[this.tableSprSalesOfficeByUser.intSalesOffIdColumn]));
-                }
-                set {
-                    this[this.tableSprSalesOfficeByUser.intSalesOffIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strName {
-                get {
-                    return ((string)(this[this.tableSprSalesOfficeByUser.strNameColumn]));
-                }
-                set {
-                    this[this.tableSprSalesOfficeByUser.strNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intUnitId {
-                get {
-                    return ((int)(this[this.tableSprSalesOfficeByUser.intUnitIdColumn]));
-                }
-                set {
-                    this[this.tableSprSalesOfficeByUser.intUnitIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool ysnEnable {
-                get {
-                    return ((bool)(this[this.tableSprSalesOfficeByUser.ysnEnableColumn]));
-                }
-                set {
-                    this[this.tableSprSalesOfficeByUser.ysnEnableColumn] = value;
-                }
+                this.tableSprGLCodeBridge = ((SprGLCodeBridgeDataTable)(this.Table));
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class tblEmployeeRow : global::System.Data.DataRow {
+        public partial class SprGetUnitRow : global::System.Data.DataRow {
             
-            private tblEmployeeDataTable tabletblEmployee;
+            private SprGetUnitDataTable tableSprGetUnit;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal tblEmployeeRow(global::System.Data.DataRowBuilder rb) : 
+            internal SprGetUnitRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tabletblEmployee = ((tblEmployeeDataTable)(this.Table));
+                this.tableSprGetUnit = ((SprGetUnitDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intEmployeeID {
+            public int intUnitID {
                 get {
-                    return ((int)(this[this.tabletblEmployee.intEmployeeIDColumn]));
+                    try {
+                        return ((int)(this[this.tableSprGetUnit.intUnitIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intUnitID\' in table \'SprGetUnit\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tabletblEmployee.intEmployeeIDColumn] = value;
+                    this[this.tableSprGetUnit.intUnitIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int strEmployeeID {
+            public string strUnit {
                 get {
-                    return ((int)(this[this.tabletblEmployee.strEmployeeIDColumn]));
+                    try {
+                        return ((string)(this[this.tableSprGetUnit.strUnitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strUnit\' in table \'SprGetUnit\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tabletblEmployee.strEmployeeIDColumn] = value;
+                    this[this.tableSprGetUnit.strUnitColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintUnitIDNull() {
+                return this.IsNull(this.tableSprGetUnit.intUnitIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintUnitIDNull() {
+                this[this.tableSprGetUnit.intUnitIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrUnitNull() {
+                return this.IsNull(this.tableSprGetUnit.strUnitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrUnitNull() {
+                this[this.tableSprGetUnit.strUnitColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2150,22 +1937,22 @@ namespace SAD_DAL.Global {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class QrySalesOfficeByShipPointRowChangeEvent : global::System.EventArgs {
+        public class QRYEMPLOYEEPROFILEALLRowChangeEvent : global::System.EventArgs {
             
-            private QrySalesOfficeByShipPointRow eventRow;
+            private QRYEMPLOYEEPROFILEALLRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QrySalesOfficeByShipPointRowChangeEvent(QrySalesOfficeByShipPointRow row, global::System.Data.DataRowAction action) {
+            public QRYEMPLOYEEPROFILEALLRowChangeEvent(QRYEMPLOYEEPROFILEALLRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QrySalesOfficeByShipPointRow Row {
+            public QRYEMPLOYEEPROFILEALLRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2184,22 +1971,22 @@ namespace SAD_DAL.Global {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class TblSalesOfficeRowChangeEvent : global::System.EventArgs {
+        public class sprGLCodeConfitReportRowChangeEvent : global::System.EventArgs {
             
-            private TblSalesOfficeRow eventRow;
+            private sprGLCodeConfitReportRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblSalesOfficeRowChangeEvent(TblSalesOfficeRow row, global::System.Data.DataRowAction action) {
+            public sprGLCodeConfitReportRowChangeEvent(sprGLCodeConfitReportRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblSalesOfficeRow Row {
+            public sprGLCodeConfitReportRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2218,22 +2005,22 @@ namespace SAD_DAL.Global {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class SprSalesOfficeByUserRowChangeEvent : global::System.EventArgs {
+        public class SprGLCodeBridgeRowChangeEvent : global::System.EventArgs {
             
-            private SprSalesOfficeByUserRow eventRow;
+            private SprGLCodeBridgeRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesOfficeByUserRowChangeEvent(SprSalesOfficeByUserRow row, global::System.Data.DataRowAction action) {
+            public SprGLCodeBridgeRowChangeEvent(SprGLCodeBridgeRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesOfficeByUserRow Row {
+            public SprGLCodeBridgeRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2252,22 +2039,22 @@ namespace SAD_DAL.Global {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class tblEmployeeRowChangeEvent : global::System.EventArgs {
+        public class SprGetUnitRowChangeEvent : global::System.EventArgs {
             
-            private tblEmployeeRow eventRow;
+            private SprGetUnitRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblEmployeeRowChangeEvent(tblEmployeeRow row, global::System.Data.DataRowAction action) {
+            public SprGetUnitRowChangeEvent(SprGetUnitRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblEmployeeRow Row {
+            public SprGetUnitRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2283,7 +2070,7 @@ namespace SAD_DAL.Global {
         }
     }
 }
-namespace SAD_DAL.Global.SalesOfficeTDSTableAdapters {
+namespace DAL.Accounts.ChartOfAccount.GLCodeTDSTableAdapters {
     
     
     /// <summary>
@@ -2295,7 +2082,7 @@ namespace SAD_DAL.Global.SalesOfficeTDSTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class QrySalesOfficeByShipPointTableAdapter : global::System.ComponentModel.Component {
+    public partial class QRYEMPLOYEEPROFILEALLTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -2309,7 +2096,7 @@ namespace SAD_DAL.Global.SalesOfficeTDSTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public QrySalesOfficeByShipPointTableAdapter() {
+        public QRYEMPLOYEEPROFILEALLTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -2406,12 +2193,14 @@ namespace SAD_DAL.Global.SalesOfficeTDSTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "QrySalesOfficeByShipPoint";
-            tableMapping.ColumnMappings.Add("intShippingPointId", "intShippingPointId");
-            tableMapping.ColumnMappings.Add("intSalesOfficeId", "intSalesOfficeId");
-            tableMapping.ColumnMappings.Add("strName", "strName");
-            tableMapping.ColumnMappings.Add("intUnitId", "intUnitId");
-            tableMapping.ColumnMappings.Add("ysnEnable", "ysnEnable");
+            tableMapping.DataSetTable = "QRYEMPLOYEEPROFILEALL";
+            tableMapping.ColumnMappings.Add("strOfficeEmail", "strOfficeEmail");
+            tableMapping.ColumnMappings.Add("strEmployeeName", "strEmployeeName");
+            tableMapping.ColumnMappings.Add("strDesignation", "strDesignation");
+            tableMapping.ColumnMappings.Add("strDepatrment", "strDepatrment");
+            tableMapping.ColumnMappings.Add("strUnit", "strUnit");
+            tableMapping.ColumnMappings.Add("strJobStationName", "strJobStationName");
+            tableMapping.ColumnMappings.Add("strStatus", "strStatus");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2419,7 +2208,7 @@ namespace SAD_DAL.Global.SalesOfficeTDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
+            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.ERP_HRConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2428,28 +2217,21 @@ namespace SAD_DAL.Global.SalesOfficeTDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT intShippingPointId, intSalesOfficeId, strName, intUnitId, ysnEnable FROM d" +
-                "bo.qrySalesOfficeByShipPoint\r\nwhere intShippingPointId=@intShippingPointId and y" +
-                "snEnable =@ysnEnable ";
+            this._commandCollection[0].CommandText = "SELECT        strOfficeEmail, strEmployeeName, strDesignation, strDepatrment, str" +
+                "Unit, strJobStationName, strStatus\r\nFROM            QRYEMPLOYEEPROFILEALL\r\nWHERE" +
+                "        (intEmployeeID = @Enroll)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShippingPointId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShippingPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnEnable", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ysnEnable", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual SalesOfficeTDS.QrySalesOfficeByShipPointDataTable GetDataByShipPoint(int intShippingPointId, global::System.Nullable<bool> ysnEnable) {
+        public virtual GLCodeTDS.QRYEMPLOYEEPROFILEALLDataTable GetEmployeeDetailsData(int Enroll) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intShippingPointId));
-            if ((ysnEnable.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((bool)(ysnEnable.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            SalesOfficeTDS.QrySalesOfficeByShipPointDataTable dataTable = new SalesOfficeTDS.QrySalesOfficeByShipPointDataTable();
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(Enroll));
+            GLCodeTDS.QRYEMPLOYEEPROFILEALLDataTable dataTable = new GLCodeTDS.QRYEMPLOYEEPROFILEALLDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2464,7 +2246,7 @@ namespace SAD_DAL.Global.SalesOfficeTDSTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class TblSalesOfficeTableAdapter : global::System.ComponentModel.Component {
+    public partial class sprGLCodeConfitReportTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -2478,7 +2260,7 @@ namespace SAD_DAL.Global.SalesOfficeTDSTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public TblSalesOfficeTableAdapter() {
+        public sprGLCodeConfitReportTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -2575,319 +2357,11 @@ namespace SAD_DAL.Global.SalesOfficeTDSTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "TblSalesOffice";
-            tableMapping.ColumnMappings.Add("intId", "intId");
-            tableMapping.ColumnMappings.Add("intUnitId", "intUnitId");
-            tableMapping.ColumnMappings.Add("intParentId", "intParentId");
-            tableMapping.ColumnMappings.Add("strName", "strName");
-            tableMapping.ColumnMappings.Add("strDescription", "strDescription");
-            tableMapping.ColumnMappings.Add("ysnEnable", "ysnEnable");
-            tableMapping.ColumnMappings.Add("intInsertedBy", "intInsertedBy");
-            tableMapping.ColumnMappings.Add("dteInsertionTime", "dteInsertionTime");
-            tableMapping.ColumnMappings.Add("intLastModifiedBy", "intLastModifiedBy");
-            tableMapping.ColumnMappings.Add("dteLastModificationTime", "dteLastModificationTime");
-            tableMapping.ColumnMappings.Add("strPrefix", "strPrefix");
-            tableMapping.ColumnMappings.Add("strCodeFor", "strCodeFor");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[tblSalesOffice] WHERE (([intId] = @Original_intId) AND ([intUnitId] = @Original_intUnitId) AND ([intParentId] = @Original_intParentId) AND ([strName] = @Original_strName) AND ((@IsNull_strDescription = 1 AND [strDescription] IS NULL) OR ([strDescription] = @Original_strDescription)) AND ([ysnEnable] = @Original_ysnEnable) AND ([intInsertedBy] = @Original_intInsertedBy) AND ([dteInsertionTime] = @Original_dteInsertionTime) AND ((@IsNull_intLastModifiedBy = 1 AND [intLastModifiedBy] IS NULL) OR ([intLastModifiedBy] = @Original_intLastModifiedBy)) AND ((@IsNull_dteLastModificationTime = 1 AND [dteLastModificationTime] IS NULL) OR ([dteLastModificationTime] = @Original_dteLastModificationTime)) AND ((@IsNull_strPrefix = 1 AND [strPrefix] IS NULL) OR ([strPrefix] = @Original_strPrefix)) AND ((@IsNull_strCodeFor = 1 AND [strCodeFor] IS NULL) OR ([strCodeFor] = @Original_strCodeFor)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intUnitId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intParentId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intParentId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ysnEnable", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnEnable", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intInsertedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dteInsertionTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteInsertionTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intLastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastModifiedBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intLastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastModifiedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_dteLastModificationTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastModificationTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dteLastModificationTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastModificationTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strPrefix", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPrefix", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strPrefix", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPrefix", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strCodeFor", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCodeFor", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strCodeFor", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCodeFor", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[tblSalesOffice] ([intUnitId], [intParentId], [strName], [strDescription], [ysnEnable], [intInsertedBy], [dteInsertionTime], [intLastModifiedBy], [dteLastModificationTime], [strPrefix], [strCodeFor]) VALUES (@intUnitId, @intParentId, @strName, @strDescription, @ysnEnable, @intInsertedBy, @dteInsertionTime, @intLastModifiedBy, @dteLastModificationTime, @strPrefix, @strCodeFor);
-SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intInsertedBy, dteInsertionTime, intLastModifiedBy, dteLastModificationTime, strPrefix, strCodeFor FROM tblSalesOffice WHERE (intId = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intParentId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intParentId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnEnable", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnEnable", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intInsertedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteInsertionTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteInsertionTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastModifiedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteLastModificationTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastModificationTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPrefix", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPrefix", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCodeFor", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCodeFor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[tblSalesOffice] SET [intUnitId] = @intUnitId, [intParentId] = @intParentId, [strName] = @strName, [strDescription] = @strDescription, [ysnEnable] = @ysnEnable, [intInsertedBy] = @intInsertedBy, [dteInsertionTime] = @dteInsertionTime, [intLastModifiedBy] = @intLastModifiedBy, [dteLastModificationTime] = @dteLastModificationTime, [strPrefix] = @strPrefix, [strCodeFor] = @strCodeFor WHERE (([intId] = @Original_intId) AND ([intUnitId] = @Original_intUnitId) AND ([intParentId] = @Original_intParentId) AND ([strName] = @Original_strName) AND ((@IsNull_strDescription = 1 AND [strDescription] IS NULL) OR ([strDescription] = @Original_strDescription)) AND ([ysnEnable] = @Original_ysnEnable) AND ([intInsertedBy] = @Original_intInsertedBy) AND ([dteInsertionTime] = @Original_dteInsertionTime) AND ((@IsNull_intLastModifiedBy = 1 AND [intLastModifiedBy] IS NULL) OR ([intLastModifiedBy] = @Original_intLastModifiedBy)) AND ((@IsNull_dteLastModificationTime = 1 AND [dteLastModificationTime] IS NULL) OR ([dteLastModificationTime] = @Original_dteLastModificationTime)) AND ((@IsNull_strPrefix = 1 AND [strPrefix] IS NULL) OR ([strPrefix] = @Original_strPrefix)) AND ((@IsNull_strCodeFor = 1 AND [strCodeFor] IS NULL) OR ([strCodeFor] = @Original_strCodeFor)));
-SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intInsertedBy, dteInsertionTime, intLastModifiedBy, dteLastModificationTime, strPrefix, strCodeFor FROM tblSalesOffice WHERE (intId = @intId)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intParentId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intParentId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnEnable", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnEnable", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intInsertedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteInsertionTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteInsertionTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastModifiedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteLastModificationTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastModificationTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPrefix", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPrefix", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCodeFor", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCodeFor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intUnitId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intParentId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intParentId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ysnEnable", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnEnable", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intInsertedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dteInsertionTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteInsertionTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intLastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastModifiedBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intLastModifiedBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastModifiedBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_dteLastModificationTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastModificationTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dteLastModificationTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastModificationTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strPrefix", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPrefix", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strPrefix", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strPrefix", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strCodeFor", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCodeFor", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strCodeFor", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strCodeFor", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intInse" +
-                "rtedBy, dteInsertionTime, intLastModifiedBy, dteLastModificationTime , strPrefix" +
-                " , strCodeFor\r\nFROM dbo.tblSalesOffice";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT dteInsertionTime, dteLastModificationTime, intId, intInsertedBy, intLastMo" +
-                "difiedBy, intParentId, intUnitId, strCodeFor, strDescription, strName, strPrefix" +
-                ", ysnEnable FROM tblSalesOffice WHERE (intId = @intId)";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT dteInsertionTime, dteLastModificationTime, intId, intInsertedBy, intLastMo" +
-                "difiedBy, intParentId, intUnitId, strCodeFor, strDescription, strName, strPrefix" +
-                ", ysnEnable FROM tblSalesOffice WHERE (intUnitId = @intUnitId) AND (ysnEnable = " +
-                "@ysnEnable)";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnEnable", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "ysnEnable", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual SalesOfficeTDS.TblSalesOfficeDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            SalesOfficeTDS.TblSalesOfficeDataTable dataTable = new SalesOfficeTDS.TblSalesOfficeDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual SalesOfficeTDS.TblSalesOfficeDataTable GetDataById(int intId) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intId));
-            SalesOfficeTDS.TblSalesOfficeDataTable dataTable = new SalesOfficeTDS.TblSalesOfficeDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual SalesOfficeTDS.TblSalesOfficeDataTable GetDataByUnit(int intUnitId, bool ysnEnable) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intUnitId));
-            this.Adapter.SelectCommand.Parameters[1].Value = ((bool)(ysnEnable));
-            SalesOfficeTDS.TblSalesOfficeDataTable dataTable = new SalesOfficeTDS.TblSalesOfficeDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(SalesOfficeTDS.TblSalesOfficeDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(SalesOfficeTDS dataSet) {
-            return this.Adapter.Update(dataSet, "TblSalesOffice");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SprSalesOfficeByUserTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SprSalesOfficeByUserTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SprSalesOfficeByUser";
-            tableMapping.ColumnMappings.Add("intSalesOffId", "intSalesOffId");
-            tableMapping.ColumnMappings.Add("strName", "strName");
-            tableMapping.ColumnMappings.Add("intUnitId", "intUnitId");
-            tableMapping.ColumnMappings.Add("ysnEnable", "ysnEnable");
+            tableMapping.DataSetTable = "sprGLCodeConfitReport";
+            tableMapping.ColumnMappings.Add("intGLCodeID", "intGLCodeID");
+            tableMapping.ColumnMappings.Add("strAdditionDeduction", "strAdditionDeduction");
+            tableMapping.ColumnMappings.Add("strAccName", "strAccName");
+            tableMapping.ColumnMappings.Add("GLCode", "GLCode");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2895,7 +2369,7 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
+            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2904,39 +2378,39 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprSalesOfficeByUser";
+            this._commandCollection[0].CommandText = "dbo.sprGLCodeConfitReport";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUserId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnEnable", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEnroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual SalesOfficeTDS.SprSalesOfficeByUserDataTable GetData(global::System.Nullable<int> intUserId, global::System.Nullable<int> intUnitId, global::System.Nullable<bool> ysnEnable) {
+        public virtual GLCodeTDS.sprGLCodeConfitReportDataTable GetGLCodeData(global::System.Nullable<int> intEnroll, global::System.Nullable<int> intType, global::System.Nullable<int> intUnitID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((intUserId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intUserId.Value));
+            if ((intEnroll.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intEnroll.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((intUnitId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intUnitId.Value));
+            if ((intType.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intType.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((ysnEnable.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((bool)(ysnEnable.Value));
+            if ((intUnitID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(intUnitID.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            SalesOfficeTDS.SprSalesOfficeByUserDataTable dataTable = new SalesOfficeTDS.SprSalesOfficeByUserDataTable();
+            GLCodeTDS.sprGLCodeConfitReportDataTable dataTable = new GLCodeTDS.sprGLCodeConfitReportDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2951,7 +2425,7 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class tblEmployeeTableAdapter : global::System.ComponentModel.Component {
+    public partial class SprGLCodeBridgeTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -2965,7 +2439,206 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public tblEmployeeTableAdapter() {
+        public SprGLCodeBridgeTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprGLCodeBridge";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEnroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strGLCodeDr", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strGLCodeCr", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strStatus", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intActionBy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual GLCodeTDS.SprGLCodeBridgeDataTable GLCodeSubmition(global::System.Nullable<int> intEnroll, string strGLCodeDr, string strGLCodeCr, global::System.Nullable<int> intType, global::System.Nullable<int> intUnitID, string strStatus, global::System.Nullable<int> intActionBy) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intEnroll.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intEnroll.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((strGLCodeDr == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(strGLCodeDr));
+            }
+            if ((strGLCodeCr == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(strGLCodeCr));
+            }
+            if ((intType.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(intType.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((intUnitID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(intUnitID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((strStatus == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(strStatus));
+            }
+            if ((intActionBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intActionBy.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            GLCodeTDS.SprGLCodeBridgeDataTable dataTable = new GLCodeTDS.SprGLCodeBridgeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprGetUnitTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprGetUnitTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -3062,30 +2735,17 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "tblEmployee";
-            tableMapping.ColumnMappings.Add("intEmployeeID", "intEmployeeID");
-            tableMapping.ColumnMappings.Add("strEmployeeID", "strEmployeeID");
+            tableMapping.DataSetTable = "SprGetUnit";
+            tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
+            tableMapping.ColumnMappings.Add("strUnit", "strUnit");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [ERP_HR].[dbo].[tblEmployee] WHERE (([intEmployeeID] = @Original_intE" +
-                "mployeeID) AND ([intEmployeeID] = @Original_strEmployeeID))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intEmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strEmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [ERP_HR].[dbo].[tblEmployee] DEFAULT VALUES;\r\nSELECT intEmployeeID, i" +
-                "ntEmployeeID AS strEmployeeID FROM tblEmployee WHERE (intEmployeeID = SCOPE_IDEN" +
-                "TITY()) AND (intEmployeeID = SCOPE_IDENTITY()) ORDER BY intEmployeeID";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_HRConnectionString;
+            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.ERP_HRConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3094,49 +2754,27 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT intEmployeeID , intEmployeeID as strEmployeeID     \r\n  FROM [ERP_HR].[dbo]" +
-                ".[tblEmployee]\r\n  where intUnitID=2   order by intEmployeeID";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].CommandText = "dbo.sprGetUnit";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUserID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual SalesOfficeTDS.tblEmployeeDataTable GetAfblEmployeeEnroll() {
+        public virtual GLCodeTDS.SprGetUnitDataTable GetUnitData(global::System.Nullable<int> intUserID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            SalesOfficeTDS.tblEmployeeDataTable dataTable = new SalesOfficeTDS.tblEmployeeDataTable();
+            if ((intUserID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intUserID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            GLCodeTDS.SprGetUnitDataTable dataTable = new GLCodeTDS.SprGetUnitDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(SalesOfficeTDS.tblEmployeeDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(SalesOfficeTDS dataSet) {
-            return this.Adapter.Update(dataSet, "tblEmployee");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
         }
     }
     
@@ -3152,10 +2790,6 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
         
         private UpdateOrderOption _updateOrder;
         
-        private TblSalesOfficeTableAdapter _tblSalesOfficeTableAdapter;
-        
-        private tblEmployeeTableAdapter _tblEmployeeTableAdapter;
-        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -3168,34 +2802,6 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public TblSalesOfficeTableAdapter TblSalesOfficeTableAdapter {
-            get {
-                return this._tblSalesOfficeTableAdapter;
-            }
-            set {
-                this._tblSalesOfficeTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public tblEmployeeTableAdapter tblEmployeeTableAdapter {
-            get {
-                return this._tblEmployeeTableAdapter;
-            }
-            set {
-                this._tblEmployeeTableAdapter = value;
             }
         }
         
@@ -3218,14 +2824,6 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._tblSalesOfficeTableAdapter != null) 
-                            && (this._tblSalesOfficeTableAdapter.Connection != null))) {
-                    return this._tblSalesOfficeTableAdapter.Connection;
-                }
-                if (((this._tblEmployeeTableAdapter != null) 
-                            && (this._tblEmployeeTableAdapter.Connection != null))) {
-                    return this._tblEmployeeTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -3239,12 +2837,6 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._tblSalesOfficeTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._tblEmployeeTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 return count;
             }
         }
@@ -3254,26 +2846,8 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateUpdatedRows(SalesOfficeTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(GLCodeTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblSalesOfficeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TblSalesOffice.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblSalesOfficeTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._tblEmployeeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblEmployee.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblEmployeeTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -3282,24 +2856,8 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateInsertedRows(SalesOfficeTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(GLCodeTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblSalesOfficeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TblSalesOffice.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblSalesOfficeTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._tblEmployeeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblEmployee.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblEmployeeTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -3308,24 +2866,8 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateDeletedRows(SalesOfficeTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(GLCodeTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tblEmployeeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblEmployee.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblEmployeeTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._tblSalesOfficeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TblSalesOffice.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblSalesOfficeTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             return result;
         }
         
@@ -3358,22 +2900,12 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public virtual int UpdateAll(SalesOfficeTDS dataSet) {
+        public virtual int UpdateAll(GLCodeTDS dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }
             if ((dataSet.HasChanges() == false)) {
                 return 0;
-            }
-            if (((this._tblSalesOfficeTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblSalesOfficeTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._tblEmployeeTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblEmployeeTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
             }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
@@ -3407,24 +2939,6 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._tblSalesOfficeTableAdapter != null)) {
-                    revertConnections.Add(this._tblSalesOfficeTableAdapter, this._tblSalesOfficeTableAdapter.Connection);
-                    this._tblSalesOfficeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblSalesOfficeTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblSalesOfficeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblSalesOfficeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblSalesOfficeTableAdapter.Adapter);
-                    }
-                }
-                if ((this._tblEmployeeTableAdapter != null)) {
-                    revertConnections.Add(this._tblEmployeeTableAdapter, this._tblEmployeeTableAdapter.Connection);
-                    this._tblEmployeeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblEmployeeTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblEmployeeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblEmployeeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblEmployeeTableAdapter.Adapter);
-                    }
-                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -3482,14 +2996,6 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
-                }
-                if ((this._tblSalesOfficeTableAdapter != null)) {
-                    this._tblSalesOfficeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblSalesOfficeTableAdapter]));
-                    this._tblSalesOfficeTableAdapter.Transaction = null;
-                }
-                if ((this._tblEmployeeTableAdapter != null)) {
-                    this._tblEmployeeTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblEmployeeTableAdapter]));
-                    this._tblEmployeeTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

@@ -66,6 +66,7 @@ namespace UI.Wastage
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             dt = objWastage.getCheck(int.Parse(ddlCOAName.SelectedValue));
+          
             if (int.Parse(dt.Rows[0]["checkcount"].ToString()) == 0)
             {
                 intCustid=int.Parse(ddlcustlist.SelectedValue);
@@ -73,7 +74,7 @@ namespace UI.Wastage
                 COAName =ddlCOAName.SelectedItem.ToString();
 
                 intWorkCount = 7;
-                dt = objWastage.ItemListRpt(ItemName, intItemid, intItemCategoryID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(Session[SessionParams.USER_ID].ToString()), dteinsertdate, true, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, Coaname, intCustid);
+                dt = objWastage.ItemListRpt(ItemName, intItemid, intItemCategoryID, int.Parse(Session[SessionParams.UNIT_ID].ToString()), int.Parse(Session[SessionParams.USER_ID].ToString()), dteinsertdate, true, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, COAName, intCustid);
                 dgvCustomerList.DataSource = dt;
                 dgvCustomerList.DataBind();
 

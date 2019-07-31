@@ -194,5 +194,17 @@ namespace UI.PaymentModule
             CanNotCreate,
             UpdateFailed
         }
+
+        protected void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            string adviceR = ddlAdvice.SelectedText();
+            string advice = adviceR.Replace("/", "%2526");
+            string date = txtDate.Text;
+            int unitId = ddlUnit.SelectedValue();
+            int bankId = ddlbank.SelectedValue();
+            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Payment/ImportAdvice" + "&date=" + DateTime.Parse(date).ToString("yyyy-MM-dd") + "&unitId=" + unitId + "&bankId=" + bankId + "&adviceFor=" + advice;
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
+        }
     }
 }
