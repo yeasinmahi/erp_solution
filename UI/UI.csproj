@@ -324,6 +324,7 @@
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
     <Content Include="BudgetPlan\BudgetForExpenseNRawMaterial.aspx" />
     <Content Include="BudgetPlan\BudgetInfoModification.aspx" />
+    <Content Include="BudgetPlan\BudgetInputMonthlyForRawMaterial.aspx" />
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
     <Content Include="BudgetPlan\BudgetPlanning_Requesition.aspx" />
     <Content Include="BudgetPlan\BudgetStatusViewDetalis.aspx" />
@@ -1843,6 +1844,7 @@
     <Content Include="VAT_Management\ProductionEntry.aspx" />
     <Content Include="VAT_Management\PurchaseEntry.aspx" />
     <Content Include="VAT_Management\TreasuryEntry.aspx" />
+    <Content Include="Vehicle_Registration_Renewal\TransPortCostAprvByHODIndividualy.aspx" />
     <Content Include="Vehicle_Registration_Renewal\VehicleRegistrationRenewalReport.aspx" />
     <Content Include="Wastage\frmAdjustment.aspx" />
     <Content Include="Wastage\frmCustomerBridge.aspx" />
@@ -3149,6 +3151,13 @@
     </Compile>
     <Compile Include="BudgetPlan\BudgetInfoModification.aspx.designer.cs">
       <DependentUpon>BudgetInfoModification.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetInputMonthlyForRawMaterial.aspx.cs">
+      <DependentUpon>BudgetInputMonthlyForRawMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetInputMonthlyForRawMaterial.aspx.designer.cs">
+      <DependentUpon>BudgetInputMonthlyForRawMaterial.aspx</DependentUpon>
     </Compile>
     <Compile Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx.cs">
       <DependentUpon>BudgetNonOperatonStatusDetalis.aspx</DependentUpon>
@@ -10396,6 +10405,13 @@
     </Compile>
     <Compile Include="Vehicle_Registration_Renewal\TransPortCostApprovebyHead.aspx.designer.cs">
       <DependentUpon>TransPortCostApprovebyHead.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicle_Registration_Renewal\TransPortCostAprvByHODIndividualy.aspx.cs">
+      <DependentUpon>TransPortCostAprvByHODIndividualy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vehicle_Registration_Renewal\TransPortCostAprvByHODIndividualy.aspx.designer.cs">
+      <DependentUpon>TransPortCostAprvByHODIndividualy.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vehicle_Registration_Renewal\TransportMntCostReport.aspx.cs">
       <DependentUpon>TransportMntCostReport.aspx</DependentUpon>

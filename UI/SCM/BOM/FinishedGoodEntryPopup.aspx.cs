@@ -28,7 +28,7 @@ namespace UI.SCM.BOM
         private string filePathForXML;
         private string xmlString = "", orderId = "0";
         decimal qty, actualQty, qcHoldQty, storeQty, totalSentToStore, totalExtraStore;
-        private string productionID, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
+        private string productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
         #endregion
 
         #region Constructor
@@ -45,7 +45,7 @@ namespace UI.SCM.BOM
                 catch { }
                 //claenderDte.SelectedDate = DateTime.Now;
                 //CalendarExtenderExp.SelectedDate = DateTime.Now;
-                productionID = Request.QueryString["productID"].ToString();
+                hdnProductionId.Value = Request.QueryString["productID"].ToString();
                 productName = Request.QueryString["productName"].ToString();
                 bomName = Request.QueryString["bomName"].ToString();
                 batchName = Request.QueryString["batchName"].ToString();
@@ -56,7 +56,7 @@ namespace UI.SCM.BOM
                 srNo = Request.QueryString["srNo"].ToString();
                 quantity = Request.QueryString["quantity"].ToString();
                 whid = Request.QueryString["whid"].ToString();
-                dt = objBom.GetItemNameByProductionId(Convert.ToInt32(productionID));
+                dt = objBom.GetItemNameByProductionId(Convert.ToInt32(hdnProductionId.Value));
                 if (dt.Rows.Count > 0)
                 {
                     productName = dt.Rows[0]["strItemName"].ToString();
@@ -105,15 +105,13 @@ namespace UI.SCM.BOM
         {
             string item = string.Empty;
             string uom = string.Empty;
-            int ProductionId = 0;
             int itemid = 0;
-            decimal OrderQnt = 0;
             decimal ProductQnt = 0;
             decimal GoodORwastageQnt = 0;
 
 
-            item = ddlWastageItem.SelectedItem.ToString();
-            itemid = int.Parse(ddlWastageItem.SelectedValue);
+            item = ddlWastageItem.SelectedText();
+            itemid = ddlWastageItem.SelectedValue();
             GoodORwastageQnt = decimal.Parse(txtWastageQuantity.Text.Trim());
 
             string wastageType = Convert.ToInt32(ddlWastageType.SelectedValue) > 0 ?
@@ -130,7 +128,7 @@ namespace UI.SCM.BOM
             string Time = txtTime.Text;
             string JobNo = !string.IsNullOrEmpty(txtJob.Text) ? txtJob.Text : string.Empty;
 
-            CreateXml2(ProductionId.ToString(), OrderQnt.ToString(), ProductQnt.ToString(), item, itemid.ToString(), GoodORwastageQnt.ToString(), wastageType,
+            CreateXml2(hdnProductionId.Value, "0", ProductQnt.ToString(), item, itemid.ToString(), GoodORwastageQnt.ToString(), wastageType,
                         wastageTypeId, UnitId.ToString(), Date, Time, JobNo, Enroll.ToString(), totalExtraStore.ToString());
         }
 
@@ -138,9 +136,7 @@ namespace UI.SCM.BOM
         {
             string item = string.Empty;
             string uom = string.Empty;
-            int ProductionId = 0;
             int itemid = 0;
-            decimal OrderQnt = 0;
             decimal ProductQnt = 0;
             decimal GoodORwastageQnt = 0;
 
@@ -154,7 +150,7 @@ namespace UI.SCM.BOM
                     if (arrayKey.Length > 0)
                     {
                         item = arrayKey[0].ToString();
-                        uom = arrayKey[1].ToString();
+                        itemid = int.Parse(arrayKey[1].ToString());
                         //itemid = int.Parse(arrayKey[3].ToString());
                         //itemid = int.Parse(lblItemId.Text.Trim());
                     }
@@ -184,8 +180,8 @@ namespace UI.SCM.BOM
                     totalExtraStore += Convert.ToDecimal(GoodORwastageQnt);
 
 
-                CreateXml2(ProductionId.ToString(), OrderQnt.ToString(), ProductQnt.ToString(), item, itemid.ToString(), GoodORwastageQnt.ToString(), "",
-                        "", UnitId.ToString(), Date, Time, JobNo, Enroll.ToString(), totalExtraStore.ToString());
+                CreateXml2(hdnProductionId.Value, ProductQnt.ToString(), ProductQnt.ToString(), item, itemid.ToString(), GoodORwastageQnt.ToString(), "Good Product",
+                        "1", UnitId.ToString(), Date, Time, JobNo, Enroll.ToString(), totalExtraStore.ToString());
 
             }
             catch (Exception ex)
