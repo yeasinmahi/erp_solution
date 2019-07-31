@@ -152,7 +152,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-                            <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 0px solid red;"></iframe>
+                            <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 1px solid black;"></iframe>
                         </div>
                     </div>
                 </div>

@@ -62,5 +62,56 @@ namespace SAD_BLL.Global
             return dt;
         }
 
+        public DataTable GetAfblSalesEmpInfo(int empId)
+        {
+            DataTable dt = new DataTable();
+            tblEmployee1TableAdapter obj = new tblEmployee1TableAdapter();
+            dt = obj.GetSalesEmpInfo(empId);
+            return dt;
+        }
+
+        public DataTable GetSalesEmpFGInfo(int empId)
+        {
+            DataTable dt = new DataTable();
+            tblEmployeeProfileTransferPromotionTableAdapter obj = new tblEmployeeProfileTransferPromotionTableAdapter();
+            dt = obj.GetEmpGeoInfo(empId);
+            return dt;
+        }
+        public DataTable GetSalesEmpGeoInfo(int empId)
+        {
+            DataTable dt = new DataTable();
+            DataTable1TableAdapter obj = new DataTable1TableAdapter();
+            dt = obj.GetSalesOfficerGeo(empId);
+            return dt;
+        }
+        public DataTable GetTerrSalesEmpGeoInfo(int empId)
+        {
+            DataTable dt = new DataTable();
+            DataTable2TableAdapter obj = new DataTable2TableAdapter();
+            dt = obj.GetTerrSalesOfficer(empId);
+            return dt;
+        }
+        public DataTable GetAreaSalesEmpGeoInfo(int empId)
+        {
+            DataTable dt = new DataTable();
+            DataTable3TableAdapter obj = new DataTable3TableAdapter();
+            dt = obj.GetAreaSalesOfficer(empId);
+            return dt;
+        }
+        public DataTable GetRegionSalesEmpGeoInfo(int empId)
+        {
+            DataTable dt = new DataTable();
+            DataTable4TableAdapter obj = new DataTable4TableAdapter();
+            dt = obj.GetRegSalesOfficer(empId);
+            return dt;
+        }
+
+        public DataTable UpdateEmpResignDate (int empId, DateTime resgDate)
+        {
+            DataTable dt = new DataTable();
+            tblEmpResignUpdateAdapter obj = new tblEmpResignUpdateAdapter();
+            dt = obj.UpdateSalesResigndate(resgDate,empId);
+            return dt;
+        }
     }
 }
