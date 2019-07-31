@@ -338,10 +338,10 @@
                                 <asp:TemplateField HeaderText="Quantity" HeaderStyle-HorizontalAlign="Center"  SortExpression="Quantity">
                                     <ItemTemplate>
                                      
-                                        <asp:HiddenField ID="hdnnumqnt" runat="server" Value='<%# Bind("numrestqnt", "{0:0.0}") %>'></asp:HiddenField>  
-                                   <asp:Label ID="lbltotalqnt" runat="server" Visible="false" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("numrestqnt", "{0:0.00}"))) %>'></asp:Label>
+                                        <asp:HiddenField ID="hdnnumqnt" runat="server" Value='<%# Bind("numrestqnt", "{0:0.0000}") %>'></asp:HiddenField>  
+                                   <asp:Label ID="lbltotalqnt" runat="server" Visible="false" DataFormatString="{0:0.0000}" Text='<%# (decimal.Parse(""+Eval("numrestqnt", "{0:0.0000}"))) %>'></asp:Label>
 
-                                        <asp:TextBox ID="txtquantity"  runat="server" onblur="" CssClass="txtBox" Width="75px" TextMode="Number" Text='<%# Bind("numrestqnt", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
+                                        <asp:TextBox ID="txtquantity"  runat="server" onblur="" CssClass="txtBox" Width="75px" TextMode="Number" Text='<%# Bind("numrestqnt", "{0:0.0000}") %>' AutoPostBack="false"></asp:TextBox>
                                      </ItemTemplate>
                                 
                                 </asp:TemplateField>
