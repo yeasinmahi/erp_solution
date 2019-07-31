@@ -659,6 +659,42 @@ WHERE        (pm.intMouzaId = @MouzaID) AND (pm.ysnActive = 1)</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwLandGeneralInfoTableAdapter" GeneratorDataComponentClassName="vwLandGeneralInfoTableAdapter" Name="vwLandGeneralInfo" UserDataComponentName="vwLandGeneralInfoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_MISConnectionString (Settings)" DbObjectName="ERP_MIS.dbo.vwLandGeneralInfo" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDeedYear" GetMethodModifier="Public" GetMethodName="GetDeedYear" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDeedYear" UserSourceName="GetDeedYear">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT calcDeadYear ,calcDeadYear  as dYear
+FROM ERP_MIS.dbo.vwLandGeneralInfo GROUP BY calcDeadYear order by calcDeadYear</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="calcDeadYear" DataSetColumn="calcDeadYear" />
+              <Mapping SourceColumn="dYear" DataSetColumn="dYear" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwLandGeneralInfo1TableAdapter" GeneratorDataComponentClassName="vwLandGeneralInfo1TableAdapter" Name="vwLandGeneralInfo1" UserDataComponentName="vwLandGeneralInfo1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_MISConnectionString (Settings)" DbObjectName="ERP_MIS.dbo.vwLandGeneralInfo" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDeedYear" GetMethodModifier="Public" GetMethodName="GetDeedYear" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDeedYear" UserSourceName="GetDeedYear">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT calcDeadYear ,calcDeadYear  as dYear
+FROM ERP_MIS.dbo.vwLandGeneralInfo GROUP BY calcDeadYear order by calcDeadYear</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="calcDeadYear" DataSetColumn="calcDeadYear" />
+              <Mapping SourceColumn="dYear" DataSetColumn="dYear" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources>
           <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateExistsLandData" MethodsParameterType="CLR" Modifier="Public" Name="UpdateExistsLandData" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateExistsLandData">
@@ -1028,7 +1064,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ShowLandInsertedMainData" msprop:Generator_TableClassName="ShowLandInsertedMainDataDataTable" msprop:Generator_TableVarName="tableShowLandInsertedMainData" msprop:Generator_RowChangedName="ShowLandInsertedMainDataRowChanged" msprop:Generator_TablePropName="ShowLandInsertedMainData" msprop:Generator_RowDeletingName="ShowLandInsertedMainDataRowDeleting" msprop:Generator_RowChangingName="ShowLandInsertedMainDataRowChanging" msprop:Generator_RowEvHandlerName="ShowLandInsertedMainDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ShowLandInsertedMainDataRowDeleted" msprop:Generator_RowClassName="ShowLandInsertedMainDataRow" msprop:Generator_UserTableName="ShowLandInsertedMainData" msprop:Generator_RowEvArgName="ShowLandInsertedMainDataRowChangeEvent">
+        <xs:element name="ShowLandInsertedMainData" msprop:Generator_TableClassName="ShowLandInsertedMainDataDataTable" msprop:Generator_TableVarName="tableShowLandInsertedMainData" msprop:Generator_TablePropName="ShowLandInsertedMainData" msprop:Generator_RowDeletingName="ShowLandInsertedMainDataRowDeleting" msprop:Generator_RowChangingName="ShowLandInsertedMainDataRowChanging" msprop:Generator_RowEvHandlerName="ShowLandInsertedMainDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ShowLandInsertedMainDataRowDeleted" msprop:Generator_UserTableName="ShowLandInsertedMainData" msprop:Generator_RowChangedName="ShowLandInsertedMainDataRowChanged" msprop:Generator_RowEvArgName="ShowLandInsertedMainDataRowChangeEvent" msprop:Generator_RowClassName="ShowLandInsertedMainDataRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strMouza" msprop:Generator_ColumnVarNameInTable="columnstrMouza" msprop:Generator_ColumnPropNameInRow="strMouza" msprop:Generator_ColumnPropNameInTable="strMouzaColumn" msprop:Generator_UserColumnName="strMouza">
@@ -1100,6 +1136,22 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vwLandGeneralInfo" msprop:Generator_TableClassName="vwLandGeneralInfoDataTable" msprop:Generator_TableVarName="tablevwLandGeneralInfo" msprop:Generator_RowChangedName="vwLandGeneralInfoRowChanged" msprop:Generator_TablePropName="vwLandGeneralInfo" msprop:Generator_RowDeletingName="vwLandGeneralInfoRowDeleting" msprop:Generator_RowChangingName="vwLandGeneralInfoRowChanging" msprop:Generator_RowEvHandlerName="vwLandGeneralInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="vwLandGeneralInfoRowDeleted" msprop:Generator_RowClassName="vwLandGeneralInfoRow" msprop:Generator_UserTableName="vwLandGeneralInfo" msprop:Generator_RowEvArgName="vwLandGeneralInfoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="calcDeadYear" msprop:Generator_ColumnVarNameInTable="columncalcDeadYear" msprop:Generator_ColumnPropNameInRow="calcDeadYear" msprop:Generator_ColumnPropNameInTable="calcDeadYearColumn" msprop:Generator_UserColumnName="calcDeadYear" type="xs:int" minOccurs="0" />
+              <xs:element name="dYear" msprop:Generator_ColumnVarNameInTable="columndYear" msprop:Generator_ColumnPropNameInRow="dYear" msprop:Generator_ColumnPropNameInTable="dYearColumn" msprop:Generator_UserColumnName="dYear" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vwLandGeneralInfo1" msprop:Generator_TableClassName="vwLandGeneralInfo1DataTable" msprop:Generator_TableVarName="tablevwLandGeneralInfo1" msprop:Generator_TablePropName="vwLandGeneralInfo1" msprop:Generator_RowDeletingName="vwLandGeneralInfo1RowDeleting" msprop:Generator_RowChangingName="vwLandGeneralInfo1RowChanging" msprop:Generator_RowEvHandlerName="vwLandGeneralInfo1RowChangeEventHandler" msprop:Generator_RowDeletedName="vwLandGeneralInfo1RowDeleted" msprop:Generator_UserTableName="vwLandGeneralInfo1" msprop:Generator_RowChangedName="vwLandGeneralInfo1RowChanged" msprop:Generator_RowEvArgName="vwLandGeneralInfo1RowChangeEvent" msprop:Generator_RowClassName="vwLandGeneralInfo1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="calcDeadYear" msprop:Generator_ColumnVarNameInTable="columncalcDeadYear" msprop:Generator_ColumnPropNameInRow="calcDeadYear" msprop:Generator_ColumnPropNameInTable="calcDeadYearColumn" msprop:Generator_UserColumnName="calcDeadYear" type="xs:int" minOccurs="0" />
+              <xs:element name="dYear" msprop:Generator_ColumnVarNameInTable="columndYear" msprop:Generator_ColumnPropNameInRow="dYear" msprop:Generator_ColumnPropNameInTable="dYearColumn" msprop:Generator_UserColumnName="dYear" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

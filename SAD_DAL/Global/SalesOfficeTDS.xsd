@@ -2,14 +2,15 @@
 <xs:schema id="SalesOfficeTDS" targetNamespace="http://tempuri.org/SalesOfficeTDS.xsd" xmlns:mstns="http://tempuri.org/SalesOfficeTDS.xsd" xmlns="http://tempuri.org/SalesOfficeTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_SADConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_SADConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_SADConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_HRConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_HRConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_HRConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="QrySalesOfficeByShipPointTableAdapter" GeneratorDataComponentClassName="QrySalesOfficeByShipPointTableAdapter" Name="QrySalesOfficeByShipPoint" UserDataComponentName="QrySalesOfficeByShipPointTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.qrySalesOfficeByShipPoint" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataByShipPoint" GetMethodModifier="Public" GetMethodName="GetDataByShipPoint" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataByShipPoint" UserSourceName="GetDataByShipPoint">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.qrySalesOfficeByShipPoint" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataByShipPoint" GetMethodModifier="Public" GetMethodName="GetDataByShipPoint" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataByShipPoint" UserSourceName="GetDataByShipPoint">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT intShippingPointId, intSalesOfficeId, strName, intUnitId, ysnEnable FROM dbo.qrySalesOfficeByShipPoint
@@ -33,7 +34,7 @@ where intShippingPointId=@intShippingPointId and ysnEnable =@ysnEnable </Command
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblSalesOfficeTableAdapter" GeneratorDataComponentClassName="TblSalesOfficeTableAdapter" Name="TblSalesOffice" UserDataComponentName="TblSalesOfficeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesOffice" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesOffice" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[tblSalesOffice] WHERE (([intId] = @Original_intId) AND ([intUnitId] = @Original_intUnitId) AND ([intParentId] = @Original_intParentId) AND ([strName] = @Original_strName) AND ((@IsNull_strDescription = 1 AND [strDescription] IS NULL) OR ([strDescription] = @Original_strDescription)) AND ([ysnEnable] = @Original_ysnEnable) AND ([intInsertedBy] = @Original_intInsertedBy) AND ([dteInsertionTime] = @Original_dteInsertionTime) AND ((@IsNull_intLastModifiedBy = 1 AND [intLastModifiedBy] IS NULL) OR ([intLastModifiedBy] = @Original_intLastModifiedBy)) AND ((@IsNull_dteLastModificationTime = 1 AND [dteLastModificationTime] IS NULL) OR ([dteLastModificationTime] = @Original_dteLastModificationTime)) AND ((@IsNull_strPrefix = 1 AND [strPrefix] IS NULL) OR ([strPrefix] = @Original_strPrefix)) AND ((@IsNull_strCodeFor = 1 AND [strCodeFor] IS NULL) OR ([strCodeFor] = @Original_strCodeFor)))</CommandText>
@@ -138,7 +139,7 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
               <Mapping SourceColumn="strCodeFor" DataSetColumn="strCodeFor" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesOffice" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="GetDataById">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesOffice" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="GetDataById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT dteInsertionTime, dteLastModificationTime, intId, intInsertedBy, intLastModifiedBy, intParentId, intUnitId, strCodeFor, strDescription, strName, strPrefix, ysnEnable FROM tblSalesOffice WHERE (intId = @intId)</CommandText>
@@ -148,7 +149,7 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesOffice" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByUnit" GetMethodModifier="Public" GetMethodName="GetDataByUnit" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByUnit" UserSourceName="GetDataByUnit">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblSalesOffice" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByUnit" GetMethodModifier="Public" GetMethodName="GetDataByUnit" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByUnit" UserSourceName="GetDataByUnit">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT dteInsertionTime, dteLastModificationTime, intId, intInsertedBy, intLastModifiedBy, intParentId, intUnitId, strCodeFor, strDescription, strName, strPrefix, ysnEnable FROM tblSalesOffice WHERE (intUnitId = @intUnitId) AND (ysnEnable = @ysnEnable)</CommandText>
@@ -163,7 +164,7 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprSalesOfficeByUserTableAdapter" GeneratorDataComponentClassName="SprSalesOfficeByUserTableAdapter" Name="SprSalesOfficeByUser" UserDataComponentName="SprSalesOfficeByUserTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprSalesOfficeByUser" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprSalesOfficeByUser" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprSalesOfficeByUser</CommandText>
@@ -185,47 +186,82 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblEmployeeTableAdapter" GeneratorDataComponentClassName="tblEmployeeTableAdapter" Name="tblEmployee" UserDataComponentName="tblEmployeeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.tblEmployee" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAfblEmployeeEnroll" GetMethodModifier="Public" GetMethodName="GetAfblEmployeeEnroll" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAfblEmployeeEnroll" UserSourceName="GetAfblEmployeeEnroll">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [ERP_HR].[dbo].[tblEmployee] WHERE (([intEmployeeID] = @Original_intEmployeeID) AND ([intEmployeeID] = @Original_strEmployeeID))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_intEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="intEmployeeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_strEmployeeID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="strEmployeeID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [ERP_HR].[dbo].[tblEmployee] DEFAULT VALUES;
+SELECT intEmployeeID, intEmployeeID AS strEmployeeID FROM tblEmployee WHERE (intEmployeeID = SCOPE_IDENTITY()) AND (intEmployeeID = SCOPE_IDENTITY()) ORDER BY intEmployeeID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT intEmployeeID , intEmployeeID as strEmployeeID     
+  FROM [ERP_HR].[dbo].[tblEmployee]
+  where intUnitID=2   order by intEmployeeID</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intEmployeeID" DataSetColumn="intEmployeeID" />
+              <Mapping SourceColumn="strEmployeeID" DataSetColumn="strEmployeeID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="SalesOfficeTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="SalesOfficeTDS" msprop:Generator_DataSetName="SalesOfficeTDS" msprop:EnableTableAdapterManager="true">
+  <xs:element name="SalesOfficeTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="SalesOfficeTDS" msprop:Generator_UserDSName="SalesOfficeTDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TblSalesOffice" msprop:Generator_UserTableName="TblSalesOffice" msprop:Generator_RowDeletedName="TblSalesOfficeRowDeleted" msprop:Generator_RowChangedName="TblSalesOfficeRowChanged" msprop:Generator_RowClassName="TblSalesOfficeRow" msprop:Generator_RowChangingName="TblSalesOfficeRowChanging" msprop:Generator_RowEvArgName="TblSalesOfficeRowChangeEvent" msprop:Generator_RowEvHandlerName="TblSalesOfficeRowChangeEventHandler" msprop:Generator_TableClassName="TblSalesOfficeDataTable" msprop:Generator_TableVarName="tableTblSalesOffice" msprop:Generator_RowDeletingName="TblSalesOfficeRowDeleting" msprop:Generator_TablePropName="TblSalesOffice">
+        <xs:element name="TblSalesOffice" msprop:Generator_UserTableName="TblSalesOffice" msprop:Generator_RowEvArgName="TblSalesOfficeRowChangeEvent" msprop:Generator_TableVarName="tableTblSalesOffice" msprop:Generator_TablePropName="TblSalesOffice" msprop:Generator_RowDeletingName="TblSalesOfficeRowDeleting" msprop:Generator_RowChangingName="TblSalesOfficeRowChanging" msprop:Generator_RowDeletedName="TblSalesOfficeRowDeleted" msprop:Generator_RowEvHandlerName="TblSalesOfficeRowChangeEventHandler" msprop:Generator_TableClassName="TblSalesOfficeDataTable" msprop:Generator_RowChangedName="TblSalesOfficeRowChanged" msprop:Generator_RowClassName="TblSalesOfficeRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="intId" msprop:Generator_ColumnVarNameInTable="columnintId" msprop:Generator_ColumnPropNameInRow="intId" msprop:Generator_ColumnPropNameInTable="intIdColumn" type="xs:int" />
-              <xs:element name="intUnitId" msprop:Generator_UserColumnName="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" type="xs:int" />
-              <xs:element name="intParentId" msprop:Generator_UserColumnName="intParentId" msprop:Generator_ColumnVarNameInTable="columnintParentId" msprop:Generator_ColumnPropNameInRow="intParentId" msprop:Generator_ColumnPropNameInTable="intParentIdColumn" type="xs:int" />
-              <xs:element name="strName" msprop:Generator_UserColumnName="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn">
+              <xs:element name="intId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintId" msprop:Generator_ColumnPropNameInRow="intId" msprop:Generator_ColumnPropNameInTable="intIdColumn" msprop:Generator_UserColumnName="intId" type="xs:int" />
+              <xs:element name="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" msprop:Generator_UserColumnName="intUnitId" type="xs:int" />
+              <xs:element name="intParentId" msprop:Generator_ColumnVarNameInTable="columnintParentId" msprop:Generator_ColumnPropNameInRow="intParentId" msprop:Generator_ColumnPropNameInTable="intParentIdColumn" msprop:Generator_UserColumnName="intParentId" type="xs:int" />
+              <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strDescription" msprop:Generator_UserColumnName="strDescription" msprop:Generator_ColumnVarNameInTable="columnstrDescription" msprop:Generator_ColumnPropNameInRow="strDescription" msprop:Generator_ColumnPropNameInTable="strDescriptionColumn" minOccurs="0">
+              <xs:element name="strDescription" msprop:Generator_ColumnVarNameInTable="columnstrDescription" msprop:Generator_ColumnPropNameInRow="strDescription" msprop:Generator_ColumnPropNameInTable="strDescriptionColumn" msprop:Generator_UserColumnName="strDescription" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="500" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ysnEnable" msprop:Generator_UserColumnName="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" type="xs:boolean" />
-              <xs:element name="intInsertedBy" msprop:Generator_UserColumnName="intInsertedBy" msprop:Generator_ColumnVarNameInTable="columnintInsertedBy" msprop:Generator_ColumnPropNameInRow="intInsertedBy" msprop:Generator_ColumnPropNameInTable="intInsertedByColumn" type="xs:int" />
-              <xs:element name="dteInsertionTime" msprop:Generator_UserColumnName="dteInsertionTime" msprop:Generator_ColumnVarNameInTable="columndteInsertionTime" msprop:Generator_ColumnPropNameInRow="dteInsertionTime" msprop:Generator_ColumnPropNameInTable="dteInsertionTimeColumn" type="xs:dateTime" />
-              <xs:element name="intLastModifiedBy" msprop:Generator_UserColumnName="intLastModifiedBy" msprop:Generator_ColumnVarNameInTable="columnintLastModifiedBy" msprop:Generator_ColumnPropNameInRow="intLastModifiedBy" msprop:Generator_ColumnPropNameInTable="intLastModifiedByColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="dteLastModificationTime" msprop:Generator_UserColumnName="dteLastModificationTime" msprop:Generator_ColumnVarNameInTable="columndteLastModificationTime" msprop:Generator_ColumnPropNameInRow="dteLastModificationTime" msprop:Generator_ColumnPropNameInTable="dteLastModificationTimeColumn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="strPrefix" msprop:Generator_UserColumnName="strPrefix" msprop:Generator_ColumnVarNameInTable="columnstrPrefix" msprop:Generator_ColumnPropNameInRow="strPrefix" msprop:Generator_ColumnPropNameInTable="strPrefixColumn" minOccurs="0">
+              <xs:element name="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" msprop:Generator_UserColumnName="ysnEnable" type="xs:boolean" />
+              <xs:element name="intInsertedBy" msprop:Generator_ColumnVarNameInTable="columnintInsertedBy" msprop:Generator_ColumnPropNameInRow="intInsertedBy" msprop:Generator_ColumnPropNameInTable="intInsertedByColumn" msprop:Generator_UserColumnName="intInsertedBy" type="xs:int" />
+              <xs:element name="dteInsertionTime" msprop:Generator_ColumnVarNameInTable="columndteInsertionTime" msprop:Generator_ColumnPropNameInRow="dteInsertionTime" msprop:Generator_ColumnPropNameInTable="dteInsertionTimeColumn" msprop:Generator_UserColumnName="dteInsertionTime" type="xs:dateTime" />
+              <xs:element name="intLastModifiedBy" msprop:Generator_ColumnVarNameInTable="columnintLastModifiedBy" msprop:Generator_ColumnPropNameInRow="intLastModifiedBy" msprop:Generator_ColumnPropNameInTable="intLastModifiedByColumn" msprop:Generator_UserColumnName="intLastModifiedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteLastModificationTime" msprop:Generator_ColumnVarNameInTable="columndteLastModificationTime" msprop:Generator_ColumnPropNameInRow="dteLastModificationTime" msprop:Generator_ColumnPropNameInTable="dteLastModificationTimeColumn" msprop:Generator_UserColumnName="dteLastModificationTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strPrefix" msprop:Generator_ColumnVarNameInTable="columnstrPrefix" msprop:Generator_ColumnPropNameInRow="strPrefix" msprop:Generator_ColumnPropNameInTable="strPrefixColumn" msprop:Generator_UserColumnName="strPrefix" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="10" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strCodeFor" msprop:Generator_UserColumnName="strCodeFor" msprop:Generator_ColumnVarNameInTable="columnstrCodeFor" msprop:Generator_ColumnPropNameInRow="strCodeFor" msprop:Generator_ColumnPropNameInTable="strCodeForColumn" minOccurs="0">
+              <xs:element name="strCodeFor" msprop:Generator_ColumnVarNameInTable="columnstrCodeFor" msprop:Generator_ColumnPropNameInRow="strCodeFor" msprop:Generator_ColumnPropNameInTable="strCodeForColumn" msprop:Generator_UserColumnName="strCodeFor" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -235,36 +271,44 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprSalesOfficeByUser" msprop:Generator_UserTableName="SprSalesOfficeByUser" msprop:Generator_RowDeletedName="SprSalesOfficeByUserRowDeleted" msprop:Generator_TableClassName="SprSalesOfficeByUserDataTable" msprop:Generator_RowChangedName="SprSalesOfficeByUserRowChanged" msprop:Generator_RowClassName="SprSalesOfficeByUserRow" msprop:Generator_RowChangingName="SprSalesOfficeByUserRowChanging" msprop:Generator_RowEvArgName="SprSalesOfficeByUserRowChangeEvent" msprop:Generator_RowEvHandlerName="SprSalesOfficeByUserRowChangeEventHandler" msprop:Generator_TablePropName="SprSalesOfficeByUser" msprop:Generator_TableVarName="tableSprSalesOfficeByUser" msprop:Generator_RowDeletingName="SprSalesOfficeByUserRowDeleting">
+        <xs:element name="SprSalesOfficeByUser" msprop:Generator_TableClassName="SprSalesOfficeByUserDataTable" msprop:Generator_RowEvArgName="SprSalesOfficeByUserRowChangeEvent" msprop:Generator_TablePropName="SprSalesOfficeByUser" msprop:Generator_TableVarName="tableSprSalesOfficeByUser" msprop:Generator_RowEvHandlerName="SprSalesOfficeByUserRowChangeEventHandler" msprop:Generator_RowDeletingName="SprSalesOfficeByUserRowDeleting" msprop:Generator_RowChangingName="SprSalesOfficeByUserRowChanging" msprop:Generator_RowDeletedName="SprSalesOfficeByUserRowDeleted" msprop:Generator_UserTableName="SprSalesOfficeByUser" msprop:Generator_RowChangedName="SprSalesOfficeByUserRowChanged" msprop:Generator_RowClassName="SprSalesOfficeByUserRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intSalesOffId" msprop:Generator_UserColumnName="intSalesOffId" msprop:Generator_ColumnPropNameInRow="intSalesOffId" msprop:Generator_ColumnVarNameInTable="columnintSalesOffId" msprop:Generator_ColumnPropNameInTable="intSalesOffIdColumn" type="xs:int" />
-              <xs:element name="strName" msprop:Generator_UserColumnName="strName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInTable="strNameColumn">
+              <xs:element name="intSalesOffId" msprop:Generator_ColumnVarNameInTable="columnintSalesOffId" msprop:Generator_ColumnPropNameInRow="intSalesOffId" msprop:Generator_ColumnPropNameInTable="intSalesOffIdColumn" msprop:Generator_UserColumnName="intSalesOffId" type="xs:int" />
+              <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="intUnitId" msprop:Generator_UserColumnName="intUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" type="xs:int" />
-              <xs:element name="ysnEnable" msprop:Generator_UserColumnName="ysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" type="xs:boolean" />
+              <xs:element name="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" msprop:Generator_UserColumnName="intUnitId" type="xs:int" />
+              <xs:element name="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" msprop:Generator_UserColumnName="ysnEnable" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="QrySalesOfficeByShipPoint" msprop:Generator_UserTableName="QrySalesOfficeByShipPoint" msprop:Generator_RowDeletedName="QrySalesOfficeByShipPointRowDeleted" msprop:Generator_RowChangedName="QrySalesOfficeByShipPointRowChanged" msprop:Generator_RowClassName="QrySalesOfficeByShipPointRow" msprop:Generator_RowChangingName="QrySalesOfficeByShipPointRowChanging" msprop:Generator_RowEvArgName="QrySalesOfficeByShipPointRowChangeEvent" msprop:Generator_RowEvHandlerName="QrySalesOfficeByShipPointRowChangeEventHandler" msprop:Generator_TableClassName="QrySalesOfficeByShipPointDataTable" msprop:Generator_TableVarName="tableQrySalesOfficeByShipPoint" msprop:Generator_RowDeletingName="QrySalesOfficeByShipPointRowDeleting" msprop:Generator_TablePropName="QrySalesOfficeByShipPoint">
+        <xs:element name="QrySalesOfficeByShipPoint" msprop:Generator_UserTableName="QrySalesOfficeByShipPoint" msprop:Generator_RowEvArgName="QrySalesOfficeByShipPointRowChangeEvent" msprop:Generator_TableVarName="tableQrySalesOfficeByShipPoint" msprop:Generator_TablePropName="QrySalesOfficeByShipPoint" msprop:Generator_RowDeletingName="QrySalesOfficeByShipPointRowDeleting" msprop:Generator_RowChangingName="QrySalesOfficeByShipPointRowChanging" msprop:Generator_RowDeletedName="QrySalesOfficeByShipPointRowDeleted" msprop:Generator_RowEvHandlerName="QrySalesOfficeByShipPointRowChangeEventHandler" msprop:Generator_TableClassName="QrySalesOfficeByShipPointDataTable" msprop:Generator_RowChangedName="QrySalesOfficeByShipPointRowChanged" msprop:Generator_RowClassName="QrySalesOfficeByShipPointRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intShippingPointId" msprop:Generator_UserColumnName="intShippingPointId" msprop:Generator_ColumnPropNameInRow="intShippingPointId" msprop:Generator_ColumnVarNameInTable="columnintShippingPointId" msprop:Generator_ColumnPropNameInTable="intShippingPointIdColumn" type="xs:int" />
-              <xs:element name="intSalesOfficeId" msprop:Generator_UserColumnName="intSalesOfficeId" msprop:Generator_ColumnPropNameInRow="intSalesOfficeId" msprop:Generator_ColumnVarNameInTable="columnintSalesOfficeId" msprop:Generator_ColumnPropNameInTable="intSalesOfficeIdColumn" type="xs:int" />
-              <xs:element name="strName" msprop:Generator_UserColumnName="strName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInTable="strNameColumn" minOccurs="0">
+              <xs:element name="intShippingPointId" msprop:Generator_ColumnVarNameInTable="columnintShippingPointId" msprop:Generator_ColumnPropNameInRow="intShippingPointId" msprop:Generator_ColumnPropNameInTable="intShippingPointIdColumn" msprop:Generator_UserColumnName="intShippingPointId" type="xs:int" />
+              <xs:element name="intSalesOfficeId" msprop:Generator_ColumnVarNameInTable="columnintSalesOfficeId" msprop:Generator_ColumnPropNameInRow="intSalesOfficeId" msprop:Generator_ColumnPropNameInTable="intSalesOfficeIdColumn" msprop:Generator_UserColumnName="intSalesOfficeId" type="xs:int" />
+              <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="intUnitId" msprop:Generator_UserColumnName="intUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="ysnEnable" msprop:Generator_UserColumnName="ysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" type="xs:boolean" minOccurs="0" />
+              <xs:element name="intUnitId" msprop:Generator_ColumnVarNameInTable="columnintUnitId" msprop:Generator_ColumnPropNameInRow="intUnitId" msprop:Generator_ColumnPropNameInTable="intUnitIdColumn" msprop:Generator_UserColumnName="intUnitId" type="xs:int" minOccurs="0" />
+              <xs:element name="ysnEnable" msprop:Generator_ColumnVarNameInTable="columnysnEnable" msprop:Generator_ColumnPropNameInRow="ysnEnable" msprop:Generator_ColumnPropNameInTable="ysnEnableColumn" msprop:Generator_UserColumnName="ysnEnable" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblEmployee" msprop:Generator_TableClassName="tblEmployeeDataTable" msprop:Generator_TableVarName="tabletblEmployee" msprop:Generator_TablePropName="tblEmployee" msprop:Generator_RowDeletingName="tblEmployeeRowDeleting" msprop:Generator_RowChangingName="tblEmployeeRowChanging" msprop:Generator_RowEvHandlerName="tblEmployeeRowChangeEventHandler" msprop:Generator_RowDeletedName="tblEmployeeRowDeleted" msprop:Generator_UserTableName="tblEmployee" msprop:Generator_RowChangedName="tblEmployeeRowChanged" msprop:Generator_RowEvArgName="tblEmployeeRowChangeEvent" msprop:Generator_RowClassName="tblEmployeeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intEmployeeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintEmployeeID" msprop:Generator_ColumnPropNameInRow="intEmployeeID" msprop:Generator_ColumnPropNameInTable="intEmployeeIDColumn" msprop:Generator_UserColumnName="intEmployeeID" type="xs:int" />
+              <xs:element name="strEmployeeID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeID" msprop:Generator_ColumnPropNameInRow="strEmployeeID" msprop:Generator_ColumnPropNameInTable="strEmployeeIDColumn" msprop:Generator_UserColumnName="strEmployeeID" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -278,6 +322,11 @@ SELECT intId, intUnitId, intParentId, strName, strDescription, ysnEnable, intIns
       <xs:selector xpath=".//mstns:QrySalesOfficeByShipPoint" />
       <xs:field xpath="mstns:intShippingPointId" />
       <xs:field xpath="mstns:intSalesOfficeId" />
+    </xs:unique>
+    <xs:unique name="tblEmployee_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblEmployee" />
+      <xs:field xpath="mstns:intEmployeeID" />
+      <xs:field xpath="mstns:strEmployeeID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using SAD_DAL.Global;
@@ -52,5 +53,14 @@ namespace SAD_BLL.Global
 
             return table;
         }
+
+        public DataTable GetAfblEmployeeEnroll()
+        {
+            DataTable dt = new DataTable();            
+            tblEmployeeTableAdapter obj = new tblEmployeeTableAdapter();
+            dt = obj.GetAfblEmployeeEnroll();
+            return dt;
+        }
+
     }
 }

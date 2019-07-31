@@ -155,6 +155,7 @@
                             <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 0px solid red;"></iframe>
                         </div>
                     </div>
+                </div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
