@@ -421,8 +421,9 @@ namespace BLL.Property
             DataTable dt = new DataTable();
             try
             {
-                vwLandGeneralInfoTableAdapter obj = new vwLandGeneralInfoTableAdapter();
-                dt = obj.GetDeedYear();
+                vwLandGeneralInfo1TableAdapter objNew = new vwLandGeneralInfo1TableAdapter();
+                //vwLandGeneralInfoTableAdapter obj = new vwLandGeneralInfoTableAdapter();
+                dt = objNew.GetDeedYear();
             }
             catch (Exception ex)
             {

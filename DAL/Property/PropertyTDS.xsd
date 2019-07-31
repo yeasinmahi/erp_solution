@@ -677,6 +677,24 @@ FROM ERP_MIS.dbo.vwLandGeneralInfo GROUP BY calcDeadYear order by calcDeadYear</
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vwLandGeneralInfo1TableAdapter" GeneratorDataComponentClassName="vwLandGeneralInfo1TableAdapter" Name="vwLandGeneralInfo1" UserDataComponentName="vwLandGeneralInfo1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_MISConnectionString (Settings)" DbObjectName="ERP_MIS.dbo.vwLandGeneralInfo" DbObjectType="View" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDeedYear" GetMethodModifier="Public" GetMethodName="GetDeedYear" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDeedYear" UserSourceName="GetDeedYear">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT calcDeadYear ,calcDeadYear  as dYear
+FROM ERP_MIS.dbo.vwLandGeneralInfo GROUP BY calcDeadYear order by calcDeadYear</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="calcDeadYear" DataSetColumn="calcDeadYear" />
+              <Mapping SourceColumn="dYear" DataSetColumn="dYear" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources>
           <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateExistsLandData" MethodsParameterType="CLR" Modifier="Public" Name="UpdateExistsLandData" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateExistsLandData">
@@ -701,7 +719,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
   <xs:element name="PropertyTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PropertyTDS" msprop:Generator_UserDSName="PropertyTDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Unit" msprop:Generator_TableClassName="UnitDataTable" msprop:Generator_TableVarName="tableUnit" msprop:Generator_TablePropName="Unit" msprop:Generator_RowDeletingName="UnitRowDeleting" msprop:Generator_RowChangingName="UnitRowChanging" msprop:Generator_RowEvHandlerName="UnitRowChangeEventHandler" msprop:Generator_RowDeletedName="UnitRowDeleted" msprop:Generator_UserTableName="Unit" msprop:Generator_RowChangedName="UnitRowChanged" msprop:Generator_RowEvArgName="UnitRowChangeEvent" msprop:Generator_RowClassName="UnitRow">
+        <xs:element name="Unit" msprop:Generator_TableClassName="UnitDataTable" msprop:Generator_TableVarName="tableUnit" msprop:Generator_RowChangedName="UnitRowChanged" msprop:Generator_TablePropName="Unit" msprop:Generator_RowDeletingName="UnitRowDeleting" msprop:Generator_RowChangingName="UnitRowChanging" msprop:Generator_RowEvHandlerName="UnitRowChangeEventHandler" msprop:Generator_RowDeletedName="UnitRowDeleted" msprop:Generator_RowClassName="UnitRow" msprop:Generator_UserTableName="Unit" msprop:Generator_RowEvArgName="UnitRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intUnitID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
@@ -722,7 +740,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Mouza" msprop:Generator_TableClassName="MouzaDataTable" msprop:Generator_TableVarName="tableMouza" msprop:Generator_TablePropName="Mouza" msprop:Generator_RowDeletingName="MouzaRowDeleting" msprop:Generator_RowChangingName="MouzaRowChanging" msprop:Generator_RowEvHandlerName="MouzaRowChangeEventHandler" msprop:Generator_RowDeletedName="MouzaRowDeleted" msprop:Generator_UserTableName="Mouza" msprop:Generator_RowChangedName="MouzaRowChanged" msprop:Generator_RowEvArgName="MouzaRowChangeEvent" msprop:Generator_RowClassName="MouzaRow">
+        <xs:element name="Mouza" msprop:Generator_TableClassName="MouzaDataTable" msprop:Generator_TableVarName="tableMouza" msprop:Generator_RowChangedName="MouzaRowChanged" msprop:Generator_TablePropName="Mouza" msprop:Generator_RowDeletingName="MouzaRowDeleting" msprop:Generator_RowChangingName="MouzaRowChanging" msprop:Generator_RowEvHandlerName="MouzaRowChangeEventHandler" msprop:Generator_RowDeletedName="MouzaRowDeleted" msprop:Generator_RowClassName="MouzaRow" msprop:Generator_UserTableName="Mouza" msprop:Generator_RowEvArgName="MouzaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intMouzaId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintMouzaId" msprop:Generator_ColumnPropNameInRow="intMouzaId" msprop:Generator_ColumnPropNameInTable="intMouzaIdColumn" msprop:Generator_UserColumnName="intMouzaId" type="xs:int" />
@@ -743,7 +761,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SubOffice" msprop:Generator_TableClassName="SubOfficeDataTable" msprop:Generator_TableVarName="tableSubOffice" msprop:Generator_TablePropName="SubOffice" msprop:Generator_RowDeletingName="SubOfficeRowDeleting" msprop:Generator_RowChangingName="SubOfficeRowChanging" msprop:Generator_RowEvHandlerName="SubOfficeRowChangeEventHandler" msprop:Generator_RowDeletedName="SubOfficeRowDeleted" msprop:Generator_UserTableName="SubOffice" msprop:Generator_RowChangedName="SubOfficeRowChanged" msprop:Generator_RowEvArgName="SubOfficeRowChangeEvent" msprop:Generator_RowClassName="SubOfficeRow">
+        <xs:element name="SubOffice" msprop:Generator_TableClassName="SubOfficeDataTable" msprop:Generator_TableVarName="tableSubOffice" msprop:Generator_RowChangedName="SubOfficeRowChanged" msprop:Generator_TablePropName="SubOffice" msprop:Generator_RowDeletingName="SubOfficeRowDeleting" msprop:Generator_RowChangingName="SubOfficeRowChanging" msprop:Generator_RowEvHandlerName="SubOfficeRowChangeEventHandler" msprop:Generator_RowDeletedName="SubOfficeRowDeleted" msprop:Generator_RowClassName="SubOfficeRow" msprop:Generator_UserTableName="SubOffice" msprop:Generator_RowEvArgName="SubOfficeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intSubOfficeId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintSubOfficeId" msprop:Generator_ColumnPropNameInRow="intSubOfficeId" msprop:Generator_ColumnPropNameInTable="intSubOfficeIdColumn" msprop:Generator_UserColumnName="intSubOfficeId" type="xs:int" />
@@ -793,7 +811,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DeedType" msprop:Generator_TableClassName="DeedTypeDataTable" msprop:Generator_TableVarName="tableDeedType" msprop:Generator_TablePropName="DeedType" msprop:Generator_RowDeletingName="DeedTypeRowDeleting" msprop:Generator_RowChangingName="DeedTypeRowChanging" msprop:Generator_RowEvHandlerName="DeedTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="DeedTypeRowDeleted" msprop:Generator_UserTableName="DeedType" msprop:Generator_RowChangedName="DeedTypeRowChanged" msprop:Generator_RowEvArgName="DeedTypeRowChangeEvent" msprop:Generator_RowClassName="DeedTypeRow">
+        <xs:element name="DeedType" msprop:Generator_TableClassName="DeedTypeDataTable" msprop:Generator_TableVarName="tableDeedType" msprop:Generator_RowChangedName="DeedTypeRowChanged" msprop:Generator_TablePropName="DeedType" msprop:Generator_RowDeletingName="DeedTypeRowDeleting" msprop:Generator_RowChangingName="DeedTypeRowChanging" msprop:Generator_RowEvHandlerName="DeedTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="DeedTypeRowDeleted" msprop:Generator_RowClassName="DeedTypeRow" msprop:Generator_UserTableName="DeedType" msprop:Generator_RowEvArgName="DeedTypeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intDeedTypeId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintDeedTypeId" msprop:Generator_ColumnPropNameInRow="intDeedTypeId" msprop:Generator_ColumnPropNameInTable="intDeedTypeIdColumn" msprop:Generator_UserColumnName="intDeedTypeId" type="xs:int" />
@@ -807,7 +825,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PlotType" msprop:Generator_TableClassName="PlotTypeDataTable" msprop:Generator_TableVarName="tablePlotType" msprop:Generator_TablePropName="PlotType" msprop:Generator_RowDeletingName="PlotTypeRowDeleting" msprop:Generator_RowChangingName="PlotTypeRowChanging" msprop:Generator_RowEvHandlerName="PlotTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="PlotTypeRowDeleted" msprop:Generator_UserTableName="PlotType" msprop:Generator_RowChangedName="PlotTypeRowChanged" msprop:Generator_RowEvArgName="PlotTypeRowChangeEvent" msprop:Generator_RowClassName="PlotTypeRow">
+        <xs:element name="PlotType" msprop:Generator_TableClassName="PlotTypeDataTable" msprop:Generator_TableVarName="tablePlotType" msprop:Generator_RowChangedName="PlotTypeRowChanged" msprop:Generator_TablePropName="PlotType" msprop:Generator_RowDeletingName="PlotTypeRowDeleting" msprop:Generator_RowChangingName="PlotTypeRowChanging" msprop:Generator_RowEvHandlerName="PlotTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="PlotTypeRowDeleted" msprop:Generator_RowClassName="PlotTypeRow" msprop:Generator_UserTableName="PlotType" msprop:Generator_RowEvArgName="PlotTypeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intPlotTypeId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintPlotTypeId" msprop:Generator_ColumnPropNameInRow="intPlotTypeId" msprop:Generator_ColumnPropNameInTable="intPlotTypeIdColumn" msprop:Generator_UserColumnName="intPlotTypeId" type="xs:int" />
@@ -821,25 +839,25 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="LDTR" msprop:Generator_TableClassName="LDTRDataTable" msprop:Generator_TableVarName="tableLDTR" msprop:Generator_TablePropName="LDTR" msprop:Generator_RowDeletingName="LDTRRowDeleting" msprop:Generator_RowChangingName="LDTRRowChanging" msprop:Generator_RowEvHandlerName="LDTRRowChangeEventHandler" msprop:Generator_RowDeletedName="LDTRRowDeleted" msprop:Generator_UserTableName="LDTR" msprop:Generator_RowChangedName="LDTRRowChanged" msprop:Generator_RowEvArgName="LDTRRowChangeEvent" msprop:Generator_RowClassName="LDTRRow">
+        <xs:element name="LDTR" msprop:Generator_TableClassName="LDTRDataTable" msprop:Generator_TableVarName="tableLDTR" msprop:Generator_RowChangedName="LDTRRowChanged" msprop:Generator_TablePropName="LDTR" msprop:Generator_RowDeletingName="LDTRRowDeleting" msprop:Generator_RowChangingName="LDTRRowChanging" msprop:Generator_RowEvHandlerName="LDTRRowChangeEventHandler" msprop:Generator_RowDeletedName="LDTRRowDeleted" msprop:Generator_RowClassName="LDTRRow" msprop:Generator_UserTableName="LDTR" msprop:Generator_RowEvArgName="LDTRRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intBanglaYear" msprop:Generator_ColumnVarNameInTable="columnintBanglaYear" msprop:Generator_ColumnPropNameInRow="intBanglaYear" msprop:Generator_ColumnPropNameInTable="intBanglaYearColumn" msprop:Generator_UserColumnName="intBanglaYear" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PlotArea" msprop:Generator_TableClassName="PlotAreaDataTable" msprop:Generator_TableVarName="tablePlotArea" msprop:Generator_RowChangedName="PlotAreaRowChanged" msprop:Generator_TablePropName="PlotArea" msprop:Generator_RowDeletingName="PlotAreaRowDeleting" msprop:Generator_RowChangingName="PlotAreaRowChanging" msprop:Generator_RowEvHandlerName="PlotAreaRowChangeEventHandler" msprop:Generator_RowDeletedName="PlotAreaRowDeleted" msprop:Generator_RowClassName="PlotAreaRow" msprop:Generator_UserTableName="PlotArea" msprop:Generator_RowEvArgName="PlotAreaRowChangeEvent">
+        <xs:element name="PlotArea" msprop:Generator_TableClassName="PlotAreaDataTable" msprop:Generator_TableVarName="tablePlotArea" msprop:Generator_TablePropName="PlotArea" msprop:Generator_RowDeletingName="PlotAreaRowDeleting" msprop:Generator_RowChangingName="PlotAreaRowChanging" msprop:Generator_RowEvHandlerName="PlotAreaRowChangeEventHandler" msprop:Generator_RowDeletedName="PlotAreaRowDeleted" msprop:Generator_UserTableName="PlotArea" msprop:Generator_RowChangedName="PlotAreaRowChanged" msprop:Generator_RowEvArgName="PlotAreaRowChangeEvent" msprop:Generator_RowClassName="PlotAreaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="numPlotArea" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnnumPlotArea" msprop:Generator_ColumnPropNameInRow="numPlotArea" msprop:Generator_ColumnPropNameInTable="numPlotAreaColumn" msprop:Generator_UserColumnName="numPlotArea" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AGLandTrxGeneral" msprop:Generator_TableClassName="AGLandTrxGeneralDataTable" msprop:Generator_TableVarName="tableAGLandTrxGeneral" msprop:Generator_TablePropName="AGLandTrxGeneral" msprop:Generator_RowDeletingName="AGLandTrxGeneralRowDeleting" msprop:Generator_RowChangingName="AGLandTrxGeneralRowChanging" msprop:Generator_RowEvHandlerName="AGLandTrxGeneralRowChangeEventHandler" msprop:Generator_RowDeletedName="AGLandTrxGeneralRowDeleted" msprop:Generator_UserTableName="AGLandTrxGeneral" msprop:Generator_RowChangedName="AGLandTrxGeneralRowChanged" msprop:Generator_RowEvArgName="AGLandTrxGeneralRowChangeEvent" msprop:Generator_RowClassName="AGLandTrxGeneralRow">
+        <xs:element name="AGLandTrxGeneral" msprop:Generator_TableClassName="AGLandTrxGeneralDataTable" msprop:Generator_TableVarName="tableAGLandTrxGeneral" msprop:Generator_RowChangedName="AGLandTrxGeneralRowChanged" msprop:Generator_TablePropName="AGLandTrxGeneral" msprop:Generator_RowDeletingName="AGLandTrxGeneralRowDeleting" msprop:Generator_RowChangingName="AGLandTrxGeneralRowChanging" msprop:Generator_RowEvHandlerName="AGLandTrxGeneralRowChangeEventHandler" msprop:Generator_RowDeletedName="AGLandTrxGeneralRowDeleted" msprop:Generator_RowClassName="AGLandTrxGeneralRow" msprop:Generator_UserTableName="AGLandTrxGeneral" msprop:Generator_RowEvArgName="AGLandTrxGeneralRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AGBangladeshGeo" msprop:Generator_TableClassName="AGBangladeshGeoDataTable" msprop:Generator_TableVarName="tableAGBangladeshGeo" msprop:Generator_RowChangedName="AGBangladeshGeoRowChanged" msprop:Generator_TablePropName="AGBangladeshGeo" msprop:Generator_RowDeletingName="AGBangladeshGeoRowDeleting" msprop:Generator_RowChangingName="AGBangladeshGeoRowChanging" msprop:Generator_RowEvHandlerName="AGBangladeshGeoRowChangeEventHandler" msprop:Generator_RowDeletedName="AGBangladeshGeoRowDeleted" msprop:Generator_RowClassName="AGBangladeshGeoRow" msprop:Generator_UserTableName="AGBangladeshGeo" msprop:Generator_RowEvArgName="AGBangladeshGeoRowChangeEvent">
+        <xs:element name="AGBangladeshGeo" msprop:Generator_TableClassName="AGBangladeshGeoDataTable" msprop:Generator_TableVarName="tableAGBangladeshGeo" msprop:Generator_TablePropName="AGBangladeshGeo" msprop:Generator_RowDeletingName="AGBangladeshGeoRowDeleting" msprop:Generator_RowChangingName="AGBangladeshGeoRowChanging" msprop:Generator_RowEvHandlerName="AGBangladeshGeoRowChangeEventHandler" msprop:Generator_RowDeletedName="AGBangladeshGeoRowDeleted" msprop:Generator_UserTableName="AGBangladeshGeo" msprop:Generator_RowChangedName="AGBangladeshGeoRowChanged" msprop:Generator_RowEvArgName="AGBangladeshGeoRowChangeEvent" msprop:Generator_RowClassName="AGBangladeshGeoRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strDistrict" msprop:Generator_ColumnVarNameInTable="columnstrDistrict" msprop:Generator_ColumnPropNameInRow="strDistrict" msprop:Generator_ColumnPropNameInTable="strDistrictColumn" msprop:Generator_UserColumnName="strDistrict" minOccurs="0">
@@ -852,11 +870,11 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="MouzaSetup" msprop:Generator_TableClassName="MouzaSetupDataTable" msprop:Generator_TableVarName="tableMouzaSetup" msprop:Generator_RowChangedName="MouzaSetupRowChanged" msprop:Generator_TablePropName="MouzaSetup" msprop:Generator_RowDeletingName="MouzaSetupRowDeleting" msprop:Generator_RowChangingName="MouzaSetupRowChanging" msprop:Generator_RowEvHandlerName="MouzaSetupRowChangeEventHandler" msprop:Generator_RowDeletedName="MouzaSetupRowDeleted" msprop:Generator_RowClassName="MouzaSetupRow" msprop:Generator_UserTableName="MouzaSetup" msprop:Generator_RowEvArgName="MouzaSetupRowChangeEvent">
+        <xs:element name="MouzaSetup" msprop:Generator_TableClassName="MouzaSetupDataTable" msprop:Generator_TableVarName="tableMouzaSetup" msprop:Generator_TablePropName="MouzaSetup" msprop:Generator_RowDeletingName="MouzaSetupRowDeleting" msprop:Generator_RowChangingName="MouzaSetupRowChanging" msprop:Generator_RowEvHandlerName="MouzaSetupRowChangeEventHandler" msprop:Generator_RowDeletedName="MouzaSetupRowDeleted" msprop:Generator_UserTableName="MouzaSetup" msprop:Generator_RowChangedName="MouzaSetupRowChanged" msprop:Generator_RowEvArgName="MouzaSetupRowChangeEvent" msprop:Generator_RowClassName="MouzaSetupRow">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AGLandMouza" msprop:Generator_TableClassName="AGLandMouzaDataTable" msprop:Generator_TableVarName="tableAGLandMouza" msprop:Generator_TablePropName="AGLandMouza" msprop:Generator_RowDeletingName="AGLandMouzaRowDeleting" msprop:Generator_RowChangingName="AGLandMouzaRowChanging" msprop:Generator_RowEvHandlerName="AGLandMouzaRowChangeEventHandler" msprop:Generator_RowDeletedName="AGLandMouzaRowDeleted" msprop:Generator_UserTableName="AGLandMouza" msprop:Generator_RowChangedName="AGLandMouzaRowChanged" msprop:Generator_RowEvArgName="AGLandMouzaRowChangeEvent" msprop:Generator_RowClassName="AGLandMouzaRow">
+        <xs:element name="AGLandMouza" msprop:Generator_TableClassName="AGLandMouzaDataTable" msprop:Generator_TableVarName="tableAGLandMouza" msprop:Generator_RowChangedName="AGLandMouzaRowChanged" msprop:Generator_TablePropName="AGLandMouza" msprop:Generator_RowDeletingName="AGLandMouzaRowDeleting" msprop:Generator_RowChangingName="AGLandMouzaRowChanging" msprop:Generator_RowEvHandlerName="AGLandMouzaRowChangeEventHandler" msprop:Generator_RowDeletedName="AGLandMouzaRowDeleted" msprop:Generator_RowClassName="AGLandMouzaRow" msprop:Generator_UserTableName="AGLandMouza" msprop:Generator_RowEvArgName="AGLandMouzaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -891,7 +909,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblAGLandMouza" msprop:Generator_TableClassName="tblAGLandMouzaDataTable" msprop:Generator_TableVarName="tabletblAGLandMouza" msprop:Generator_TablePropName="tblAGLandMouza" msprop:Generator_RowDeletingName="tblAGLandMouzaRowDeleting" msprop:Generator_RowChangingName="tblAGLandMouzaRowChanging" msprop:Generator_RowEvHandlerName="tblAGLandMouzaRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAGLandMouzaRowDeleted" msprop:Generator_UserTableName="tblAGLandMouza" msprop:Generator_RowChangedName="tblAGLandMouzaRowChanged" msprop:Generator_RowEvArgName="tblAGLandMouzaRowChangeEvent" msprop:Generator_RowClassName="tblAGLandMouzaRow">
+        <xs:element name="tblAGLandMouza" msprop:Generator_TableClassName="tblAGLandMouzaDataTable" msprop:Generator_TableVarName="tabletblAGLandMouza" msprop:Generator_RowChangedName="tblAGLandMouzaRowChanged" msprop:Generator_TablePropName="tblAGLandMouza" msprop:Generator_RowDeletingName="tblAGLandMouzaRowDeleting" msprop:Generator_RowChangingName="tblAGLandMouzaRowChanging" msprop:Generator_RowEvHandlerName="tblAGLandMouzaRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAGLandMouzaRowDeleted" msprop:Generator_RowClassName="tblAGLandMouzaRow" msprop:Generator_UserTableName="tblAGLandMouza" msprop:Generator_RowEvArgName="tblAGLandMouzaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intMouzaId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintMouzaId" msprop:Generator_ColumnPropNameInRow="intMouzaId" msprop:Generator_ColumnPropNameInTable="intMouzaIdColumn" msprop:Generator_UserColumnName="intMouzaId" type="xs:int" />
@@ -919,7 +937,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PlotByMouza" msprop:Generator_TableClassName="PlotByMouzaDataTable" msprop:Generator_TableVarName="tablePlotByMouza" msprop:Generator_TablePropName="PlotByMouza" msprop:Generator_RowDeletingName="PlotByMouzaRowDeleting" msprop:Generator_RowChangingName="PlotByMouzaRowChanging" msprop:Generator_RowEvHandlerName="PlotByMouzaRowChangeEventHandler" msprop:Generator_RowDeletedName="PlotByMouzaRowDeleted" msprop:Generator_UserTableName="PlotByMouza" msprop:Generator_RowChangedName="PlotByMouzaRowChanged" msprop:Generator_RowEvArgName="PlotByMouzaRowChangeEvent" msprop:Generator_RowClassName="PlotByMouzaRow">
+        <xs:element name="PlotByMouza" msprop:Generator_TableClassName="PlotByMouzaDataTable" msprop:Generator_TableVarName="tablePlotByMouza" msprop:Generator_RowChangedName="PlotByMouzaRowChanged" msprop:Generator_TablePropName="PlotByMouza" msprop:Generator_RowDeletingName="PlotByMouzaRowDeleting" msprop:Generator_RowChangingName="PlotByMouzaRowChanging" msprop:Generator_RowEvHandlerName="PlotByMouzaRowChangeEventHandler" msprop:Generator_RowDeletedName="PlotByMouzaRowDeleted" msprop:Generator_RowClassName="PlotByMouzaRow" msprop:Generator_UserTableName="PlotByMouza" msprop:Generator_RowEvArgName="PlotByMouzaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -950,11 +968,11 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="AGLandPlotSetup" msprop:Generator_TableClassName="AGLandPlotSetupDataTable" msprop:Generator_TableVarName="tableAGLandPlotSetup" msprop:Generator_TablePropName="AGLandPlotSetup" msprop:Generator_RowDeletingName="AGLandPlotSetupRowDeleting" msprop:Generator_RowChangingName="AGLandPlotSetupRowChanging" msprop:Generator_RowEvHandlerName="AGLandPlotSetupRowChangeEventHandler" msprop:Generator_RowDeletedName="AGLandPlotSetupRowDeleted" msprop:Generator_UserTableName="AGLandPlotSetup" msprop:Generator_RowChangedName="AGLandPlotSetupRowChanged" msprop:Generator_RowEvArgName="AGLandPlotSetupRowChangeEvent" msprop:Generator_RowClassName="AGLandPlotSetupRow">
+        <xs:element name="AGLandPlotSetup" msprop:Generator_TableClassName="AGLandPlotSetupDataTable" msprop:Generator_TableVarName="tableAGLandPlotSetup" msprop:Generator_RowChangedName="AGLandPlotSetupRowChanged" msprop:Generator_TablePropName="AGLandPlotSetup" msprop:Generator_RowDeletingName="AGLandPlotSetupRowDeleting" msprop:Generator_RowChangingName="AGLandPlotSetupRowChanging" msprop:Generator_RowEvHandlerName="AGLandPlotSetupRowChangeEventHandler" msprop:Generator_RowDeletedName="AGLandPlotSetupRowDeleted" msprop:Generator_RowClassName="AGLandPlotSetupRow" msprop:Generator_UserTableName="AGLandPlotSetup" msprop:Generator_RowEvArgName="AGLandPlotSetupRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblAGLandPlotType" msprop:Generator_TableClassName="tblAGLandPlotTypeDataTable" msprop:Generator_TableVarName="tabletblAGLandPlotType" msprop:Generator_TablePropName="tblAGLandPlotType" msprop:Generator_RowDeletingName="tblAGLandPlotTypeRowDeleting" msprop:Generator_RowChangingName="tblAGLandPlotTypeRowChanging" msprop:Generator_RowEvHandlerName="tblAGLandPlotTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAGLandPlotTypeRowDeleted" msprop:Generator_UserTableName="tblAGLandPlotType" msprop:Generator_RowChangedName="tblAGLandPlotTypeRowChanged" msprop:Generator_RowEvArgName="tblAGLandPlotTypeRowChangeEvent" msprop:Generator_RowClassName="tblAGLandPlotTypeRow">
+        <xs:element name="tblAGLandPlotType" msprop:Generator_TableClassName="tblAGLandPlotTypeDataTable" msprop:Generator_TableVarName="tabletblAGLandPlotType" msprop:Generator_RowChangedName="tblAGLandPlotTypeRowChanged" msprop:Generator_TablePropName="tblAGLandPlotType" msprop:Generator_RowDeletingName="tblAGLandPlotTypeRowDeleting" msprop:Generator_RowChangingName="tblAGLandPlotTypeRowChanging" msprop:Generator_RowEvHandlerName="tblAGLandPlotTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAGLandPlotTypeRowDeleted" msprop:Generator_RowClassName="tblAGLandPlotTypeRow" msprop:Generator_UserTableName="tblAGLandPlotType" msprop:Generator_RowEvArgName="tblAGLandPlotTypeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intPlotTypeId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintPlotTypeId" msprop:Generator_ColumnPropNameInRow="intPlotTypeId" msprop:Generator_ColumnPropNameInTable="intPlotTypeIdColumn" msprop:Generator_UserColumnName="intPlotTypeId" type="xs:int" />
@@ -968,7 +986,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PlotDetailsByMouza" msprop:Generator_TableClassName="PlotDetailsByMouzaDataTable" msprop:Generator_TableVarName="tablePlotDetailsByMouza" msprop:Generator_RowChangedName="PlotDetailsByMouzaRowChanged" msprop:Generator_TablePropName="PlotDetailsByMouza" msprop:Generator_RowDeletingName="PlotDetailsByMouzaRowDeleting" msprop:Generator_RowChangingName="PlotDetailsByMouzaRowChanging" msprop:Generator_RowEvHandlerName="PlotDetailsByMouzaRowChangeEventHandler" msprop:Generator_RowDeletedName="PlotDetailsByMouzaRowDeleted" msprop:Generator_RowClassName="PlotDetailsByMouzaRow" msprop:Generator_UserTableName="PlotDetailsByMouza" msprop:Generator_RowEvArgName="PlotDetailsByMouzaRowChangeEvent">
+        <xs:element name="PlotDetailsByMouza" msprop:Generator_TableClassName="PlotDetailsByMouzaDataTable" msprop:Generator_TableVarName="tablePlotDetailsByMouza" msprop:Generator_TablePropName="PlotDetailsByMouza" msprop:Generator_RowDeletingName="PlotDetailsByMouzaRowDeleting" msprop:Generator_RowChangingName="PlotDetailsByMouzaRowChanging" msprop:Generator_RowEvHandlerName="PlotDetailsByMouzaRowChangeEventHandler" msprop:Generator_RowDeletedName="PlotDetailsByMouzaRowDeleted" msprop:Generator_UserTableName="PlotDetailsByMouza" msprop:Generator_RowChangedName="PlotDetailsByMouzaRowChanged" msprop:Generator_RowEvArgName="PlotDetailsByMouzaRowChangeEvent" msprop:Generator_RowClassName="PlotDetailsByMouzaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strPlotType" msprop:Generator_ColumnVarNameInTable="columnstrPlotType" msprop:Generator_ColumnPropNameInRow="strPlotType" msprop:Generator_ColumnPropNameInTable="strPlotTypeColumn" msprop:Generator_UserColumnName="strPlotType">
@@ -989,7 +1007,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ShowLandInsertedData" msprop:Generator_TableClassName="ShowLandInsertedDataDataTable" msprop:Generator_TableVarName="tableShowLandInsertedData" msprop:Generator_TablePropName="ShowLandInsertedData" msprop:Generator_RowDeletingName="ShowLandInsertedDataRowDeleting" msprop:Generator_RowChangingName="ShowLandInsertedDataRowChanging" msprop:Generator_RowEvHandlerName="ShowLandInsertedDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ShowLandInsertedDataRowDeleted" msprop:Generator_UserTableName="ShowLandInsertedData" msprop:Generator_RowChangedName="ShowLandInsertedDataRowChanged" msprop:Generator_RowEvArgName="ShowLandInsertedDataRowChangeEvent" msprop:Generator_RowClassName="ShowLandInsertedDataRow">
+        <xs:element name="ShowLandInsertedData" msprop:Generator_TableClassName="ShowLandInsertedDataDataTable" msprop:Generator_TableVarName="tableShowLandInsertedData" msprop:Generator_RowChangedName="ShowLandInsertedDataRowChanged" msprop:Generator_TablePropName="ShowLandInsertedData" msprop:Generator_RowDeletingName="ShowLandInsertedDataRowDeleting" msprop:Generator_RowChangingName="ShowLandInsertedDataRowChanging" msprop:Generator_RowEvHandlerName="ShowLandInsertedDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ShowLandInsertedDataRowDeleted" msprop:Generator_RowClassName="ShowLandInsertedDataRow" msprop:Generator_UserTableName="ShowLandInsertedData" msprop:Generator_RowEvArgName="ShowLandInsertedDataRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strMouza" msprop:Generator_ColumnVarNameInTable="columnstrMouza" msprop:Generator_ColumnPropNameInRow="strMouza" msprop:Generator_ColumnPropNameInTable="strMouzaColumn" msprop:Generator_UserColumnName="strMouza">
@@ -1046,7 +1064,7 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ShowLandInsertedMainData" msprop:Generator_TableClassName="ShowLandInsertedMainDataDataTable" msprop:Generator_TableVarName="tableShowLandInsertedMainData" msprop:Generator_RowChangedName="ShowLandInsertedMainDataRowChanged" msprop:Generator_TablePropName="ShowLandInsertedMainData" msprop:Generator_RowDeletingName="ShowLandInsertedMainDataRowDeleting" msprop:Generator_RowChangingName="ShowLandInsertedMainDataRowChanging" msprop:Generator_RowEvHandlerName="ShowLandInsertedMainDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ShowLandInsertedMainDataRowDeleted" msprop:Generator_RowClassName="ShowLandInsertedMainDataRow" msprop:Generator_UserTableName="ShowLandInsertedMainData" msprop:Generator_RowEvArgName="ShowLandInsertedMainDataRowChangeEvent">
+        <xs:element name="ShowLandInsertedMainData" msprop:Generator_TableClassName="ShowLandInsertedMainDataDataTable" msprop:Generator_TableVarName="tableShowLandInsertedMainData" msprop:Generator_TablePropName="ShowLandInsertedMainData" msprop:Generator_RowDeletingName="ShowLandInsertedMainDataRowDeleting" msprop:Generator_RowChangingName="ShowLandInsertedMainDataRowChanging" msprop:Generator_RowEvHandlerName="ShowLandInsertedMainDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ShowLandInsertedMainDataRowDeleted" msprop:Generator_UserTableName="ShowLandInsertedMainData" msprop:Generator_RowChangedName="ShowLandInsertedMainDataRowChanged" msprop:Generator_RowEvArgName="ShowLandInsertedMainDataRowChangeEvent" msprop:Generator_RowClassName="ShowLandInsertedMainDataRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strMouza" msprop:Generator_ColumnVarNameInTable="columnstrMouza" msprop:Generator_ColumnPropNameInRow="strMouza" msprop:Generator_ColumnPropNameInTable="strMouzaColumn" msprop:Generator_UserColumnName="strMouza">
@@ -1121,7 +1139,15 @@ WHERE        (intLandGeneralPK = @PKId) AND (intUnitId = @UnitID) AND (intMouzaI
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vwLandGeneralInfo" msprop:Generator_TableClassName="vwLandGeneralInfoDataTable" msprop:Generator_TableVarName="tablevwLandGeneralInfo" msprop:Generator_TablePropName="vwLandGeneralInfo" msprop:Generator_RowDeletingName="vwLandGeneralInfoRowDeleting" msprop:Generator_RowChangingName="vwLandGeneralInfoRowChanging" msprop:Generator_RowEvHandlerName="vwLandGeneralInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="vwLandGeneralInfoRowDeleted" msprop:Generator_UserTableName="vwLandGeneralInfo" msprop:Generator_RowChangedName="vwLandGeneralInfoRowChanged" msprop:Generator_RowEvArgName="vwLandGeneralInfoRowChangeEvent" msprop:Generator_RowClassName="vwLandGeneralInfoRow">
+        <xs:element name="vwLandGeneralInfo" msprop:Generator_TableClassName="vwLandGeneralInfoDataTable" msprop:Generator_TableVarName="tablevwLandGeneralInfo" msprop:Generator_RowChangedName="vwLandGeneralInfoRowChanged" msprop:Generator_TablePropName="vwLandGeneralInfo" msprop:Generator_RowDeletingName="vwLandGeneralInfoRowDeleting" msprop:Generator_RowChangingName="vwLandGeneralInfoRowChanging" msprop:Generator_RowEvHandlerName="vwLandGeneralInfoRowChangeEventHandler" msprop:Generator_RowDeletedName="vwLandGeneralInfoRowDeleted" msprop:Generator_RowClassName="vwLandGeneralInfoRow" msprop:Generator_UserTableName="vwLandGeneralInfo" msprop:Generator_RowEvArgName="vwLandGeneralInfoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="calcDeadYear" msprop:Generator_ColumnVarNameInTable="columncalcDeadYear" msprop:Generator_ColumnPropNameInRow="calcDeadYear" msprop:Generator_ColumnPropNameInTable="calcDeadYearColumn" msprop:Generator_UserColumnName="calcDeadYear" type="xs:int" minOccurs="0" />
+              <xs:element name="dYear" msprop:Generator_ColumnVarNameInTable="columndYear" msprop:Generator_ColumnPropNameInRow="dYear" msprop:Generator_ColumnPropNameInTable="dYearColumn" msprop:Generator_UserColumnName="dYear" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vwLandGeneralInfo1" msprop:Generator_TableClassName="vwLandGeneralInfo1DataTable" msprop:Generator_TableVarName="tablevwLandGeneralInfo1" msprop:Generator_TablePropName="vwLandGeneralInfo1" msprop:Generator_RowDeletingName="vwLandGeneralInfo1RowDeleting" msprop:Generator_RowChangingName="vwLandGeneralInfo1RowChanging" msprop:Generator_RowEvHandlerName="vwLandGeneralInfo1RowChangeEventHandler" msprop:Generator_RowDeletedName="vwLandGeneralInfo1RowDeleted" msprop:Generator_UserTableName="vwLandGeneralInfo1" msprop:Generator_RowChangedName="vwLandGeneralInfo1RowChanged" msprop:Generator_RowEvArgName="vwLandGeneralInfo1RowChangeEvent" msprop:Generator_RowClassName="vwLandGeneralInfo1Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="calcDeadYear" msprop:Generator_ColumnVarNameInTable="columncalcDeadYear" msprop:Generator_ColumnPropNameInRow="calcDeadYear" msprop:Generator_ColumnPropNameInTable="calcDeadYearColumn" msprop:Generator_UserColumnName="calcDeadYear" type="xs:int" minOccurs="0" />
