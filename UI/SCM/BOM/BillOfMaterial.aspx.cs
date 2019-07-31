@@ -40,7 +40,7 @@ namespace UI.SCM.BOM
                 }
                 catch { }
 
-                _dt = _bll.GetBomData(1, _xmlData, _intwh, _bomId, DateTime.Now, Enroll);
+                _dt = _bll.GetBomData(20, _xmlData, _intwh, _bomId, DateTime.Now, Enroll);
                 if (_dt.Rows.Count > 0)
                 {
                     ddlWH.Loads(_dt, "Id", "strName");

@@ -384,6 +384,38 @@ namespace BLL.Property
             return dt;
         }
 
+        public DataTable GetInsertedLandMainData(DateTime FromDate, DateTime ToDate, string DeedNo)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                ShowLandInsertedMainDataTableAdapter adapter = new ShowLandInsertedMainDataTableAdapter();
+                dt = adapter.GetLandExistsMainData(FromDate, ToDate, DeedNo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
+
+        public int UpdateAGExistsLand(int Enroll, int PKId, int UnitID, int MouzaId)
+        {
+            int iiii = 0;
+            try
+            {
+                AGLandTableAdapter adapter = new AGLandTableAdapter();
+                iiii = adapter.UpdateExistsLandData(Enroll, PKId, UnitID, MouzaId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return iiii;
+        }
+
         public DataTable GetDeedYear()
         {
             DataTable dt = new DataTable();

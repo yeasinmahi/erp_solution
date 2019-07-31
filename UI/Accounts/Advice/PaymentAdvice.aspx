@@ -8,10 +8,10 @@
 <head runat="server">
     <title></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
+  <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+   <%-- <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>
     <link href="jquery-ui.css" rel="stylesheet" />
@@ -21,8 +21,15 @@
     <script src="../../Content/JS/CustomizeScript.js"></script>
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/CSS/Application.css" rel="stylesheet" />
+     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+     <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css"
+        rel="stylesheet" type="text/css" />
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>--%>
 
     <script language="javascript" type="text/javascript">
+
+
 
         function ExportDivDataToExcel() {
 
@@ -43,10 +50,23 @@
         function ViewDispatchPopup(Id) {
             window.open('VoucherPrint.aspx?ID=' + Id, 'sub', "height=500, width=900, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
+       
+        function ShowDiv() {
+            $("#divExport").fadeIn("slow");
+            //$("#DetailsGrid").fadeOut("slow");
+        }
+        //function HideReasonDiv() {
+        //    $("#divExport").fadeOut("slow");
+        //}
+        function ShowPopup() {
+            $(function () {
+                $("#divExport").dialog({
+                height: 300,
+             width: 550
+                });
+            });
+        };
     </script>
-
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 
 
@@ -153,6 +173,7 @@
                                         <asp:ListItem Selected="True" Value="0">Select Bank</asp:ListItem>
                                         <asp:ListItem Selected="False" Value="1">IBBL</asp:ListItem>
                                         <asp:ListItem Value="2">SCB</asp:ListItem>
+                                        <asp:ListItem Value="3">OTHER</asp:ListItem>
                                     </asp:DropDownList></td>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label12" runat="server" CssClass="lbl" Text="Voucher Posting :"></asp:Label></td>
@@ -176,7 +197,7 @@
                                     <asp:Button ID="btnShowReport" runat="server" Text="Show Report" OnClick="btnShowReport_Click" />
                                     <asp:Button ID="btnExport" runat="server" Text="Export" OnClick="btnExport_Click" OnClientClick="ExportDivDataToExcel()" />
                                     <asp:Button ID="btnExportIBBL" runat="server" Text="Export" OnClick="btnExportIBBL_Click" OnClientClick="ExportDivDataToExcelIBBL()" />
-                                    <asp:Button ID="btnPrint" runat="server" Text="Print" /></td>
+                                    <asp:Button ID="btnPrint" runat="server" Text="Print" OnClientClick="ShowDiv()"/></td>
                             </tr>
                             <tr>
                                 <td colspan="6">
@@ -186,7 +207,7 @@
 
                                             <asp:TemplateField HeaderText="ID No" ItemStyle-HorizontalAlign="right" SortExpression="intID" Visible="false">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblID" runat="server" Text='<%# Bind("intID") %>'></asp:Label>
+                                                    <asp:Label ID="lblID" runat="server" Text='<%# Bind("intID") %>'></asp:Label> 
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
@@ -346,11 +367,14 @@
                     <div id="divExport" runat="server">
                         <table>
                             <tr>
+                                <%--<td style="width:20px;"></td>--%>
                                 <td style="font-weight: bold; text-decoration: underline; font-size: 22px; color: #000000; text-align: center">
-                                    <asp:Label ID="lblUnitName" runat="server"></asp:Label></td>
+                                    <asp:Label ID="lblUnitName" runat="server"></asp:Label>
+                                </td>
+                                <%--<td></td>--%>
                             </tr>
                             <tr>
-                                <td style="font-weight: bold; text-decoration: underline; font-size: 18px; color: #000000; text-align: center">
+                                <td colspan="3" style="font-weight: bold; text-decoration: underline; font-size: 18px; color: #000000; text-align: center">
                                     <asp:Label ID="lblUnitAddress" runat="server"></asp:Label></td>
                             </tr>
                             <tr>

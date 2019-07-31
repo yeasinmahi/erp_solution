@@ -4,6 +4,7 @@ using GLOBAL_BLL;
 using System;
 using System.Data;
 using System.Web;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
@@ -88,6 +89,9 @@ namespace UI.Accounts.Advice
             {
                 HideControl();
                 LoadAccountList();
+                dgvAdvice.UnLoad();
+                dgvAdviceIBBL.UnLoad();
+                dgvReport.UnLoad();
             }
             catch { }
         }
@@ -100,7 +104,7 @@ namespace UI.Accounts.Advice
             divExportIBBL.Visible = false;
             intBankType = int.Parse(ddlFormat.SelectedValue.ToString());
             intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
-            if (intBankType == 1)
+            if (intBankType == 1 || intBankType == 3)
             {
                 dt = new DataTable();
                 dt = bll.GetIBBLBank(intUnitID);
@@ -114,6 +118,7 @@ namespace UI.Accounts.Advice
                 btnExportIBBL.Visible = true;
                 btnExport.Visible = false;
             }
+            
             else if (intBankType != 0)
             {
                 dt = new DataTable();
@@ -220,11 +225,12 @@ namespace UI.Accounts.Advice
                 {
                     return;
                 }
-                //else if (intBankType == 1)
-                //{
-
-                //}
-                else if(intBankType==1)
+                else if(intBankType==2)
+                {
+                    LoadGridExport();
+                    
+                }
+                else //IBBL and Other
                 {
 
                     LoadLabel();
@@ -232,11 +238,6 @@ namespace UI.Accounts.Advice
                     dt = bll.GetPartyAdvice(intAdviceType, intActionBy, intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted, intChillingID);
                     LoadGridExport();
 
-                }
-                else if(intBankType==2)
-                {
-                    LoadGridExport();
-                    
                 }
 
             }
@@ -253,7 +254,112 @@ namespace UI.Accounts.Advice
             // ends
             tracker.Stop();
         }
+        private void LoadGridExport()
+        {
+            try
+            {
+                Session["accountNo"] = null;
+                intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
+                intBankType = int.Parse(ddlFormat.SelectedValue.ToString());
+                intActionBy = int.Parse(hdnEnroll.Value.ToString());
 
+                LoadLabel();
+
+                if (intBankType == 0)
+                {
+                    return;
+                }
+                else if (intBankType == 1) //IBBL
+                {
+
+                    dt = new DataTable();
+                    dt = bll.GetAdviceData(1, intActionBy);
+                    dgvAdviceIBBL.DataSource = dt;
+                    dgvAdviceIBBL.DataBind();
+                    dgvReport.DataSource = dt;
+                    dgvReport.DataBind();
+
+                    if (dgvAdviceIBBL.Rows.Count > 0)
+                    {
+                        AdviceIBBLLabelShowHide();
+
+                        intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
+                        dt = new DataTable();
+                        dt = bll.GetAccountDetails(intAutoID);
+                        lblBankNameIBBL.Text = dt.Rows[0]["strBankDetailsName"].ToString();
+                        lblBankAddressIBBL.Text = dt.Rows[0]["strBankAddress"].ToString();
+                        lblMailBodyIBBL.Text = "We do hereby requesting you to make payment by transferring the amount to the respective Account Holder as shown below in detailed by debiting our CD Account No. " + dt.Rows[0]["strAccountNo"].ToString();
+
+                        AmountFormat formatAmount = new AmountFormat();
+                        string totalAmountInWord = formatAmount.GetTakaInWords(totalamountibbl, "", "Only");
+                        lblWordIBBL.Text = "In Word: " + totalAmountInWord.ToString();
+                        HdnValue.Value = "";
+
+                    }
+                }
+                else if (intBankType == 3) //Other
+                {
+                    dt = new DataTable();
+                    dt = bll.GetAdviceData(2, intActionBy);
+                    dgvAdviceIBBL.DataSource = dt;
+                    dgvAdviceIBBL.DataBind();
+                    dgvReport.DataSource = dt;
+                    dgvReport.DataBind();
+
+                    if (dgvAdviceIBBL.Rows.Count > 0)
+                    {
+                        AdviceIBBLLabelShowHide();
+
+                        intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
+                        dt = new DataTable();
+                        dt = bll.GetAccountDetails(intAutoID);
+                        lblBankNameIBBL.Text = dt.Rows[0]["strBankDetailsName"].ToString();
+                        lblBankAddressIBBL.Text = dt.Rows[0]["strBankAddress"].ToString();
+                        lblMailBodyIBBL.Text = "We do hereby requesting you to make payment by transferring the amount to the respective Account Holder as shown below in detailed by debiting our CD Account No. " + dt.Rows[0]["strAccountNo"].ToString();
+
+                        AmountFormat formatAmount = new AmountFormat();
+                        string totalAmountInWord = formatAmount.GetTakaInWords(totalamountibbl, "", "Only");
+                        lblWordIBBL.Text = "In Word: " + totalAmountInWord.ToString();
+                        HdnValue.Value = "";
+
+                    }
+                }
+                else if (intBankType == 2)//SCB
+                {
+
+                    dt = new DataTable();
+                    dt = bll.GetPartyAdviceForSCB(intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted);
+
+                    CheckScbBank();
+
+                    dgvAdvice.DataSource = dt;
+                    dgvAdvice.DataBind();
+                    dgvReport.DataSource = dt;
+                    dgvReport.DataBind();
+
+                    if (dgvAdvice.Rows.Count > 0)
+                    {
+
+                        AdviceSCBLabelShowHide();
+
+                        intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
+                        dt = new DataTable();
+                        dt = bll.GetAccountDetails(intAutoID);
+                        lblBankName.Text = dt.Rows[0]["strBankDetailsName"].ToString();
+                        lblBankAddress.Text = dt.Rows[0]["strBankAddress"].ToString();
+                        lblMailBody.Text = "We do hereby requesting you to make payment by transferring the amount to the respective Account Holder as shown below in detailed by debiting our" + "<br/>" + "CD Account No. " + dt.Rows[0]["strAccountNo"].ToString();
+
+                        AmountFormat formatAmount = new AmountFormat();
+                        string totalAmountInWord = formatAmount.GetTakaInWords(totalamount, "", "Only");
+                        lblWord.Text = "In Word: " + totalAmountInWord.ToString();
+                        HdnValue.Value = "";
+
+                    }
+                }
+
+            }
+            catch { }
+        }
         public void   LoadLabel()
         {
             intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
@@ -269,6 +375,7 @@ namespace UI.Accounts.Advice
             strBankName = ddlFormat.SelectedItem.ToString();
             ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
         }
+
         public void CheckScbBank()
         {
             string accountNo = ddlBankAccount.SelectedItem.Text;
@@ -292,144 +399,52 @@ namespace UI.Accounts.Advice
                 Session["accountNo"] = null;
             }
         }
-        private void LoadGridExport()
+       
+        public void AdviceSCBLabelShowHide()
         {
-            try
-            {
-                Session["accountNo"] = null;
-                intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
-                intBankType = int.Parse(ddlFormat.SelectedValue.ToString());
-                intActionBy = int.Parse(hdnEnroll.Value.ToString());
-
-                if (intBankType == 0)
-                {
-                    return;
-                }
-                else if (intBankType == 1)
-                {
-                    intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
-                    dt = new DataTable();
-                    dt = bll.GetUnitAddress(intUnitID);
-                    lblUnitIBBL.Text = dt.Rows[0]["strDescription"].ToString();
-                    lblForUnitIBBL.Text = "For " + dt.Rows[0]["strDescription"].ToString();
-                    lblUnitAddIBBL.Text = dt.Rows[0]["strAddress"].ToString();
-
-                    dteDate = DateTime.Parse(txtDate.Text.ToString());
-                    intWork = 0;
-                    strAccountMandatory = ddlMandatory.SelectedItem.ToString();
-                    strBankName = ddlFormat.SelectedItem.ToString();
-                    ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
-                    dt = new DataTable();
-                    dt = bll.GetAdviceData(intActionBy);
-                    dgvAdviceIBBL.DataSource = dt;
-                    dgvAdviceIBBL.DataBind();
-                    dgvReport.DataSource = dt;
-                    dgvReport.DataBind();
-
-                    if (dgvAdviceIBBL.Rows.Count > 0)
-                    {
-                        //LoadGridExport();
-
-                        lblUnitIBBL.Visible = true;
-                        lblUnitIBBL.Visible = true;
-                        lblToIBBL.Visible = true;
-                        lblManagerIBBL.Visible = true;
-                        lblBankNameIBBL.Visible = true;
-                        lblBankAddressIBBL.Visible = true;
-                        lblSubjectIBBL.Visible = true;
-                        lblDearSirIBBL.Visible = true;
-                        lblMailBodyIBBL.Visible = true;
-                        lblDetailsIBBL.Visible = true;
-                        lblWordIBBL.Visible = true;
-                        lblForUnitIBBL.Visible = true;
-                        lblAuthIBBL1.Visible = true;
-                        lblAuthIBBL2.Visible = true;
-                        lblAuthIBBL3.Visible = true;
-
-                        intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
-                        dt = new DataTable();
-                        dt = bll.GetAccountDetails(intAutoID);
-                        lblBankNameIBBL.Text = dt.Rows[0]["strBankDetailsName"].ToString();
-                        lblBankAddressIBBL.Text = dt.Rows[0]["strBankAddress"].ToString();
-                        lblMailBodyIBBL.Text = "We do hereby requesting you to make payment by transferring the amount to the respective Account Holder as shown below in detailed by debiting our CD Account No. " + dt.Rows[0]["strAccountNo"].ToString();
-
-                        AmountFormat formatAmount = new AmountFormat();
-                        string totalAmountInWord = formatAmount.GetTakaInWords(totalamountibbl, "", "Only");
-                        lblWordIBBL.Text = "In Word: " + totalAmountInWord.ToString();
-                        HdnValue.Value = "";
-
-                    }
-                }
-                else
-                {
-
-                    intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
-                    dt = new DataTable();
-                    dt = bll.GetUnitAddress(intUnitID);
-                    lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
-                    lblForUnit.Text = "For " + dt.Rows[0]["strDescription"].ToString();
-                    lblUnitAddress.Text = dt.Rows[0]["strAddress"].ToString();
-
-                    dteDate = DateTime.Parse(txtDate.Text.ToString());
-                    intWork = 0;
-                    strAccountMandatory = ddlMandatory.SelectedItem.ToString();
-                    strBankName = ddlFormat.SelectedItem.ToString();
-                    ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
-                    //dt = new DataTable();
-                    //dt = bll.GetAdviceData(intActionBy);
-                    LoadLabel();
-                    dt = new DataTable();
-                    dt = bll.GetPartyAdviceForSCB(intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted);
-
-                    CheckScbBank();
-
-                    dgvAdvice.DataSource = dt;
-                    dgvAdvice.DataBind();
-                    dgvReport.DataSource = dt;
-                    dgvReport.DataBind();
-
-                    if (dgvAdvice.Rows.Count > 0)
-                    {
-                        //LoadGridExport();
-
-                        lblUnitName.Visible = true;
-                        lblUnitAddress.Visible = true;
-                        lblTo.Visible = true;
-                        lblManager.Visible = true;
-                        lblBankName.Visible = true;
-                        lblBankAddress.Visible = true;
-                        lblSubject.Visible = true;
-                        lblDearSir.Visible = true;
-                        lblMailBody.Visible = true;
-                        lblDetails.Visible = true;
-                        lblWord.Visible = true;
-                        lblForUnit.Visible = true;
-                        lblAuth1.Visible = true;
-                        lblAuth2.Visible = true;
-                        lblAuth3.Visible = true;
-
-                        intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
-                        dt = new DataTable();
-                        dt = bll.GetAccountDetails(intAutoID);
-                        lblBankName.Text = dt.Rows[0]["strBankDetailsName"].ToString();
-                        lblBankAddress.Text = dt.Rows[0]["strBankAddress"].ToString();
-                        lblMailBody.Text = "We do hereby requesting you to make payment by transferring the amount to the respective Account Holder as shown below in detailed by debiting our" + "<br/>" + "CD Account No. " + dt.Rows[0]["strAccountNo"].ToString();
-
-                        AmountFormat formatAmount = new AmountFormat();
-                        string totalAmountInWord = formatAmount.GetTakaInWords(totalamount, "", "Only");
-                        lblWord.Text = "In Word: " + totalAmountInWord.ToString();
-                        HdnValue.Value = "";
-
-                    }
-                }
-
-            }
-            catch { }
+            lblUnitName.Visible = true;
+            lblUnitAddress.Visible = true;
+            lblTo.Visible = true;
+            lblManager.Visible = true;
+            lblBankName.Visible = true;
+            lblBankAddress.Visible = true;
+            lblSubject.Visible = true;
+            lblDearSir.Visible = true;
+            lblMailBody.Visible = true;
+            lblDetails.Visible = true;
+            lblWord.Visible = true;
+            lblForUnit.Visible = true;
+            lblAuth1.Visible = true;
+            lblAuth2.Visible = true;
+            lblAuth3.Visible = true;
         }
-
+        public void AdviceIBBLLabelShowHide()
+        {
+            lblUnitIBBL.Visible = true;
+            lblUnitIBBL.Visible = true;
+            lblToIBBL.Visible = true;
+            lblManagerIBBL.Visible = true;
+            lblBankNameIBBL.Visible = true;
+            lblBankAddressIBBL.Visible = true;
+            lblSubjectIBBL.Visible = true;
+            lblDearSirIBBL.Visible = true;
+            lblMailBodyIBBL.Visible = true;
+            lblDetailsIBBL.Visible = true;
+            lblWordIBBL.Visible = true;
+            lblForUnitIBBL.Visible = true;
+            lblAuthIBBL1.Visible = true;
+            lblAuthIBBL2.Visible = true;
+            lblAuthIBBL3.Visible = true;
+        }
         protected decimal totalamount = 0;
         protected string accounttext;
         protected string routingtext;
+
+        //protected void btnPrint_Click(object sender, EventArgs e)
+        //{
+        //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ShowReasonDiv();", true);
+        //}
+
         protected void dgvAdvice_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             try

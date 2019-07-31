@@ -58,7 +58,7 @@ namespace DAL.Property {
         
         private ShowLandInsertedDataDataTable tableShowLandInsertedData;
         
-        private vwLandGeneralInfoDataTable tablevwLandGeneralInfo;
+        private ShowLandInsertedMainDataDataTable tableShowLandInsertedMainData;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -139,8 +139,8 @@ namespace DAL.Property {
                 if ((ds.Tables["ShowLandInsertedData"] != null)) {
                     base.Tables.Add(new ShowLandInsertedDataDataTable(ds.Tables["ShowLandInsertedData"]));
                 }
-                if ((ds.Tables["vwLandGeneralInfo"] != null)) {
-                    base.Tables.Add(new vwLandGeneralInfoDataTable(ds.Tables["vwLandGeneralInfo"]));
+                if ((ds.Tables["ShowLandInsertedMainData"] != null)) {
+                    base.Tables.Add(new ShowLandInsertedMainDataDataTable(ds.Tables["ShowLandInsertedMainData"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -334,9 +334,9 @@ namespace DAL.Property {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public vwLandGeneralInfoDataTable vwLandGeneralInfo {
+        public ShowLandInsertedMainDataDataTable ShowLandInsertedMainData {
             get {
-                return this.tablevwLandGeneralInfo;
+                return this.tableShowLandInsertedMainData;
             }
         }
         
@@ -458,8 +458,8 @@ namespace DAL.Property {
                 if ((ds.Tables["ShowLandInsertedData"] != null)) {
                     base.Tables.Add(new ShowLandInsertedDataDataTable(ds.Tables["ShowLandInsertedData"]));
                 }
-                if ((ds.Tables["vwLandGeneralInfo"] != null)) {
-                    base.Tables.Add(new vwLandGeneralInfoDataTable(ds.Tables["vwLandGeneralInfo"]));
+                if ((ds.Tables["ShowLandInsertedMainData"] != null)) {
+                    base.Tables.Add(new ShowLandInsertedMainDataDataTable(ds.Tables["ShowLandInsertedMainData"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -596,10 +596,10 @@ namespace DAL.Property {
                     this.tableShowLandInsertedData.InitVars();
                 }
             }
-            this.tablevwLandGeneralInfo = ((vwLandGeneralInfoDataTable)(base.Tables["vwLandGeneralInfo"]));
+            this.tableShowLandInsertedMainData = ((ShowLandInsertedMainDataDataTable)(base.Tables["ShowLandInsertedMainData"]));
             if ((initTable == true)) {
-                if ((this.tablevwLandGeneralInfo != null)) {
-                    this.tablevwLandGeneralInfo.InitVars();
+                if ((this.tableShowLandInsertedMainData != null)) {
+                    this.tableShowLandInsertedMainData.InitVars();
                 }
             }
         }
@@ -646,8 +646,8 @@ namespace DAL.Property {
             base.Tables.Add(this.tablePlotDetailsByMouza);
             this.tableShowLandInsertedData = new ShowLandInsertedDataDataTable();
             base.Tables.Add(this.tableShowLandInsertedData);
-            this.tablevwLandGeneralInfo = new vwLandGeneralInfoDataTable();
-            base.Tables.Add(this.tablevwLandGeneralInfo);
+            this.tableShowLandInsertedMainData = new ShowLandInsertedMainDataDataTable();
+            base.Tables.Add(this.tableShowLandInsertedMainData);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -754,7 +754,7 @@ namespace DAL.Property {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializevwLandGeneralInfo() {
+        private bool ShouldSerializeShowLandInsertedMainData() {
             return false;
         }
         
@@ -865,7 +865,7 @@ namespace DAL.Property {
         public delegate void ShowLandInsertedDataRowChangeEventHandler(object sender, ShowLandInsertedDataRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void vwLandGeneralInfoRowChangeEventHandler(object sender, vwLandGeneralInfoRowChangeEvent e);
+        public delegate void ShowLandInsertedMainDataRowChangeEventHandler(object sender, ShowLandInsertedMainDataRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -5419,6 +5419,8 @@ namespace DAL.Property {
             
             private global::System.Data.DataColumn columnstrFilePath;
             
+            private global::System.Data.DataColumn columnEmployee;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public ShowLandInsertedDataDataTable() {
@@ -5518,6 +5520,14 @@ namespace DAL.Property {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EmployeeColumn {
+                get {
+                    return this.columnEmployee;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5553,7 +5563,7 @@ namespace DAL.Property {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public ShowLandInsertedDataRow AddShowLandInsertedDataRow(string strMouza, string strDeedNo, string strPlotType, string strPlotNo, decimal numPurchasedPlotArea, int intBanglaYear, string dteInsertDate, string strFilePath) {
+            public ShowLandInsertedDataRow AddShowLandInsertedDataRow(string strMouza, string strDeedNo, string strPlotType, string strPlotNo, decimal numPurchasedPlotArea, int intBanglaYear, string dteInsertDate, string strFilePath, string Employee) {
                 ShowLandInsertedDataRow rowShowLandInsertedDataRow = ((ShowLandInsertedDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strMouza,
@@ -5563,7 +5573,8 @@ namespace DAL.Property {
                         numPurchasedPlotArea,
                         intBanglaYear,
                         dteInsertDate,
-                        strFilePath};
+                        strFilePath,
+                        Employee};
                 rowShowLandInsertedDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowShowLandInsertedDataRow);
                 return rowShowLandInsertedDataRow;
@@ -5594,6 +5605,7 @@ namespace DAL.Property {
                 this.columnintBanglaYear = base.Columns["intBanglaYear"];
                 this.columndteInsertDate = base.Columns["dteInsertDate"];
                 this.columnstrFilePath = base.Columns["strFilePath"];
+                this.columnEmployee = base.Columns["Employee"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5615,6 +5627,8 @@ namespace DAL.Property {
                 base.Columns.Add(this.columndteInsertDate);
                 this.columnstrFilePath = new global::System.Data.DataColumn("strFilePath", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrFilePath);
+                this.columnEmployee = new global::System.Data.DataColumn("Employee", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmployee);
                 this.columnstrMouza.AllowDBNull = false;
                 this.columnstrMouza.MaxLength = 50;
                 this.columnstrDeedNo.AllowDBNull = false;
@@ -5628,6 +5642,8 @@ namespace DAL.Property {
                 this.columndteInsertDate.ReadOnly = true;
                 this.columndteInsertDate.MaxLength = 30;
                 this.columnstrFilePath.MaxLength = 500;
+                this.columnEmployee.ReadOnly = true;
+                this.columnEmployee.MaxLength = 1033;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5759,16 +5775,42 @@ namespace DAL.Property {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class vwLandGeneralInfoDataTable : global::System.Data.TypedTableBase<vwLandGeneralInfoRow> {
+        public partial class ShowLandInsertedMainDataDataTable : global::System.Data.TypedTableBase<ShowLandInsertedMainDataRow> {
             
-            private global::System.Data.DataColumn columncalcDeadYear;
+            private global::System.Data.DataColumn columnstrMouza;
             
-            private global::System.Data.DataColumn columndYear;
+            private global::System.Data.DataColumn columnstrDeedNo;
+            
+            private global::System.Data.DataColumn columnstrPlotType;
+            
+            private global::System.Data.DataColumn columnstrPlotNo;
+            
+            private global::System.Data.DataColumn columnnumPurchasedPlotArea;
+            
+            private global::System.Data.DataColumn columnintBanglaYear;
+            
+            private global::System.Data.DataColumn columndteInsertDate;
+            
+            private global::System.Data.DataColumn columnstrFilePath;
+            
+            private global::System.Data.DataColumn columnEmployee;
+            
+            private global::System.Data.DataColumn columnintLandGeneralPK;
+            
+            private global::System.Data.DataColumn columnintMouzaId;
+            
+            private global::System.Data.DataColumn columnintPlotTypeId;
+            
+            private global::System.Data.DataColumn columnstrSellerName;
+            
+            private global::System.Data.DataColumn columnintUnitId;
+            
+            private global::System.Data.DataColumn columnstrUnit;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public vwLandGeneralInfoDataTable() {
-                this.TableName = "vwLandGeneralInfo";
+            public ShowLandInsertedMainDataDataTable() {
+                this.TableName = "ShowLandInsertedMainData";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -5776,7 +5818,7 @@ namespace DAL.Property {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal vwLandGeneralInfoDataTable(global::System.Data.DataTable table) {
+            internal ShowLandInsertedMainDataDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -5793,24 +5835,128 @@ namespace DAL.Property {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected vwLandGeneralInfoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ShowLandInsertedMainDataDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn calcDeadYearColumn {
+            public global::System.Data.DataColumn strMouzaColumn {
                 get {
-                    return this.columncalcDeadYear;
+                    return this.columnstrMouza;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn dYearColumn {
+            public global::System.Data.DataColumn strDeedNoColumn {
                 get {
-                    return this.columndYear;
+                    return this.columnstrDeedNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strPlotTypeColumn {
+                get {
+                    return this.columnstrPlotType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strPlotNoColumn {
+                get {
+                    return this.columnstrPlotNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numPurchasedPlotAreaColumn {
+                get {
+                    return this.columnnumPurchasedPlotArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intBanglaYearColumn {
+                get {
+                    return this.columnintBanglaYear;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteInsertDateColumn {
+                get {
+                    return this.columndteInsertDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strFilePathColumn {
+                get {
+                    return this.columnstrFilePath;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn EmployeeColumn {
+                get {
+                    return this.columnEmployee;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intLandGeneralPKColumn {
+                get {
+                    return this.columnintLandGeneralPK;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intMouzaIdColumn {
+                get {
+                    return this.columnintMouzaId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intPlotTypeIdColumn {
+                get {
+                    return this.columnintPlotTypeId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strSellerNameColumn {
+                get {
+                    return this.columnstrSellerName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intUnitIdColumn {
+                get {
+                    return this.columnintUnitId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strUnitColumn {
+                get {
+                    return this.columnstrUnit;
                 }
             }
             
@@ -5825,46 +5971,59 @@ namespace DAL.Property {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public vwLandGeneralInfoRow this[int index] {
+            public ShowLandInsertedMainDataRow this[int index] {
                 get {
-                    return ((vwLandGeneralInfoRow)(this.Rows[index]));
+                    return ((ShowLandInsertedMainDataRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event vwLandGeneralInfoRowChangeEventHandler vwLandGeneralInfoRowChanging;
+            public event ShowLandInsertedMainDataRowChangeEventHandler ShowLandInsertedMainDataRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event vwLandGeneralInfoRowChangeEventHandler vwLandGeneralInfoRowChanged;
+            public event ShowLandInsertedMainDataRowChangeEventHandler ShowLandInsertedMainDataRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event vwLandGeneralInfoRowChangeEventHandler vwLandGeneralInfoRowDeleting;
+            public event ShowLandInsertedMainDataRowChangeEventHandler ShowLandInsertedMainDataRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event vwLandGeneralInfoRowChangeEventHandler vwLandGeneralInfoRowDeleted;
+            public event ShowLandInsertedMainDataRowChangeEventHandler ShowLandInsertedMainDataRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddvwLandGeneralInfoRow(vwLandGeneralInfoRow row) {
+            public void AddShowLandInsertedMainDataRow(ShowLandInsertedMainDataRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public vwLandGeneralInfoRow AddvwLandGeneralInfoRow(int calcDeadYear, int dYear) {
-                vwLandGeneralInfoRow rowvwLandGeneralInfoRow = ((vwLandGeneralInfoRow)(this.NewRow()));
+            public ShowLandInsertedMainDataRow AddShowLandInsertedMainDataRow(string strMouza, string strDeedNo, string strPlotType, string strPlotNo, decimal numPurchasedPlotArea, int intBanglaYear, string dteInsertDate, string strFilePath, string Employee, int intMouzaId, string strSellerName, int intUnitId, string strUnit) {
+                ShowLandInsertedMainDataRow rowShowLandInsertedMainDataRow = ((ShowLandInsertedMainDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        calcDeadYear,
-                        dYear};
-                rowvwLandGeneralInfoRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowvwLandGeneralInfoRow);
-                return rowvwLandGeneralInfoRow;
+                        strMouza,
+                        strDeedNo,
+                        strPlotType,
+                        strPlotNo,
+                        numPurchasedPlotArea,
+                        intBanglaYear,
+                        dteInsertDate,
+                        strFilePath,
+                        Employee,
+                        null,
+                        intMouzaId,
+                        null,
+                        strSellerName,
+                        intUnitId,
+                        strUnit};
+                rowShowLandInsertedMainDataRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowShowLandInsertedMainDataRow);
+                return rowShowLandInsertedMainDataRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                vwLandGeneralInfoDataTable cln = ((vwLandGeneralInfoDataTable)(base.Clone()));
+                ShowLandInsertedMainDataDataTable cln = ((ShowLandInsertedMainDataDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -5872,49 +6031,119 @@ namespace DAL.Property {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new vwLandGeneralInfoDataTable();
+                return new ShowLandInsertedMainDataDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columncalcDeadYear = base.Columns["calcDeadYear"];
-                this.columndYear = base.Columns["dYear"];
+                this.columnstrMouza = base.Columns["strMouza"];
+                this.columnstrDeedNo = base.Columns["strDeedNo"];
+                this.columnstrPlotType = base.Columns["strPlotType"];
+                this.columnstrPlotNo = base.Columns["strPlotNo"];
+                this.columnnumPurchasedPlotArea = base.Columns["numPurchasedPlotArea"];
+                this.columnintBanglaYear = base.Columns["intBanglaYear"];
+                this.columndteInsertDate = base.Columns["dteInsertDate"];
+                this.columnstrFilePath = base.Columns["strFilePath"];
+                this.columnEmployee = base.Columns["Employee"];
+                this.columnintLandGeneralPK = base.Columns["intLandGeneralPK"];
+                this.columnintMouzaId = base.Columns["intMouzaId"];
+                this.columnintPlotTypeId = base.Columns["intPlotTypeId"];
+                this.columnstrSellerName = base.Columns["strSellerName"];
+                this.columnintUnitId = base.Columns["intUnitId"];
+                this.columnstrUnit = base.Columns["strUnit"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columncalcDeadYear = new global::System.Data.DataColumn("calcDeadYear", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncalcDeadYear);
-                this.columndYear = new global::System.Data.DataColumn("dYear", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndYear);
+                this.columnstrMouza = new global::System.Data.DataColumn("strMouza", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrMouza);
+                this.columnstrDeedNo = new global::System.Data.DataColumn("strDeedNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDeedNo);
+                this.columnstrPlotType = new global::System.Data.DataColumn("strPlotType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrPlotType);
+                this.columnstrPlotNo = new global::System.Data.DataColumn("strPlotNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrPlotNo);
+                this.columnnumPurchasedPlotArea = new global::System.Data.DataColumn("numPurchasedPlotArea", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumPurchasedPlotArea);
+                this.columnintBanglaYear = new global::System.Data.DataColumn("intBanglaYear", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintBanglaYear);
+                this.columndteInsertDate = new global::System.Data.DataColumn("dteInsertDate", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteInsertDate);
+                this.columnstrFilePath = new global::System.Data.DataColumn("strFilePath", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrFilePath);
+                this.columnEmployee = new global::System.Data.DataColumn("Employee", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmployee);
+                this.columnintLandGeneralPK = new global::System.Data.DataColumn("intLandGeneralPK", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintLandGeneralPK);
+                this.columnintMouzaId = new global::System.Data.DataColumn("intMouzaId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintMouzaId);
+                this.columnintPlotTypeId = new global::System.Data.DataColumn("intPlotTypeId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintPlotTypeId);
+                this.columnstrSellerName = new global::System.Data.DataColumn("strSellerName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrSellerName);
+                this.columnintUnitId = new global::System.Data.DataColumn("intUnitId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintUnitId);
+                this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUnit);
+                this.columnstrMouza.AllowDBNull = false;
+                this.columnstrMouza.MaxLength = 50;
+                this.columnstrDeedNo.AllowDBNull = false;
+                this.columnstrDeedNo.MaxLength = 20;
+                this.columnstrPlotType.AllowDBNull = false;
+                this.columnstrPlotType.MaxLength = 50;
+                this.columnstrPlotNo.AllowDBNull = false;
+                this.columnstrPlotNo.MaxLength = 50;
+                this.columnnumPurchasedPlotArea.AllowDBNull = false;
+                this.columnintBanglaYear.AllowDBNull = false;
+                this.columndteInsertDate.ReadOnly = true;
+                this.columndteInsertDate.MaxLength = 30;
+                this.columnstrFilePath.MaxLength = 500;
+                this.columnEmployee.ReadOnly = true;
+                this.columnEmployee.MaxLength = 1033;
+                this.columnintLandGeneralPK.AutoIncrement = true;
+                this.columnintLandGeneralPK.AutoIncrementSeed = -1;
+                this.columnintLandGeneralPK.AutoIncrementStep = -1;
+                this.columnintLandGeneralPK.AllowDBNull = false;
+                this.columnintLandGeneralPK.ReadOnly = true;
+                this.columnintMouzaId.AllowDBNull = false;
+                this.columnintPlotTypeId.AutoIncrement = true;
+                this.columnintPlotTypeId.AutoIncrementSeed = -1;
+                this.columnintPlotTypeId.AutoIncrementStep = -1;
+                this.columnintPlotTypeId.AllowDBNull = false;
+                this.columnintPlotTypeId.ReadOnly = true;
+                this.columnstrSellerName.AllowDBNull = false;
+                this.columnstrSellerName.MaxLength = 100;
+                this.columnintUnitId.AllowDBNull = false;
+                this.columnstrUnit.AllowDBNull = false;
+                this.columnstrUnit.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public vwLandGeneralInfoRow NewvwLandGeneralInfoRow() {
-                return ((vwLandGeneralInfoRow)(this.NewRow()));
+            public ShowLandInsertedMainDataRow NewShowLandInsertedMainDataRow() {
+                return ((ShowLandInsertedMainDataRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new vwLandGeneralInfoRow(builder);
+                return new ShowLandInsertedMainDataRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(vwLandGeneralInfoRow);
+                return typeof(ShowLandInsertedMainDataRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.vwLandGeneralInfoRowChanged != null)) {
-                    this.vwLandGeneralInfoRowChanged(this, new vwLandGeneralInfoRowChangeEvent(((vwLandGeneralInfoRow)(e.Row)), e.Action));
+                if ((this.ShowLandInsertedMainDataRowChanged != null)) {
+                    this.ShowLandInsertedMainDataRowChanged(this, new ShowLandInsertedMainDataRowChangeEvent(((ShowLandInsertedMainDataRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5922,8 +6151,8 @@ namespace DAL.Property {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.vwLandGeneralInfoRowChanging != null)) {
-                    this.vwLandGeneralInfoRowChanging(this, new vwLandGeneralInfoRowChangeEvent(((vwLandGeneralInfoRow)(e.Row)), e.Action));
+                if ((this.ShowLandInsertedMainDataRowChanging != null)) {
+                    this.ShowLandInsertedMainDataRowChanging(this, new ShowLandInsertedMainDataRowChangeEvent(((ShowLandInsertedMainDataRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5931,8 +6160,8 @@ namespace DAL.Property {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.vwLandGeneralInfoRowDeleted != null)) {
-                    this.vwLandGeneralInfoRowDeleted(this, new vwLandGeneralInfoRowChangeEvent(((vwLandGeneralInfoRow)(e.Row)), e.Action));
+                if ((this.ShowLandInsertedMainDataRowDeleted != null)) {
+                    this.ShowLandInsertedMainDataRowDeleted(this, new ShowLandInsertedMainDataRowChangeEvent(((ShowLandInsertedMainDataRow)(e.Row)), e.Action));
                 }
             }
             
@@ -5940,14 +6169,14 @@ namespace DAL.Property {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.vwLandGeneralInfoRowDeleting != null)) {
-                    this.vwLandGeneralInfoRowDeleting(this, new vwLandGeneralInfoRowChangeEvent(((vwLandGeneralInfoRow)(e.Row)), e.Action));
+                if ((this.ShowLandInsertedMainDataRowDeleting != null)) {
+                    this.ShowLandInsertedMainDataRowDeleting(this, new ShowLandInsertedMainDataRowChangeEvent(((ShowLandInsertedMainDataRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemovevwLandGeneralInfoRow(vwLandGeneralInfoRow row) {
+            public void RemoveShowLandInsertedMainDataRow(ShowLandInsertedMainDataRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -5974,7 +6203,7 @@ namespace DAL.Property {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "vwLandGeneralInfoDataTable";
+                attribute2.FixedValue = "ShowLandInsertedMainDataDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -7035,6 +7264,22 @@ namespace DAL.Property {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Employee {
+                get {
+                    try {
+                        return ((string)(this[this.tableShowLandInsertedData.EmployeeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Employee\' in table \'ShowLandInsertedData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableShowLandInsertedData.EmployeeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsdteInsertDateNull() {
                 return this.IsNull(this.tableShowLandInsertedData.dteInsertDateColumn);
             }
@@ -7056,76 +7301,250 @@ namespace DAL.Property {
             public void SetstrFilePathNull() {
                 this[this.tableShowLandInsertedData.strFilePathColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEmployeeNull() {
+                return this.IsNull(this.tableShowLandInsertedData.EmployeeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEmployeeNull() {
+                this[this.tableShowLandInsertedData.EmployeeColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class vwLandGeneralInfoRow : global::System.Data.DataRow {
+        public partial class ShowLandInsertedMainDataRow : global::System.Data.DataRow {
             
-            private vwLandGeneralInfoDataTable tablevwLandGeneralInfo;
+            private ShowLandInsertedMainDataDataTable tableShowLandInsertedMainData;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal vwLandGeneralInfoRow(global::System.Data.DataRowBuilder rb) : 
+            internal ShowLandInsertedMainDataRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablevwLandGeneralInfo = ((vwLandGeneralInfoDataTable)(this.Table));
+                this.tableShowLandInsertedMainData = ((ShowLandInsertedMainDataDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int calcDeadYear {
+            public string strMouza {
+                get {
+                    return ((string)(this[this.tableShowLandInsertedMainData.strMouzaColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.strMouzaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strDeedNo {
+                get {
+                    return ((string)(this[this.tableShowLandInsertedMainData.strDeedNoColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.strDeedNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strPlotType {
+                get {
+                    return ((string)(this[this.tableShowLandInsertedMainData.strPlotTypeColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.strPlotTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strPlotNo {
+                get {
+                    return ((string)(this[this.tableShowLandInsertedMainData.strPlotNoColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.strPlotNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numPurchasedPlotArea {
+                get {
+                    return ((decimal)(this[this.tableShowLandInsertedMainData.numPurchasedPlotAreaColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.numPurchasedPlotAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intBanglaYear {
+                get {
+                    return ((int)(this[this.tableShowLandInsertedMainData.intBanglaYearColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.intBanglaYearColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string dteInsertDate {
                 get {
                     try {
-                        return ((int)(this[this.tablevwLandGeneralInfo.calcDeadYearColumn]));
+                        return ((string)(this[this.tableShowLandInsertedMainData.dteInsertDateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'calcDeadYear\' in table \'vwLandGeneralInfo\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteInsertDate\' in table \'ShowLandInsertedMainData\' is DBNul" +
+                                "l.", e);
                     }
                 }
                 set {
-                    this[this.tablevwLandGeneralInfo.calcDeadYearColumn] = value;
+                    this[this.tableShowLandInsertedMainData.dteInsertDateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int dYear {
+            public string strFilePath {
                 get {
                     try {
-                        return ((int)(this[this.tablevwLandGeneralInfo.dYearColumn]));
+                        return ((string)(this[this.tableShowLandInsertedMainData.strFilePathColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'dYear\' in table \'vwLandGeneralInfo\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strFilePath\' in table \'ShowLandInsertedMainData\' is DBNull." +
+                                "", e);
                     }
                 }
                 set {
-                    this[this.tablevwLandGeneralInfo.dYearColumn] = value;
+                    this[this.tableShowLandInsertedMainData.strFilePathColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IscalcDeadYearNull() {
-                return this.IsNull(this.tablevwLandGeneralInfo.calcDeadYearColumn);
+            public string Employee {
+                get {
+                    try {
+                        return ((string)(this[this.tableShowLandInsertedMainData.EmployeeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Employee\' in table \'ShowLandInsertedMainData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.EmployeeColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetcalcDeadYearNull() {
-                this[this.tablevwLandGeneralInfo.calcDeadYearColumn] = global::System.Convert.DBNull;
+            public int intLandGeneralPK {
+                get {
+                    return ((int)(this[this.tableShowLandInsertedMainData.intLandGeneralPKColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.intLandGeneralPKColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsdYearNull() {
-                return this.IsNull(this.tablevwLandGeneralInfo.dYearColumn);
+            public int intMouzaId {
+                get {
+                    return ((int)(this[this.tableShowLandInsertedMainData.intMouzaIdColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.intMouzaIdColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetdYearNull() {
-                this[this.tablevwLandGeneralInfo.dYearColumn] = global::System.Convert.DBNull;
+            public int intPlotTypeId {
+                get {
+                    return ((int)(this[this.tableShowLandInsertedMainData.intPlotTypeIdColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.intPlotTypeIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strSellerName {
+                get {
+                    return ((string)(this[this.tableShowLandInsertedMainData.strSellerNameColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.strSellerNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intUnitId {
+                get {
+                    return ((int)(this[this.tableShowLandInsertedMainData.intUnitIdColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.intUnitIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strUnit {
+                get {
+                    return ((string)(this[this.tableShowLandInsertedMainData.strUnitColumn]));
+                }
+                set {
+                    this[this.tableShowLandInsertedMainData.strUnitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteInsertDateNull() {
+                return this.IsNull(this.tableShowLandInsertedMainData.dteInsertDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteInsertDateNull() {
+                this[this.tableShowLandInsertedMainData.dteInsertDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrFilePathNull() {
+                return this.IsNull(this.tableShowLandInsertedMainData.strFilePathColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrFilePathNull() {
+                this[this.tableShowLandInsertedMainData.strFilePathColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEmployeeNull() {
+                return this.IsNull(this.tableShowLandInsertedMainData.EmployeeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEmployeeNull() {
+                this[this.tableShowLandInsertedMainData.EmployeeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -7711,22 +8130,22 @@ namespace DAL.Property {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class vwLandGeneralInfoRowChangeEvent : global::System.EventArgs {
+        public class ShowLandInsertedMainDataRowChangeEvent : global::System.EventArgs {
             
-            private vwLandGeneralInfoRow eventRow;
+            private ShowLandInsertedMainDataRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public vwLandGeneralInfoRowChangeEvent(vwLandGeneralInfoRow row, global::System.Data.DataRowAction action) {
+            public ShowLandInsertedMainDataRowChangeEvent(ShowLandInsertedMainDataRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public vwLandGeneralInfoRow Row {
+            public ShowLandInsertedMainDataRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -11129,6 +11548,7 @@ WHERE        (pm.intMouzaId = @MouzaID) AND (pm.ysnActive = 1)";
             tableMapping.ColumnMappings.Add("intBanglaYear", "intBanglaYear");
             tableMapping.ColumnMappings.Add("dteInsertDate", "dteInsertDate");
             tableMapping.ColumnMappings.Add("strFilePath", "strFilePath");
+            tableMapping.ColumnMappings.Add("Employee", "Employee");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -11192,7 +11612,7 @@ WHERE        (pm.intMouzaId = @MouzaID) AND (pm.ysnActive = 1)";
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class vwLandGeneralInfoTableAdapter : global::System.ComponentModel.Component {
+    public partial class ShowLandInsertedMainDataTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -11206,7 +11626,7 @@ WHERE        (pm.intMouzaId = @MouzaID) AND (pm.ysnActive = 1)";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public vwLandGeneralInfoTableAdapter() {
+        public ShowLandInsertedMainDataTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -11303,9 +11723,22 @@ WHERE        (pm.intMouzaId = @MouzaID) AND (pm.ysnActive = 1)";
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "vwLandGeneralInfo";
-            tableMapping.ColumnMappings.Add("calcDeadYear", "calcDeadYear");
-            tableMapping.ColumnMappings.Add("dYear", "dYear");
+            tableMapping.DataSetTable = "ShowLandInsertedMainData";
+            tableMapping.ColumnMappings.Add("strMouza", "strMouza");
+            tableMapping.ColumnMappings.Add("strDeedNo", "strDeedNo");
+            tableMapping.ColumnMappings.Add("strPlotType", "strPlotType");
+            tableMapping.ColumnMappings.Add("strPlotNo", "strPlotNo");
+            tableMapping.ColumnMappings.Add("numPurchasedPlotArea", "numPurchasedPlotArea");
+            tableMapping.ColumnMappings.Add("intBanglaYear", "intBanglaYear");
+            tableMapping.ColumnMappings.Add("dteInsertDate", "dteInsertDate");
+            tableMapping.ColumnMappings.Add("strFilePath", "strFilePath");
+            tableMapping.ColumnMappings.Add("Employee", "Employee");
+            tableMapping.ColumnMappings.Add("intLandGeneralPK", "intLandGeneralPK");
+            tableMapping.ColumnMappings.Add("intMouzaId", "intMouzaId");
+            tableMapping.ColumnMappings.Add("intPlotTypeId", "intPlotTypeId");
+            tableMapping.ColumnMappings.Add("strSellerName", "strSellerName");
+            tableMapping.ColumnMappings.Add("intUnitId", "intUnitId");
+            tableMapping.ColumnMappings.Add("strUnit", "strUnit");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -11322,20 +11755,114 @@ WHERE        (pm.intMouzaId = @MouzaID) AND (pm.ysnActive = 1)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT calcDeadYear ,calcDeadYear  as dYear\r\nFROM ERP_MIS.dbo.vwLandGeneralInfo G" +
-                "ROUP BY calcDeadYear order by calcDeadYear";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].CommandText = "dbo.SP_ShowLandInsertedMainData";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FromDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ToDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeedNo", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual PropertyTDS.vwLandGeneralInfoDataTable GetDeedYear() {
+        public virtual PropertyTDS.ShowLandInsertedMainDataDataTable GetLandExistsMainData(global::System.Nullable<global::System.DateTime> FromDate, global::System.Nullable<global::System.DateTime> ToDate, string DeedNo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            PropertyTDS.vwLandGeneralInfoDataTable dataTable = new PropertyTDS.vwLandGeneralInfoDataTable();
+            if ((FromDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FromDate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((ToDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(ToDate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((DeedNo == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(DeedNo));
+            }
+            PropertyTDS.ShowLandInsertedMainDataDataTable dataTable = new PropertyTDS.ShowLandInsertedMainDataDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class AGLandTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.IDbCommand[] _commandCollection;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.IDbCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.IDbCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::DAL.Properties.Settings.Default.ERP_AccountsConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandText = "UPDATE       ERP_MIS.dbo.tblAGLandTrxGeneral\r\nSET                isDeleted = 1, i" +
+                "ntDeleteBy = @Enroll, dteDeleteDate = GETDATE()\r\nWHERE        (intLandGeneralPK " +
+                "= @PKId) AND (intUnitId = @UnitID) AND (intMouzaId = @MouzaId)";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDeleteBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PKId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intLandGeneralPK", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@MouzaId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMouzaId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateExistsLandData(global::System.Nullable<int> Enroll, int PKId, int UnitID, int MouzaId) {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[0]));
+            if ((Enroll.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(Enroll.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            command.Parameters[1].Value = ((int)(PKId));
+            command.Parameters[2].Value = ((int)(UnitID));
+            command.Parameters[3].Value = ((int)(MouzaId));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     

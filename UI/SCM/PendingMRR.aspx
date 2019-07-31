@@ -104,14 +104,14 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
                             <td style="text-align: right">
                                 <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Type: "></asp:Label>
                             </td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlType" Enabled="true" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
-                                                <asp:ListItem Value="QC">QC</asp:ListItem>
-                                                <asp:ListItem Value="Costing">Costing</asp:ListItem>
+                                                <%--<asp:ListItem Value="QC">QC</asp:ListItem>
+                                                <asp:ListItem Value="Costing">Costing</asp:ListItem>--%>
                                  </asp:DropDownList>
                             </td>
                            <%-- <td style="text-align: right;">
@@ -175,7 +175,7 @@
                         <tr>
                             <td>
                                 <asp:GridView ID="dgvIndent" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"
-                                    BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnSelectedIndexChanged="dgvIndent_SelectedIndexChanged"
+                                    BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"
                                     OnRowDataBound="dgvIndent_RowDataBound">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>

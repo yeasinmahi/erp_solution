@@ -4338,7 +4338,7 @@ SELECT ysnComplete, intPOID FROM tblPurchaseOrderMain WHERE (intPOID = @intPOID)
 FROM            tblFactoryReceiveMRR AS mrr INNER JOIN
                          tblSupplier AS s ON mrr.intSupplierID = s.intSupplierID INNER JOIN
                          tblPurchaseOrderMain AS po ON mrr.intPOID = po.intPOID
-WHERE        (mrr.ysnFullQC IS NULL) AND (mrr.ysnInventory IS NULL) AND (CAST(mrr.dteLastActionTime AS Date) BETWEEN @fDate AND @tDate) AND (mrr.intWHID = @intWh) AND (po.strPoFor = @dept)";
+WHERE        (mrr.ysnFullQC IS NULL) AND (mrr.ysnInventory=0) AND (CAST(mrr.dteLastActionTime AS Date) BETWEEN @fDate AND @tDate) AND (mrr.intWHID = @intWh) AND (po.strPoFor = @dept)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fDate", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@tDate", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

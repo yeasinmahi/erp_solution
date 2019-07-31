@@ -72,6 +72,7 @@
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <asp:Button ID="btnShow" runat="server" Text="Show" CssClass="btn btn-primary" OnClientClick="return Validation()" OnClick="btnShow_Click" />
                                             <asp:Button ID="btnCreateVoucher" runat="server" Text="Create" CssClass="btn btn-success" OnClick="btnCreateVoucher_Click" />
+                                            <asp:Button ID="btnPrintPreview" runat="server" Text="Print Preview" CssClass="btn btn-info" OnClick="btnPrintPreview_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -93,65 +94,68 @@
                                     <div class="row">
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <asp:GridView ID="gridview" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%" GridLines="Both">
-                                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                                            <Columns>
-                                                <asp:TemplateField HeaderText="SL">
-                                                    <ItemTemplate>
-                                                        <%# Container.DataItemIndex + 1 %>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Request Type">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblType" runat="server" Text='<%# Bind("strType") %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Description">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("strDescription") %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                    <ItemStyle HorizontalAlign="Left"/>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Debiting Amount">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("monAmount") %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Request Id">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblRequestId" runat="server" Text='<%# Bind("intReqID") %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Pay For">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblPayFor" runat="server" Text='<%# Bind("intPayFor") %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField HeaderText="Voucher">
-                                                    <ItemTemplate>
-                                                        <asp:Label ID="lblVoucher" runat="server" Text='<%# Bind("strVoucher") %>'></asp:Label>
-                                                    </ItemTemplate>
-                                                    <ItemStyle Width="100px"/>
-                                                </asp:TemplateField>
+                                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="SL">
+                                                        <ItemTemplate>
+                                                            <%# Container.DataItemIndex + 1 %>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Request Type">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblType" runat="server" Text='<%# Bind("strType") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Description">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("strDescription") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle HorizontalAlign="Left" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Debiting Amount">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("monAmount") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Request Id">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblRequestId" runat="server" Text='<%# Bind("intReqID") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Pay For">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblPayFor" runat="server" Text='<%# Bind("intPayFor") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Voucher">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblVoucher" runat="server" Text='<%# Bind("strVoucher") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle Width="100px" />
+                                                    </asp:TemplateField>
 
-                                            </Columns>
-                                            <EditRowStyle BackColor="#999999" />
-                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
-                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
-                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                                        </asp:GridView>
+                                                </Columns>
+                                                <EditRowStyle BackColor="#999999" />
+                                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
+                                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
+                                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                            </asp:GridView>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                            <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 0px solid red;"></iframe>
+                        </div>
                     </div>
+                </div>
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
