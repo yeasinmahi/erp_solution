@@ -98,17 +98,18 @@
                     </tr>
                     <tr>
                         <td class="td-lbl2">
-                            <asp:Label ID="Label8" runat="server" CssClass="lbl-txt" Text="Loan Credit:"></asp:Label>
-                        </td>
-                        <td class="td-txt-ddl2">
-                            <asp:TextBox ID="txtLoanCredit" runat="server" CssClass="txt-field"></asp:TextBox>
-                        </td>
-                        <td class="td-lbl2">
                             <asp:Label ID="Label11" CssClass="lbl-txt" runat="server" Text="Loan Debit:"></asp:Label>
                         </td>
                         <td class="td-txt-ddl2">
                             <asp:TextBox ID="txtLoanDebit" runat="server" CssClass="txt-field"></asp:TextBox>
                         </td>
+                        <td class="td-lbl2">
+                            <asp:Label ID="Label8" runat="server" CssClass="lbl-txt" Text="Loan Credit:"></asp:Label>
+                        </td>
+                        <td class="td-txt-ddl2">
+                            <asp:TextBox ID="txtLoanCredit" runat="server" CssClass="txt-field"></asp:TextBox>
+                        </td>
+                        
                         <td colspan="2">
                             <asp:Button runat="server" ID="btnSubmit" CssClass="btn-submit" style="height:32px; width:75px; font-weight:bold; float:right; font-size:14px" Text="Submit" OnClientClick="Confirms();" OnClick="btnSubmit_Click" />
                         </td>
@@ -117,7 +118,7 @@
                 </div>
                 
                 <div style="margin-top: 5px"></div>
-                <div style="height: 450px; overflow: scroll; margin-left:15px">
+                <div style="margin-left:15px">
                     <asp:GridView ID="dgvGLCodeBridge" runat="server" AutoGenerateColumns="False" Font-Size="11px" BackColor="White"
                         BorderColor="#999999" BorderStyle="Solid"
                         BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical">
