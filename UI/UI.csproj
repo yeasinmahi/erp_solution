@@ -496,6 +496,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\AJMLEmployeeProfile.aspx" />
+    <Content Include="HR\Employee\AJMLWeeklyCasualWages.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
     <Content Include="HR\Employee\AJMLAttendance.aspx" />
     <Content Include="HR\Employee\EmployeeCostCenterUpdate.aspx" />
@@ -1323,6 +1324,7 @@
     <Content Include="SAD\Corporate_sales\SalesAnalysis.aspx" />
     <Content Include="SAD\Corporate_sales\SalesOrderReport.aspx" />
     <Content Include="SAD\Corporate_sales\UnfoundView.aspx" />
+    <Content Include="SAD\Customer\AfblEmployeeLineChange.aspx" />
     <Content Include="SAD\Customer\AfblEmployeeSearch.aspx" />
     <Content Include="SAD\Customer\CustomerGEO.aspx" />
     <Content Include="SAD\Customer\CustomerInfo.aspx" />
@@ -3459,6 +3461,13 @@
     </Compile>
     <Compile Include="HR\Employee\AJMLEmployeeProfile.aspx.designer.cs">
       <DependentUpon>AJMLEmployeeProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\AJMLWeeklyCasualWages.aspx.cs">
+      <DependentUpon>AJMLWeeklyCasualWages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\AJMLWeeklyCasualWages.aspx.designer.cs">
+      <DependentUpon>AJMLWeeklyCasualWages.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
@@ -6532,6 +6541,13 @@
     </Compile>
     <Compile Include="SAD\Corporate_sales\UnfoundView.aspx.designer.cs">
       <DependentUpon>UnfoundView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Customer\AfblEmployeeLineChange.aspx.cs">
+      <DependentUpon>AfblEmployeeLineChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\AfblEmployeeLineChange.aspx.designer.cs">
+      <DependentUpon>AfblEmployeeLineChange.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Customer\AfblEmployeeSearch.aspx.cs">
       <DependentUpon>AfblEmployeeSearch.aspx</DependentUpon>
