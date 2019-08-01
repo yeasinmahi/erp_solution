@@ -73,6 +73,7 @@
                                             <asp:Button ID="btnShow" runat="server" Text="Show" CssClass="btn btn-primary" OnClientClick="return Validation()" OnClick="btnShow_Click" />
                                             <asp:Button ID="btnCreateVoucher" runat="server" Text="Create" CssClass="btn btn-success" OnClick="btnCreateVoucher_Click" />
                                             <asp:Button ID="btnPrintPreview" runat="server" Text="Print Preview" CssClass="btn btn-info" OnClick="btnPrintPreview_Click" />
+                                            <asp:Button ID="btnSummary" runat="server" Text="Summary Report" CssClass="btn btn-info" OnClick="btnSummary_Click" />
                                         </div>
                                     </div>
                                 </div>
