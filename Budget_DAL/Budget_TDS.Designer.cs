@@ -58,8 +58,6 @@ namespace Budget_DAL {
         
         private SprBudgetProductPriceDataTable tableSprBudgetProductPrice;
         
-        private SprOperationalSetUpBaseBudgetModificationDataTable tableSprOperationalSetUpBaseBudgetModification;
-        
         private SprOperationalBudgetFGQntvsMaterialQntDataTable tableSprOperationalBudgetFGQntvsMaterialQnt;
         
         private SprMonthAndIDDataTable tableSprMonthAndID;
@@ -69,6 +67,8 @@ namespace Budget_DAL {
         private SprBudgetYearCombindlyDataTable tableSprBudgetYearCombindly;
         
         private SprBudgetEntryForRawMaterialMonthlyDataTable tableSprBudgetEntryForRawMaterialMonthly;
+        
+        private SprOperationalSetUpBaseBudgetModificationDataTable tableSprOperationalSetUpBaseBudgetModification;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -149,9 +149,6 @@ namespace Budget_DAL {
                 if ((ds.Tables["SprBudgetProductPrice"] != null)) {
                     base.Tables.Add(new SprBudgetProductPriceDataTable(ds.Tables["SprBudgetProductPrice"]));
                 }
-                if ((ds.Tables["SprOperationalSetUpBaseBudgetModification"] != null)) {
-                    base.Tables.Add(new SprOperationalSetUpBaseBudgetModificationDataTable(ds.Tables["SprOperationalSetUpBaseBudgetModification"]));
-                }
                 if ((ds.Tables["SprOperationalBudgetFGQntvsMaterialQnt"] != null)) {
                     base.Tables.Add(new SprOperationalBudgetFGQntvsMaterialQntDataTable(ds.Tables["SprOperationalBudgetFGQntvsMaterialQnt"]));
                 }
@@ -166,6 +163,9 @@ namespace Budget_DAL {
                 }
                 if ((ds.Tables["SprBudgetEntryForRawMaterialMonthly"] != null)) {
                     base.Tables.Add(new SprBudgetEntryForRawMaterialMonthlyDataTable(ds.Tables["SprBudgetEntryForRawMaterialMonthly"]));
+                }
+                if ((ds.Tables["SprOperationalSetUpBaseBudgetModification"] != null)) {
+                    base.Tables.Add(new SprOperationalSetUpBaseBudgetModificationDataTable(ds.Tables["SprOperationalSetUpBaseBudgetModification"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -359,16 +359,6 @@ namespace Budget_DAL {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SprOperationalSetUpBaseBudgetModificationDataTable SprOperationalSetUpBaseBudgetModification {
-            get {
-                return this.tableSprOperationalSetUpBaseBudgetModification;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public SprOperationalBudgetFGQntvsMaterialQntDataTable SprOperationalBudgetFGQntvsMaterialQnt {
             get {
                 return this.tableSprOperationalBudgetFGQntvsMaterialQnt;
@@ -412,6 +402,16 @@ namespace Budget_DAL {
         public SprBudgetEntryForRawMaterialMonthlyDataTable SprBudgetEntryForRawMaterialMonthly {
             get {
                 return this.tableSprBudgetEntryForRawMaterialMonthly;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprOperationalSetUpBaseBudgetModificationDataTable SprOperationalSetUpBaseBudgetModification {
+            get {
+                return this.tableSprOperationalSetUpBaseBudgetModification;
             }
         }
         
@@ -533,9 +533,6 @@ namespace Budget_DAL {
                 if ((ds.Tables["SprBudgetProductPrice"] != null)) {
                     base.Tables.Add(new SprBudgetProductPriceDataTable(ds.Tables["SprBudgetProductPrice"]));
                 }
-                if ((ds.Tables["SprOperationalSetUpBaseBudgetModification"] != null)) {
-                    base.Tables.Add(new SprOperationalSetUpBaseBudgetModificationDataTable(ds.Tables["SprOperationalSetUpBaseBudgetModification"]));
-                }
                 if ((ds.Tables["SprOperationalBudgetFGQntvsMaterialQnt"] != null)) {
                     base.Tables.Add(new SprOperationalBudgetFGQntvsMaterialQntDataTable(ds.Tables["SprOperationalBudgetFGQntvsMaterialQnt"]));
                 }
@@ -550,6 +547,9 @@ namespace Budget_DAL {
                 }
                 if ((ds.Tables["SprBudgetEntryForRawMaterialMonthly"] != null)) {
                     base.Tables.Add(new SprBudgetEntryForRawMaterialMonthlyDataTable(ds.Tables["SprBudgetEntryForRawMaterialMonthly"]));
+                }
+                if ((ds.Tables["SprOperationalSetUpBaseBudgetModification"] != null)) {
+                    base.Tables.Add(new SprOperationalSetUpBaseBudgetModificationDataTable(ds.Tables["SprOperationalSetUpBaseBudgetModification"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -686,12 +686,6 @@ namespace Budget_DAL {
                     this.tableSprBudgetProductPrice.InitVars();
                 }
             }
-            this.tableSprOperationalSetUpBaseBudgetModification = ((SprOperationalSetUpBaseBudgetModificationDataTable)(base.Tables["SprOperationalSetUpBaseBudgetModification"]));
-            if ((initTable == true)) {
-                if ((this.tableSprOperationalSetUpBaseBudgetModification != null)) {
-                    this.tableSprOperationalSetUpBaseBudgetModification.InitVars();
-                }
-            }
             this.tableSprOperationalBudgetFGQntvsMaterialQnt = ((SprOperationalBudgetFGQntvsMaterialQntDataTable)(base.Tables["SprOperationalBudgetFGQntvsMaterialQnt"]));
             if ((initTable == true)) {
                 if ((this.tableSprOperationalBudgetFGQntvsMaterialQnt != null)) {
@@ -720,6 +714,12 @@ namespace Budget_DAL {
             if ((initTable == true)) {
                 if ((this.tableSprBudgetEntryForRawMaterialMonthly != null)) {
                     this.tableSprBudgetEntryForRawMaterialMonthly.InitVars();
+                }
+            }
+            this.tableSprOperationalSetUpBaseBudgetModification = ((SprOperationalSetUpBaseBudgetModificationDataTable)(base.Tables["SprOperationalSetUpBaseBudgetModification"]));
+            if ((initTable == true)) {
+                if ((this.tableSprOperationalSetUpBaseBudgetModification != null)) {
+                    this.tableSprOperationalSetUpBaseBudgetModification.InitVars();
                 }
             }
         }
@@ -766,8 +766,6 @@ namespace Budget_DAL {
             base.Tables.Add(this.tableSprOperationalSetUpBaseBudget);
             this.tableSprBudgetProductPrice = new SprBudgetProductPriceDataTable();
             base.Tables.Add(this.tableSprBudgetProductPrice);
-            this.tableSprOperationalSetUpBaseBudgetModification = new SprOperationalSetUpBaseBudgetModificationDataTable();
-            base.Tables.Add(this.tableSprOperationalSetUpBaseBudgetModification);
             this.tableSprOperationalBudgetFGQntvsMaterialQnt = new SprOperationalBudgetFGQntvsMaterialQntDataTable();
             base.Tables.Add(this.tableSprOperationalBudgetFGQntvsMaterialQnt);
             this.tableSprMonthAndID = new SprMonthAndIDDataTable();
@@ -778,6 +776,8 @@ namespace Budget_DAL {
             base.Tables.Add(this.tableSprBudgetYearCombindly);
             this.tableSprBudgetEntryForRawMaterialMonthly = new SprBudgetEntryForRawMaterialMonthlyDataTable();
             base.Tables.Add(this.tableSprBudgetEntryForRawMaterialMonthly);
+            this.tableSprOperationalSetUpBaseBudgetModification = new SprOperationalSetUpBaseBudgetModificationDataTable();
+            base.Tables.Add(this.tableSprOperationalSetUpBaseBudgetModification);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -884,12 +884,6 @@ namespace Budget_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeSprOperationalSetUpBaseBudgetModification() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSprOperationalBudgetFGQntvsMaterialQnt() {
             return false;
         }
@@ -915,6 +909,12 @@ namespace Budget_DAL {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSprBudgetEntryForRawMaterialMonthly() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprOperationalSetUpBaseBudgetModification() {
             return false;
         }
         
@@ -1025,9 +1025,6 @@ namespace Budget_DAL {
         public delegate void SprBudgetProductPriceRowChangeEventHandler(object sender, SprBudgetProductPriceRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler(object sender, SprOperationalSetUpBaseBudgetModificationRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprOperationalBudgetFGQntvsMaterialQntRowChangeEventHandler(object sender, SprOperationalBudgetFGQntvsMaterialQntRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -1041,6 +1038,9 @@ namespace Budget_DAL {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprBudgetEntryForRawMaterialMonthlyRowChangeEventHandler(object sender, SprBudgetEntryForRawMaterialMonthlyRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler(object sender, SprOperationalSetUpBaseBudgetModificationRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -6406,486 +6406,6 @@ namespace Budget_DAL {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SprOperationalSetUpBaseBudgetModificationDataTable : global::System.Data.TypedTableBase<SprOperationalSetUpBaseBudgetModificationRow> {
-            
-            private global::System.Data.DataColumn columnintBudgetId;
-            
-            private global::System.Data.DataColumn columnintTypeId;
-            
-            private global::System.Data.DataColumn columnstrBudgetType;
-            
-            private global::System.Data.DataColumn columnintEntryReffId;
-            
-            private global::System.Data.DataColumn columnstrRowName;
-            
-            private global::System.Data.DataColumn columnintBudgetYear;
-            
-            private global::System.Data.DataColumn columnintYear;
-            
-            private global::System.Data.DataColumn columnMonthnames;
-            
-            private global::System.Data.DataColumn columndteInsertionTime;
-            
-            private global::System.Data.DataColumn columndecQnt;
-            
-            private global::System.Data.DataColumn columnmonProductRate;
-            
-            private global::System.Data.DataColumn columnmonBudget;
-            
-            private global::System.Data.DataColumn columnline;
-            
-            private global::System.Data.DataColumn columnArea;
-            
-            private global::System.Data.DataColumn columnRegion;
-            
-            private global::System.Data.DataColumn columnstrMessages;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprOperationalSetUpBaseBudgetModificationDataTable() {
-                this.TableName = "SprOperationalSetUpBaseBudgetModification";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprOperationalSetUpBaseBudgetModificationDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected SprOperationalSetUpBaseBudgetModificationDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intBudgetIdColumn {
-                get {
-                    return this.columnintBudgetId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intTypeIdColumn {
-                get {
-                    return this.columnintTypeId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strBudgetTypeColumn {
-                get {
-                    return this.columnstrBudgetType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intEntryReffIdColumn {
-                get {
-                    return this.columnintEntryReffId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strRowNameColumn {
-                get {
-                    return this.columnstrRowName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intBudgetYearColumn {
-                get {
-                    return this.columnintBudgetYear;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intYearColumn {
-                get {
-                    return this.columnintYear;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn MonthnamesColumn {
-                get {
-                    return this.columnMonthnames;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn dteInsertionTimeColumn {
-                get {
-                    return this.columndteInsertionTime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn decQntColumn {
-                get {
-                    return this.columndecQnt;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn monProductRateColumn {
-                get {
-                    return this.columnmonProductRate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn monBudgetColumn {
-                get {
-                    return this.columnmonBudget;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn lineColumn {
-                get {
-                    return this.columnline;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn AreaColumn {
-                get {
-                    return this.columnArea;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn RegionColumn {
-                get {
-                    return this.columnRegion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strMessagesColumn {
-                get {
-                    return this.columnstrMessages;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprOperationalSetUpBaseBudgetModificationRow this[int index] {
-                get {
-                    return ((SprOperationalSetUpBaseBudgetModificationRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler SprOperationalSetUpBaseBudgetModificationRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler SprOperationalSetUpBaseBudgetModificationRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler SprOperationalSetUpBaseBudgetModificationRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler SprOperationalSetUpBaseBudgetModificationRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddSprOperationalSetUpBaseBudgetModificationRow(SprOperationalSetUpBaseBudgetModificationRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprOperationalSetUpBaseBudgetModificationRow AddSprOperationalSetUpBaseBudgetModificationRow(
-                        int intBudgetId, 
-                        int intTypeId, 
-                        string strBudgetType, 
-                        int intEntryReffId, 
-                        string strRowName, 
-                        int intBudgetYear, 
-                        int intYear, 
-                        string Monthnames, 
-                        System.DateTime dteInsertionTime, 
-                        decimal decQnt, 
-                        decimal monProductRate, 
-                        decimal monBudget, 
-                        string line, 
-                        string Area, 
-                        string Region, 
-                        string strMessages) {
-                SprOperationalSetUpBaseBudgetModificationRow rowSprOperationalSetUpBaseBudgetModificationRow = ((SprOperationalSetUpBaseBudgetModificationRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        intBudgetId,
-                        intTypeId,
-                        strBudgetType,
-                        intEntryReffId,
-                        strRowName,
-                        intBudgetYear,
-                        intYear,
-                        Monthnames,
-                        dteInsertionTime,
-                        decQnt,
-                        monProductRate,
-                        monBudget,
-                        line,
-                        Area,
-                        Region,
-                        strMessages};
-                rowSprOperationalSetUpBaseBudgetModificationRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSprOperationalSetUpBaseBudgetModificationRow);
-                return rowSprOperationalSetUpBaseBudgetModificationRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                SprOperationalSetUpBaseBudgetModificationDataTable cln = ((SprOperationalSetUpBaseBudgetModificationDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new SprOperationalSetUpBaseBudgetModificationDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnintBudgetId = base.Columns["intBudgetId"];
-                this.columnintTypeId = base.Columns["intTypeId"];
-                this.columnstrBudgetType = base.Columns["strBudgetType"];
-                this.columnintEntryReffId = base.Columns["intEntryReffId"];
-                this.columnstrRowName = base.Columns["strRowName"];
-                this.columnintBudgetYear = base.Columns["intBudgetYear"];
-                this.columnintYear = base.Columns["intYear"];
-                this.columnMonthnames = base.Columns["Monthnames"];
-                this.columndteInsertionTime = base.Columns["dteInsertionTime"];
-                this.columndecQnt = base.Columns["decQnt"];
-                this.columnmonProductRate = base.Columns["monProductRate"];
-                this.columnmonBudget = base.Columns["monBudget"];
-                this.columnline = base.Columns["line"];
-                this.columnArea = base.Columns["Area"];
-                this.columnRegion = base.Columns["Region"];
-                this.columnstrMessages = base.Columns["strMessages"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnintBudgetId = new global::System.Data.DataColumn("intBudgetId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintBudgetId);
-                this.columnintTypeId = new global::System.Data.DataColumn("intTypeId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintTypeId);
-                this.columnstrBudgetType = new global::System.Data.DataColumn("strBudgetType", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrBudgetType);
-                this.columnintEntryReffId = new global::System.Data.DataColumn("intEntryReffId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintEntryReffId);
-                this.columnstrRowName = new global::System.Data.DataColumn("strRowName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrRowName);
-                this.columnintBudgetYear = new global::System.Data.DataColumn("intBudgetYear", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintBudgetYear);
-                this.columnintYear = new global::System.Data.DataColumn("intYear", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintYear);
-                this.columnMonthnames = new global::System.Data.DataColumn("Monthnames", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMonthnames);
-                this.columndteInsertionTime = new global::System.Data.DataColumn("dteInsertionTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndteInsertionTime);
-                this.columndecQnt = new global::System.Data.DataColumn("decQnt", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndecQnt);
-                this.columnmonProductRate = new global::System.Data.DataColumn("monProductRate", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmonProductRate);
-                this.columnmonBudget = new global::System.Data.DataColumn("monBudget", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmonBudget);
-                this.columnline = new global::System.Data.DataColumn("line", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnline);
-                this.columnArea = new global::System.Data.DataColumn("Area", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnArea);
-                this.columnRegion = new global::System.Data.DataColumn("Region", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRegion);
-                this.columnstrMessages = new global::System.Data.DataColumn("strMessages", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrMessages);
-                this.columnstrBudgetType.MaxLength = 500;
-                this.columnstrRowName.MaxLength = 500;
-                this.columnMonthnames.MaxLength = 500;
-                this.columnline.MaxLength = 500;
-                this.columnArea.MaxLength = 500;
-                this.columnRegion.MaxLength = 500;
-                this.columnstrMessages.MaxLength = 500;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprOperationalSetUpBaseBudgetModificationRow NewSprOperationalSetUpBaseBudgetModificationRow() {
-                return ((SprOperationalSetUpBaseBudgetModificationRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SprOperationalSetUpBaseBudgetModificationRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(SprOperationalSetUpBaseBudgetModificationRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.SprOperationalSetUpBaseBudgetModificationRowChanged != null)) {
-                    this.SprOperationalSetUpBaseBudgetModificationRowChanged(this, new SprOperationalSetUpBaseBudgetModificationRowChangeEvent(((SprOperationalSetUpBaseBudgetModificationRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.SprOperationalSetUpBaseBudgetModificationRowChanging != null)) {
-                    this.SprOperationalSetUpBaseBudgetModificationRowChanging(this, new SprOperationalSetUpBaseBudgetModificationRowChangeEvent(((SprOperationalSetUpBaseBudgetModificationRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.SprOperationalSetUpBaseBudgetModificationRowDeleted != null)) {
-                    this.SprOperationalSetUpBaseBudgetModificationRowDeleted(this, new SprOperationalSetUpBaseBudgetModificationRowChangeEvent(((SprOperationalSetUpBaseBudgetModificationRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.SprOperationalSetUpBaseBudgetModificationRowDeleting != null)) {
-                    this.SprOperationalSetUpBaseBudgetModificationRowDeleting(this, new SprOperationalSetUpBaseBudgetModificationRowChangeEvent(((SprOperationalSetUpBaseBudgetModificationRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveSprOperationalSetUpBaseBudgetModificationRow(SprOperationalSetUpBaseBudgetModificationRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Budget_TDS ds = new Budget_TDS();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SprOperationalSetUpBaseBudgetModificationDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SprOperationalBudgetFGQntvsMaterialQntDataTable : global::System.Data.TypedTableBase<SprOperationalBudgetFGQntvsMaterialQntRow> {
             
             private global::System.Data.DataColumn columnintBudgetYear;
@@ -8365,6 +7885,309 @@ namespace Budget_DAL {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "SprBudgetEntryForRawMaterialMonthlyDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprOperationalSetUpBaseBudgetModificationDataTable : global::System.Data.TypedTableBase<SprOperationalSetUpBaseBudgetModificationRow> {
+            
+            private global::System.Data.DataColumn columnautoid;
+            
+            private global::System.Data.DataColumn columnqnt;
+            
+            private global::System.Data.DataColumn columnrate;
+            
+            private global::System.Data.DataColumn columnamount;
+            
+            private global::System.Data.DataColumn columnysnproceedbit;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalSetUpBaseBudgetModificationDataTable() {
+                this.TableName = "SprOperationalSetUpBaseBudgetModification";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprOperationalSetUpBaseBudgetModificationDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprOperationalSetUpBaseBudgetModificationDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn autoidColumn {
+                get {
+                    return this.columnautoid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn qntColumn {
+                get {
+                    return this.columnqnt;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn rateColumn {
+                get {
+                    return this.columnrate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn amountColumn {
+                get {
+                    return this.columnamount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnproceedbitColumn {
+                get {
+                    return this.columnysnproceedbit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalSetUpBaseBudgetModificationRow this[int index] {
+                get {
+                    return ((SprOperationalSetUpBaseBudgetModificationRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler SprOperationalSetUpBaseBudgetModificationRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler SprOperationalSetUpBaseBudgetModificationRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler SprOperationalSetUpBaseBudgetModificationRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler SprOperationalSetUpBaseBudgetModificationRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprOperationalSetUpBaseBudgetModificationRow(SprOperationalSetUpBaseBudgetModificationRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalSetUpBaseBudgetModificationRow AddSprOperationalSetUpBaseBudgetModificationRow(int autoid, decimal qnt, decimal rate, decimal amount, bool ysnproceedbit) {
+                SprOperationalSetUpBaseBudgetModificationRow rowSprOperationalSetUpBaseBudgetModificationRow = ((SprOperationalSetUpBaseBudgetModificationRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        autoid,
+                        qnt,
+                        rate,
+                        amount,
+                        ysnproceedbit};
+                rowSprOperationalSetUpBaseBudgetModificationRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprOperationalSetUpBaseBudgetModificationRow);
+                return rowSprOperationalSetUpBaseBudgetModificationRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprOperationalSetUpBaseBudgetModificationDataTable cln = ((SprOperationalSetUpBaseBudgetModificationDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprOperationalSetUpBaseBudgetModificationDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnautoid = base.Columns["autoid"];
+                this.columnqnt = base.Columns["qnt"];
+                this.columnrate = base.Columns["rate"];
+                this.columnamount = base.Columns["amount"];
+                this.columnysnproceedbit = base.Columns["ysnproceedbit"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnautoid = new global::System.Data.DataColumn("autoid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnautoid);
+                this.columnqnt = new global::System.Data.DataColumn("qnt", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnqnt);
+                this.columnrate = new global::System.Data.DataColumn("rate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrate);
+                this.columnamount = new global::System.Data.DataColumn("amount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnamount);
+                this.columnysnproceedbit = new global::System.Data.DataColumn("ysnproceedbit", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnproceedbit);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalSetUpBaseBudgetModificationRow NewSprOperationalSetUpBaseBudgetModificationRow() {
+                return ((SprOperationalSetUpBaseBudgetModificationRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprOperationalSetUpBaseBudgetModificationRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprOperationalSetUpBaseBudgetModificationRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprOperationalSetUpBaseBudgetModificationRowChanged != null)) {
+                    this.SprOperationalSetUpBaseBudgetModificationRowChanged(this, new SprOperationalSetUpBaseBudgetModificationRowChangeEvent(((SprOperationalSetUpBaseBudgetModificationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprOperationalSetUpBaseBudgetModificationRowChanging != null)) {
+                    this.SprOperationalSetUpBaseBudgetModificationRowChanging(this, new SprOperationalSetUpBaseBudgetModificationRowChangeEvent(((SprOperationalSetUpBaseBudgetModificationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprOperationalSetUpBaseBudgetModificationRowDeleted != null)) {
+                    this.SprOperationalSetUpBaseBudgetModificationRowDeleted(this, new SprOperationalSetUpBaseBudgetModificationRowChangeEvent(((SprOperationalSetUpBaseBudgetModificationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprOperationalSetUpBaseBudgetModificationRowDeleting != null)) {
+                    this.SprOperationalSetUpBaseBudgetModificationRowDeleting(this, new SprOperationalSetUpBaseBudgetModificationRowChangeEvent(((SprOperationalSetUpBaseBudgetModificationRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprOperationalSetUpBaseBudgetModificationRow(SprOperationalSetUpBaseBudgetModificationRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Budget_TDS ds = new Budget_TDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprOperationalSetUpBaseBudgetModificationDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -10809,485 +10632,6 @@ namespace Budget_DAL {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SprOperationalSetUpBaseBudgetModificationRow : global::System.Data.DataRow {
-            
-            private SprOperationalSetUpBaseBudgetModificationDataTable tableSprOperationalSetUpBaseBudgetModification;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprOperationalSetUpBaseBudgetModificationRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSprOperationalSetUpBaseBudgetModification = ((SprOperationalSetUpBaseBudgetModificationDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intBudgetId {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprOperationalSetUpBaseBudgetModification.intBudgetIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intBudgetId\' in table \'SprOperationalSetUpBaseBudgetModific" +
-                                "ation\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.intBudgetIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intTypeId {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprOperationalSetUpBaseBudgetModification.intTypeIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intTypeId\' in table \'SprOperationalSetUpBaseBudgetModificat" +
-                                "ion\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.intTypeIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strBudgetType {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprOperationalSetUpBaseBudgetModification.strBudgetTypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strBudgetType\' in table \'SprOperationalSetUpBaseBudgetModif" +
-                                "ication\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.strBudgetTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intEntryReffId {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprOperationalSetUpBaseBudgetModification.intEntryReffIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intEntryReffId\' in table \'SprOperationalSetUpBaseBudgetModi" +
-                                "fication\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.intEntryReffIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strRowName {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprOperationalSetUpBaseBudgetModification.strRowNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strRowName\' in table \'SprOperationalSetUpBaseBudgetModifica" +
-                                "tion\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.strRowNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intBudgetYear {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprOperationalSetUpBaseBudgetModification.intBudgetYearColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intBudgetYear\' in table \'SprOperationalSetUpBaseBudgetModif" +
-                                "ication\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.intBudgetYearColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intYear {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprOperationalSetUpBaseBudgetModification.intYearColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intYear\' in table \'SprOperationalSetUpBaseBudgetModificatio" +
-                                "n\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.intYearColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Monthnames {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprOperationalSetUpBaseBudgetModification.MonthnamesColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Monthnames\' in table \'SprOperationalSetUpBaseBudgetModifica" +
-                                "tion\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.MonthnamesColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime dteInsertionTime {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableSprOperationalSetUpBaseBudgetModification.dteInsertionTimeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'dteInsertionTime\' in table \'SprOperationalSetUpBaseBudgetMo" +
-                                "dification\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.dteInsertionTimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal decQnt {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprOperationalSetUpBaseBudgetModification.decQntColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'decQnt\' in table \'SprOperationalSetUpBaseBudgetModification" +
-                                "\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.decQntColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal monProductRate {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprOperationalSetUpBaseBudgetModification.monProductRateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monProductRate\' in table \'SprOperationalSetUpBaseBudgetModi" +
-                                "fication\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.monProductRateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal monBudget {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprOperationalSetUpBaseBudgetModification.monBudgetColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monBudget\' in table \'SprOperationalSetUpBaseBudgetModificat" +
-                                "ion\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.monBudgetColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string line {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprOperationalSetUpBaseBudgetModification.lineColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'line\' in table \'SprOperationalSetUpBaseBudgetModification\' " +
-                                "is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.lineColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Area {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprOperationalSetUpBaseBudgetModification.AreaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Area\' in table \'SprOperationalSetUpBaseBudgetModification\' " +
-                                "is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.AreaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Region {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprOperationalSetUpBaseBudgetModification.RegionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Region\' in table \'SprOperationalSetUpBaseBudgetModification" +
-                                "\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.RegionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strMessages {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprOperationalSetUpBaseBudgetModification.strMessagesColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strMessages\' in table \'SprOperationalSetUpBaseBudgetModific" +
-                                "ation\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprOperationalSetUpBaseBudgetModification.strMessagesColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintBudgetIdNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.intBudgetIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintBudgetIdNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.intBudgetIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintTypeIdNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.intTypeIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintTypeIdNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.intTypeIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrBudgetTypeNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.strBudgetTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrBudgetTypeNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.strBudgetTypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintEntryReffIdNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.intEntryReffIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintEntryReffIdNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.intEntryReffIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrRowNameNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.strRowNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrRowNameNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.strRowNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintBudgetYearNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.intBudgetYearColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintBudgetYearNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.intBudgetYearColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintYearNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.intYearColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintYearNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.intYearColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsMonthnamesNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.MonthnamesColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetMonthnamesNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.MonthnamesColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsdteInsertionTimeNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.dteInsertionTimeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetdteInsertionTimeNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.dteInsertionTimeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsdecQntNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.decQntColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetdecQntNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.decQntColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmonProductRateNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.monProductRateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmonProductRateNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.monProductRateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmonBudgetNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.monBudgetColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmonBudgetNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.monBudgetColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IslineNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.lineColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetlineNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.lineColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsAreaNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.AreaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetAreaNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.AreaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsRegionNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.RegionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetRegionNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.RegionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrMessagesNull() {
-                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.strMessagesColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrMessagesNull() {
-                this[this.tableSprOperationalSetUpBaseBudgetModification.strMessagesColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class SprOperationalBudgetFGQntvsMaterialQntRow : global::System.Data.DataRow {
             
             private SprOperationalBudgetFGQntvsMaterialQntDataTable tableSprOperationalBudgetFGQntvsMaterialQnt;
@@ -12065,6 +11409,166 @@ namespace Budget_DAL {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprOperationalSetUpBaseBudgetModificationRow : global::System.Data.DataRow {
+            
+            private SprOperationalSetUpBaseBudgetModificationDataTable tableSprOperationalSetUpBaseBudgetModification;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprOperationalSetUpBaseBudgetModificationRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprOperationalSetUpBaseBudgetModification = ((SprOperationalSetUpBaseBudgetModificationDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int autoid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprOperationalSetUpBaseBudgetModification.autoidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'autoid\' in table \'SprOperationalSetUpBaseBudgetModification" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalSetUpBaseBudgetModification.autoidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal qnt {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprOperationalSetUpBaseBudgetModification.qntColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'qnt\' in table \'SprOperationalSetUpBaseBudgetModification\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalSetUpBaseBudgetModification.qntColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal rate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprOperationalSetUpBaseBudgetModification.rateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'rate\' in table \'SprOperationalSetUpBaseBudgetModification\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalSetUpBaseBudgetModification.rateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal amount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprOperationalSetUpBaseBudgetModification.amountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'amount\' in table \'SprOperationalSetUpBaseBudgetModification" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalSetUpBaseBudgetModification.amountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnproceedbit {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprOperationalSetUpBaseBudgetModification.ysnproceedbitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnproceedbit\' in table \'SprOperationalSetUpBaseBudgetModif" +
+                                "ication\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalSetUpBaseBudgetModification.ysnproceedbitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsautoidNull() {
+                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.autoidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetautoidNull() {
+                this[this.tableSprOperationalSetUpBaseBudgetModification.autoidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsqntNull() {
+                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.qntColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetqntNull() {
+                this[this.tableSprOperationalSetUpBaseBudgetModification.qntColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsrateNull() {
+                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.rateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetrateNull() {
+                this[this.tableSprOperationalSetUpBaseBudgetModification.rateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsamountNull() {
+                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.amountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetamountNull() {
+                this[this.tableSprOperationalSetUpBaseBudgetModification.amountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnproceedbitNull() {
+                return this.IsNull(this.tableSprOperationalSetUpBaseBudgetModification.ysnproceedbitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnproceedbitNull() {
+                this[this.tableSprOperationalSetUpBaseBudgetModification.ysnproceedbitColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -12646,40 +12150,6 @@ namespace Budget_DAL {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class SprOperationalSetUpBaseBudgetModificationRowChangeEvent : global::System.EventArgs {
-            
-            private SprOperationalSetUpBaseBudgetModificationRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprOperationalSetUpBaseBudgetModificationRowChangeEvent(SprOperationalSetUpBaseBudgetModificationRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprOperationalSetUpBaseBudgetModificationRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public class SprOperationalBudgetFGQntvsMaterialQntRowChangeEvent : global::System.EventArgs {
             
             private SprOperationalBudgetFGQntvsMaterialQntRow eventRow;
@@ -12832,6 +12302,40 @@ namespace Budget_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprBudgetEntryForRawMaterialMonthlyRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprOperationalSetUpBaseBudgetModificationRowChangeEvent : global::System.EventArgs {
+            
+            private SprOperationalSetUpBaseBudgetModificationRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalSetUpBaseBudgetModificationRowChangeEvent(SprOperationalSetUpBaseBudgetModificationRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalSetUpBaseBudgetModificationRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -16638,232 +16142,6 @@ SELECT strCCName, intCostCenterID FROM tblCostCenter WHERE (intCostCenterID = @i
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SprOperationalSetUpBaseBudgetModificationTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SprOperationalSetUpBaseBudgetModificationTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SprOperationalSetUpBaseBudgetModification";
-            tableMapping.ColumnMappings.Add("intBudgetId", "intBudgetId");
-            tableMapping.ColumnMappings.Add("intTypeId", "intTypeId");
-            tableMapping.ColumnMappings.Add("strBudgetType", "strBudgetType");
-            tableMapping.ColumnMappings.Add("intEntryReffId", "intEntryReffId");
-            tableMapping.ColumnMappings.Add("strRowName", "strRowName");
-            tableMapping.ColumnMappings.Add("intBudgetYear", "intBudgetYear");
-            tableMapping.ColumnMappings.Add("intYear", "intYear");
-            tableMapping.ColumnMappings.Add("Monthnames", "Monthnames");
-            tableMapping.ColumnMappings.Add("dteInsertionTime", "dteInsertionTime");
-            tableMapping.ColumnMappings.Add("decQnt", "decQnt");
-            tableMapping.ColumnMappings.Add("monProductRate", "monProductRate");
-            tableMapping.ColumnMappings.Add("monBudget", "monBudget");
-            tableMapping.ColumnMappings.Add("line", "line");
-            tableMapping.ColumnMappings.Add("Area", "Area");
-            tableMapping.ColumnMappings.Add("Region", "Region");
-            tableMapping.ColumnMappings.Add("strMessages", "strMessages");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Budget_DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprOperationalSetUpBaseBudgetModification";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@XML", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEnrol", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fromdate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@todate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intbudgettyep", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prdid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actiontype", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Budget_TDS.SprOperationalSetUpBaseBudgetModificationDataTable GetDataOperationalSetUpBaseBudgetModification(object XML, global::System.Nullable<int> intEnrol, global::System.Nullable<int> intUnit, global::System.Nullable<global::System.DateTime> fromdate, global::System.Nullable<global::System.DateTime> todate, global::System.Nullable<int> intbudgettyep, global::System.Nullable<int> prdid, global::System.Nullable<int> actiontype) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((XML == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((object)(XML));
-            }
-            if ((intEnrol.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intEnrol.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((intUnit.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(intUnit.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((fromdate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(fromdate.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((todate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((System.DateTime)(todate.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((intbudgettyep.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intbudgettyep.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((prdid.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(prdid.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            if ((actiontype.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(actiontype.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            Budget_TDS.SprOperationalSetUpBaseBudgetModificationDataTable dataTable = new Budget_TDS.SprOperationalSetUpBaseBudgetModificationDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class SprOperationalBudgetFGQntvsMaterialQntTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -17712,6 +16990,221 @@ SELECT strCCName, intCostCenterID FROM tblCostCenter WHERE (intCostCenterID = @i
             else {
                 strMessage = ((string)(this.Adapter.SelectCommand.Parameters[4].Value));
             }
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprOperationalSetUpBaseBudgetModificationTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprOperationalSetUpBaseBudgetModificationTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprOperationalSetUpBaseBudgetModification";
+            tableMapping.ColumnMappings.Add("autoid", "autoid");
+            tableMapping.ColumnMappings.Add("qnt", "qnt");
+            tableMapping.ColumnMappings.Add("rate", "rate");
+            tableMapping.ColumnMappings.Add("amount", "amount");
+            tableMapping.ColumnMappings.Add("ysnproceedbit", "ysnproceedbit");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Budget_DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprOperationalSetUpBaseBudgetModification";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@XML", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEnrol", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fromdate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@todate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intbudgettyep", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@prdid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actiontype", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual Budget_TDS.SprOperationalSetUpBaseBudgetModificationDataTable GetDataOperationalSetUpBaseBudgetModification(object XML, global::System.Nullable<int> intEnrol, global::System.Nullable<int> intUnit, global::System.Nullable<global::System.DateTime> fromdate, global::System.Nullable<global::System.DateTime> todate, global::System.Nullable<int> intbudgettyep, global::System.Nullable<int> prdid, global::System.Nullable<int> actiontype) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((XML == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((object)(XML));
+            }
+            if ((intEnrol.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intEnrol.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((intUnit.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(intUnit.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((fromdate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(fromdate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((todate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((System.DateTime)(todate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((intbudgettyep.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intbudgettyep.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((prdid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(prdid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((actiontype.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(actiontype.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            Budget_TDS.SprOperationalSetUpBaseBudgetModificationDataTable dataTable = new Budget_TDS.SprOperationalSetUpBaseBudgetModificationDataTable();
+            this.Adapter.Fill(dataTable);
             return dataTable;
         }
     }
