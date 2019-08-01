@@ -496,6 +496,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\AJMLEmployeeProfile.aspx" />
+    <Content Include="HR\Employee\AJMLWeeklyCasualWages.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
     <Content Include="HR\Employee\AJMLAttendance.aspx" />
     <Content Include="HR\Employee\EmployeeCostCenterUpdate.aspx" />
@@ -3460,6 +3461,13 @@
     </Compile>
     <Compile Include="HR\Employee\AJMLEmployeeProfile.aspx.designer.cs">
       <DependentUpon>AJMLEmployeeProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\AJMLWeeklyCasualWages.aspx.cs">
+      <DependentUpon>AJMLWeeklyCasualWages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\AJMLWeeklyCasualWages.aspx.designer.cs">
+      <DependentUpon>AJMLWeeklyCasualWages.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
