@@ -8,9 +8,9 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
-namespace UI.Asset.Report
+namespace UI.HR.Employee
 {
-    public partial class AssetCheckInOutResponsiblePerson : BasePage
+    public partial class AJMLWeeklyCasualWages : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
