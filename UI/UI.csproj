@@ -324,6 +324,7 @@
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
     <Content Include="BudgetPlan\BudgetForExpenseNRawMaterial.aspx" />
     <Content Include="BudgetPlan\BudgetInfoModification.aspx" />
+    <Content Include="BudgetPlan\BudgetInputMonthlyForRawMaterial.aspx" />
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
     <Content Include="BudgetPlan\BudgetPlanning_Requesition.aspx" />
     <Content Include="BudgetPlan\BudgetStatusViewDetalis.aspx" />
@@ -495,6 +496,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\AJMLEmployeeProfile.aspx" />
+    <Content Include="HR\Employee\AJMLWeeklyCasualWages.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
     <Content Include="HR\Employee\AJMLAttendance.aspx" />
     <Content Include="HR\Employee\EmployeeCostCenterUpdate.aspx" />
@@ -656,6 +658,7 @@
     <Content Include="PaymentModule\VAT_Rebate.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="Personal\Test.aspx" />
+    <Content Include="Property\AGLandDeedReport.aspx" />
     <Content Include="Property\AGLandMouzaSetup.aspx" />
     <Content Include="Property\AGLandPlotByMouzaSetup.aspx" />
     <Content Include="Property\AGLandTrxGeneral.aspx" />
@@ -1321,6 +1324,8 @@
     <Content Include="SAD\Corporate_sales\SalesAnalysis.aspx" />
     <Content Include="SAD\Corporate_sales\SalesOrderReport.aspx" />
     <Content Include="SAD\Corporate_sales\UnfoundView.aspx" />
+    <Content Include="SAD\Customer\AfblEmployeeLineChange.aspx" />
+    <Content Include="SAD\Customer\AfblEmployeeSearch.aspx" />
     <Content Include="SAD\Customer\CustomerGEO.aspx" />
     <Content Include="SAD\Customer\CustomerInfo.aspx" />
     <Content Include="SAD\Customer\CustomerInfo2.aspx" />
@@ -1841,6 +1846,7 @@
     <Content Include="VAT_Management\ProductionEntry.aspx" />
     <Content Include="VAT_Management\PurchaseEntry.aspx" />
     <Content Include="VAT_Management\TreasuryEntry.aspx" />
+    <Content Include="Vehicle_Registration_Renewal\TransPortCostAprvByHODIndividualy.aspx" />
     <Content Include="Vehicle_Registration_Renewal\VehicleRegistrationRenewalReport.aspx" />
     <Content Include="Wastage\frmAdjustment.aspx" />
     <Content Include="Wastage\frmCustomerBridge.aspx" />
@@ -3148,6 +3154,13 @@
     <Compile Include="BudgetPlan\BudgetInfoModification.aspx.designer.cs">
       <DependentUpon>BudgetInfoModification.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BudgetPlan\BudgetInputMonthlyForRawMaterial.aspx.cs">
+      <DependentUpon>BudgetInputMonthlyForRawMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetInputMonthlyForRawMaterial.aspx.designer.cs">
+      <DependentUpon>BudgetInputMonthlyForRawMaterial.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx.cs">
       <DependentUpon>BudgetNonOperatonStatusDetalis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3448,6 +3461,13 @@
     </Compile>
     <Compile Include="HR\Employee\AJMLEmployeeProfile.aspx.designer.cs">
       <DependentUpon>AJMLEmployeeProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\AJMLWeeklyCasualWages.aspx.cs">
+      <DependentUpon>AJMLWeeklyCasualWages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\AJMLWeeklyCasualWages.aspx.designer.cs">
+      <DependentUpon>AJMLWeeklyCasualWages.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
@@ -4436,6 +4456,13 @@
       <DependentUpon>Test.aspx</DependentUpon>
     </Compile>
     <Compile Include="PO.cs" />
+    <Compile Include="Property\AGLandDeedReport.aspx.cs">
+      <DependentUpon>AGLandDeedReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandDeedReport.aspx.designer.cs">
+      <DependentUpon>AGLandDeedReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Property\AGLandMouzaSetup.aspx.cs">
       <DependentUpon>AGLandMouzaSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6514,6 +6541,20 @@
     </Compile>
     <Compile Include="SAD\Corporate_sales\UnfoundView.aspx.designer.cs">
       <DependentUpon>UnfoundView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Customer\AfblEmployeeLineChange.aspx.cs">
+      <DependentUpon>AfblEmployeeLineChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\AfblEmployeeLineChange.aspx.designer.cs">
+      <DependentUpon>AfblEmployeeLineChange.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Customer\AfblEmployeeSearch.aspx.cs">
+      <DependentUpon>AfblEmployeeSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\AfblEmployeeSearch.aspx.designer.cs">
+      <DependentUpon>AfblEmployeeSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Customer\CustomerGEO.aspx.cs">
       <DependentUpon>CustomerGEO.aspx</DependentUpon>
@@ -10380,6 +10421,13 @@
     </Compile>
     <Compile Include="Vehicle_Registration_Renewal\TransPortCostApprovebyHead.aspx.designer.cs">
       <DependentUpon>TransPortCostApprovebyHead.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicle_Registration_Renewal\TransPortCostAprvByHODIndividualy.aspx.cs">
+      <DependentUpon>TransPortCostAprvByHODIndividualy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vehicle_Registration_Renewal\TransPortCostAprvByHODIndividualy.aspx.designer.cs">
+      <DependentUpon>TransPortCostAprvByHODIndividualy.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vehicle_Registration_Renewal\TransportMntCostReport.aspx.cs">
       <DependentUpon>TransportMntCostReport.aspx</DependentUpon>
