@@ -70,15 +70,15 @@ namespace UI.PaymentModule
                 {
                     if (((CheckBox)dgvReport.Rows[index].FindControl("chkRow")).Checked == true)
                     {
-                        int lblAutoID =int.Parse(((Label)dgvReport.Rows[index].FindControl("lblAutoID")).Text.ToString());
+                        int lblAutoID =int.Parse(((Label)dgvReport.Rows[index].FindControl("lblAutoIDs")).Text.ToString());
                         decimal txtActualRate =decimal.Parse(((TextBox)dgvReport.Rows[index].FindControl("txtActualRate")).Text.ToString());
 
-                          msg = _bll.UpdateExchangeRate(txtActualRate,int.Parse(SessionParams.USER_ID.ToString()), lblAutoID);
+                          msg = _bll.UpdateExchangeRate(txtActualRate, int.Parse(Session[SessionParams.USER_ID].ToString()), lblAutoID);
                     
 
                     }
                 }
-              
+                dgvReport.DataBind();
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
 
                
