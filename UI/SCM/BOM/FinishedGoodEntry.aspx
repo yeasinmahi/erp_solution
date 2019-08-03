@@ -90,8 +90,12 @@
                                 <asp:Label ID="Label3" runat="server"  CssClass="lbl" Text="WH Name:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
-
-                            <td style="text-align: right" colspan="2">
+                            <td>Order No</td>
+                              <td><asp:TextBox ID="txtOrderno"  CssClass="txtBox" runat="server"></asp:TextBox></td>
+                           
+                        </tr>
+                        <tr>
+                             <td style="text-align: right" colspan="2">
                                 <asp:Button ID="btnEdit" runat="server" forecolor="green" Text="Edit Production Order" />
                                 <asp:Button ID="btnViewProductionOrder" runat="server" Text="Show Production Order" forecolor="blue" OnClientClick="showLoader();" OnClick="btnViewProductionOrder_Click" /></td>
                         </tr>

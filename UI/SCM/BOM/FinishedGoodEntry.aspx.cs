@@ -25,6 +25,8 @@ namespace UI.SCM.BOM
         {
             if (!IsPostBack)
             {
+                txtFromDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                txtToDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 dt = objBom.GetBomData(20, xmlData, intwh, BomId, DateTime.Now, Enroll);
                 if (dt.Rows.Count > 0)
                 {
@@ -34,6 +36,7 @@ namespace UI.SCM.BOM
                     ddlWH.DataTextField = "strName";
                     ddlWH.DataValueField = "Id";
                     ddlWH.DataBind();
+
                 }
             }
             else { }
@@ -74,14 +77,28 @@ namespace UI.SCM.BOM
         {
             try
             {
+               
                 string dteFrom = txtFromDate.Text;
                 string dteTo = txtToDate.Text;
-                intwh = int.Parse(ddlWH.SelectedValue);
-                DateTime dteDate = DateTime.Now;
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>";
-                dt = objBom.GetBomData(6, xmlData, intwh, BomId, dteDate, Enroll);
-                dgvBom.DataSource = dt;
-                dgvBom.DataBind();
+                if (txtOrderno.Text != "")
+                {
+                    intwh = int.Parse(ddlWH.SelectedValue);
+                    DateTime dteDate = DateTime.Now;
+                    string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " orderno=" + '"' + txtOrderno.Text + '"' + "/></voucher>";
+                    dt = objBom.GetBomData(21, xmlData, intwh, BomId, dteDate, Enroll);
+                    dgvBom.DataSource = dt;
+                    dgvBom.DataBind();
+                }
+                else
+                {
+                    intwh = int.Parse(ddlWH.SelectedValue);
+                    DateTime dteDate = DateTime.Now;
+                    string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>";
+                    dt = objBom.GetBomData(6, xmlData, intwh, BomId, dteDate, Enroll);
+                    dgvBom.DataSource = dt;
+                    dgvBom.DataBind();
+                }
+               
             }
             catch (Exception ex)
             {
