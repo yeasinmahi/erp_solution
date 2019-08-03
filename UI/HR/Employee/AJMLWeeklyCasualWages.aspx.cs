@@ -18,7 +18,7 @@ namespace UI.HR.Employee
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'http://report.akij.net/reports/report/Asset_Module/Asset_CheckInOut_Responsible_Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'http://report.akij.net/reports/report/Common_Reports/HR_Report/Weekly_Casual_Wages_Report?rs:Embed=true');", true);
 
         }
     }

@@ -94,6 +94,14 @@ namespace UI.SCM.Transfer
                 {
                     dt = _storeIssueBll.GetWHByUnitAFBL(int.Parse(ddlWh.SelectedValue));
                 }
+                else if (int.Parse(ddlWh.SelectedValue) == 54)
+                {
+                    dt = _storeIssueBll.GetWHByUnitPPS(int.Parse(ddlWh.SelectedValue));
+                }
+                else if (int.Parse(ddlWh.SelectedValue) == 46)
+                {
+                    dt = _storeIssueBll.GetWHByUnitPPS(int.Parse(ddlWh.SelectedValue));
+                }
                 else
                 {
                     dt = _storeIssueBll.GetWHByUnit(int.Parse(ddlWh.SelectedValue));
@@ -139,7 +147,7 @@ namespace UI.SCM.Transfer
                 Toaster(ex.Message, Common.TosterType.Error);
             }
         }
-
+        
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -189,12 +197,19 @@ namespace UI.SCM.Transfer
                 CheckXmlItemData(itemid);
                 if (decimal.Parse(qty) > 0 && CheckItem == 1)
                 {
-                    CreateXml(item, itemid, qty, locationId, locationName, transType, transTypeId, uom, monValue,
-                        remarks, vehicle);
-                    txtItem.Text = "";
-                    txTransferQty.Text = "";
-                    lblValue.Text = "";
-                    ddlLcation.UnLoadWithSelect();
+                    if (decimal.Parse(qty) > decimal.Parse(hdnStockQty.Value))
+                    {
+                        Toaster("Stock Not Available in this Product ", Common.TosterType.Warning);
+                    }
+                    else
+                    {
+                        CreateXml(item, itemid, qty, locationId, locationName, transType, transTypeId, uom, monValue,
+                            remarks, vehicle);
+                        txtItem.Text = "";
+                        txTransferQty.Text = "";
+                        lblValue.Text = "";
+                        ddlLcation.UnLoadWithSelect();
+                    }
                 }
                 else
                 {
@@ -429,9 +444,15 @@ namespace UI.SCM.Transfer
                     {
                         string msg = string.Empty;
                         int WHType = _bll.GetWareHouseType(intWh);
-                        if(WHType == 4)
+                        int ToWH = int.Parse(ddlToWh.SelectedValue);
+                        int ToWHType = _bll.GetWareHouseType(ToWH);
+                        if (WHType == 4)
                         {
                             msg = _bll.PostTransfer(16, xmlString, intWh, intToWh, DateTime.Now, Enroll);
+                        }
+                        else if(WHType==7 || ToWHType==7)
+                        {
+                            msg = _bll.PostTransfer(18, xmlString, intWh, intToWh, DateTime.Now, Enroll);
                         }
                         else
                         {
