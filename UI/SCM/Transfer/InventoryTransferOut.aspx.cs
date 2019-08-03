@@ -94,6 +94,14 @@ namespace UI.SCM.Transfer
                 {
                     dt = _storeIssueBll.GetWHByUnitAFBL(int.Parse(ddlWh.SelectedValue));
                 }
+                else if (int.Parse(ddlWh.SelectedValue) == 54)
+                {
+                    dt = _storeIssueBll.GetWHByUnitPPS(int.Parse(ddlWh.SelectedValue));
+                }
+                else if (int.Parse(ddlWh.SelectedValue) == 46)
+                {
+                    dt = _storeIssueBll.GetWHByUnitPPS(int.Parse(ddlWh.SelectedValue));
+                }
                 else
                 {
                     dt = _storeIssueBll.GetWHByUnit(int.Parse(ddlWh.SelectedValue));
