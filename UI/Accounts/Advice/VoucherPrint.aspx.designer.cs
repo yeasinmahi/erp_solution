@@ -40,15 +40,6 @@ namespace UI.Accounts.Advice {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Image2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
-        
-        /// <summary>
         /// lblUnitName control.
         /// </summary>
         /// <remarks>
@@ -76,22 +67,13 @@ namespace UI.Accounts.Advice {
         protected global::System.Web.UI.WebControls.Label lblTo;
         
         /// <summary>
-        /// Label2 control.
+        /// lblaccDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-        
-        /// <summary>
-        /// lblManager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblManager;
+        protected global::System.Web.UI.WebControls.Label lblaccDetails;
         
         /// <summary>
         /// lblBankName control.
@@ -112,40 +94,40 @@ namespace UI.Accounts.Advice {
         protected global::System.Web.UI.WebControls.Label lblBankAddress;
         
         /// <summary>
-        /// lblSubject control.
+        /// lblIntrumentNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSubject;
+        protected global::System.Web.UI.WebControls.Label lblIntrumentNo;
         
         /// <summary>
-        /// lblDearSir control.
+        /// lblVoucherNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDearSir;
+        protected global::System.Web.UI.WebControls.Label lblVoucherNo;
         
         /// <summary>
-        /// lblMailBody control.
+        /// lblIntrumentDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMailBody;
+        protected global::System.Web.UI.WebControls.Label lblIntrumentDate;
         
         /// <summary>
-        /// lblDetails control.
+        /// lblVoucherDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDetails;
+        protected global::System.Web.UI.WebControls.Label lblVoucherDate;
         
         /// <summary>
         /// dgvAdvice control.
@@ -157,22 +139,22 @@ namespace UI.Accounts.Advice {
         protected global::System.Web.UI.WebControls.GridView dgvAdvice;
         
         /// <summary>
-        /// lblWord control.
+        /// lblMoneyToWord control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWord;
+        protected global::System.Web.UI.WebControls.Label lblMoneyToWord;
         
         /// <summary>
-        /// lblForUnit control.
+        /// lblDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblForUnit;
+        protected global::System.Web.UI.WebControls.Label lblDescription;
         
         /// <summary>
         /// lblAuth1 control.
@@ -200,6 +182,33 @@ namespace UI.Accounts.Advice {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAuth3;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+        
+        /// <summary>
+        /// Label4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
         /// HdnValue control.
