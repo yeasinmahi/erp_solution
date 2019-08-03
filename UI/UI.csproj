@@ -156,6 +156,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Accounts\Advice\AdvicePrint.aspx" />
     <Content Include="Accounts\Advice\BankReceive.aspx" />
     <Content Include="Accounts\Advice\BankStatementUpload.aspx" />
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
@@ -474,6 +475,7 @@
     <Content Include="Document Inventory\DocLocationConfigure.aspx" />
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
     <Content Include="Factory\PetBottle\PBReceiveForm.aspx" />
+    <Content Include="Factory\PetBottle\PetBottlePaymentRpt.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
@@ -1881,6 +1883,13 @@
     <Content Include="WoodPurchase\WoodTypeWiseReport.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\Advice\AdvicePrint.aspx.cs">
+      <DependentUpon>AdvicePrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\AdvicePrint.aspx.designer.cs">
+      <DependentUpon>AdvicePrint.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Advice\BankReceive.aspx.cs">
       <DependentUpon>BankReceive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3322,6 +3331,13 @@
     </Compile>
     <Compile Include="Factory\PetBottle\PBReceiveForm.aspx.designer.cs">
       <DependentUpon>PBReceiveForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PetBottlePaymentRpt.aspx.cs">
+      <DependentUpon>PetBottlePaymentRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PetBottlePaymentRpt.aspx.designer.cs">
+      <DependentUpon>PetBottlePaymentRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Attendance\RealTimeAttendanceReport.aspx.cs">
       <DependentUpon>RealTimeAttendanceReport.aspx</DependentUpon>

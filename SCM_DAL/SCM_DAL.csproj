@@ -71,10 +71,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BillingTDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="BOMNEWTDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BOMNEWTDS.xsd</DependentUpon>
+    <Compile Include="BomTDS.cs">
+      <DependentUpon>BomTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="BomTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -221,17 +219,6 @@
     </None>
     <None Include="BillingTDS.xss">
       <DependentUpon>BillingTDS.xsd</DependentUpon>
-    </None>
-    <None Include="BOMNEWTDS.xsc">
-      <DependentUpon>BOMNEWTDS.xsd</DependentUpon>
-    </None>
-    <None Include="BOMNEWTDS.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BOMNEWTDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="BOMNEWTDS.xss">
-      <DependentUpon>BOMNEWTDS.xsd</DependentUpon>
     </None>
     <None Include="BomTDS.xsc">
       <DependentUpon>BomTDS.xsd</DependentUpon>
