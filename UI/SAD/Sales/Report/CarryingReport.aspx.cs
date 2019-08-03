@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
-namespace UI.HR.Employee
+namespace UI.SAD.Sales.Report
 {
-    public partial class AJMLWeeklyCasualWages : BasePage
+    public partial class CarryingReport : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -18,7 +16,7 @@ namespace UI.HR.Employee
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'http://report.akij.net/reports/report/Common_Reports/HR_Report/Weekly_Casual_Wages_Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Common_Reports/Payment/CarryingReport?rs:Embed=true');", true);
 
         }
     }

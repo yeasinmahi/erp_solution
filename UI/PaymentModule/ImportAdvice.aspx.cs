@@ -206,5 +206,19 @@ namespace UI.PaymentModule
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
         }
+
+        protected void btnSummary_Click(object sender, EventArgs e)
+        {
+            string adviceR = ddlAdvice.SelectedText();
+            string advice = adviceR.Replace("/", "%2526");
+            string date = txtDate.Text;
+            int unitId = ddlUnit.SelectedValue();
+            int bankId = ddlbank.SelectedValue();
+            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Payment/ImportAdviceSummary" + "&ReqDate=" + DateTime.Parse(date).ToString("yyyy-MM-dd");
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
+
+
+        }
     }
 }
