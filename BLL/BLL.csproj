@@ -127,6 +127,7 @@
     <Compile Include="Accounts\Books\JournalBookC.cs" />
     <Compile Include="Accounts\ChartOfAccount\ChartOfAcc.cs" />
     <Compile Include="Accounts\ChartOfAccount\ChartOfAccStaticDataProvider.cs" />
+    <Compile Include="Accounts\ChartOfAccount\GLCodeBLL.cs" />
     <Compile Include="Accounts\ChartOfAccount\Template.cs" />
     <Compile Include="Accounts\Import\ImportAdjustmentVoucherBLL.cs" />
     <Compile Include="Accounts\IncomeStatement\IncomeStatementC.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Inventory\WareHouseBll.cs" />
     <Compile Include="Inventory\WarehouseOperatorBll.cs" />
     <Compile Include="Payment\BillRegisterDetailMrrBll.cs" />
+    <Compile Include="PetBottle\PBReceiveBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Property\PropertyBLL.cs" />
   </ItemGroup>

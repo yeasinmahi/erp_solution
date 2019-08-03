@@ -110,6 +110,14 @@
                 dateFormat: "yy-mm-dd"
             });
         }
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
+                return false;
+            }
+            return true;
+        }
         function validation() {
             var e = document.getElementById("ddlChallan");
             var value = e.options[e.selectedIndex].value;

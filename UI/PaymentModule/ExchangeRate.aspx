@@ -181,7 +181,12 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" Width="70px" />
                                     </asp:TemplateField>
-
+                                      <asp:TemplateField HeaderText="Request ID" SortExpression="intAutoID">
+                                        <ItemTemplate>
+                                            <asp:Label Visible="false" ID="lblAutoIDs" ForeColor="black" runat="server" Text='<%# Bind("intAutoID") %>' Width="70px"></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" Width="70px" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Unit" SortExpression="strUnit">
                                         <ItemTemplate>
                                             <asp:Label ID="lblUnit" runat="server" Text='<%# Bind("strUnit") %>' Width="60px"></asp:Label>

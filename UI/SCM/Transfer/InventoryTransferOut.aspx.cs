@@ -189,12 +189,19 @@ namespace UI.SCM.Transfer
                 CheckXmlItemData(itemid);
                 if (decimal.Parse(qty) > 0 && CheckItem == 1)
                 {
-                    CreateXml(item, itemid, qty, locationId, locationName, transType, transTypeId, uom, monValue,
-                        remarks, vehicle);
-                    txtItem.Text = "";
-                    txTransferQty.Text = "";
-                    lblValue.Text = "";
-                    ddlLcation.UnLoadWithSelect();
+                    if (decimal.Parse(qty) > decimal.Parse(hdnStockQty.Value))
+                    {
+                        Toaster("Stock Not Available in this Product ", Common.TosterType.Warning);
+                    }
+                    else
+                    {
+                        CreateXml(item, itemid, qty, locationId, locationName, transType, transTypeId, uom, monValue,
+                            remarks, vehicle);
+                        txtItem.Text = "";
+                        txTransferQty.Text = "";
+                        lblValue.Text = "";
+                        ddlLcation.UnLoadWithSelect();
+                    }
                 }
                 else
                 {

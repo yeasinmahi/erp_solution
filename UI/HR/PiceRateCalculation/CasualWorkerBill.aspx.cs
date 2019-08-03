@@ -98,7 +98,7 @@ namespace UI.HR.PiceRateCalculation
             UnloadAll();
             lblHeader.Text = "Worker Bill Individual Report";
             string url;
-            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_Indivisual_Pice_Rate_Report" + "&EmpCode=" + txtEnroll.Text + "&dteStartDate=" + txtFDate.Text + "&dteEndDate=" + txtTDate.Text + "&rc:LinkTarget=_self";
+            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_Indivisual_Pice_Rate_Report" + "&EmpCode=" +txtEnroll.Text + "&dteStartDate=" + txtFDate.Text + "&dteEndDate=" + txtTDate.Text + "&rc:LinkTarget=_self";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
             HidePanel();
         }
@@ -139,6 +139,9 @@ namespace UI.HR.PiceRateCalculation
             }
             _dt = _bll.PiecesRateSalaryGenarate(1, 0, 0, 0, unitId, 0);
 
+            string message=string.Empty;
+            _dt = _bll.PiecesRateSalaryGenarateFinal(0, DateTime.Now.FirstDay(), DateTime.Now.LastDay(), unitId, Enroll, ref message);
+            Toaster("Salary Generated Successfully",Common.TosterType.Success);
         }
     }
 }
