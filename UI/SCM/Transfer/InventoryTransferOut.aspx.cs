@@ -139,7 +139,7 @@ namespace UI.SCM.Transfer
                 Toaster(ex.Message, Common.TosterType.Error);
             }
         }
-
+        
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -429,9 +429,15 @@ namespace UI.SCM.Transfer
                     {
                         string msg = string.Empty;
                         int WHType = _bll.GetWareHouseType(intWh);
-                        if(WHType == 4)
+                        int ToWH = int.Parse(ddlToWh.SelectedValue);
+                        int ToWHType = _bll.GetWareHouseType(ToWH);
+                        if (WHType == 4)
                         {
                             msg = _bll.PostTransfer(16, xmlString, intWh, intToWh, DateTime.Now, Enroll);
+                        }
+                        else if(WHType==7 || ToWHType==7)
+                        {
+                            msg = _bll.PostTransfer(18, xmlString, intWh, intToWh, DateTime.Now, Enroll);
                         }
                         else
                         {
