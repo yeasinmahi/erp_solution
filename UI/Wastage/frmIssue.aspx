@@ -214,7 +214,7 @@
 
                                     <asp:TemplateField HeaderText="Rate" SortExpression="rate">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblRate" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monSalesRate","{0:n2}") %>' Width="80px"></asp:Label>
+                                            <asp:Label ID="lblRate" runat="server" DataFormatString="{0:0.0}" Text='<%# Bind("monSalesRate","{0:0.0}") %>' Width="80px"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="right" Width="80px" />
                                     </asp:TemplateField>
