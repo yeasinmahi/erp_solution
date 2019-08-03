@@ -442,10 +442,10 @@ namespace UI.SCM.Transfer
                         {
                             msg = _bll.PostTransfer(16, xmlString, intWh, intToWh, DateTime.Now, Enroll);
                         }
-                        else if(WHType==7 || ToWHType==7)
-                        {
-                            msg = _bll.PostTransfer(18, xmlString, intWh, intToWh, DateTime.Now, Enroll);
-                        }
+                        //else if(WHType==7 || ToWHType==7)
+                        //{
+                        //    msg = _bll.PostTransfer(18, xmlString, intWh, intToWh, DateTime.Now, Enroll);
+                        //}
                         else
                         {
                             msg = _bll.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, Enroll);

@@ -71,6 +71,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BillingTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="BomTDS.cs">
+      <DependentUpon>BomTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="BomTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
