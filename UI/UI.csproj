@@ -1477,6 +1477,7 @@
     <Content Include="SAD\Sales\NBR_DOEntry.aspx" />
     <Content Include="SAD\Sales\NBR_SalesChallan.aspx" />
     <Content Include="SAD\Sales\Report\AfblPointStock.aspx" />
+    <Content Include="SAD\Sales\Report\AFBLTransitProductStockRpt.aspx" />
     <Content Include="SAD\Sales\Report\All_Shipping_Point_Delivery_Report.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
@@ -1499,6 +1500,7 @@
     <Content Include="SAD\Sales\Report\DR_Access_Finished_Goods_Stock.aspx" />
     <Content Include="SAD\Sales\Report\EmployeeInfoOfSales.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\CarryingBillJV.aspx" />
     <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
     <Content Include="SAD\Sales\Report\Invoice_Print_Report.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
@@ -7603,6 +7605,13 @@
     <Compile Include="SAD\Sales\Report\AfblPointStock.aspx.designer.cs">
       <DependentUpon>AfblPointStock.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\AFBLTransitProductStockRpt.aspx.cs">
+      <DependentUpon>AFBLTransitProductStockRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\AFBLTransitProductStockRpt.aspx.designer.cs">
+      <DependentUpon>AFBLTransitProductStockRpt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\All_Shipping_Point_Delivery_Report.aspx.cs">
       <DependentUpon>All_Shipping_Point_Delivery_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7756,6 +7765,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CarryingBillJV.aspx.cs">
+      <DependentUpon>CarryingBillJV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CarryingBillJV.aspx.designer.cs">
+      <DependentUpon>CarryingBillJV.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\indent_statement_report.aspx.cs">
       <DependentUpon>indent_statement_report.aspx</DependentUpon>

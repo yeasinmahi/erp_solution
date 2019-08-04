@@ -50,7 +50,7 @@ namespace UI
                     var id = donainpatrs[1] + "@akij.net";
 
 
-                    //var id = "jakir.accl@akij.net";
+                   /// var id = "kamrul4.afbl@akij.net";
 
 
                     string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];

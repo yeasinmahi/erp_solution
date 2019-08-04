@@ -402,6 +402,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RemoteSalesTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Report\CarryingTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CarryingTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Report\ChallanTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1145,6 +1150,17 @@
     </None>
     <None Include="Sales\RemoteSalesTDS.xss">
       <DependentUpon>RemoteSalesTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Sales\Report\CarryingTDS.xsc">
+      <DependentUpon>CarryingTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Sales\Report\CarryingTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CarryingTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Sales\Report\CarryingTDS.xss">
+      <DependentUpon>CarryingTDS.xsd</DependentUpon>
     </None>
     <None Include="Sales\Report\ChallanTDS.xsc">
       <DependentUpon>ChallanTDS.xsd</DependentUpon>
