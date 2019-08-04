@@ -1499,6 +1499,7 @@
     <Content Include="SAD\Sales\Report\DR_Access_Finished_Goods_Stock.aspx" />
     <Content Include="SAD\Sales\Report\EmployeeInfoOfSales.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\CarryingBillJV.aspx" />
     <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
     <Content Include="SAD\Sales\Report\Invoice_Print_Report.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
@@ -7756,6 +7757,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CarryingBillJV.aspx.cs">
+      <DependentUpon>CarryingBillJV.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CarryingBillJV.aspx.designer.cs">
+      <DependentUpon>CarryingBillJV.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\indent_statement_report.aspx.cs">
       <DependentUpon>indent_statement_report.aspx</DependentUpon>

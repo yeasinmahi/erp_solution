@@ -88,17 +88,17 @@ namespace UI.SCM.Transfer
                 ddlLcation.UnLoadWithSelect();
                 
                 hdnStockQty.Value = "0";
-
+                int intnitid = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
                 ddlToWh.Items.Clear();
                 if (int.Parse(ddlWh.SelectedValue) == 2)
                 {
                     dt = _storeIssueBll.GetWHByUnitAFBL(int.Parse(ddlWh.SelectedValue));
                 }
-                else if (int.Parse(SessionParams.UNIT_ID) == 54)
+                else if (intnitid == 54)
                 {
                     dt = _storeIssueBll.GetWHByUnitPPS(int.Parse(ddlWh.SelectedValue));
                 }
-                else if (int.Parse(SessionParams.UNIT_ID) == 46)
+                else if (intnitid == 46)
                 {
                     dt = _storeIssueBll.GetWHByUnitPPS(int.Parse(ddlWh.SelectedValue));
                 }
