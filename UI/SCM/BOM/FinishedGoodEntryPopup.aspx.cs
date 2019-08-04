@@ -310,7 +310,7 @@ namespace UI.SCM.BOM
         public void LoadGrid()
         {
             decimal GoodNwastageQty = 0;
-            dt = objBom.GetProductionOrderTransferItemDetails(itemId);
+            dt = objBom.GetProductionOrderTransferItemDetails(Convert.ToInt32(hdnProductionId.Value));
             if (dt != null && dt.Rows.Count > 0)
             {
                 //txtItem.Text = dt.Rows[0]["strName"].ToString();
