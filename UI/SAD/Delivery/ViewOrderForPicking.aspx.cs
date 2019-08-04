@@ -179,10 +179,10 @@ namespace UI.SAD.Delivery
             {
                 strReportType = "Order_Base";
             }
-                        
+            string orderType = ddlOrderType.SelectedValue.ToString();
             string ShipPointID = ddlShip.SelectedValue;
 
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "PickingCustBase('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "PickingCustBase('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "','" + orderType + "' );", true);
         }
 
         protected void dgvViewOrder_PageIndexChanging(object sender, GridViewPageEventArgs e)
