@@ -122,6 +122,7 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+
         public DataTable PickingSummary(string pickingId,int intOrderType)
         {
             try
@@ -144,6 +145,33 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+
+        public DataTable DeliverySummary(string challan, int intUnitId)
+        {
+            try
+            { 
+                    qryDeliverySummaryTableAdapter adp = new qryDeliverySummaryTableAdapter();
+                    return adp.GetDeliverySummaryData(challan, intUnitId); 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataTable DeliveryDetalis(string challan, int intUnitId)
+        {
+            try
+            {
+                qryDeliveryDetalisTableAdapter adp = new qryDeliveryDetalisTableAdapter();
+                return adp.GetDeliveryDetalisData(challan, intUnitId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataTable ShipToPartyAddress(string customerId)
         {
             try

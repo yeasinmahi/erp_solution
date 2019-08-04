@@ -41,12 +41,12 @@
         }
     </script>
      <script type="text/javascript">
-         function Picking(intid, intCusID, strReportType, ShipPointID, PopupType) {
-            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+         function Picking(intid, intCusID, strReportType, ShipPointID, PopupType,orderType) {
+            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType +'&orderType='+ orderType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
          }
 
-         function PickingCustBase(intid, intCusID, strReportType, ShipPointID, PopupType) {
-            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+         function PickingCustBase(intid, intCusID, strReportType, ShipPointID, PopupType,orderType) {
+            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType +'&orderType='+ orderType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
         }
 </script>
 <script language="javascript" type="text/javascript">

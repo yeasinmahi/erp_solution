@@ -286,9 +286,15 @@
                                 <td style="text-align: left;">
                                     <asp:Label ID="lblOrderNo" runat="server" CssClass="lbl" Text="Order-No:"></asp:Label></td>
                                 <td style="text-align: left;">
-                                    <asp:TextBox ID="txtOrderNo" CssClass="txtbox" Font-Bold="False"  runat="server" >
+                                    <asp:TextBox ID="txtOrderNo" CssClass="txtbox" Font-Bold="False"  runat="server" OnTextChanged="txtOrderNo_TextChanged" >
                                     </asp:TextBox> 
                                 </td>    
+                                <td style="text-align: left;">
+                                    <asp:Label ID="lblChallanNo" runat="server" CssClass="lbl" Text="Challan-No:"></asp:Label></td>
+                                <td style="text-align: left;">
+                                    <asp:TextBox ID="txtChallanNo" CssClass="txtbox" Font-Bold="False" AutoPostBack="True"  runat="server" OnTextChanged="txtChallanNo_TextChanged" >
+                                    </asp:TextBox> 
+                                </td>   
 
                             </tr>
                         </table>
