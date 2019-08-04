@@ -83,12 +83,12 @@ namespace UI.SAD.Sales.Report
                     coaid = int.Parse(_dt["intCOAid"].ToString());
                     coaname = _dt["strName"].ToString();
                     amount = decimal.Parse(_dt["monAmount"].ToString());
-                    Narration = "Amount adjusted for Carrying Bill ("+coaname+")";
+                    Narration = "Amount adjusted for Carriage Outwards (Mkt) (" + coaname+")";
                    
                     objCarrying.getCarryingbillJV(jvid, coaid, Narration, amount*-1, coaname);
 
                 }
-                Narration = "Amount adjusted for Carrying Bill";
+                Narration = "Amount adjusted for Carriage Outwards (Mkt)";
                 objCarrying.getCarryingbillJV(jvid, 45817, Narration, Totalsum, "Carriage Outwards (Mkt)");
             }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Create');", true);
