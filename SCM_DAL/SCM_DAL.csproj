@@ -53,7 +53,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,6 +72,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>BillingTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BOMNEWTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BOMNEWTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="BomTDS.cs">
       <DependentUpon>BomTDS.xsd</DependentUpon>
@@ -219,6 +226,17 @@
     </None>
     <None Include="BillingTDS.xss">
       <DependentUpon>BillingTDS.xsd</DependentUpon>
+    </None>
+    <None Include="BOMNEWTDS.xsc">
+      <DependentUpon>BOMNEWTDS.xsd</DependentUpon>
+    </None>
+    <None Include="BOMNEWTDS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BOMNEWTDS.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BOMNEWTDS.xss">
+      <DependentUpon>BOMNEWTDS.xsd</DependentUpon>
     </None>
     <None Include="BomTDS.xsc">
       <DependentUpon>BomTDS.xsd</DependentUpon>
