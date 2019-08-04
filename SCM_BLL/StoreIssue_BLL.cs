@@ -213,5 +213,27 @@ namespace SCM_BLL
 
             return dt;
         }
+        public DataTable GetWHByUnitPPS(int WHID)
+        {
+            int unitID = 0;
+            DataTable dt = new DataTable();
+            try
+            {
+
+                TblWearHouseTableAdapter adapter = new TblWearHouseTableAdapter();
+
+                object _obj = adapter.GetUnitByWH(WHID);
+                if (_obj != null)
+                    unitID = int.Parse(_obj.ToString());
+
+                dt = adapter.GetWHPPSAgro(unitID);
+            }
+            catch
+            {
+
+            }
+
+            return dt;
+        }
     }
 }

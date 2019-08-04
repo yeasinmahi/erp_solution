@@ -148,6 +148,18 @@ namespace HR_BLL.PiceRateCalculation
                 return new DataTable();
             }
         }
-
+        public DataTable PiecesRateSalaryGenarateFinal(string empCode, DateTime fromDate, DateTime toDate,int unitId, int actionBy, ref string message)
+        {
+            try
+            {
+                
+                sprPieceRateCalculationTableAdapter adp = new sprPieceRateCalculationTableAdapter();
+                return adp.GetData(3, empCode, fromDate, toDate, unitId, actionBy, ref message);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
     }
 }

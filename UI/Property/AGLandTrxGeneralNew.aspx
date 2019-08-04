@@ -487,10 +487,11 @@
 
 
                         <div style="margin-top: 2px">
-                            <asp:GridView ID="gvLandTrxGeneral" runat="server" AutoGenerateColumns="False" Width="80%"
+                            <asp:GridView ID="gvLandTrxGeneral" runat="server" AutoGenerateColumns="False" Width="65%"
                                 BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"
                                 CellPadding="5" Font-Size="12px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true"
-                                FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
+                                FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical"
+                                OnRowDeleting="gvLandTrxGeneral_RowDeleting">
                                 <AlternatingRowStyle BackColor="#CCCCCC" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL No.">
@@ -498,6 +499,7 @@
                                         <ItemTemplate>
                                             <%# Container.DataItemIndex + 1 %>
                                         </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" Width="15px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Mouza">
                                         <ItemTemplate>
@@ -521,14 +523,15 @@
                                         <ItemTemplate>
                                             <asp:Label ID="lblPurchasedPlotArea" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("numPurchasedPlotArea") %>'></asp:Label>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="Right" Width="100px" />
+                                        <ItemStyle HorizontalAlign="Right" Width="65px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Plot By Mouza">
                                         <ItemTemplate>
                                             <asp:Label ID="lblPlotByMouza" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("plotByMouza") %>'></asp:Label>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="Right" Width="100px" />
+                                        <ItemStyle HorizontalAlign="Right" Width="65px" />
                                     </asp:TemplateField>
+                                    <asp:CommandField ShowDeleteButton="True" ItemStyle-Width="15px" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
                                 </Columns>
                                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
                                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
