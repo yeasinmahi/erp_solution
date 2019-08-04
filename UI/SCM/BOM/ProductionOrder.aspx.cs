@@ -366,7 +366,7 @@ namespace UI.SCM.BOM
             txtQty.Text = "0";
             ddlBom.DataBind();
             ddlLine.DataBind();
-            txtdteDate.Text = string.Empty;
+            //txtdteDate.Text = string.Empty;
             ddlFromTime.DataBind();
             ddlFromToTime.DataBind();
             txtInvoice.Text = string.Empty;
