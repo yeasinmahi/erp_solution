@@ -94,11 +94,11 @@ namespace UI.SCM.Transfer
                 {
                     dt = _storeIssueBll.GetWHByUnitAFBL(int.Parse(ddlWh.SelectedValue));
                 }
-                else if (int.Parse(ddlWh.SelectedValue) == 54)
+                else if (int.Parse(SessionParams.UNIT_ID) == 54)
                 {
                     dt = _storeIssueBll.GetWHByUnitPPS(int.Parse(ddlWh.SelectedValue));
                 }
-                else if (int.Parse(ddlWh.SelectedValue) == 46)
+                else if (int.Parse(SessionParams.UNIT_ID) == 46)
                 {
                     dt = _storeIssueBll.GetWHByUnitPPS(int.Parse(ddlWh.SelectedValue));
                 }
