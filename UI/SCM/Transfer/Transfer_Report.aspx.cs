@@ -28,6 +28,8 @@ namespace UI.SCM.Transfer
                     txtFromDate.Text = dte.ToString("yyyy-MM-dd");
                     txtToDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
                     LoadUnit();
+                    LoadToWH();
+                    LoadFromWH();
                 }
                 catch { }
             }
