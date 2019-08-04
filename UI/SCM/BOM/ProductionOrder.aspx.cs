@@ -158,6 +158,7 @@ namespace UI.SCM.BOM
                         fromtime = startTime.ToString();
                         toTime = endTime.ToString();
                         CreateXml(item, itemid, fromtime, toTime, bomid, bomName, quantity, lineprocess, invoice, batch);
+                        Clear();
                     }
                     else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
                 }
@@ -357,6 +358,19 @@ namespace UI.SCM.BOM
             node.Attributes.Append(BomName);
 
             return node;
+        }
+        private void Clear()
+        {
+            txtItem.Text = string.Empty;
+            txtBatchNo.Text = string.Empty;
+            txtQty.Text = "0";
+            ddlBom.DataBind();
+            ddlLine.DataBind();
+            //txtdteDate.Text = string.Empty;
+            ddlFromTime.DataBind();
+            ddlFromToTime.DataBind();
+            txtInvoice.Text = string.Empty;
+
         }
     }
 }

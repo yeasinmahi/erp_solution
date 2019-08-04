@@ -235,14 +235,14 @@
 
                                         <asp:TemplateField HeaderText="Start Time" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="toTime">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblStartTime" Width="80px" runat="server" Text='<%# Bind("toTime") %>'></asp:Label>
+                                                <asp:Label ID="lblStartTime" Width="80px" runat="server" Text='<%# Bind("fromtime") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="End Time" ItemStyle-HorizontalAlign="right" SortExpression="qty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblEndTime" Width="80px" runat="server" Text='<%# Bind("fromtime" ) %>'></asp:Label>
+                                                <asp:Label ID="lblEndTime" Width="80px" runat="server" Text='<%# Bind("toTime" ) %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>

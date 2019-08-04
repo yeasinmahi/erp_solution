@@ -78,6 +78,7 @@ namespace UI.SCM
                 LoadCostCenter();
                 LoadMasterCategory();
                 LoadImage();
+                LoadSubCategory();
             }
             catch (Exception ex)
             {

@@ -156,6 +156,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Accounts\Advice\AdvicePrint.aspx" />
     <Content Include="Accounts\Advice\BankReceive.aspx" />
     <Content Include="Accounts\Advice\BankStatementUpload.aspx" />
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
@@ -474,6 +475,7 @@
     <Content Include="Document Inventory\DocLocationConfigure.aspx" />
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
     <Content Include="Factory\PetBottle\PBReceiveForm.aspx" />
+    <Content Include="Factory\PetBottle\PetBottlePaymentRpt.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
@@ -1508,6 +1510,7 @@
     <Content Include="SAD\Sales\Report\Labour_Bill_Report.aspx" />
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Adjust.aspx" />
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx" />
+    <Content Include="SAD\Sales\Report\CarryingReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NBR_Sales.aspx" />
@@ -1880,6 +1883,13 @@
     <Content Include="WoodPurchase\WoodTypeWiseReport.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\Advice\AdvicePrint.aspx.cs">
+      <DependentUpon>AdvicePrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\AdvicePrint.aspx.designer.cs">
+      <DependentUpon>AdvicePrint.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Advice\BankReceive.aspx.cs">
       <DependentUpon>BankReceive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3321,6 +3331,13 @@
     </Compile>
     <Compile Include="Factory\PetBottle\PBReceiveForm.aspx.designer.cs">
       <DependentUpon>PBReceiveForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PetBottlePaymentRpt.aspx.cs">
+      <DependentUpon>PetBottlePaymentRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PetBottlePaymentRpt.aspx.designer.cs">
+      <DependentUpon>PetBottlePaymentRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Attendance\RealTimeAttendanceReport.aspx.cs">
       <DependentUpon>RealTimeAttendanceReport.aspx</DependentUpon>
@@ -7816,6 +7833,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx.designer.cs">
       <DependentUpon>Masson_Program_Bill_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CarryingReport.aspx.cs">
+      <DependentUpon>CarryingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CarryingReport.aspx.designer.cs">
+      <DependentUpon>CarryingReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\NationalBrandStockReport.aspx.cs">
       <DependentUpon>NationalBrandStockReport.aspx</DependentUpon>
