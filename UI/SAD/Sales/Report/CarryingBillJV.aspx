@@ -69,7 +69,6 @@
                                         <div class="col-md-12 col-sm-12 col-xs-12">
                                             <asp:Button ID="btnShow" runat="server" Text="Show" CssClass="btn btn-primary"  OnClick="btnShow_Click" />
                                             <asp:Button ID="btnCreateVoucher" runat="server" Text="Create" CssClass="btn btn-success" OnClick="btnCreateVoucher_Click" />
-                                            <asp:Button ID="btnSummary" runat="server" Text="Summary Report" CssClass="btn btn-info" OnClick="btnSummary_Click" />
                                         </div>
                                     </div>
                                 </div>
