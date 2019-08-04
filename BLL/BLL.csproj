@@ -168,6 +168,7 @@
     <Compile Include="Inventory\InventoryAdjustmentBll.cs" />
     <Compile Include="Inventory\InventoryBll.cs" />
     <Compile Include="Inventory\InventoryLocationAndOpeningBll.cs" />
+    <Compile Include="Inventory\ItemCostingFGBll.cs" />
     <Compile Include="Inventory\ItemListBll.cs" />
     <Compile Include="Inventory\PoTypeBll.cs" />
     <Compile Include="HR\UnitBll.cs" />
