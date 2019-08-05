@@ -113,5 +113,28 @@ namespace SAD_BLL.Global
             dt = obj.UpdateSalesResigndate(resgDate,empId);
             return dt;
         }
+
+        public DataTable GetEmpLineInfo(int empId)
+        {
+            DataTable dt = new DataTable();
+            EmpLineInfoTableAdapter obj = new EmpLineInfoTableAdapter();
+            dt = obj.GetEmpLineInfo(empId);
+            return dt;
+        }
+        public DataTable GetLineList()
+        {
+            DataTable dt = new DataTable();
+            tblItemFGGroupTableAdapter obj = new tblItemFGGroupTableAdapter();
+            dt = obj.GetLineInfo();
+            return dt;
+        }
+        public DataTable UpdateEmpLineInfo(int lineId, int empId, int insertBy)
+        {
+            DataTable dt = new DataTable();
+            tblEmployeeLineUpdateTableAdapter obj = new tblEmployeeLineUpdateTableAdapter();
+            dt = obj.UpdateEmpLine(lineId, insertBy, empId);
+            return dt;
+        }
+
     }
 }

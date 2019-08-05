@@ -1,4 +1,5 @@
 ﻿using SCM_DAL;
+using SCM_DAL.BOMNEWTDSTableAdapters;
 using SCM_DAL.BomTDSTableAdapters;
 using System;
 using System.Data;
@@ -286,8 +287,8 @@ namespace SCM_BLL
         {
             try
             {
-                WastageItemTableAdapter widp = new WastageItemTableAdapter();
-                return widp.GetWastageItem(intUnitId);
+                tblItemListUOMTableAdapter widp = new tblItemListUOMTableAdapter();
+                return widp.GetData(intUnitId);
             }
             catch { return new DataTable(); }
         }

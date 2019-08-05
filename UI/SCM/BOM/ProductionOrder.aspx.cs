@@ -1,4 +1,5 @@
-﻿using SCM_BLL;
+﻿using BLL.Inventory;
+using SCM_BLL;
 using System;
 using System.Data;
 using System.IO;
@@ -17,6 +18,7 @@ namespace UI.SCM.BOM
     {
         private Bom_BLL objBom = new Bom_BLL();
         private DataTable dt = new DataTable();
+        private ItemCostingFGBll ItemCosting = new ItemCostingFGBll();
         private int intwh, BomId; private string xmlData;
         private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
         private string filePathForXML; private string xmlString = "";
@@ -123,26 +125,32 @@ namespace UI.SCM.BOM
                 intWh = int.Parse(ddlWH.SelectedValue);
                 string item = ""; string itemid = ""; string uom = "";
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
-                string fromtime = ddlFromTime.SelectedItem.ToString();
+                {
+                    item = arrayKey[0].ToString();
+                    uom = arrayKey[2].ToString();
+                    itemid = arrayKey[3].ToString();
+                }
 
+                if (ItemCosting.GetItemCogs(int.Parse(itemid)).Rows.Count <= 0)
+                {
+                    Toaster("Please Input Item COGS first");
+                    return;
+                }
+
+                string fromtime = ddlFromTime.SelectedItem.ToString();
                 string toTime = ddlFromToTime.SelectedItem.ToString();
 
                 DateTime dteFrom = DateTime.Parse(txtdteDate.Text);
                 string a = dteFrom.ToString("yyyy-MM-dd") + " " + fromtime;
                 DateTime startTime = DateTime.Parse(a.ToString());
 
-                DateTime dteTo = DateTime.Parse(txtdteDate.Text);
-                string b = dteFrom.ToString("yyyy-MM-dd") + " " + toTime;
+                DateTime dteTo = DateTime.Parse(txtdteDateTo.Text);
+                string b = dteTo.ToString("yyyy-MM-dd") + " " + toTime;
                 DateTime endTime = DateTime.Parse(b.ToString());
                 var hours = (endTime - startTime).TotalHours;
                 if (hours <= 0)
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('End time cannot be equal to or less than start time.');", true);
-                }
-                else if (hours > 24)
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Production time cannot be greater than 24 hours.');", true);
                 }
                 else
                 {
@@ -158,6 +166,7 @@ namespace UI.SCM.BOM
                         fromtime = startTime.ToString();
                         toTime = endTime.ToString();
                         CreateXml(item, itemid, fromtime, toTime, bomid, bomName, quantity, lineprocess, invoice, batch);
+                        Clear();
                     }
                     else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
                 }
@@ -252,14 +261,13 @@ namespace UI.SCM.BOM
                 XmlNode dSftTm = doc.SelectSingleNode("voucher");
                 xmlString = dSftTm.InnerXml;
                 xmlString = "<voucher>" + xmlString + "</voucher>";
-                DateTime dteDate = DateTime.Parse(txtdteDate.Text.ToString());
+                //DateTime dteDate = DateTime.Parse(txtdteDate.Text.ToString());
 
                 try { File.Delete(filePathForXML); } catch { }
                 if (xmlString.Length > 5)
                 {
-                    string msg = objBom.BomPostData(5, xmlString, intWh, BomId, dteDate, Enroll);
-                    dgvBom.DataSource = "";
-                    dgvBom.DataBind();
+                    string msg = objBom.BomPostData(5, xmlString, intWh, BomId, DateTime.Now, Enroll);
+                    dgvBom.UnLoad();
                     txtBatchNo.Text = ""; txtQty.Text = "0"; txtItem.Text = ""; txtInvoice.Text = "";
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 }
@@ -357,6 +365,19 @@ namespace UI.SCM.BOM
             node.Attributes.Append(BomName);
 
             return node;
+        }
+        private void Clear()
+        {
+            txtItem.Text = string.Empty;
+            txtBatchNo.Text = string.Empty;
+            txtQty.Text = "0";
+            ddlBom.DataBind();
+            ddlLine.DataBind();
+            //txtdteDate.Text = string.Empty;
+            ddlFromTime.DataBind();
+            ddlFromToTime.DataBind();
+            txtInvoice.Text = string.Empty;
+
         }
     }
 }

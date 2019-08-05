@@ -98,7 +98,7 @@ namespace UI.HR.PiceRateCalculation
             UnloadAll();
             lblHeader.Text = "Worker Bill Individual Report";
             string url;
-            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_Indivisual_Pice_Rate_Report" + "&EmpCode=" + DateTime.Parse(txtEnroll.Text) + "&dteStartDate=" + DateTime.Parse(txtFDate.Text) + "&dteEndDate=" + txtTDate.Text + "&rc:LinkTarget=_self";
+            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_Indivisual_Pice_Rate_Report" + "&EmpCode=" +txtEnroll.Text + "&dteStartDate=" + txtFDate.Text + "&dteEndDate=" + txtTDate.Text + "&rc:LinkTarget=_self";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
             HidePanel();
         }
@@ -110,7 +110,7 @@ namespace UI.HR.PiceRateCalculation
             DateTime dateTime = txtFDate.Text.ToDateTime("yyyy-MM-dd");
             lblHeader.Text = "Worker Bill All Report";
             string url;
-            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_ALL_Pice_Rate_Report" + "&unitId=" + unitId + "&dteStartDate=" + DateTime.Parse(txtFDate.Text) + "&dteEndDate=" + DateTime.Parse(txtTDate.Text) + "&rc:LinkTarget=_self";
+            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_ALL_Pice_Rate_Report" + "&unitId=" + unitId + "&dteStartDate=" + txtFDate.Text + "&dteEndDate=" + txtTDate.Text + "&rc:LinkTarget=_self";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
             HidePanel();
         }
@@ -134,14 +134,23 @@ namespace UI.HR.PiceRateCalculation
             _dt = _bll.PiecesRateSalaryGenarate(3, 0, 0, 0, unitId, 0);
             if (_dt.Rows.Count > 0)
             {
-                Toaster("Already Salary Generated This Month.");
-                return;
+                if (_dt.GetValue<int>("Column1") > 0)
+                {
+                    Toaster("Already Salary Generated This Month.");
+                    return;
+                }
+
             }
             _dt = _bll.PiecesRateSalaryGenarate(1, 0, 0, 0, unitId, 0);
 
             string message=string.Empty;
-            _dt = _bll.PiecesRateSalaryGenarateFinal(0, DateTime.Now.FirstDay(), DateTime.Now.LastDay(), unitId, Enroll, ref message);
-            Toaster("Salary Generated Successfully",Common.TosterType.Success);
+            _dt = _bll.PiecesRateSalaryGenarateFinal("", DateTime.Now.AddMonths(-1).FirstDay(), DateTime.Now.AddMonths(-1).LastDay(), unitId, Enroll, ref message);
+            if (message.ToLower().Contains("success"))
+            {
+                Toaster("Salary Generated Successfully", Common.TosterType.Success);
+                return;
+            }
+            Toaster("Salary Generated Failed", Common.TosterType.Error);
         }
     }
 }

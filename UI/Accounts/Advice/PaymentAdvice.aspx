@@ -8,64 +8,109 @@
 <head runat="server">
     <title></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-   <%-- <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <script src="../../Content/JS/datepickr.min.js"></script>
-    <script src="../../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-    <script src="../Content/JS/CustomizeScript.js"></script>
-    <script src="../../Content/JS/CustomizeScript.js"></script>
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <link href="../../Content/CSS/Application.css" rel="stylesheet" />
-     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-     <link href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css"
-        rel="stylesheet" type="text/css" />
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>--%>
-
     <script language="javascript" type="text/javascript">
 
 
-
-        function ExportDivDataToExcel() {
-
-            var html = $("#divExport").html();
-            html = $.trim(html);
-            html = html.replace(/>/g, '&gt;');
-            html = html.replace(/</g, '&lt;');
-            $("input[id$='HdnValue']").val(html);
+        function ViewPopup(bankName,unitId,accountId,insertBy,dteDate) {
+            window.open('AdvicePrint.aspx?bankName=' + bankName + '&unitId=' + unitId + '&accountId=' + accountId+ '&insertBy=' + insertBy+ '&dteDate=' + dteDate, 'sub', "height=600, width=1000, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
-        function ExportDivDataToExcelIBBL() {
-
-            var html = $("#divExportIBBL").html();
-            html = $.trim(html);
-            html = html.replace(/>/g, '&gt;');
-            html = html.replace(/</g, '&lt;');
-            $("input[id$='HdnValueIBBL']").val(html);
+        function VoucherPrint(htmlString) {
+            window.open('MultipoleVoucherPrint.aspx?htmlString=' + htmlString , 'sub', "height=600, width=1000, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
-        function ViewDispatchPopup(Id) {
-            window.open('VoucherPrint.aspx?ID=' + Id, 'sub', "height=500, width=900, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
-        }
-       
-        function ShowDiv() {
-            $("#divExport").fadeIn("slow");
-            //$("#DetailsGrid").fadeOut("slow");
-        }
-        //function HideReasonDiv() {
-        //    $("#divExport").fadeOut("slow");
-        //}
         function ShowPopup() {
             $(function () {
                 $("#divExport").dialog({
-                height: 300,
-             width: 550
+                    height: 300,
+                    width: 550
                 });
             });
         };
+        function CheckRow(objRef) {
+
+            var row = objRef.parentNode.parentNode;
+            //var oldcolor = row.style.backgroundColor;
+            if (objRef.checked) {
+
+                row.style.backgroundColor = "#acf0f9";
+            }
+            else {
+
+                row.style.backgroundColor = "white";
+            }
+
+            var GridView = row.parentNode;
+            var inputList = GridView.getElementsByTagName("input");
+            for (var i = 0; i < inputList.length; i++) {
+
+                var headerCheckBox = inputList[0];
+                var checked = true;
+                if (inputList[i].type == "checkbox" && inputList[i] != headerCheckBox) {
+                    if (!inputList[i].checked) {
+                        checked = false;
+                        break;
+                    }
+                }
+            }
+            headerCheckBox.checked = checked;
+        }
+        function checkAllRow(objRef) {
+            var GridView = objRef.parentNode.parentNode.parentNode;
+
+            var inputList = GridView.getElementsByTagName("input");
+
+
+            for (var i = 0; i < inputList.length; i++) {
+
+                var row = inputList[i].parentNode.parentNode;
+                
+                if (inputList[i].type == "checkbox" && objRef!=inputList[i]) {
+                    if (objRef.checked) {
+                        inputList[i].checked = true;
+                    }
+                    else {
+                        if(row.rowIndex % 2 == 0)
+                        {
+                           row.style.backgroundColor = "#C2D69B";
+                        }
+                        else
+                        {
+                           row.style.backgroundColor = "white";
+                        }
+                        inputList[i].checked=false;
+                        }
+                }
+            }
+            
+        
+        }
+
+        function check() {
+            var date = document.getElementById("txtDate").value;
+            if (date == null || date == "") {
+                alert("Date cannot be blank.");
+            }
+            else {
+                var confirm_value = document.createElement("input");
+
+                confirm_value.type = "hidden";
+                confirm_value.name = "Confirm_value";
+                if (confirm("Do you want to proceed?")) {
+                    confirm.value = "Yes";
+                    document.getElementById("hdnconfirm").value = "1";
+                }
+                else {
+                    confirm.value = "No";
+                    document.getElementById("hdnconfirm").value = "0";
+                }
+            }
+
+
+
+
+        }
     </script>
 
 
@@ -194,24 +239,26 @@
                                 <td style="text-align: left;">
                                     <asp:DropDownList ID="ddlChillingCenter" runat="server" CssClass="ddList" Width="210px"></asp:DropDownList></td>
                                 <td colspan="2" style="text-align: right;">
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" OnClientClick="check()" />
                                     <asp:Button ID="btnShowReport" runat="server" Text="Show Report" OnClick="btnShowReport_Click" />
-                                    <asp:Button ID="btnExport" runat="server" Text="Export" OnClick="btnExport_Click" OnClientClick="ExportDivDataToExcel()" />
-                                    <asp:Button ID="btnExportIBBL" runat="server" Text="Export" OnClick="btnExportIBBL_Click" OnClientClick="ExportDivDataToExcelIBBL()" />
-                                    <asp:Button ID="btnPrint" runat="server" Text="Print" OnClientClick="ShowDiv()"/></td>
+                                    <asp:Button ID="btnPrint" runat="server" Text="Advice Print" OnClick="btnPrint_Click"/>
+                                    <asp:Button ID="btnVoucher" runat="server" Text="Voucher Print" OnClick="btnVoucher_Click"/>
+                                   
+                                </td>
                             </tr>
                             <tr>
                                 <td colspan="6">
                                     <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" ShowFooter="false" OnRowDataBound="dgvReport_OnRowDataBound">
                                         <AlternatingRowStyle BackColor="#CCCCCC" />
                                         <Columns>
-
+                                            <%--index 0--%>
                                             <asp:TemplateField HeaderText="ID No" ItemStyle-HorizontalAlign="right" SortExpression="intID" Visible="false">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblID" runat="server" Text='<%# Bind("intID") %>'></asp:Label> 
+                                                    <asp:Label ID="lblID" runat="server" Text='<%# Bind("intID") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 1--%>
                                             <asp:TemplateField HeaderText="Account Name" SortExpression="strSupplier">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAccountName" runat="server" Text='<%# Bind("strSupplier") %>'></asp:Label>
@@ -221,135 +268,141 @@
                                                     <asp:Label ID="lblTTText" runat="server" Text="Total :"></asp:Label>
                                                 </FooterTemplate>
                                             </asp:TemplateField>
-
+                                            <%--index 2--%>
                                             <asp:TemplateField HeaderText="Code No" ItemStyle-HorizontalAlign="right" SortExpression="intSuppID" Visible="true">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblCodeNo" runat="server" Text='<%# Bind("intSuppID") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 3 --%>
                                             <asp:TemplateField HeaderText="Bank Name" ItemStyle-HorizontalAlign="right" SortExpression="strBankName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblBankName" runat="server" Text='<%# Bind("strBankName") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 4--%>
                                             <asp:TemplateField HeaderText="Branch" ItemStyle-HorizontalAlign="right" SortExpression="strBranchName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblBranch" runat="server" Text='<%# Bind("strBranchName") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 5--%>
                                             <asp:TemplateField HeaderText="A/C Type" ItemStyle-HorizontalAlign="right" SortExpression="strAccType">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblACType" runat="server" Text='<%# Bind("strAccType") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 6--%>
                                             <asp:TemplateField HeaderText="Account No" ItemStyle-HorizontalAlign="right" SortExpression="strBankAccountNo">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAccountNo" runat="server" Text='<%# Bind("strBankAccountNo") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" Width="100px" />
                                             </asp:TemplateField>
-
+                                            <%--index 7--%>
                                             <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="right" SortExpression="monVoucher">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAmount" runat="server" Text='<%# Eval("monVoucher", "{0:0,0.00}") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="right" />
                                             </asp:TemplateField>
-
+                                            <%--index 8--%>
                                             <asp:TemplateField HeaderText="Payment Info" ItemStyle-HorizontalAlign="right" SortExpression="strPaymentInfo">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblPaymentInfo" runat="server" Text='<%# Bind("strPaymentInfo") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 9--%>
                                             <asp:TemplateField HeaderText="Comments" ItemStyle-HorizontalAlign="right" SortExpression="strcomments">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblComments" runat="server" Text='<%# Bind("strcomments") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 10--%>
                                             <asp:TemplateField HeaderText="Routing No" ItemStyle-HorizontalAlign="right" SortExpression="strRoutingNumber">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblRoutingNo" runat="server" Text='<%# Bind("strRoutingNumber") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 11--%>
                                             <asp:TemplateField HeaderText="Instrument No" ItemStyle-HorizontalAlign="right" SortExpression="intInstrumentNo">
                                                 <ItemTemplate>
                                                     <asp:Label ID="btnInstrumentNo" runat="server" Text='<%# Bind("intInstrumentNo") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
-                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="right" SortExpression="intSlNo" >
+                                            <%--index 12--%>
+                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="right" SortExpression="intSlNo">
                                                 <ItemTemplate>
-                                                    <%# Container.DataItemIndex + 1 %>
+                                                    <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-                                            
+                                            <%--index 13--%>
                                             <asp:TemplateField HeaderText="Debit Account" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblDebitAcc" runat="server" ></asp:Label>
+                                                    <asp:Label ID="lblDebitAcc" runat="server"></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-
+                                            <%--index 14--%>
                                             <asp:TemplateField HeaderText="Mail" ItemStyle-HorizontalAlign="right" SortExpression="strOrgMail" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblMail" runat="server" Text='<%# Bind("strOrgMail") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 15--%>
                                             <asp:TemplateField HeaderText="PO NO" ItemStyle-HorizontalAlign="right" SortExpression="strPO" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblPONo" runat="server" Text='<%# Bind("strPO") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 16--%>
                                             <asp:TemplateField HeaderText="Bill No" ItemStyle-HorizontalAlign="right" SortExpression="strBillID" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblBillNo" runat="server" Text='<%# Bind("strBillID") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 17--%>
                                             <asp:TemplateField HeaderText="BPVoucher" ItemStyle-HorizontalAlign="right" SortExpression="strCode" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblBPVoucher" runat="server" Text='<%# Bind("strCode") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
+                                            <%--index 18--%>
                                             <asp:TemplateField HeaderText="PO Issuer Mail" ItemStyle-HorizontalAlign="right" SortExpression="strPoIssuerMail" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblPOIssuerMail" runat="server" Text='<%# Bind("strPoIssuerMail") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
-
-
-                                            <asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Delete">
+                                            <%--index 19--%>
+                                            <asp:TemplateField>
+                                                <HeaderTemplate>
+                                                    <asp:CheckBox ID="chkHeader" runat="server" onclick="checkAllRow(this);" />
+                                                </HeaderTemplate>
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkRow" runat="server" onclick="CheckRow(this);" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <%--<asp:TemplateField ItemStyle-HorizontalAlign="Center" HeaderText="Delete">
                                                 <ItemTemplate>
                                                     <asp:Button ID="btnDelete" runat="server" CssClass="myButtonGrey" Style="cursor: pointer; font-size: 11px;"
                                                         CommandArgument='<%# Eval("intID") %>' Text="Delete" OnClick="btnDelete_Click" />
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="center" Width="50px" />
-                                            </asp:TemplateField>
-
+                                            </asp:TemplateField>--%>
                                         </Columns>
                                         <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
                                         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -362,16 +415,17 @@
                     </div>
                 </td>
             </tr>
-            <tr>
+
+            <%--<tr>
                 <td>
                     <div id="divExport" runat="server">
                         <table>
                             <tr>
-                                <%--<td style="width:20px;"></td>--%>
+                               
                                 <td style="font-weight: bold; text-decoration: underline; font-size: 22px; color: #000000; text-align: center">
                                     <asp:Label ID="lblUnitName" runat="server"></asp:Label>
                                 </td>
-                                <%--<td></td>--%>
+                                
                             </tr>
                             <tr>
                                 <td colspan="3" style="font-weight: bold; text-decoration: underline; font-size: 18px; color: #000000; text-align: center">
@@ -509,8 +563,8 @@
                                             <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="Center" SortExpression="intSlNo" >
                                                 <ItemTemplate>
                                                     <%--<asp:Label ID="lblSLNo" runat="server" Text='<%# Bind("intSlNo") %>'></asp:Label>--%>
-                                                    <%# Container.DataItemIndex + 1 %>
-                                                </ItemTemplate>
+            <%-- <%# Container.DataItemIndex + 1 %>--%>
+            <%-- </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
                                             
@@ -595,8 +649,8 @@
                         <asp:HiddenField ID="HdnValue" runat="server" />
                     </div>
                 </td>
-            </tr>
-            <tr>
+            </tr>--%>
+            <%--<tr>
                 <td>
                     <div id="divExportIBBL" runat="server">
                         <table>
@@ -817,7 +871,7 @@
                         <asp:HiddenField ID="HdnValueIBBL" runat="server" />
                     </div>
                 </td>
-            </tr>
+            </tr>--%>
         </table>
         <%--=========================================End My Code From Here=================================================--%>
         <%--</ContentTemplate>
