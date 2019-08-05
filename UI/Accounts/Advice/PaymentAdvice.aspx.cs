@@ -391,18 +391,16 @@ namespace UI.Accounts.Advice
         }
         protected void btnPrint_Click(object sender, EventArgs e)
         {
-            //string bankName, unitId, accountId, insertBy;
-            //bankName = ddlFormat.SelectedItem.Text;
-            //unitId = ddlUnit.SelectedValue.ToString();
-            //accountId = ddlBankAccount.SelectedValue.ToString();
-            //insertBy = Enroll.ToString();
-            //dteDate = DateTime.Parse(txtDate.Text.ToString());
-            //string id ="0", voucherType="", userID="";
-            //string type = "0";
-            //int count =5;
-            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPopup('"+ id + "','"+ type.ToString() + "','"+ count.ToString()+ "');", true);
+            string bankName, unitId, accountId, insertBy;
+            bankName = ddlFormat.SelectedItem.Text;
+            unitId = ddlUnit.SelectedValue.ToString();
+            accountId = ddlBankAccount.SelectedValue.ToString();
+            insertBy = Enroll.ToString();
+            dteDate = DateTime.Parse(txtDate.Text.ToString());
             
-            PrintVoucherData();
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPopup('" + bankName + "','" + unitId + "','" + accountId + "','" + insertBy + "','" + dteDate + "');", true);
+
+
         }
 
         private void PrintVoucherData()

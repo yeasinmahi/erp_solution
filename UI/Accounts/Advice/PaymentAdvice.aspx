@@ -14,25 +14,8 @@
     <script language="javascript" type="text/javascript">
 
 
-
-        //function ExportDivDataToExcel() {
-
-        //    var html = $("#divExport").html();
-        //    html = $.trim(html);
-        //    html = html.replace(/>/g, '&gt;');
-        //    html = html.replace(/</g, '&lt;');
-        //    $("input[id$='HdnValue']").val(html);
-        //}
-        //function ExportDivDataToExcelIBBL() {
-
-        //    var html = $("#divExportIBBL").html();
-        //    html = $.trim(html);
-        //    html = html.replace(/>/g, '&gt;');
-        //    html = html.replace(/</g, '&lt;');
-        //    $("input[id$='HdnValueIBBL']").val(html);
-        //}
-        function ViewPopup(id, type, count) {
-            window.open('AdvicePrint.aspx?id=' + id + '&type=' + type + '&count=' + count, 'sub', "height=600, width=1000, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
+        function ViewPopup(bankName,unitId,accountId,insertBy,dteDate) {
+            window.open('AdvicePrint.aspx?bankName=' + bankName + '&unitId=' + unitId + '&accountId=' + accountId+ '&insertBy=' + insertBy+ '&dteDate=' + dteDate, 'sub', "height=600, width=1000, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
         }
         function VoucherPrint(htmlString) {
             window.open('MultipoleVoucherPrint.aspx?htmlString=' + htmlString , 'sub', "height=600, width=1000, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
