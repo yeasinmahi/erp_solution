@@ -160,6 +160,7 @@ namespace UI.Accounts.Advice
                 //lblUnitAddress.Text = dt.Rows[0]["strAddress"].ToString();
 
                 LoadAccountList();
+                LoadGrid();
             }
             catch { }
         }
