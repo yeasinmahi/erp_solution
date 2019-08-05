@@ -428,7 +428,7 @@ namespace UI.Accounts.Advice
                         {
                              Id = dt.Rows[0]["intBankVoucherID"].ToString();
                         }
-                        string img = "../../Content/Images/img/" + 2 + ".png";
+                        string img = "../../Content/Images/img/" + ddlUnit.SelectedValue.ToString() + ".png";
 
                         htmlString = printVoucher.PrintBankVoucher(voucherType, Id, userID, ref unitName, ref unitAddress, ref strCodeForbarCode, ref unitID);
                         sb.Append("<table style=\"width: 100%;\">");
