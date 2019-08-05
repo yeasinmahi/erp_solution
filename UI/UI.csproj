@@ -1476,6 +1476,7 @@
     <Content Include="SAD\Sales\Farmer_Setup.aspx" />
     <Content Include="SAD\Sales\NBR_DOEntry.aspx" />
     <Content Include="SAD\Sales\NBR_SalesChallan.aspx" />
+    <Content Include="SAD\Sales\Report\AFBLCustTransProdRpt.aspx" />
     <Content Include="SAD\Sales\Report\AfblPointStock.aspx" />
     <Content Include="SAD\Sales\Report\AFBLTransitProductStockRpt.aspx" />
     <Content Include="SAD\Sales\Report\All_Shipping_Point_Delivery_Report.aspx" />
@@ -7597,6 +7598,13 @@
     </Compile>
     <Compile Include="SAD\Sales\NBR_SalesChallan.aspx.designer.cs">
       <DependentUpon>NBR_SalesChallan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\AFBLCustTransProdRpt.aspx.cs">
+      <DependentUpon>AFBLCustTransProdRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\AFBLCustTransProdRpt.aspx.designer.cs">
+      <DependentUpon>AFBLCustTransProdRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\AfblPointStock.aspx.cs">
       <DependentUpon>AfblPointStock.aspx</DependentUpon>

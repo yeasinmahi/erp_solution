@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AFBLTransitProductStockRpt.aspx.cs" Inherits="UI.SAD.Sales.Report.AFBLTransitProductStockRpt" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AFBLCustTransProdRpt.aspx.cs" Inherits="UI.SAD.Sales.Report.AFBLCustTransProdRpt" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>.:AFBL Pending Product Report :.</title>
+    <title>.:AFBL Customerwise Transit Product Report :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta http-equiv="X-Frame-Options" content="allow"/>
     <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference0" runat="server" Path="~/Content/Bundle/defaultCSS" />     
@@ -22,7 +22,7 @@
     </script>
 </head>
 <body>
-    <form id="frmProdStockRpt" runat="server">
+   <form id="frmProdTrans" runat="server">
         <asp:ScriptManager ID="ScriptManager1" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel0" runat="server">
             <ContentTemplate>
