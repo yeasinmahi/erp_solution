@@ -125,15 +125,19 @@
                         </tr>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="  Date :"></asp:Label></td>
+                                <asp:Label ID="lblTo" runat="server" CssClass="lbl" Text=" From Date :"></asp:Label></td>
                             <td style="text-align: left">
                                 <asp:TextBox ID="txtdteDate" Style="width: 150px" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteDate"></cc1:CalendarExtender>
 
                                 <td style="text-align: right;">
-                                    <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="  Time :"></asp:Label></td>
+                                    <asp:Label ID="Label6" runat="server" CssClass="lbl" Text=" To Date :"></asp:Label></td>
                                 <td style="text-align: left">
                                     <%--<asp:TextBox ID="TextBox1" Style="width: 150px" runat="server" CssClass="txtBox"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtdteDateTo" Style="width: 150px" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteDateTo"></cc1:CalendarExtender>
+
+                                    <asp:Label ID="Label7" runat="server" CssClass="lbl" Text="  Time :"></asp:Label>
                                     <asp:DropDownList ID="ddlFromTime" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server">
                                         <asp:ListItem>12:00 AM</asp:ListItem>
                                         <asp:ListItem>1:00 AM</asp:ListItem>
