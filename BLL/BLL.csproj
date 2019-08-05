@@ -101,6 +101,7 @@
     <Compile Include="Accounts\AccountsVoucherJournalBll.cs" />
     <Compile Include="Accounts\AccountsVoucherJournalDetailsBll.cs" />
     <Compile Include="Accounts\Advice\AdviceBLL.cs" />
+    <Compile Include="Accounts\Advice\VoucherPrint.cs" />
     <Compile Include="Accounts\Approval\IndentApproval_BLL.cs" />
     <Compile Include="Accounts\BalanceSheet\BalanceSheetC.cs" />
     <Compile Include="Accounts\BalanceSheet\NoteC.cs" />
