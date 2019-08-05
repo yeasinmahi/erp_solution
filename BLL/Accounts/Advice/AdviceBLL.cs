@@ -46,6 +46,16 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
+
+        public DataTable GetBankVoucherId(string voucher, int intUnitID)
+        {
+            try
+            {
+                BankVoucherTableAdapter adp = new BankVoucherTableAdapter();
+                return adp.GetBankVoucherId(voucher,intUnitID);
+            }
+            catch { return new DataTable(); }
+        }
         public DataTable GetOtherBank(int intUnitID)
         {
             try

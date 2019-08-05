@@ -4,6 +4,7 @@ using GLOBAL_BLL;
 using System;
 using System.Data;
 using System.IO;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,7 +18,9 @@ namespace UI.Accounts.Advice
     {
         DataTable dt; AdviceBLL bll = new AdviceBLL();
         int intID, intUnitID, intWork, ysnCompleted, intAdviceType, intBankType, intAutoID, intActionBy, intChillingID;
-        string strAccountMandatory, strBankName, xmlpath,unitName,forUnit,unitAddress; DateTime dteDate;
+        string strAccountMandatory, strBankName, xmlpath,unitName,forUnit,unitAddress;
+        private DateTime dteDate;
+        string Id;
         private readonly char[] delimiterChars = { '[', ']' };
         SeriLog log = new SeriLog();
         string location = "Accounts";
@@ -25,7 +28,8 @@ namespace UI.Accounts.Advice
         string stop = "stopping Accounts\\Advice\\PaymentAdvice";
         string accountName, codeNo, bankName, branch, accountType, accountNo, amount, paymentInfo, comments, routingNo, instrumentNo, slNo, debitAccount, insertBy,voucherNo;
 
-        
+        UI.ClassFiles.PrintAdvice printVoucher = new UI.ClassFiles.PrintAdvice();
+        string htmlString = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -156,6 +160,7 @@ namespace UI.Accounts.Advice
                 //lblUnitAddress.Text = dt.Rows[0]["strAddress"].ToString();
 
                 LoadAccountList();
+                LoadGrid();
             }
             catch { }
         }
@@ -386,14 +391,67 @@ namespace UI.Accounts.Advice
         }
         protected void btnPrint_Click(object sender, EventArgs e)
         {
-            string bankName, unitId, accountId, insertBy;
-            bankName = ddlFormat.SelectedItem.Text;
-            unitId = ddlUnit.SelectedValue.ToString();
-            accountId = ddlBankAccount.SelectedValue.ToString();
-            insertBy = Enroll.ToString();
-            dteDate = DateTime.Parse(txtDate.Text.ToString());
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPopup('" + bankName.ToString() + "','"+ unitId.ToString() + "','"+ accountId.ToString() + "','"+ insertBy.ToString() + "','"+ dteDate.ToString()+ "');", true);
+            //string bankName, unitId, accountId, insertBy;
+            //bankName = ddlFormat.SelectedItem.Text;
+            //unitId = ddlUnit.SelectedValue.ToString();
+            //accountId = ddlBankAccount.SelectedValue.ToString();
+            //insertBy = Enroll.ToString();
+            //dteDate = DateTime.Parse(txtDate.Text.ToString());
+            //string id ="0", voucherType="", userID="";
+            //string type = "0";
+            //int count =5;
+            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPopup('"+ id + "','"+ type.ToString() + "','"+ count.ToString()+ "');", true);
+            
+            PrintVoucherData();
         }
+
+        private void PrintVoucherData()
+        {
+             
+
+            
+            string strCodeForbarCode="",unitID = "";
+            string voucherType = "Debit Voucher";
+            StringBuilder sb = new StringBuilder();
+
+            if (dgvReport.Rows.Count > 0)
+            { 
+                foreach (GridViewRow row in dgvReport.Rows)
+                { 
+                    CheckBox check = (CheckBox)row.FindControl("chkRow");
+                    if (check.Checked == true)
+                    {
+                        accountName = ((Label)row.FindControl("lblAccountName")).Text;
+                        voucherNo = ((Label)row.FindControl("lblBPVoucher")).Text; 
+                      string  userID = Enroll.ToString();
+                        dt = bll.GetBankVoucherId(voucherNo, int.Parse(ddlUnit.SelectedValue));
+                        if (dt.Rows.Count > 0)
+                        {
+                             Id = dt.Rows[0]["intBankVoucherID"].ToString();
+                        }
+                        string img = "../../Content/Images/img/" + ddlUnit.SelectedValue.ToString() + ".png";
+
+                        htmlString = printVoucher.PrintBankVoucher(voucherType, Id, userID, ref unitName, ref unitAddress, ref strCodeForbarCode, ref unitID);
+                        sb.Append("<table style=\"width: 100%;\">");
+                        sb.Append("<tr>");
+                        sb.Append("<td  style=\"text-align:left\" class=\"HeaderStyle2\">");
+                        sb.Append("<td><img src='"+ img + "'");
+                        sb.Append("</img>");
+                        sb.Append("</td>");
+                        sb.Append(htmlString);
+                        sb.Append("</td>");
+                        sb.Append("</tr>");
+                        sb.Append("</table>");
+                    }
+
+                }
+            }
+            Session["htmlString"] = sb;
+            htmlString = "0";
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "VoucherPrint('" + htmlString + "');", true);
+
+        }
+
         public void CheckScbBank()
         {
             string accountNo = ddlBankAccount.SelectedItem.Text;
@@ -531,10 +589,11 @@ namespace UI.Accounts.Advice
         }
         protected void btnVoucher_Click(object sender, EventArgs e)
         {
-            string bankName, unitId, insertBy;
-            bankName = ddlFormat.SelectedItem.Text;
-            unitId = ddlUnit.SelectedValue.ToString();
-            insertBy = Enroll.ToString();
+            //string bankName, unitId, insertBy;
+            //bankName = ddlFormat.SelectedItem.Text;
+            //unitId = ddlUnit.SelectedValue.ToString();
+            //insertBy = Enroll.ToString();
+            PrintVoucherData();
             //Response.Redirect("VoucherPrint.aspx?adviceForBank="+ bankName.ToString() + "&unitId=" + unitId + "&insertBy="+insertBy);
             //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "VoucherPrint('" + bankName.ToString() + "','" + unitId.ToString() + "','" + insertBy.ToString() + "');", true);
 

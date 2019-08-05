@@ -159,6 +159,8 @@
     <Content Include="Accounts\Advice\AdvicePrint.aspx" />
     <Content Include="Accounts\Advice\BankReceive.aspx" />
     <Content Include="Accounts\Advice\BankStatementUpload.aspx" />
+    <Content Include="Accounts\Advice\MultipoleAdvicePrint.aspx" />
+    <Content Include="Accounts\Advice\MultipoleVoucherPrint.aspx" />
     <Content Include="Accounts\Advice\PaymentAdvice.aspx" />
     <Content Include="Accounts\Advice\SalesCollectonReport.aspx" />
     <Content Include="Accounts\Advice\VoucherPrint.aspx" />
@@ -1907,6 +1909,20 @@
     <Compile Include="Accounts\Advice\BankStatementUpload.aspx.designer.cs">
       <DependentUpon>BankStatementUpload.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Advice\MultipoleAdvicePrint.aspx.cs">
+      <DependentUpon>MultipoleAdvicePrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\MultipoleAdvicePrint.aspx.designer.cs">
+      <DependentUpon>MultipoleAdvicePrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Advice\MultipoleVoucherPrint.aspx.cs">
+      <DependentUpon>MultipoleVoucherPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Advice\MultipoleVoucherPrint.aspx.designer.cs">
+      <DependentUpon>MultipoleVoucherPrint.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Advice\PaymentAdvice.aspx.cs">
       <DependentUpon>PaymentAdvice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3216,6 +3232,7 @@
     <Compile Include="BudgetPlan\SetUpBaseBudgetEntry.aspx.designer.cs">
       <DependentUpon>SetUpBaseBudgetEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ClassFiles\PrintAdvice.cs" />
     <Compile Include="CreativeSupportModule\AggrementPage.aspx.cs">
       <DependentUpon>AggrementPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
