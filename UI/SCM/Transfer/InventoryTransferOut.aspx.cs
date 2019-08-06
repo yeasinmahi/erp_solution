@@ -40,7 +40,7 @@ namespace UI.SCM.Transfer
                 {
                     _ast = new AutoSearch_BLL();
                     _objserch = new InventoryTransfer_BLL();
-
+                    txtVehicle.Text = "0";
                     try
                     {
                         File.Delete(filePathForXML);
@@ -155,17 +155,25 @@ namespace UI.SCM.Transfer
                 arrayKey = txtItem.Text.Split(Variables.GetInstance().DelimiterChars);
                 string item = "";
                 string itemid = "";
+                string vehicle = "";
                 if (arrayKey.Length > 0)
                 {
                     item = arrayKey[0];
                     itemid = arrayKey[1];
                 }
 
-                arrayKeyV = txtVehicle.Text.Split(Variables.GetInstance().DelimiterChars);
-                string vehicle = "";
-                if (arrayKeyV.Length > 0)
+                if (txtVehicle.Text == "" || txtVehicle.Text == "0")
                 {
-                    vehicle = arrayKeyV[1];
+                    vehicle = "0";
+                }
+                else
+                { 
+                    arrayKeyV = txtVehicle.Text.Split(Variables.GetInstance().DelimiterChars);
+                    
+                    if (arrayKeyV.Length > 0)
+                    {
+                        vehicle = arrayKeyV[1];
+                    }
                 }
 
                 if (int.Parse(vehicle) > 0)
