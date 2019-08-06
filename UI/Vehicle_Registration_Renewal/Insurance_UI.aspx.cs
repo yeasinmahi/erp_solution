@@ -57,15 +57,13 @@ namespace UI.Vehicle_Registration_Renewal
 
         protected void BtnInsurance_Click(object sender, EventArgs e)
         {
-           
-             
               
                string assetid = Session["strasset"].ToString();
-                Int32 expDay = Int32.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                int expDay = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 DateTime dtereg = DateTime.Parse(TextRenwalDte.Text.ToString());
                 decimal registrationTaka = decimal.Parse(TxtInsurence.Text.ToString());
                 string strtype = TxtInsuranceCompany.Text.ToString();
-                Int32 intType = Int32.Parse(0.ToString());
+                int intType = int.Parse(0.ToString());
                 decimal nameplate = decimal.Parse("0");//InsuranceCompany
                 decimal drc = decimal.Parse(0.ToString());
                 decimal ownership = decimal.Parse(0.ToString());
@@ -82,6 +80,7 @@ namespace UI.Vehicle_Registration_Renewal
                 intItem = 5;
                dt=objRenewal.InsertVehicleInsurance(intItem, assetid, strtype, intType, unit, dtereg, expairdate, nextExpairdate, expDay, registrationTaka, nameplate, drc,
                     ownership, addresschange, bodyvat, certificate, certificatedNo, duplicatedcopy, miscellounes);
+
             if (dt.Rows.Count > 0)
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
