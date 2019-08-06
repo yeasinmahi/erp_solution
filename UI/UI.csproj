@@ -478,6 +478,7 @@
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
     <Content Include="Factory\PetBottle\PBReceiveForm.aspx" />
     <Content Include="Factory\PetBottle\PetBottlePaymentRpt.aspx" />
+    <Content Include="Factory\PetBottle\PetBottleSortingSmryRpt.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
@@ -3358,6 +3359,13 @@
     </Compile>
     <Compile Include="Factory\PetBottle\PetBottlePaymentRpt.aspx.designer.cs">
       <DependentUpon>PetBottlePaymentRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PetBottleSortingSmryRpt.aspx.cs">
+      <DependentUpon>PetBottleSortingSmryRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PetBottleSortingSmryRpt.aspx.designer.cs">
+      <DependentUpon>PetBottleSortingSmryRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Attendance\RealTimeAttendanceReport.aspx.cs">
       <DependentUpon>RealTimeAttendanceReport.aspx</DependentUpon>
