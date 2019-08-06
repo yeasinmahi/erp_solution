@@ -483,6 +483,9 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
     <Content Include="HR\Benifit\BenifitsEntry.aspx" />
+    <Content Include="HR\Benifit\Report\EmpBonusTopSheet.aspx" />
+    <Content Include="HR\Benifit\Report\jquery-ui.min.js" />
+    <Content Include="HR\Benifit\Report\jquery.min.js" />
     <Content Include="HR\Dispatch\DispatchExternalReceive.aspx" />
     <Content Include="HR\Dispatch\DispatchRequest.aspx" />
     <Content Include="HR\Dispatch\rptDispatchApproveReject.aspx" />
@@ -1480,6 +1483,7 @@
     <Content Include="SAD\Sales\NBR_DOEntry.aspx" />
     <Content Include="SAD\Sales\NBR_SalesChallan.aspx" />
     <Content Include="SAD\Sales\Report\AFBLCustTransProdRpt.aspx" />
+    <Content Include="SAD\Sales\Report\AFBLDistrbtrStockRpt.aspx" />
     <Content Include="SAD\Sales\Report\AfblPointStock.aspx" />
     <Content Include="SAD\Sales\Report\AFBLTransitProductStockRpt.aspx" />
     <Content Include="SAD\Sales\Report\All_Shipping_Point_Delivery_Report.aspx" />
@@ -3383,6 +3387,13 @@
     </Compile>
     <Compile Include="HR\Benifit\BenifitsEntry.aspx.designer.cs">
       <DependentUpon>BenifitsEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Benifit\Report\EmpBonusTopSheet.aspx.cs">
+      <DependentUpon>EmpBonusTopSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Benifit\Report\EmpBonusTopSheet.aspx.designer.cs">
+      <DependentUpon>EmpBonusTopSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Dispatch\DispatchExternalReceive.aspx.cs">
       <DependentUpon>DispatchExternalReceive.aspx</DependentUpon>
@@ -7633,6 +7644,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\AFBLCustTransProdRpt.aspx.designer.cs">
       <DependentUpon>AFBLCustTransProdRpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\AFBLDistrbtrStockRpt.aspx.cs">
+      <DependentUpon>AFBLDistrbtrStockRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\AFBLDistrbtrStockRpt.aspx.designer.cs">
+      <DependentUpon>AFBLDistrbtrStockRpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\AfblPointStock.aspx.cs">
       <DependentUpon>AfblPointStock.aspx</DependentUpon>
