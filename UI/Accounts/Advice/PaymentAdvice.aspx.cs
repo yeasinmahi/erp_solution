@@ -388,8 +388,10 @@ namespace UI.Accounts.Advice
                         PoNo = ((Label)row.FindControl("lblPONo")).Text;
                         BillNo = ((Label)row.FindControl("lblBillNo")).Text;
                         poIssuerMail = ((Label)row.FindControl("lblPOIssuerMail")).Text;
-                        
-                        if(!String.IsNullOrEmpty(PartyMail))
+                        dt = new DataTable();
+                        dt = bll.GetUnitAddress(Convert.ToInt32(ddlUnit.SelectedValue));
+                        unitName = dt.Rows[0]["strDescription"].ToString();
+                        if (!String.IsNullOrEmpty(PartyMail))
                         {
                            string pmail = ((Label)row.FindControl("lblMail")).Text;
                             PartyMail = pmail + ";";
