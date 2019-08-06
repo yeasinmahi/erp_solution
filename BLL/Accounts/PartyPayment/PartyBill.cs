@@ -402,6 +402,15 @@ namespace BLL.Accounts.PartyPayment
             return statusmsg;
         }
 
+        public DataTable GetUserVsVATAccounts(int enrol)
+        {
+            SprUserVsVATAccountsTableAdapter ta = new SprUserVsVATAccountsTableAdapter();
+            try
+            { return ta.GetDataUserVsVATAccounts(enrol); }
+            catch { return new DataTable(); }
+        }
+
+
         #endregion
 
     }
