@@ -15,6 +15,7 @@ namespace Purchase_BLL.Asset
     {
         private static SearchTDS.SprAutosearchRequesitionDataTable[] tableCusts = null;
         private static SearchTDS.SprAutosearchRequesitionDataTable[] tableItem = null;
+        private static SearchTDS.sprAutosearchRequesitionWithoutFGAndSFGDataTable[] tableItemFG = null;
         private static SearchTDS.AutoSearchProductDataTable[] tableProduct = null;
         private  static SearchTDS.sprAutosearchRawMeterialDataTable[] tableItem1 = null;
         private static  SearchTDS.sprAutosearchFinishGoodsDataTable[] tblFgItem = null;
@@ -486,6 +487,81 @@ namespace Purchase_BLL.Asset
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 { 
+                    retStr[i] = tbl.Rows[i]["strItem"] + "[" + tbl.Rows[i]["intItem"] + "]" + "[" + "Stock:" + " " +
+                                tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+
+
+
+        }
+        public string[] AutoSearchItemFGAndSFD(string whid, string prefix)
+        {
+            if (tableItem == null || tableItem.Length < 1 || !WhId.Equals(whid))
+            {
+                tableItemFG = new SearchTDS.sprAutosearchRequesitionWithoutFGAndSFGDataTable[Convert.ToInt32(whid)];
+                sprAutosearchRequesitionWithoutFGAndSFGTableAdapter adpCoa = new sprAutosearchRequesitionWithoutFGAndSFGTableAdapter();
+                tableItemFG[e] = adpCoa.GetAutoSearch(Convert.ToInt32(whid));
+                WhId = whid;
+            }
+            //Inatialize(int.Parse(whid));
+
+            //tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(whid)];
+            //SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
+            //tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(whid));
+
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tableItemFG[e]//Convert.ToInt32(ht[whid])
+                               orderby tmp.strItem
+                               select tmp;
+                    if (rows.Any())
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tableItemFG[e]//Convert.ToInt32(ht[whid])
+                                   where tmp.strItem.ToLower().Contains(prefix) ||
+                                         tmp.ItemNumber.ToLower().Contains(prefix)
+                                   orderby tmp.strItem
+                                   select tmp;
+
+                        if (rows.Any())
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+                        //if (rows2.Count() > 0) { tbl = rows2.CopyToDataTable(); }
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+            else
+            {
+                return null;
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
                     retStr[i] = tbl.Rows[i]["strItem"] + "[" + tbl.Rows[i]["intItem"] + "]" + "[" + "Stock:" + " " +
                                 tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]";
                 }
