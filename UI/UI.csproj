@@ -10868,6 +10868,7 @@
     <Folder Include="Support\Data\" />
     <Folder Include="Transport\Data\" />
     <Folder Include="Transport\Uploads\" />
+    <Folder Include="UitlityManagement\" />
     <Folder Include="VAT_Management\Data\" />
     <Folder Include="Wastage\Data\" />
     <Folder Include="WoodPurchase\Data\" />

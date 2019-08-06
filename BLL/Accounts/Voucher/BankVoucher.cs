@@ -9,7 +9,7 @@ using DAL.Accounts.Voucher.BankVoucherPrintTDSTableAdapters;
 using BLL.Accounts.SubLedger;
 using BLL.Accounts.Bank;
 using GLOBAL_BLL;
-
+using System.Data;
 
 namespace BLL.Accounts.Voucher
 {
@@ -242,6 +242,22 @@ namespace BLL.Accounts.Voucher
             SprAccountsVoucherBankEditAfterCompleteTableAdapter ta = new SprAccountsVoucherBankEditAfterCompleteTableAdapter();
             SubLedgerType tp = new SubLedgerType();
             ta.GetData(xml, long.Parse(voucherID), int.Parse(userID), narration, false, int.Parse(unitID),tp.GetKeyForType(SubLedgerType.SubLedgerInputTypes.BankReceive));
+        }
+
+        public DataTable InsertVoucherData(string voucherID, string voucherDate, string strForBarCode, string strCode, string strAccName, string strNarration,decimal Amount,
+                string bankName, string accountNumber, string ChequeNumber, string ChequeDate, string voucherNumber, string voucherNarration,
+               decimal totalAmount, string unitName, string unitAddress, string securityCode, string vDate,int unitID, string chequeString, string totalAmountInWord)
+        {
+            tblVoucherEntryReportTableAdapter adp = new tblVoucherEntryReportTableAdapter();
+            return adp.InsertVoucherData(voucherID, voucherDate, strForBarCode, strCode, strAccName, strNarration, Amount,
+                bankName, accountNumber, ChequeNumber, ChequeDate, voucherNumber, voucherNarration,
+                totalAmount, unitName, unitAddress, securityCode, vDate, unitID, chequeString, totalAmountInWord);
+        }
+
+        public DataTable DeleteVoucherData()
+        {
+            VoucherEntryReportTableAdapter adp = new VoucherEntryReportTableAdapter();
+            return adp.DeleteVoucher();
         }
     }
 }

@@ -5,7 +5,7 @@ using System.Web;
 using DAL.Accounts.Voucher;
 using DAL.Accounts.Voucher.CashVoucherPrintTDSTableAdapters;
 using BLL.Accounts.Voucher;
-
+using BLL.Accounts.Advice;
 using BLL.Accounts.Banking;
 using DAL.Accounts.Banking;
 using GLOBAL_BLL;
@@ -80,14 +80,15 @@ namespace UI.ClassFiles
                 addressLines[0] = unitAddress;
 
 
-                    //InsertForPrint(voucherID, voucherDate, strForBarCode, strCode, strAccName, strNarration, Amount,
-                    //bankName, accountNumber, ChequeNumber, ChequeDate, voucherNumber, voucherNarration, 
-                    //totalAmount, unitName, unitAddress, securityCode, vDate, unitID, chequeString, totalAmountInWord);
+                bnkv.InsertVoucherData(voucherID, voucherDate, strForBarCode, strCode, strAccName, strNarration, Amount,
+                bankName, accountNumber, ChequeNumber, ChequeDate.ToString(), voucherNumber, voucherNarration,
+                totalAmount, unitName, unitAddress, securityCode, vDate.ToString(), Convert.ToInt32(unitID), chequeString, totalAmountInWord);
+
 
 
             }
-          
-            
+
+
 
             //htmlString = PreparePrintableBankVoucher(unitName, addressLines, voucherType, voucherNumber,
             //                                        voucherDate, vitem, totalAmountInWord, voucherNarration,
