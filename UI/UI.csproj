@@ -1568,6 +1568,7 @@
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\Sales2.aspx" />
     <Content Include="SAD\Sales\Report\SalesItemPriceMismatch.aspx" />
+    <Content Include="SAD\Sales\Report\SalesVsManPowerAchvment.aspx" />
     <Content Include="SAD\Sales\Report\Sales_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
@@ -8248,6 +8249,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\SalesItemPriceMismatch.aspx.designer.cs">
       <DependentUpon>SalesItemPriceMismatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\SalesVsManPowerAchvment.aspx.cs">
+      <DependentUpon>SalesVsManPowerAchvment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\SalesVsManPowerAchvment.aspx.designer.cs">
+      <DependentUpon>SalesVsManPowerAchvment.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Sales_Info_Report.aspx.cs">
       <DependentUpon>Sales_Info_Report.aspx</DependentUpon>
