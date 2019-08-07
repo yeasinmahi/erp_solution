@@ -243,6 +243,7 @@
                                     <asp:Button ID="btnShowReport" runat="server" Text="Show Report" OnClick="btnShowReport_Click" />
                                     <asp:Button ID="btnPrint" runat="server" Text="Advice Print" OnClick="btnPrint_Click"/>
                                     <asp:Button ID="btnVoucher" runat="server" Text="Voucher Print" OnClick="btnVoucher_Click"/>
+                                    <asp:Button ID="btnPartyEmail" runat="server" Text="Party Email" OnClick="btnPartyEmail_Click"/>
                                    
                                 </td>
                             </tr>

@@ -5,7 +5,7 @@ using System.Web;
 using DAL.Accounts.Voucher;
 using DAL.Accounts.Voucher.CashVoucherPrintTDSTableAdapters;
 using BLL.Accounts.Voucher;
-
+using BLL.Accounts.Advice;
 using BLL.Accounts.Banking;
 using DAL.Accounts.Banking;
 using GLOBAL_BLL;
@@ -42,6 +42,7 @@ namespace UI.ClassFiles
             BankVoucherPrintTDS.SprAccountsVoucherBankGetPrintVoucherDataDataTable itemTable = bnkv.GetBankVoucherPrintData(voucherID, userID,
                                                                                                                            ref bankName, ref accountNumber,
                                                                                                                            ref ChequeNumber, ref ChequeDate,
+                                                                                                                           
                                                                                                                            ref voucherNumber, ref voucherNarration,
                                                                                                                            ref totalAmount, ref unitName,
                                                                                                                            ref unitAddress, ref securityCode, ref vDate, ref unitID, ref chequeString);
@@ -55,28 +56,44 @@ namespace UI.ClassFiles
                 vitem[i].AccountCode = itemTable[i].strCode;
                 vitem[i].AccountName = itemTable[i].strAccName;
                 vitem[i].Description = itemTable[i].strNarration;
+                string strCode= itemTable[i].strCode;
+                string strAccName = itemTable[i].strAccName;
+                string strNarration = itemTable[i].strNarration;
+                decimal Amount = 0;
                 if (itemTable[i].monAmountControl == 0) // not Control Head
                 {
                     vitem[i].Amount = double.Parse("" + itemTable[i].monAmountSub);
                     vitem[i].YsnControlHead = false;
+
+                    Amount = itemTable[i].monAmountSub;
                 }
                 else
                 {
                     vitem[i].Amount = double.Parse("" + itemTable[i].monAmountControl);
                     vitem[i].YsnControlHead = true;
+
+                    Amount = itemTable[i].monAmountControl;
                 }
+                AmountFormat formatAmount = new AmountFormat();
+                totalAmountInWord = formatAmount.GetTakaInWords(totalAmount, "", "Only");
+                string[] addressLines = new string[1];
+                addressLines[0] = unitAddress;
+
+
+                bnkv.InsertVoucherData(voucherID, voucherDate, strForBarCode, strCode, strAccName, strNarration, Amount,
+                bankName, accountNumber, ChequeNumber, ChequeDate.ToString(), voucherNumber, voucherNarration,
+                totalAmount, unitName, unitAddress, securityCode, vDate.ToString(), Convert.ToInt32(unitID), chequeString, totalAmountInWord);
+
+
 
             }
 
-            AmountFormat formatAmount = new AmountFormat();
-            totalAmountInWord = formatAmount.GetTakaInWords(totalAmount, "", "Only");
-            string[] addressLines = new string[1];
-            addressLines[0] = unitAddress;
 
-            htmlString = PreparePrintableBankVoucher(unitName, addressLines, voucherType, voucherNumber,
-                                                    voucherDate, vitem, totalAmountInWord, voucherNarration,
-                                                    bankName, accountNumber,
-                                                    ChequeNumber, CommonClass.GetShortDateAtLocalDateFormat(ChequeDate), chequeString);
+
+            //htmlString = PreparePrintableBankVoucher(unitName, addressLines, voucherType, voucherNumber,
+            //                                        voucherDate, vitem, totalAmountInWord, voucherNarration,
+            //                                        bankName, accountNumber,
+            //                                        ChequeNumber, CommonClass.GetShortDateAtLocalDateFormat(ChequeDate), chequeString);
 
 
             return htmlString;
