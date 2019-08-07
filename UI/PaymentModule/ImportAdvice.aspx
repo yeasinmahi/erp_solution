@@ -73,6 +73,7 @@
                                             <asp:Button ID="btnShow" runat="server" Text="Show" CssClass="btn btn-primary" OnClientClick="return Validation()" OnClick="btnShow_Click" />
                                             <asp:Button ID="btnCreateVoucher" runat="server" Text="Create" CssClass="btn btn-success" OnClick="btnCreateVoucher_Click" />
                                             <asp:Button ID="btnPrintPreview" runat="server" Text="Print Preview" CssClass="btn btn-info" OnClick="btnPrintPreview_Click" />
+                                            <asp:Button ID="btnSummary" runat="server" Text="Summary Report" CssClass="btn btn-info" OnClick="btnSummary_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -152,7 +153,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
-                            <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 0px solid red;"></iframe>
+                            <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 1px solid black;"></iframe>
                         </div>
                     </div>
                 </div>

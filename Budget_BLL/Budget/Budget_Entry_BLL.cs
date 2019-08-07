@@ -209,6 +209,52 @@ namespace Budget_BLL.Budget
         }
 
 
+        public DataTable GetMonthandID()
+        {
+            try
+            {
+                SprMonthAndIDTableAdapter adp = new SprMonthAndIDTableAdapter();
+                return adp.GetDataMonthAndID();
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetFGVsRawMaterialMonthly(int budgetyear,int unitid, int monthid)
+        {
+            try
+            {
+                SprBudgetFGVsRmMonthLyTableAdapter adp = new SprBudgetFGVsRmMonthLyTableAdapter();
+                return adp.GetDataBudgetFGVsRmMonthLy(budgetyear,  unitid,  monthid);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetBudgetYearCombindly()
+        {
+            try
+            {
+                SprBudgetYearCombindlyTableAdapter adp = new SprBudgetYearCombindlyTableAdapter();
+                return adp.GetDataBudgetYearCombindly();
+            }
+            catch { return new DataTable(); }
+        }
+
+        public string InsertRawMaterialBudget(string xmlString, int Enrol, int unit)
+        {
+            SprBudgetEntryForRawMaterialMonthlyTableAdapter obj = new SprBudgetEntryForRawMaterialMonthlyTableAdapter();
+            string msg = "";
+            try
+            {
+                obj.GetDataBudgetEntryForRawMaterialMonthly(xmlString, Enrol, unit, ref msg);
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+
+        }
+
 
     }
 }

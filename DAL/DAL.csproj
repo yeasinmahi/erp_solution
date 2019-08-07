@@ -511,6 +511,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InventoryAdjustmentAuthority.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\ItemCostingFGTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemCostingFGTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\ItemListTdd.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1449,6 +1454,17 @@
     </None>
     <None Include="Inventory\InventoryAdjustmentAuthority.xss">
       <DependentUpon>InventoryAdjustmentAuthority.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\ItemCostingFGTds.xsc">
+      <DependentUpon>ItemCostingFGTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\ItemCostingFGTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemCostingFGTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\ItemCostingFGTds.xss">
+      <DependentUpon>ItemCostingFGTds.xsd</DependentUpon>
     </None>
     <None Include="Inventory\ItemListTdd.xsc">
       <DependentUpon>ItemListTdd.xsd</DependentUpon>

@@ -364,7 +364,7 @@ namespace UI.SCM.Transfer
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
             
-            return ast.AutoSearchItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            return ast.AutoSearchItemFGAndSFD(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
 

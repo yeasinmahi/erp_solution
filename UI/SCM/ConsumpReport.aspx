@@ -141,7 +141,7 @@
                             </td>
                             
                             <td style="text-align: right;">
-                                <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Master Category:"></asp:Label>
+                                <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Category:"></asp:Label>
                             </td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlMasterCategory" CssClass="ddList" Font-Bold="False" runat="server"></asp:DropDownList>
@@ -150,18 +150,18 @@
                         </tr>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Minor Category:"></asp:Label>
+                                <asp:Label ID="Label5" runat="server" CssClass="lbl" visible="false" Text="Minor Category:"></asp:Label>
                             </td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlMinorCategory" CssClass="ddList" Font-Bold="False" runat="server"></asp:DropDownList>
-                                <asp:Button ID="btnMinorCategory" runat="server" Text="Show" OnClick="btnMinorCategory_OnClick" OnClientClick="return validation()" />
+                                <asp:DropDownList ID="ddlMinorCategory" CssClass="ddList" Font-Bold="False" Visible="false" runat="server"></asp:DropDownList>
+                                <asp:Button ID="btnMinorCategory" runat="server" Text="Show" Visible="false" OnClick="btnMinorCategory_OnClick" OnClientClick="return validation()" />
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Sub Category:" Visible="false"></asp:Label>
+                                <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Sub-Category:" Visible="true"></asp:Label>
                             </td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlSubCategory" CssClass="ddList" Font-Bold="False" runat="server" Visible="false"></asp:DropDownList>
-                                <asp:Button ID="btnSubCategory" runat="server" Text="Show" OnClick="btnSubCategory_OnClick" OnClientClick="return validation()" Visible="false"/>
+                                <asp:DropDownList ID="ddlSubCategory" CssClass="ddList" Font-Bold="False" runat="server" Visible="true"></asp:DropDownList>
+                                <asp:Button ID="btnSubCategory" runat="server" Text="Show" OnClick="btnSubCategory_OnClick" OnClientClick="return validation()" Visible="true"/>
                             </td>
                         </tr>
                         <tr>

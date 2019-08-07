@@ -150,6 +150,7 @@
     <Compile Include="Sales\Delivery_BLL.cs" />
     <Compile Include="Sales\OrderByTrip.cs" />
     <Compile Include="Sales\RemoteSales.cs" />
+    <Compile Include="Sales\Report\CarryingBILL.cs" />
     <Compile Include="Sales\Report\Challan.cs" />
     <Compile Include="Sales\Report\SalesByCusPro.cs" />
     <Compile Include="Sales\Report\UDTCLSalesBLL.cs" />

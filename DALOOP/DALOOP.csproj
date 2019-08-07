@@ -59,6 +59,7 @@
     <Compile Include="Inventory\InventoryAdjustmentDal.cs" />
     <Compile Include="Inventory\InventoryDal.cs" />
     <Compile Include="Inventory\InventoryLocationAndOpeningDal.cs" />
+    <Compile Include="Inventory\ItemCostingFGDal.cs" />
     <Compile Include="Inventory\ItemListDal.cs" />
     <Compile Include="Inventory\PoTypeDal.cs" />
     <Compile Include="Inventory\RequisitionDetailDal.cs" />

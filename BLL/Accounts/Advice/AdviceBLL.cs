@@ -46,6 +46,16 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
+
+        public DataTable GetBankVoucherId(string voucher, int intUnitID)
+        {
+            try
+            {
+                BankVoucherTableAdapter adp = new BankVoucherTableAdapter();
+                return adp.GetBankVoucherId(voucher,intUnitID);
+            }
+            catch { return new DataTable(); }
+        }
         public DataTable GetOtherBank(int intUnitID)
         {
             try
@@ -109,15 +119,7 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
-        public DataTable GetVoucherPrintData(string strCodeNo, int intUnitID, int intPartID)
-        {
-            try
-            {
-                SprAdviceVoucherPrintTableAdapter adp = new SprAdviceVoucherPrintTableAdapter();
-                return adp.GetVoucherPrintData(strCodeNo, intUnitID, intPartID);
-            }
-            catch { return new DataTable(); }
-        }
+       
         public DataTable GetLastCollectDate(int intAccountID)
         {
             try
@@ -163,6 +165,38 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
+        #region--------Payment Advice---------
+        public DataTable PaymentAdviceEntry(int intPart, int intInsertBy,int unitId, string adviceForBank, string xml)
+        {
+            try
+            {
+                SprAdvice_Entry_ReportTableAdapter adp = new SprAdvice_Entry_ReportTableAdapter();
+                return adp.GetData(intPart, intInsertBy, unitId, adviceForBank, xml);
+            }
+            catch(Exception ex) { return new DataTable(); }
+        }
+        public DataTable GetVoucherPrintData(string strCodeNo, int intUnitID, int intPartID)
+        {
+            try
+            {
+                SprAdviceVoucherPrintTableAdapter adp = new SprAdviceVoucherPrintTableAdapter();
+                return adp.GetVoucherPrintData(strCodeNo, intUnitID, intPartID);
+            }
+            catch { return new DataTable(); }
+        }
+        public string SendEmail(string strSupplierName, string strEmailAddress, string strBankName, string strBranchName, string strBankAccNo, decimal monAmount, string strPONo, string strUnitName, string strDays, string strPaymentInfo, string strBillNo, int intSupplierID, int intUnitID)
+        {
+            string msg = "";
+            try
+            {
+                sprEmailCreateTableAdapter adp = new sprEmailCreateTableAdapter();
+                adp.SendData(strSupplierName,strEmailAddress,strBankName,strBranchName,strBankAccNo,monAmount,strPONo,strUnitName,strDays,strPaymentInfo,strBillNo,intSupplierID,intUnitID);
+                msg = "Email Send Successfully.";
+            }
+            catch (Exception ex) { return ex.Message; }
+            return msg;
+        }
+        #endregion
         #region ================== Bank Receive ===========================
         public DataTable GetBankData (string intUnitID)
         {

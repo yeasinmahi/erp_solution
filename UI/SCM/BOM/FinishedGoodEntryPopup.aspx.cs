@@ -12,6 +12,7 @@ using System.Xml;
 using BLL.HR;
 using UI.ClassFiles;
 using Utility;
+using BLL.Inventory;
 
 namespace UI.SCM.BOM
 {
@@ -20,7 +21,8 @@ namespace UI.SCM.BOM
         #region INIT
         private Bom_BLL objBom = new Bom_BLL();
         private DataTable dt = new DataTable();
-        private int intwh, BomId, intBomStandard,itemId;
+        private ItemCostingFGBll ItemCosting = new ItemCostingFGBll();
+        private int intwh, BomId, intBomStandard, itemId;
         private string xmlData;
         private int CheckItem = 1, intWh;
         private string[] arrayKey;
@@ -28,7 +30,7 @@ namespace UI.SCM.BOM
         private string filePathForXML;
         private string xmlString = "", orderId = "0";
         decimal qty, actualQty, qcHoldQty, storeQty, totalSentToStore, totalExtraStore;
-        private string productionID, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
+        private string productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
         #endregion
 
         #region Constructor
@@ -45,7 +47,7 @@ namespace UI.SCM.BOM
                 catch { }
                 //claenderDte.SelectedDate = DateTime.Now;
                 //CalendarExtenderExp.SelectedDate = DateTime.Now;
-                productionID = Request.QueryString["productID"].ToString();
+                hdnProductionId.Value = Request.QueryString["productID"].ToString();
                 productName = Request.QueryString["productName"].ToString();
                 bomName = Request.QueryString["bomName"].ToString();
                 batchName = Request.QueryString["batchName"].ToString();
@@ -56,7 +58,7 @@ namespace UI.SCM.BOM
                 srNo = Request.QueryString["srNo"].ToString();
                 quantity = Request.QueryString["quantity"].ToString();
                 whid = Request.QueryString["whid"].ToString();
-                dt = objBom.GetItemNameByProductionId(Convert.ToInt32(productionID));
+                dt = objBom.GetItemNameByProductionId(Convert.ToInt32(hdnProductionId.Value));
                 if (dt.Rows.Count > 0)
                 {
                     productName = dt.Rows[0]["strItemName"].ToString();
@@ -105,32 +107,40 @@ namespace UI.SCM.BOM
         {
             string item = string.Empty;
             string uom = string.Empty;
-            int ProductionId = 0;
             int itemid = 0;
-            decimal OrderQnt = 0;
             decimal ProductQnt = 0;
             decimal GoodORwastageQnt = 0;
 
 
-            item = ddlWastageItem.SelectedItem.ToString();
-            itemid = int.Parse(ddlWastageItem.SelectedValue);
+            item = ddlWastageItem.SelectedText();
+            itemid = ddlWastageItem.SelectedValue();
             GoodORwastageQnt = decimal.Parse(txtWastageQuantity.Text.Trim());
 
             string wastageType = Convert.ToInt32(ddlWastageType.SelectedValue) > 0 ?
                         ddlWastageType.SelectedItem.ToString() : string.Empty;
             string wastageTypeId = ddlWastageType.SelectedValue;
+
+
             if (ddlWastageType.SelectedValue == "0")
             {
                 Toaster("Please Select Type", Common.TosterType.Warning);
                 ddlWastageType.Focus();
                 return;
             }
+            else if (wastageTypeId != "3")
+            {
+                if (ItemCosting.GetItemCogs(itemid).Rows.Count <= 0)
+                {
+                    Toaster("Please Input Item COGS first");
+                    return;
+                }
+            }
 
             string Date = txtDate.Text;
             string Time = txtTime.Text;
             string JobNo = !string.IsNullOrEmpty(txtJob.Text) ? txtJob.Text : string.Empty;
 
-            CreateXml2(ProductionId.ToString(), OrderQnt.ToString(), ProductQnt.ToString(), item, itemid.ToString(), GoodORwastageQnt.ToString(), wastageType,
+            CreateXml2(hdnProductionId.Value, "0", ProductQnt.ToString(), item, itemid.ToString(), GoodORwastageQnt.ToString(), wastageType,
                         wastageTypeId, UnitId.ToString(), Date, Time, JobNo, Enroll.ToString(), totalExtraStore.ToString());
         }
 
@@ -138,9 +148,7 @@ namespace UI.SCM.BOM
         {
             string item = string.Empty;
             string uom = string.Empty;
-            int ProductionId = 0;
             int itemid = 0;
-            decimal OrderQnt = 0;
             decimal ProductQnt = 0;
             decimal GoodORwastageQnt = 0;
 
@@ -149,43 +157,56 @@ namespace UI.SCM.BOM
                 //OrderQnt = decimal.Parse(lblOrderQty.Text.Trim());
                 ProductQnt = decimal.Parse(txtProductQty.Text.Trim());
                 //ProductionId = int.Parse(lblProductionId.Text);
-                
-                    arrayKey = txtItem.Text.Split(delimiterChars);
-                    if (arrayKey.Length > 0)
-                    {
-                        item = arrayKey[0].ToString();
-                        uom = arrayKey[1].ToString();
-                        //itemid = int.Parse(arrayKey[3].ToString());
-                        //itemid = int.Parse(lblItemId.Text.Trim());
-                    }
-                    GoodORwastageQnt = decimal.Parse(txtGoodsProductionQty.Text.Trim());
-                    if (GoodORwastageQnt > ProductQnt)
-                    {
-                        Toaster("Production,Goods Quantity should not be grater than Product Quantity", Common.TosterType.Warning);
-                        return;
-                    }
 
-                    if (GoodORwastageQnt <= 0)
-                    {
-                        Toaster("Good Quantity is : " + GoodORwastageQnt + ". Please Enter Valid Quantity.", Common.TosterType.Warning);
-                        return;
-                    }
-           
-                    string Date = txtDate.Text;
-                    string Time = txtTime.Text;
-                    string JobNo = !string.IsNullOrEmpty(txtJob.Text) ? txtJob.Text : string.Empty;
-                    hfTotalQty.Value = !string.IsNullOrEmpty(hfTotalQty.Value) ?
-                        (decimal.Parse(hfTotalQty.Value) + Convert.ToDecimal(GoodORwastageQnt)).ToString() : GoodORwastageQnt.ToString();
-                    if (decimal.Parse(hfTotalQty.Value) > ProductQnt)
-                    {
-                        Toaster("Add Quantity is Never Getter then Production Quantity.", Common.TosterType.Warning);
-                        return;
-                    }
-                    totalExtraStore += Convert.ToDecimal(GoodORwastageQnt);
+                arrayKey = txtItem.Text.Split(delimiterChars);
+                if (arrayKey.Length > 0)
+                {
+                    item = arrayKey[0].ToString();
+                    itemid = int.Parse(arrayKey[1].ToString());
+                    //itemid = int.Parse(arrayKey[3].ToString());
+                    //itemid = int.Parse(lblItemId.Text.Trim());
+                }
+                if (ItemCosting.GetItemCogs(itemid).Rows.Count <= 0)
+                {
+                    Toaster("Please Input Item COGS first");
+                    return;
+                }
+                GoodORwastageQnt = decimal.Parse(txtGoodsProductionQty.Text.Trim());
+                if (GoodORwastageQnt > ProductQnt)
+                {
+                    Toaster("Production,Goods Quantity should not be grater than Product Quantity", Common.TosterType.Warning);
+                    return;
+                }
+
+                if (GoodORwastageQnt <= 0)
+                {
+                    Toaster("Good Quantity is : " + GoodORwastageQnt + ". Please Enter Valid Quantity.", Common.TosterType.Warning);
+                    return;
+                }
+
+                string Date = txtDate.Text;
+                string Time = txtTime.Text;
+
+                DateTime startTime = DateTime.Parse(Request.QueryString["startTime"].ToString());
+                DateTime date = (Date+" "+Time).ToDateTime("yyyy/MM/dd HH:mm");
+                if (date < startTime)
+                {
+                    Toaster("Date can not be before of production order strat date and time");
+                    return;
+                }
+                string JobNo = !string.IsNullOrEmpty(txtJob.Text) ? txtJob.Text : string.Empty;
+                hfTotalQty.Value = !string.IsNullOrEmpty(hfTotalQty.Value) ?
+                    (decimal.Parse(hfTotalQty.Value) + Convert.ToDecimal(GoodORwastageQnt)).ToString() : GoodORwastageQnt.ToString();
+                if (decimal.Parse(hfTotalQty.Value) > ProductQnt)
+                {
+                    Toaster("Add Quantity is Never Getter then Production Quantity.", Common.TosterType.Warning);
+                    return;
+                }
+                totalExtraStore += Convert.ToDecimal(GoodORwastageQnt);
 
 
-                CreateXml2(ProductionId.ToString(), OrderQnt.ToString(), ProductQnt.ToString(), item, itemid.ToString(), GoodORwastageQnt.ToString(), "",
-                        "", UnitId.ToString(), Date, Time, JobNo, Enroll.ToString(), totalExtraStore.ToString());
+                CreateXml2(hdnProductionId.Value, ProductQnt.ToString(), ProductQnt.ToString(), item, itemid.ToString(), GoodORwastageQnt.ToString(), "Good Product",
+                        "1", UnitId.ToString(), Date, Time, JobNo, Enroll.ToString(), totalExtraStore.ToString());
 
             }
             catch (Exception ex)
@@ -208,7 +229,7 @@ namespace UI.SCM.BOM
                 }
             }
         }
-        
+
 
         protected void btnUpdate_OnClick(object sender, EventArgs e)
         {
@@ -285,11 +306,11 @@ namespace UI.SCM.BOM
         #endregion
 
         #region Method
-        
+
         public void LoadGrid()
         {
             decimal GoodNwastageQty = 0;
-            dt = objBom.GetProductionOrderTransferItemDetails(itemId);
+            dt = objBom.GetProductionOrderTransferItemDetails(Convert.ToInt32(hdnProductionId.Value));
             if (dt != null && dt.Rows.Count > 0)
             {
                 //txtItem.Text = dt.Rows[0]["strName"].ToString();
@@ -315,7 +336,7 @@ namespace UI.SCM.BOM
                 Session["TotalStoreQuantity"] = null;
             }
         }
-        private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times, string actualQty, 
+        private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times, string actualQty,
             string qcHoldQty, string expDate, string orderId)
         {
             XmlDocument doc = new XmlDocument();
@@ -483,40 +504,40 @@ namespace UI.SCM.BOM
         {
             try
             {
-                
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(filePathForXML);
-                    XmlNode dSftTm = doc.SelectSingleNode("production");
-                    xmlString = dSftTm.InnerXml;
-                    xmlString = "<production>" + xmlString + "</production>";
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("production");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<production>" + xmlString + "</production>";
 
 
-                    intWh = int.Parse(Request.QueryString["whid"].ToString());
-                    int productionId = int.Parse(Request.QueryString["productID"].ToString());
-                    int FItemId = itemId;
-                    decimal ProductionQty = Convert.ToDecimal(txtProductQty.Text);
-                    decimal GoodQty = Convert.ToDecimal(txtGoodsProductionQty.Text);
-                    DateTime dteDate = DateTime.Parse(txtDate.Text.ToString());
+                intWh = int.Parse(Request.QueryString["whid"].ToString());
+                int productionId = int.Parse(Request.QueryString["productID"].ToString());
+                int FItemId = itemId;
+                decimal ProductionQty = Convert.ToDecimal(txtProductQty.Text);
+                decimal GoodQty = Convert.ToDecimal(txtGoodsProductionQty.Text);
+                DateTime dteDate = DateTime.Parse(txtDate.Text.ToString());
 
-                    try
+                try
+                {
+                    File.Delete(filePathForXML);
+                    string msg = objBom.InsertFinishProductProduction(3, xmlString, productionId, FItemId, intWh, ProductionQty, GoodQty);
+                    if (msg == "sucess")
                     {
-                        File.Delete(filePathForXML);
-                        string msg = objBom.InsertFinishProductProduction(3, xmlString, productionId, FItemId, intWh, ProductionQty, GoodQty);
-                        if(msg == "sucess")
-                        {
-                            Clear2();
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript","alert('Finish Product Production Insert Successfully');", true);
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
-                        }
+                        Clear2();
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Finish Product Production Insert Successfully');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                     }
-                    catch
+                    else
                     {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                     }
+                }
+                catch
+                {
+                }
             }
             catch
             {
@@ -551,7 +572,7 @@ namespace UI.SCM.BOM
             {
             }
         }
-        private void CreateXml2(string ProductionId,string OrderQty, string ProductQty, string FProductItem, string FProductItemId, string FProductQty, string FProductType, string FProductTypeId, string UnitId, string Date, string Time,
+        private void CreateXml2(string ProductionId, string OrderQty, string ProductQty, string FProductItem, string FProductItemId, string FProductQty, string FProductType, string FProductTypeId, string UnitId, string Date, string Time,
            string JobNo, string UserId, string totalExtraStore)
         {
             XmlDocument doc = new XmlDocument();
@@ -574,8 +595,8 @@ namespace UI.SCM.BOM
             doc.Save(filePathForXML);
             LoadGridwithXml2();
         }
-        private XmlNode CreateItemNode2(XmlDocument doc,string ProductionId, string OrderQty, string ProductQty, string FProductItem, string FProductItemId, string FProductQty, string FProductType, string FProductTypeId, string UnitId, string Date,
-            string Time, string JobNo,string UserId, string totalExtraStore)
+        private XmlNode CreateItemNode2(XmlDocument doc, string ProductionId, string OrderQty, string ProductQty, string FProductItem, string FProductItemId, string FProductQty, string FProductType, string FProductTypeId, string UnitId, string Date,
+            string Time, string JobNo, string UserId, string totalExtraStore)
         {
             XmlNode node = doc.CreateElement("productionEntry");
 
@@ -670,6 +691,6 @@ namespace UI.SCM.BOM
             txtJob.Text = string.Empty;
         }
         #endregion
-        
+
     }
 }

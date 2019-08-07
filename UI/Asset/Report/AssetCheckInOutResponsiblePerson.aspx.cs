@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using UI.ClassFiles;
 
 namespace UI.Asset.Report
 {
-    public partial class AssetCheckInOutResponsiblePerson : System.Web.UI.Page
+    public partial class AssetCheckInOutResponsiblePerson : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

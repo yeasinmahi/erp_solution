@@ -2,15 +2,16 @@
 <xs:schema id="BankVoucherPrintTDS" targetNamespace="http://tempuri.org/BankVoucherPrintTDS.xsd" xmlns:mstns="http://tempuri.org/BankVoucherPrintTDS.xsd" xmlns="http://tempuri.org/BankVoucherPrintTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERPConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERPConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DAL.Properties.Settings.GlobalReference.Default.ERPConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_AccountsConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_AccountsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DAL.Properties.Settings.GlobalReference.Default.ERP_AccountsConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_PaymentConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_PaymentConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DAL.Properties.Settings.GlobalReference.Default.ERP_PaymentConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprAccountsVoucherBankGetPrintChequeDataTableAdapter" GeneratorDataComponentClassName="SprAccountsVoucherBankGetPrintChequeDataTableAdapter" Name="SprAccountsVoucherBankGetPrintChequeData" UserDataComponentName="SprAccountsVoucherBankGetPrintChequeDataTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprAccountsVoucherBankGetPrintChequeData" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprAccountsVoucherBankGetPrintChequeData" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprAccountsVoucherBankGetPrintChequeData</CommandText>
@@ -41,7 +42,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprAccountsVoucherBankGetPrintVoucherDataTableAdapter" GeneratorDataComponentClassName="SprAccountsVoucherBankGetPrintVoucherDataTableAdapter" Name="SprAccountsVoucherBankGetPrintVoucherData" UserDataComponentName="SprAccountsVoucherBankGetPrintVoucherDataTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprAccountsVoucherBankGetPrintVoucherData" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprAccountsVoucherBankGetPrintVoucherData" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprAccountsVoucherBankGetPrintVoucherData</CommandText>
@@ -78,7 +79,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprAccountsVoucherBankGetPrintMRDataTableAdapter" GeneratorDataComponentClassName="SprAccountsVoucherBankGetPrintMRDataTableAdapter" Name="SprAccountsVoucherBankGetPrintMRData" UserDataComponentName="SprAccountsVoucherBankGetPrintMRDataTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprAccountsVoucherBankGetPrintMRData" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprAccountsVoucherBankGetPrintMRData" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprAccountsVoucherBankGetPrintMRData</CommandText>
@@ -119,7 +120,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprAccountsVoucherBankChequeRegisterPrintedTableAdapter" GeneratorDataComponentClassName="SprAccountsVoucherBankChequeRegisterPrintedTableAdapter" Name="SprAccountsVoucherBankChequeRegisterPrinted" UserDataComponentName="SprAccountsVoucherBankChequeRegisterPrintedTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprAccountsVoucherBankChequeRegisterPrinted" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprAccountsVoucherBankChequeRegisterPrinted" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprAccountsVoucherBankChequeRegisterPrinted</CommandText>
@@ -137,7 +138,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprAccountsVoucherBankGetPrintChequeRegisterTableAdapter" GeneratorDataComponentClassName="SprAccountsVoucherBankGetPrintChequeRegisterTableAdapter" Name="SprAccountsVoucherBankGetPrintChequeRegister" UserDataComponentName="SprAccountsVoucherBankGetPrintChequeRegisterTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprAccountsVoucherBankGetPrintChequeRegister" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_AccountsConnectionString (Settings)" DbObjectName="ERP_Accounts.dbo.sprAccountsVoucherBankGetPrintChequeRegister" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprAccountsVoucherBankGetPrintChequeRegister</CommandText>
@@ -168,70 +169,123 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblVoucherEntryReportTableAdapter" GeneratorDataComponentClassName="tblVoucherEntryReportTableAdapter" Name="tblVoucherEntryReport" UserDataComponentName="tblVoucherEntryReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.tblVoucherEntryReport" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="InsertVoucherData" GetMethodModifier="Public" GetMethodName="InsertVoucherData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="InsertVoucherData" UserSourceName="InsertVoucherData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO tblVoucherEntryReport
+                         (voucherID, voucherDate, strForBarCode, strCode, strAccName, strNarration, Amount, bankName, accountNumber, ChequeNumber, ChequeDate, voucherNumber, voucherNarration, totalAmount, unitName, unitAddress, 
+                         securityCode, vDate, unitID, chequeString, totalAmountInWord)
+VALUES        (@voucherID,@voucherDate,@strForBarCode,@strCode,@strAccName,@strNarration,@Amount,@bankName,@accountNumber,@ChequeNumber,@ChequeDate,@voucherNumber,@voucherNarration,@totalAmount,@unitName,@unitAddress,@securityCode,@vDate,@unitID,@chequeString,@totalAmountInWord)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="voucherID" ColumnName="voucherID" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@voucherID" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="voucherID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="voucherDate" ColumnName="voucherDate" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@voucherDate" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="voucherDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strForBarCode" ColumnName="strForBarCode" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@strForBarCode" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="strForBarCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strCode" ColumnName="strCode" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@strCode" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="strCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strAccName" ColumnName="strAccName" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@strAccName" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="strAccName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strNarration" ColumnName="strNarration" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@strNarration" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="strNarration" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Amount" ColumnName="Amount" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="numeric(18, 2)" DbType="Decimal" Direction="Input" ParameterName="@Amount" Precision="18" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="Amount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="bankName" ColumnName="bankName" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@bankName" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="bankName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="accountNumber" ColumnName="accountNumber" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@accountNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="accountNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ChequeNumber" ColumnName="ChequeNumber" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@ChequeNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="ChequeNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="ChequeDate" ColumnName="ChequeDate" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@ChequeDate" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="ChequeDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="voucherNumber" ColumnName="voucherNumber" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@voucherNumber" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="voucherNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="voucherNarration" ColumnName="voucherNarration" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(MAX)" DbType="AnsiString" Direction="Input" ParameterName="@voucherNarration" Precision="0" ProviderType="VarChar" Scale="0" Size="2147483647" SourceColumn="voucherNarration" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="totalAmount" ColumnName="totalAmount" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="numeric(18, 2)" DbType="Decimal" Direction="Input" ParameterName="@totalAmount" Precision="18" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="totalAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="unitName" ColumnName="unitName" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@unitName" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="unitName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="unitAddress" ColumnName="unitAddress" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@unitAddress" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="unitAddress" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="securityCode" ColumnName="securityCode" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@securityCode" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="securityCode" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="vDate" ColumnName="vDate" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@vDate" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="vDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="unitID" ColumnName="unitID" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@unitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="unitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="chequeString" ColumnName="chequeString" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@chequeString" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="chequeString" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="totalAmountInWord" ColumnName="totalAmountInWord" DataSourceName="ERP_Payment.dbo.tblVoucherEntryReport" DataTypeServer="varchar(100)" DbType="AnsiString" Direction="Input" ParameterName="@totalAmountInWord" Precision="0" ProviderType="VarChar" Scale="0" Size="100" SourceColumn="totalAmountInWord" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VoucherEntryReportTableAdapter" GeneratorDataComponentClassName="VoucherEntryReportTableAdapter" Name="VoucherEntryReport" UserDataComponentName="VoucherEntryReportTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="DeleteVoucher" GetMethodModifier="Public" GetMethodName="DeleteVoucher" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="DeleteVoucher" UserSourceName="DeleteVoucher">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Delete FROM [ERP_Payment].[dbo].[tblVoucherEntryReport]</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="BankVoucherPrintTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="BankVoucherPrintTDS" msprop:Generator_DataSetName="BankVoucherPrintTDS" msprop:EnableTableAdapterManager="true">
+  <xs:element name="BankVoucherPrintTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="BankVoucherPrintTDS" msprop:Generator_UserDSName="BankVoucherPrintTDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SprAccountsVoucherBankGetPrintChequeData" msprop:Generator_UserTableName="SprAccountsVoucherBankGetPrintChequeData" msprop:Generator_RowDeletedName="SprAccountsVoucherBankGetPrintChequeDataRowDeleted" msprop:Generator_RowChangedName="SprAccountsVoucherBankGetPrintChequeDataRowChanged" msprop:Generator_RowClassName="SprAccountsVoucherBankGetPrintChequeDataRow" msprop:Generator_RowChangingName="SprAccountsVoucherBankGetPrintChequeDataRowChanging" msprop:Generator_RowEvArgName="SprAccountsVoucherBankGetPrintChequeDataRowChangeEvent" msprop:Generator_RowEvHandlerName="SprAccountsVoucherBankGetPrintChequeDataRowChangeEventHandler" msprop:Generator_TableClassName="SprAccountsVoucherBankGetPrintChequeDataDataTable" msprop:Generator_TableVarName="tableSprAccountsVoucherBankGetPrintChequeData" msprop:Generator_RowDeletingName="SprAccountsVoucherBankGetPrintChequeDataRowDeleting" msprop:Generator_TablePropName="SprAccountsVoucherBankGetPrintChequeData">
+        <xs:element name="SprAccountsVoucherBankGetPrintChequeData" msprop:Generator_UserTableName="SprAccountsVoucherBankGetPrintChequeData" msprop:Generator_RowEvArgName="SprAccountsVoucherBankGetPrintChequeDataRowChangeEvent" msprop:Generator_TableVarName="tableSprAccountsVoucherBankGetPrintChequeData" msprop:Generator_TablePropName="SprAccountsVoucherBankGetPrintChequeData" msprop:Generator_RowDeletingName="SprAccountsVoucherBankGetPrintChequeDataRowDeleting" msprop:Generator_RowChangingName="SprAccountsVoucherBankGetPrintChequeDataRowChanging" msprop:Generator_RowDeletedName="SprAccountsVoucherBankGetPrintChequeDataRowDeleted" msprop:Generator_RowEvHandlerName="SprAccountsVoucherBankGetPrintChequeDataRowChangeEventHandler" msprop:Generator_TableClassName="SprAccountsVoucherBankGetPrintChequeDataDataTable" msprop:Generator_RowChangedName="SprAccountsVoucherBankGetPrintChequeDataRowChanged" msprop:Generator_RowClassName="SprAccountsVoucherBankGetPrintChequeDataRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intBankID" msdata:ReadOnly="true" msprop:Generator_UserColumnName="intBankID" msprop:Generator_ColumnVarNameInTable="columnintBankID" msprop:Generator_ColumnPropNameInRow="intBankID" msprop:Generator_ColumnPropNameInTable="intBankIDColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="strBankName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strBankName" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" minOccurs="0">
+              <xs:element name="intBankID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintBankID" msprop:Generator_ColumnPropNameInRow="intBankID" msprop:Generator_ColumnPropNameInTable="intBankIDColumn" msprop:Generator_UserColumnName="intBankID" type="xs:int" minOccurs="0" />
+              <xs:element name="strBankName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" msprop:Generator_UserColumnName="strBankName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strAccountNo" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strAccountNo" msprop:Generator_ColumnVarNameInTable="columnstrAccountNo" msprop:Generator_ColumnPropNameInRow="strAccountNo" msprop:Generator_ColumnPropNameInTable="strAccountNoColumn" minOccurs="0">
+              <xs:element name="strAccountNo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrAccountNo" msprop:Generator_ColumnPropNameInRow="strAccountNo" msprop:Generator_ColumnPropNameInTable="strAccountNoColumn" msprop:Generator_UserColumnName="strAccountNo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="dteChequeDate" msdata:ReadOnly="true" msprop:Generator_UserColumnName="dteChequeDate" msprop:Generator_ColumnVarNameInTable="columndteChequeDate" msprop:Generator_ColumnPropNameInRow="dteChequeDate" msprop:Generator_ColumnPropNameInTable="dteChequeDateColumn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="strChequeNo" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strChequeNo" msprop:Generator_ColumnVarNameInTable="columnstrChequeNo" msprop:Generator_ColumnPropNameInRow="strChequeNo" msprop:Generator_ColumnPropNameInTable="strChequeNoColumn" minOccurs="0">
+              <xs:element name="dteChequeDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndteChequeDate" msprop:Generator_ColumnPropNameInRow="dteChequeDate" msprop:Generator_ColumnPropNameInTable="dteChequeDateColumn" msprop:Generator_UserColumnName="dteChequeDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strChequeNo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrChequeNo" msprop:Generator_ColumnPropNameInRow="strChequeNo" msprop:Generator_ColumnPropNameInTable="strChequeNoColumn" msprop:Generator_UserColumnName="strChequeNo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="monAmount" msdata:ReadOnly="true" msprop:Generator_UserColumnName="monAmount" msprop:Generator_ColumnVarNameInTable="columnmonAmount" msprop:Generator_ColumnPropNameInRow="monAmount" msprop:Generator_ColumnPropNameInTable="monAmountColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="strPayTo" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strPayTo" msprop:Generator_ColumnVarNameInTable="columnstrPayTo" msprop:Generator_ColumnPropNameInRow="strPayTo" msprop:Generator_ColumnPropNameInTable="strPayToColumn" minOccurs="0">
+              <xs:element name="monAmount" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmonAmount" msprop:Generator_ColumnPropNameInRow="monAmount" msprop:Generator_ColumnPropNameInTable="monAmountColumn" msprop:Generator_UserColumnName="monAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strPayTo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrPayTo" msprop:Generator_ColumnPropNameInRow="strPayTo" msprop:Generator_ColumnPropNameInTable="strPayToColumn" msprop:Generator_UserColumnName="strPayTo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strUnit" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strUnit" msprop:Generator_ColumnVarNameInTable="columnstrUnit" msprop:Generator_ColumnPropNameInRow="strUnit" msprop:Generator_ColumnPropNameInTable="strUnitColumn" minOccurs="0">
+              <xs:element name="strUnit" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrUnit" msprop:Generator_ColumnPropNameInRow="strUnit" msprop:Generator_ColumnPropNameInTable="strUnitColumn" msprop:Generator_UserColumnName="strUnit" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strUnitAddress" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strUnitAddress" msprop:Generator_ColumnVarNameInTable="columnstrUnitAddress" msprop:Generator_ColumnPropNameInRow="strUnitAddress" msprop:Generator_ColumnPropNameInTable="strUnitAddressColumn" minOccurs="0">
+              <xs:element name="strUnitAddress" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrUnitAddress" msprop:Generator_ColumnPropNameInRow="strUnitAddress" msprop:Generator_ColumnPropNameInTable="strUnitAddressColumn" msprop:Generator_UserColumnName="strUnitAddress" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="300" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strSecurityCode" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strSecurityCode" msprop:Generator_ColumnVarNameInTable="columnstrSecurityCode" msprop:Generator_ColumnPropNameInRow="strSecurityCode" msprop:Generator_ColumnPropNameInTable="strSecurityCodeColumn" minOccurs="0">
+              <xs:element name="strSecurityCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrSecurityCode" msprop:Generator_ColumnPropNameInRow="strSecurityCode" msprop:Generator_ColumnPropNameInTable="strSecurityCodeColumn" msprop:Generator_UserColumnName="strSecurityCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="7" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strCode" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" minOccurs="0">
+              <xs:element name="strCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" msprop:Generator_UserColumnName="strCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
@@ -241,120 +295,120 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprAccountsVoucherBankGetPrintVoucherData" msprop:Generator_UserTableName="SprAccountsVoucherBankGetPrintVoucherData" msprop:Generator_RowDeletedName="SprAccountsVoucherBankGetPrintVoucherDataRowDeleted" msprop:Generator_RowChangedName="SprAccountsVoucherBankGetPrintVoucherDataRowChanged" msprop:Generator_RowClassName="SprAccountsVoucherBankGetPrintVoucherDataRow" msprop:Generator_RowChangingName="SprAccountsVoucherBankGetPrintVoucherDataRowChanging" msprop:Generator_RowEvArgName="SprAccountsVoucherBankGetPrintVoucherDataRowChangeEvent" msprop:Generator_RowEvHandlerName="SprAccountsVoucherBankGetPrintVoucherDataRowChangeEventHandler" msprop:Generator_TableClassName="SprAccountsVoucherBankGetPrintVoucherDataDataTable" msprop:Generator_TableVarName="tableSprAccountsVoucherBankGetPrintVoucherData" msprop:Generator_RowDeletingName="SprAccountsVoucherBankGetPrintVoucherDataRowDeleting" msprop:Generator_TablePropName="SprAccountsVoucherBankGetPrintVoucherData">
+        <xs:element name="SprAccountsVoucherBankGetPrintVoucherData" msprop:Generator_UserTableName="SprAccountsVoucherBankGetPrintVoucherData" msprop:Generator_RowEvArgName="SprAccountsVoucherBankGetPrintVoucherDataRowChangeEvent" msprop:Generator_TableVarName="tableSprAccountsVoucherBankGetPrintVoucherData" msprop:Generator_TablePropName="SprAccountsVoucherBankGetPrintVoucherData" msprop:Generator_RowDeletingName="SprAccountsVoucherBankGetPrintVoucherDataRowDeleting" msprop:Generator_RowChangingName="SprAccountsVoucherBankGetPrintVoucherDataRowChanging" msprop:Generator_RowDeletedName="SprAccountsVoucherBankGetPrintVoucherDataRowDeleted" msprop:Generator_RowEvHandlerName="SprAccountsVoucherBankGetPrintVoucherDataRowChangeEventHandler" msprop:Generator_TableClassName="SprAccountsVoucherBankGetPrintVoucherDataDataTable" msprop:Generator_RowChangedName="SprAccountsVoucherBankGetPrintVoucherDataRowChanged" msprop:Generator_RowClassName="SprAccountsVoucherBankGetPrintVoucherDataRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="strCode" msprop:Generator_UserColumnName="strCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" minOccurs="0">
+              <xs:element name="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" msprop:Generator_UserColumnName="strCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strAccName" msprop:Generator_UserColumnName="strAccName" msprop:Generator_ColumnPropNameInRow="strAccName" msprop:Generator_ColumnVarNameInTable="columnstrAccName" msprop:Generator_ColumnPropNameInTable="strAccNameColumn" minOccurs="0">
+              <xs:element name="strAccName" msprop:Generator_ColumnVarNameInTable="columnstrAccName" msprop:Generator_ColumnPropNameInRow="strAccName" msprop:Generator_ColumnPropNameInTable="strAccNameColumn" msprop:Generator_UserColumnName="strAccName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strNarration" msprop:Generator_UserColumnName="strNarration" msprop:Generator_ColumnPropNameInRow="strNarration" msprop:Generator_ColumnVarNameInTable="columnstrNarration" msprop:Generator_ColumnPropNameInTable="strNarrationColumn" minOccurs="0">
+              <xs:element name="strNarration" msprop:Generator_ColumnVarNameInTable="columnstrNarration" msprop:Generator_ColumnPropNameInRow="strNarration" msprop:Generator_ColumnPropNameInTable="strNarrationColumn" msprop:Generator_UserColumnName="strNarration" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="5000" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="monAmountSub" msprop:Generator_UserColumnName="monAmountSub" msprop:Generator_ColumnPropNameInRow="monAmountSub" msprop:Generator_ColumnVarNameInTable="columnmonAmountSub" msprop:Generator_ColumnPropNameInTable="monAmountSubColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="monAmountControl" msprop:Generator_UserColumnName="monAmountControl" msprop:Generator_ColumnPropNameInRow="monAmountControl" msprop:Generator_ColumnVarNameInTable="columnmonAmountControl" msprop:Generator_ColumnPropNameInTable="monAmountControlColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monAmountSub" msprop:Generator_ColumnVarNameInTable="columnmonAmountSub" msprop:Generator_ColumnPropNameInRow="monAmountSub" msprop:Generator_ColumnPropNameInTable="monAmountSubColumn" msprop:Generator_UserColumnName="monAmountSub" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monAmountControl" msprop:Generator_ColumnVarNameInTable="columnmonAmountControl" msprop:Generator_ColumnPropNameInRow="monAmountControl" msprop:Generator_ColumnPropNameInTable="monAmountControlColumn" msprop:Generator_UserColumnName="monAmountControl" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprAccountsVoucherBankGetPrintMRData" msprop:Generator_UserTableName="SprAccountsVoucherBankGetPrintMRData" msprop:Generator_RowDeletedName="SprAccountsVoucherBankGetPrintMRDataRowDeleted" msprop:Generator_RowChangedName="SprAccountsVoucherBankGetPrintMRDataRowChanged" msprop:Generator_RowClassName="SprAccountsVoucherBankGetPrintMRDataRow" msprop:Generator_RowChangingName="SprAccountsVoucherBankGetPrintMRDataRowChanging" msprop:Generator_RowEvArgName="SprAccountsVoucherBankGetPrintMRDataRowChangeEvent" msprop:Generator_RowEvHandlerName="SprAccountsVoucherBankGetPrintMRDataRowChangeEventHandler" msprop:Generator_TableClassName="SprAccountsVoucherBankGetPrintMRDataDataTable" msprop:Generator_TableVarName="tableSprAccountsVoucherBankGetPrintMRData" msprop:Generator_RowDeletingName="SprAccountsVoucherBankGetPrintMRDataRowDeleting" msprop:Generator_TablePropName="SprAccountsVoucherBankGetPrintMRData">
+        <xs:element name="SprAccountsVoucherBankGetPrintMRData" msprop:Generator_UserTableName="SprAccountsVoucherBankGetPrintMRData" msprop:Generator_RowEvArgName="SprAccountsVoucherBankGetPrintMRDataRowChangeEvent" msprop:Generator_TableVarName="tableSprAccountsVoucherBankGetPrintMRData" msprop:Generator_TablePropName="SprAccountsVoucherBankGetPrintMRData" msprop:Generator_RowDeletingName="SprAccountsVoucherBankGetPrintMRDataRowDeleting" msprop:Generator_RowChangingName="SprAccountsVoucherBankGetPrintMRDataRowChanging" msprop:Generator_RowDeletedName="SprAccountsVoucherBankGetPrintMRDataRowDeleted" msprop:Generator_RowEvHandlerName="SprAccountsVoucherBankGetPrintMRDataRowChangeEventHandler" msprop:Generator_TableClassName="SprAccountsVoucherBankGetPrintMRDataDataTable" msprop:Generator_RowChangedName="SprAccountsVoucherBankGetPrintMRDataRowChanged" msprop:Generator_RowClassName="SprAccountsVoucherBankGetPrintMRDataRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="strCode" msprop:Generator_UserColumnName="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn">
+              <xs:element name="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" msprop:Generator_UserColumnName="strCode">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strReceiveFrom" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strReceiveFrom" msprop:Generator_ColumnVarNameInTable="columnstrReceiveFrom" msprop:Generator_ColumnPropNameInRow="strReceiveFrom" msprop:Generator_ColumnPropNameInTable="strReceiveFromColumn" minOccurs="0">
+              <xs:element name="strReceiveFrom" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrReceiveFrom" msprop:Generator_ColumnPropNameInRow="strReceiveFrom" msprop:Generator_ColumnPropNameInTable="strReceiveFromColumn" msprop:Generator_UserColumnName="strReceiveFrom" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="monAmount" msdata:ReadOnly="true" msprop:Generator_UserColumnName="monAmount" msprop:Generator_ColumnVarNameInTable="columnmonAmount" msprop:Generator_ColumnPropNameInRow="monAmount" msprop:Generator_ColumnPropNameInTable="monAmountColumn" type="xs:decimal" minOccurs="0" />
-              <xs:element name="ysnCheque" msprop:Generator_UserColumnName="ysnCheque" msprop:Generator_ColumnVarNameInTable="columnysnCheque" msprop:Generator_ColumnPropNameInRow="ysnCheque" msprop:Generator_ColumnPropNameInTable="ysnChequeColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="ysnDemandDraft" msprop:Generator_UserColumnName="ysnDemandDraft" msprop:Generator_ColumnVarNameInTable="columnysnDemandDraft" msprop:Generator_ColumnPropNameInRow="ysnDemandDraft" msprop:Generator_ColumnPropNameInTable="ysnDemandDraftColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="ysnPayOrder" msprop:Generator_UserColumnName="ysnPayOrder" msprop:Generator_ColumnVarNameInTable="columnysnPayOrder" msprop:Generator_ColumnPropNameInRow="ysnPayOrder" msprop:Generator_ColumnPropNameInTable="ysnPayOrderColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="ysnAdjustment" msprop:Generator_UserColumnName="ysnAdjustment" msprop:Generator_ColumnVarNameInTable="columnysnAdjustment" msprop:Generator_ColumnPropNameInRow="ysnAdjustment" msprop:Generator_ColumnPropNameInTable="ysnAdjustmentColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="ysnAdvance" msprop:Generator_UserColumnName="ysnAdvance" msprop:Generator_ColumnVarNameInTable="columnysnAdvance" msprop:Generator_ColumnPropNameInRow="ysnAdvance" msprop:Generator_ColumnPropNameInTable="ysnAdvanceColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="ysnDepositSlip" msprop:Generator_UserColumnName="ysnDepositSlip" msprop:Generator_ColumnVarNameInTable="columnysnDepositSlip" msprop:Generator_ColumnPropNameInRow="ysnDepositSlip" msprop:Generator_ColumnPropNameInTable="ysnDepositSlipColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="ysnOnline" msprop:Generator_UserColumnName="ysnOnline" msprop:Generator_ColumnVarNameInTable="columnysnOnline" msprop:Generator_ColumnPropNameInRow="ysnOnline" msprop:Generator_ColumnPropNameInTable="ysnOnlineColumn" type="xs:boolean" minOccurs="0" />
-              <xs:element name="strNo" msprop:Generator_UserColumnName="strNo" msprop:Generator_ColumnVarNameInTable="columnstrNo" msprop:Generator_ColumnPropNameInRow="strNo" msprop:Generator_ColumnPropNameInTable="strNoColumn" minOccurs="0">
+              <xs:element name="monAmount" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmonAmount" msprop:Generator_ColumnPropNameInRow="monAmount" msprop:Generator_ColumnPropNameInTable="monAmountColumn" msprop:Generator_UserColumnName="monAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ysnCheque" msprop:Generator_ColumnVarNameInTable="columnysnCheque" msprop:Generator_ColumnPropNameInRow="ysnCheque" msprop:Generator_ColumnPropNameInTable="ysnChequeColumn" msprop:Generator_UserColumnName="ysnCheque" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnDemandDraft" msprop:Generator_ColumnVarNameInTable="columnysnDemandDraft" msprop:Generator_ColumnPropNameInRow="ysnDemandDraft" msprop:Generator_ColumnPropNameInTable="ysnDemandDraftColumn" msprop:Generator_UserColumnName="ysnDemandDraft" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnPayOrder" msprop:Generator_ColumnVarNameInTable="columnysnPayOrder" msprop:Generator_ColumnPropNameInRow="ysnPayOrder" msprop:Generator_ColumnPropNameInTable="ysnPayOrderColumn" msprop:Generator_UserColumnName="ysnPayOrder" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnAdjustment" msprop:Generator_ColumnVarNameInTable="columnysnAdjustment" msprop:Generator_ColumnPropNameInRow="ysnAdjustment" msprop:Generator_ColumnPropNameInTable="ysnAdjustmentColumn" msprop:Generator_UserColumnName="ysnAdjustment" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnAdvance" msprop:Generator_ColumnVarNameInTable="columnysnAdvance" msprop:Generator_ColumnPropNameInRow="ysnAdvance" msprop:Generator_ColumnPropNameInTable="ysnAdvanceColumn" msprop:Generator_UserColumnName="ysnAdvance" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnDepositSlip" msprop:Generator_ColumnVarNameInTable="columnysnDepositSlip" msprop:Generator_ColumnPropNameInRow="ysnDepositSlip" msprop:Generator_ColumnPropNameInTable="ysnDepositSlipColumn" msprop:Generator_UserColumnName="ysnDepositSlip" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnOnline" msprop:Generator_ColumnVarNameInTable="columnysnOnline" msprop:Generator_ColumnPropNameInRow="ysnOnline" msprop:Generator_ColumnPropNameInTable="ysnOnlineColumn" msprop:Generator_UserColumnName="ysnOnline" type="xs:boolean" minOccurs="0" />
+              <xs:element name="strNo" msprop:Generator_ColumnVarNameInTable="columnstrNo" msprop:Generator_ColumnPropNameInRow="strNo" msprop:Generator_ColumnPropNameInTable="strNoColumn" msprop:Generator_UserColumnName="strNo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="dteDate" msprop:Generator_UserColumnName="dteDate" msprop:Generator_ColumnVarNameInTable="columndteDate" msprop:Generator_ColumnPropNameInRow="dteDate" msprop:Generator_ColumnPropNameInTable="dteDateColumn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="dteChequeDate" msprop:Generator_UserColumnName="dteChequeDate" msprop:Generator_ColumnVarNameInTable="columndteChequeDate" msprop:Generator_ColumnPropNameInRow="dteChequeDate" msprop:Generator_ColumnPropNameInTable="dteChequeDateColumn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="strBankName" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strBankName" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" minOccurs="0">
+              <xs:element name="dteDate" msprop:Generator_ColumnVarNameInTable="columndteDate" msprop:Generator_ColumnPropNameInRow="dteDate" msprop:Generator_ColumnPropNameInTable="dteDateColumn" msprop:Generator_UserColumnName="dteDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteChequeDate" msprop:Generator_ColumnVarNameInTable="columndteChequeDate" msprop:Generator_ColumnPropNameInRow="dteChequeDate" msprop:Generator_ColumnPropNameInTable="dteChequeDateColumn" msprop:Generator_UserColumnName="dteChequeDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="strBankName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrBankName" msprop:Generator_ColumnPropNameInRow="strBankName" msprop:Generator_ColumnPropNameInTable="strBankNameColumn" msprop:Generator_UserColumnName="strBankName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strAccNo" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strAccNo" msprop:Generator_ColumnVarNameInTable="columnstrAccNo" msprop:Generator_ColumnPropNameInRow="strAccNo" msprop:Generator_ColumnPropNameInTable="strAccNoColumn" minOccurs="0">
+              <xs:element name="strAccNo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrAccNo" msprop:Generator_ColumnPropNameInRow="strAccNo" msprop:Generator_ColumnPropNameInTable="strAccNoColumn" msprop:Generator_UserColumnName="strAccNo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strUnit" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strUnit" msprop:Generator_ColumnVarNameInTable="columnstrUnit" msprop:Generator_ColumnPropNameInRow="strUnit" msprop:Generator_ColumnPropNameInTable="strUnitColumn" minOccurs="0">
+              <xs:element name="strUnit" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrUnit" msprop:Generator_ColumnPropNameInRow="strUnit" msprop:Generator_ColumnPropNameInTable="strUnitColumn" msprop:Generator_UserColumnName="strUnit" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strUnitAddress" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strUnitAddress" msprop:Generator_ColumnVarNameInTable="columnstrUnitAddress" msprop:Generator_ColumnPropNameInRow="strUnitAddress" msprop:Generator_ColumnPropNameInTable="strUnitAddressColumn" minOccurs="0">
+              <xs:element name="strUnitAddress" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrUnitAddress" msprop:Generator_ColumnPropNameInRow="strUnitAddress" msprop:Generator_ColumnPropNameInTable="strUnitAddressColumn" msprop:Generator_UserColumnName="strUnitAddress" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strSecurityCode" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strSecurityCode" msprop:Generator_ColumnVarNameInTable="columnstrSecurityCode" msprop:Generator_ColumnPropNameInRow="strSecurityCode" msprop:Generator_ColumnPropNameInTable="strSecurityCodeColumn" minOccurs="0">
+              <xs:element name="strSecurityCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrSecurityCode" msprop:Generator_ColumnPropNameInRow="strSecurityCode" msprop:Generator_ColumnPropNameInTable="strSecurityCodeColumn" msprop:Generator_UserColumnName="strSecurityCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="7" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strNarration" msprop:Generator_UserColumnName="strNarration" msprop:Generator_ColumnVarNameInTable="columnstrNarration" msprop:Generator_ColumnPropNameInRow="strNarration" msprop:Generator_ColumnPropNameInTable="strNarrationColumn" minOccurs="0">
+              <xs:element name="strNarration" msprop:Generator_ColumnVarNameInTable="columnstrNarration" msprop:Generator_ColumnPropNameInRow="strNarration" msprop:Generator_ColumnPropNameInTable="strNarrationColumn" msprop:Generator_UserColumnName="strNarration" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="intUnitID" msprop:Generator_UserColumnName="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" type="xs:int" />
-              <xs:element name="strDepositorBank" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strDepositorBank" msprop:Generator_ColumnVarNameInTable="columnstrDepositorBank" msprop:Generator_ColumnPropNameInRow="strDepositorBank" msprop:Generator_ColumnPropNameInTable="strDepositorBankColumn" minOccurs="0">
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
+              <xs:element name="strDepositorBank" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrDepositorBank" msprop:Generator_ColumnPropNameInRow="strDepositorBank" msprop:Generator_ColumnPropNameInTable="strDepositorBankColumn" msprop:Generator_UserColumnName="strDepositorBank" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strDepositorBranch" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strDepositorBranch" msprop:Generator_ColumnVarNameInTable="columnstrDepositorBranch" msprop:Generator_ColumnPropNameInRow="strDepositorBranch" msprop:Generator_ColumnPropNameInTable="strDepositorBranchColumn" minOccurs="0">
+              <xs:element name="strDepositorBranch" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrDepositorBranch" msprop:Generator_ColumnPropNameInRow="strDepositorBranch" msprop:Generator_ColumnPropNameInTable="strDepositorBranchColumn" msprop:Generator_UserColumnName="strDepositorBranch" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
@@ -364,51 +418,59 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprAccountsVoucherBankChequeRegisterPrinted" msprop:Generator_UserTableName="SprAccountsVoucherBankChequeRegisterPrinted" msprop:Generator_RowDeletedName="SprAccountsVoucherBankChequeRegisterPrintedRowDeleted" msprop:Generator_RowChangedName="SprAccountsVoucherBankChequeRegisterPrintedRowChanged" msprop:Generator_RowClassName="SprAccountsVoucherBankChequeRegisterPrintedRow" msprop:Generator_RowChangingName="SprAccountsVoucherBankChequeRegisterPrintedRowChanging" msprop:Generator_RowEvArgName="SprAccountsVoucherBankChequeRegisterPrintedRowChangeEvent" msprop:Generator_RowEvHandlerName="SprAccountsVoucherBankChequeRegisterPrintedRowChangeEventHandler" msprop:Generator_TableClassName="SprAccountsVoucherBankChequeRegisterPrintedDataTable" msprop:Generator_TableVarName="tableSprAccountsVoucherBankChequeRegisterPrinted" msprop:Generator_RowDeletingName="SprAccountsVoucherBankChequeRegisterPrintedRowDeleting" msprop:Generator_TablePropName="SprAccountsVoucherBankChequeRegisterPrinted">
+        <xs:element name="SprAccountsVoucherBankChequeRegisterPrinted" msprop:Generator_UserTableName="SprAccountsVoucherBankChequeRegisterPrinted" msprop:Generator_RowEvArgName="SprAccountsVoucherBankChequeRegisterPrintedRowChangeEvent" msprop:Generator_TableVarName="tableSprAccountsVoucherBankChequeRegisterPrinted" msprop:Generator_TablePropName="SprAccountsVoucherBankChequeRegisterPrinted" msprop:Generator_RowDeletingName="SprAccountsVoucherBankChequeRegisterPrintedRowDeleting" msprop:Generator_RowChangingName="SprAccountsVoucherBankChequeRegisterPrintedRowChanging" msprop:Generator_RowDeletedName="SprAccountsVoucherBankChequeRegisterPrintedRowDeleted" msprop:Generator_RowEvHandlerName="SprAccountsVoucherBankChequeRegisterPrintedRowChangeEventHandler" msprop:Generator_TableClassName="SprAccountsVoucherBankChequeRegisterPrintedDataTable" msprop:Generator_RowChangedName="SprAccountsVoucherBankChequeRegisterPrintedRowChanged" msprop:Generator_RowClassName="SprAccountsVoucherBankChequeRegisterPrintedRow">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprAccountsVoucherBankGetPrintChequeRegister" msprop:Generator_UserTableName="SprAccountsVoucherBankGetPrintChequeRegister" msprop:Generator_RowDeletedName="SprAccountsVoucherBankGetPrintChequeRegisterRowDeleted" msprop:Generator_RowChangedName="SprAccountsVoucherBankGetPrintChequeRegisterRowChanged" msprop:Generator_RowClassName="SprAccountsVoucherBankGetPrintChequeRegisterRow" msprop:Generator_RowChangingName="SprAccountsVoucherBankGetPrintChequeRegisterRowChanging" msprop:Generator_RowEvArgName="SprAccountsVoucherBankGetPrintChequeRegisterRowChangeEvent" msprop:Generator_RowEvHandlerName="SprAccountsVoucherBankGetPrintChequeRegisterRowChangeEventHandler" msprop:Generator_TableClassName="SprAccountsVoucherBankGetPrintChequeRegisterDataTable" msprop:Generator_TableVarName="tableSprAccountsVoucherBankGetPrintChequeRegister" msprop:Generator_RowDeletingName="SprAccountsVoucherBankGetPrintChequeRegisterRowDeleting" msprop:Generator_TablePropName="SprAccountsVoucherBankGetPrintChequeRegister">
+        <xs:element name="SprAccountsVoucherBankGetPrintChequeRegister" msprop:Generator_UserTableName="SprAccountsVoucherBankGetPrintChequeRegister" msprop:Generator_RowEvArgName="SprAccountsVoucherBankGetPrintChequeRegisterRowChangeEvent" msprop:Generator_TableVarName="tableSprAccountsVoucherBankGetPrintChequeRegister" msprop:Generator_TablePropName="SprAccountsVoucherBankGetPrintChequeRegister" msprop:Generator_RowDeletingName="SprAccountsVoucherBankGetPrintChequeRegisterRowDeleting" msprop:Generator_RowChangingName="SprAccountsVoucherBankGetPrintChequeRegisterRowChanging" msprop:Generator_RowDeletedName="SprAccountsVoucherBankGetPrintChequeRegisterRowDeleted" msprop:Generator_RowEvHandlerName="SprAccountsVoucherBankGetPrintChequeRegisterRowChangeEventHandler" msprop:Generator_TableClassName="SprAccountsVoucherBankGetPrintChequeRegisterDataTable" msprop:Generator_RowChangedName="SprAccountsVoucherBankGetPrintChequeRegisterRowChanged" msprop:Generator_RowClassName="SprAccountsVoucherBankGetPrintChequeRegisterRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intVoucherId" msdata:ReadOnly="true" msprop:Generator_UserColumnName="intVoucherId" msprop:Generator_ColumnVarNameInTable="columnintVoucherId" msprop:Generator_ColumnPropNameInRow="intVoucherId" msprop:Generator_ColumnPropNameInTable="intVoucherIdColumn" type="xs:long" minOccurs="0" />
-              <xs:element name="strCode" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" minOccurs="0">
+              <xs:element name="intVoucherId" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintVoucherId" msprop:Generator_ColumnPropNameInRow="intVoucherId" msprop:Generator_ColumnPropNameInTable="intVoucherIdColumn" msprop:Generator_UserColumnName="intVoucherId" type="xs:long" minOccurs="0" />
+              <xs:element name="strCode" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" msprop:Generator_UserColumnName="strCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="dteVoucherDate" msdata:ReadOnly="true" msprop:Generator_UserColumnName="dteVoucherDate" msprop:Generator_ColumnVarNameInTable="columndteVoucherDate" msprop:Generator_ColumnPropNameInRow="dteVoucherDate" msprop:Generator_ColumnPropNameInTable="dteVoucherDateColumn" minOccurs="0">
+              <xs:element name="dteVoucherDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndteVoucherDate" msprop:Generator_ColumnPropNameInRow="dteVoucherDate" msprop:Generator_ColumnPropNameInTable="dteVoucherDateColumn" msprop:Generator_UserColumnName="dteVoucherDate" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="dteChequeDate" msdata:ReadOnly="true" msprop:Generator_UserColumnName="dteChequeDate" msprop:Generator_ColumnVarNameInTable="columndteChequeDate" msprop:Generator_ColumnPropNameInRow="dteChequeDate" msprop:Generator_ColumnPropNameInTable="dteChequeDateColumn" minOccurs="0">
+              <xs:element name="dteChequeDate" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columndteChequeDate" msprop:Generator_ColumnPropNameInRow="dteChequeDate" msprop:Generator_ColumnPropNameInTable="dteChequeDateColumn" msprop:Generator_UserColumnName="dteChequeDate" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strChequeNo" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strChequeNo" msprop:Generator_ColumnVarNameInTable="columnstrChequeNo" msprop:Generator_ColumnPropNameInRow="strChequeNo" msprop:Generator_ColumnPropNameInTable="strChequeNoColumn" minOccurs="0">
+              <xs:element name="strChequeNo" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrChequeNo" msprop:Generator_ColumnPropNameInRow="strChequeNo" msprop:Generator_ColumnPropNameInTable="strChequeNoColumn" msprop:Generator_UserColumnName="strChequeNo" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="strPayToPrint" msdata:ReadOnly="true" msprop:Generator_UserColumnName="strPayToPrint" msprop:Generator_ColumnVarNameInTable="columnstrPayToPrint" msprop:Generator_ColumnPropNameInRow="strPayToPrint" msprop:Generator_ColumnPropNameInTable="strPayToPrintColumn" minOccurs="0">
+              <xs:element name="strPayToPrint" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrPayToPrint" msprop:Generator_ColumnPropNameInRow="strPayToPrint" msprop:Generator_ColumnPropNameInTable="strPayToPrintColumn" msprop:Generator_UserColumnName="strPayToPrint" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="monAmount" msdata:ReadOnly="true" msprop:Generator_UserColumnName="monAmount" msprop:Generator_ColumnVarNameInTable="columnmonAmount" msprop:Generator_ColumnPropNameInRow="monAmount" msprop:Generator_ColumnPropNameInTable="monAmountColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monAmount" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnmonAmount" msprop:Generator_ColumnPropNameInRow="monAmount" msprop:Generator_ColumnPropNameInTable="monAmountColumn" msprop:Generator_UserColumnName="monAmount" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblVoucherEntryReport" msprop:Generator_TableClassName="tblVoucherEntryReportDataTable" msprop:Generator_TableVarName="tabletblVoucherEntryReport" msprop:Generator_TablePropName="tblVoucherEntryReport" msprop:Generator_RowDeletingName="tblVoucherEntryReportRowDeleting" msprop:Generator_RowChangingName="tblVoucherEntryReportRowChanging" msprop:Generator_RowEvHandlerName="tblVoucherEntryReportRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVoucherEntryReportRowDeleted" msprop:Generator_UserTableName="tblVoucherEntryReport" msprop:Generator_RowChangedName="tblVoucherEntryReportRowChanged" msprop:Generator_RowEvArgName="tblVoucherEntryReportRowChangeEvent" msprop:Generator_RowClassName="tblVoucherEntryReportRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="VoucherEntryReport" msprop:Generator_TableClassName="VoucherEntryReportDataTable" msprop:Generator_TableVarName="tableVoucherEntryReport" msprop:Generator_TablePropName="VoucherEntryReport" msprop:Generator_RowDeletingName="VoucherEntryReportRowDeleting" msprop:Generator_RowChangingName="VoucherEntryReportRowChanging" msprop:Generator_RowEvHandlerName="VoucherEntryReportRowChangeEventHandler" msprop:Generator_RowDeletedName="VoucherEntryReportRowDeleted" msprop:Generator_UserTableName="VoucherEntryReport" msprop:Generator_RowChangedName="VoucherEntryReportRowChanged" msprop:Generator_RowEvArgName="VoucherEntryReportRowChangeEvent" msprop:Generator_RowClassName="VoucherEntryReportRow">
+          <xs:complexType>
           </xs:complexType>
         </xs:element>
       </xs:choice>
