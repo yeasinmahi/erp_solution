@@ -64,7 +64,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblPlotNo" runat="server" CssClass="lbl" Text="Plot No : "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtPlotNo" CssClass="txtBox1" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtPlotNo" CssClass="txtBox1" runat="server" AutoComplete="off"></asp:TextBox>
                                 <asp:HiddenField runat="server" ID="hfPlotID" />
                             </td>
                             <td style="text-align: right; width: 15px;">
@@ -73,7 +73,7 @@
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Plot Area : "></asp:Label>
                             </td>
                             <td>
-                                 <asp:TextBox ID="txtPlotArea" CssClass="txtBox1" runat="server"></asp:TextBox>
+                                 <asp:TextBox ID="txtPlotArea" CssClass="txtBox1" runat="server" AutoComplete="off"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>

@@ -140,7 +140,7 @@
                                 <td class="td-lbl2">
                                     <span style="color:red">*</span><asp:Label ID="Label2" CssClass="lbl-txt" runat="server" Text="Deed No :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtDeedNo" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtDeedNo" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -154,7 +154,7 @@
                                 <td class="td-lbl2">
                                     <span style="color:red">*</span><asp:Label ID="Label4" CssClass="lbl-txt" runat="server" Text="Deed Date :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtDeedDate" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtDeedDate" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                     <cc1:CalendarExtender runat="server" ID="CalendarExtender1" TargetControlID="txtDeedDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                 </td>
                             </tr>
@@ -169,7 +169,7 @@
                                 <td class="td-lbl2">
                                     <span style="color:red">*</span><asp:Label ID="Label6" CssClass="lbl-txt" runat="server" Text="Seller Name :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtSellerName" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtSellerName" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -183,7 +183,7 @@
                                 <td class="td-lbl2">
                                     <span style="color:red">*</span><asp:Label ID="Label8" CssClass="lbl-txt" runat="server" Text="Purchase Land :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtPurchaseLand" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtPurchaseLand" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -208,13 +208,13 @@
                                     <span style="color:red">*</span><asp:Label ID="Label11" runat="server" CssClass="lbl-txt" Text="Deed Value :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox runat="server" ID="txtDeedValue" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtDeedValue" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
 
                                 </td>
                                 <td class="td-lbl2">
                                     <asp:Label ID="Label12" CssClass="lbl-txt" runat="server" Text="AIT :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtAIT" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtAIT" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -222,7 +222,7 @@
                                     <asp:Label ID="Label13" runat="server" CssClass="lbl-txt" Text="VAT :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtVat" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtVat" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                                 <td class="td-lbl2">
                                     <asp:Label ID="Label14" CssClass="lbl-txt" runat="server" Text="Mutation Fee :"></asp:Label></td>
@@ -235,12 +235,12 @@
                                     <asp:Label ID="Label15" runat="server" CssClass="lbl-txt" Text="Extended Value :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtExtendedValue" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtExtendedValue" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                                 <td class="td-lbl2">
                                     <asp:Label ID="Label16" CssClass="lbl-txt" runat="server" Text="Other Cost :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtOtherCost" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtOtherCost" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -248,7 +248,7 @@
                                     <asp:Label ID="Label17" runat="server" CssClass="lbl-txt" Text="Broker :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtBroker" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtBroker" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                                 <td class="td-lbl2">
                                     <asp:Label ID="Label18" CssClass="lbl-txt" runat="server" Text="Other Cost Remarks :"></asp:Label></td>
@@ -276,13 +276,13 @@
                                     <asp:Label ID="Label20" runat="server" CssClass="lbl-txt" Text="North :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox runat="server" ID="txtNorth" CssClass="txt-field">
+                                    <asp:TextBox runat="server" ID="txtNorth" CssClass="txt-field" AutoComplete="off">
                                     </asp:TextBox>
                                 </td>
                                 <td class="td-lbl2">
                                     <asp:Label ID="Label21" CssClass="lbl-txt" runat="server" Text="South :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtSouth" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtSouth" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -290,12 +290,12 @@
                                     <asp:Label ID="Label22" runat="server" CssClass="lbl-txt" Text="East :"></asp:Label>
                                 </td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtEast" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtEast" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                                 <td class="td-lbl2">
                                     <asp:Label ID="Label23" CssClass="lbl-txt" runat="server" Text="West :"></asp:Label></td>
                                 <td class="td-txt-ddl2">
-                                    <asp:TextBox ID="txtWest" runat="server" CssClass="txt-field"></asp:TextBox>
+                                    <asp:TextBox ID="txtWest" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
@@ -309,12 +309,12 @@
                                             <asp:Label ID="Label24" runat="server" CssClass="lbl-txt" Text="Khatian CS :"></asp:Label>
                                         </td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtKhatianCS" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtKhatianCS" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                         <td class="td-lbl2">
                                             <asp:Label ID="Label25" CssClass="lbl-txt" runat="server" Text="Plot CS :"></asp:Label></td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtPlotCS" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtPlotCS" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -322,12 +322,12 @@
                                             <asp:Label ID="Label26" runat="server" CssClass="lbl-txt" Text="Khatian SA :"></asp:Label>
                                         </td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtKhatianSA" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtKhatianSA" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                         <td class="td-lbl2">
                                             <asp:Label ID="Label27" CssClass="lbl-txt" runat="server" Text="Plot SA :"></asp:Label></td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtPlotSA" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtPlotSA" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -335,12 +335,12 @@
                                             <asp:Label ID="Label28" runat="server" CssClass="lbl-txt" Text="Khatian RS :"></asp:Label>
                                         </td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtKhatianRS" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtKhatianRS" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                         <td class="td-lbl2">
                                             <asp:Label ID="Label29" CssClass="lbl-txt" runat="server" Text="Plot RS :"></asp:Label></td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtPlotRS" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtPlotRS" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -348,12 +348,12 @@
                                             <asp:Label ID="Label30" runat="server" CssClass="lbl-txt" Text="Khatian BS :"></asp:Label>
                                         </td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtKhatianBS" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtKhatianBS" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                         <td class="td-lbl2">
                                             <asp:Label ID="Label31" CssClass="lbl-txt" runat="server" Text="Plot BS :"></asp:Label></td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtPlotBS" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtPlotBS" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -361,7 +361,7 @@
                                             <asp:Label ID="Label32" runat="server" CssClass="lbl-txt" Text="Kha.Mutation :"></asp:Label>
                                         </td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtKhatianMutation" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtKhatianMutation" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                         <td class="td-lbl2">
                                             <asp:Label ID="Label33" CssClass="lbl-txt" runat="server" Text="Plot Mutation:"></asp:Label></td>
@@ -383,7 +383,7 @@
                                         <td class="td-lbl2">
                                             <span style="color:red">*</span><asp:Label ID="Label35" CssClass="lbl-txt" runat="server" Text="Plot No :"></asp:Label></td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtPlotNo" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtPlotNo" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
@@ -391,7 +391,7 @@
                                             <span style="color:red">*</span><asp:Label ID="Label36" runat="server" CssClass="lbl-txt" Text="Purchased Plot :"></asp:Label>
                                         </td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtPurchasedPlot" runat="server" CssClass="txt-field" AutoPostBack="true" OnTextChanged="txtPurchasedPlot_TextChanged"></asp:TextBox>
+                                            <asp:TextBox ID="txtPurchasedPlot" runat="server" AutoComplete="off" CssClass="txt-field" AutoPostBack="true" OnTextChanged="txtPurchasedPlot_TextChanged"></asp:TextBox>
                                             <asp:HiddenField runat="server" ID="hfPurshedPlot" />
                                         </td>
                                         <td class="td-lbl2">
@@ -405,12 +405,12 @@
                                             <asp:Label ID="Label38" runat="server" CssClass="lbl-txt" Text="Rem.DeedArea :"></asp:Label>
                                         </td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtRemDeedArea" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtRemDeedArea" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                         <td class="td-lbl2">
                                             <asp:Label ID="Label39" CssClass="lbl-txt" runat="server" Text="Rem.PlotArea :"></asp:Label></td>
                                         <td class="td-txt-ddl2">
-                                            <asp:TextBox ID="txtRemPlotArea" runat="server" CssClass="txt-field"></asp:TextBox>
+                                            <asp:TextBox ID="txtRemPlotArea" runat="server" CssClass="txt-field" AutoComplete="off"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>

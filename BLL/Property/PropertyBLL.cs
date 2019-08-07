@@ -384,13 +384,13 @@ namespace BLL.Property
             return dt;
         }
 
-        public DataTable GetInsertedLandMainData(DateTime FromDate, DateTime ToDate, string DeedNo)
+        public DataTable GetInsertedLandMainData(DateTime FromDate, DateTime ToDate, string DeedNo, int Document)
         {
             DataTable dt = new DataTable();
             try
             {
                 ShowLandInsertedMainDataTableAdapter adapter = new ShowLandInsertedMainDataTableAdapter();
-                dt = adapter.GetLandExistsMainData(FromDate, ToDate, DeedNo);
+                dt = adapter.GetLandExistsMainData(FromDate, ToDate, DeedNo, Document);
             }
             catch (Exception ex)
             {

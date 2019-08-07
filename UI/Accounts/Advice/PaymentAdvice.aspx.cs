@@ -1,4 +1,5 @@
 ﻿using BLL.Accounts.Advice;
+using BLL.Accounts.Voucher;
 using Flogging.Core;
 using GLOBAL_BLL;
 using System;
@@ -27,7 +28,7 @@ namespace UI.Accounts.Advice
         string start = "starting Accounts\\Advice\\PaymentAdvice";
         string stop = "stopping Accounts\\Advice\\PaymentAdvice";
         string accountName, codeNo, bankName, branch, accountType, accountNo, amount, paymentInfo, comments, routingNo, instrumentNo, slNo, debitAccount, insertBy,voucherNo;
-
+        BankVoucher bankBll = new BankVoucher();
         UI.ClassFiles.PrintAdvice printVoucher = new UI.ClassFiles.PrintAdvice();
         string htmlString = "";
 
@@ -286,10 +287,11 @@ namespace UI.Accounts.Advice
 
         private void PrintVoucherData()
         {
-             
 
-            
-            string strCodeForbarCode="",unitID = "";
+            bankBll.DeleteVoucherData();
+
+
+            string strCodeForbarCode="",unitID = "",VoucherID="";
             string voucherType = "Debit Voucher";
             StringBuilder sb = new StringBuilder();
 
@@ -308,19 +310,20 @@ namespace UI.Accounts.Advice
                         {
                              Id = dt.Rows[0]["intBankVoucherID"].ToString();
                         }
-                        string img = "../../Content/Images/img/" + ddlUnit.SelectedValue.ToString() + ".png";
+                        //VoucherID = VoucherID + Id.ToString()+",";
+                        //string img = "../../Content/Images/img/" + ddlUnit.SelectedValue.ToString() + ".png";
 
                         htmlString = printVoucher.PrintBankVoucher(voucherType, Id, userID, ref unitName, ref unitAddress, ref strCodeForbarCode, ref unitID);
-                        sb.Append("<table style=\"width: 100%;\">");
-                        sb.Append("<tr>");
-                        sb.Append("<td  style=\"text-align:left\" class=\"HeaderStyle2\">");
-                        sb.Append("<td><img src='"+ img + "'");
-                        sb.Append("</img>");
-                        sb.Append("</td>");
-                        sb.Append(htmlString);
-                        sb.Append("</td>");
-                        sb.Append("</tr>");
-                        sb.Append("</table>");
+                        //sb.Append("<table style=\"width: 100%;\">");
+                        //sb.Append("<tr>");
+                        //sb.Append("<td  style=\"text-align:left\" class=\"HeaderStyle2\">");
+                        //sb.Append("<td><img src='"+ img + "'");
+                        //sb.Append("</img>");
+                        //sb.Append("</td>");
+                        //sb.Append(htmlString);
+                        //sb.Append("</td>");
+                        //sb.Append("</tr>");
+                        //sb.Append("</table>");
                     }
 
                 }
@@ -388,8 +391,10 @@ namespace UI.Accounts.Advice
                         PoNo = ((Label)row.FindControl("lblPONo")).Text;
                         BillNo = ((Label)row.FindControl("lblBillNo")).Text;
                         poIssuerMail = ((Label)row.FindControl("lblPOIssuerMail")).Text;
-                        
-                        if(!String.IsNullOrEmpty(PartyMail))
+                        dt = new DataTable();
+                        dt = bll.GetUnitAddress(Convert.ToInt32(ddlUnit.SelectedValue));
+                        unitName = dt.Rows[0]["strDescription"].ToString();
+                        if (!String.IsNullOrEmpty(PartyMail))
                         {
                            string pmail = ((Label)row.FindControl("lblMail")).Text;
                             PartyMail = pmail + ";";

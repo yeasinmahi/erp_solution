@@ -75,11 +75,22 @@ namespace UI.Factory.PetBottle
         }
         protected void ddlPBItem_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataTable dtqa = new DataTable();
+            decimal RecvQty = 0;
             try
             {
                 if (ddlPBItem.SelectedValue != "-1")
                 {
-
+                    int POID = Convert.ToInt32(ddlPONumber.SelectedItem.ToString());
+                    int ItemID = Convert.ToInt32(ddlPBItem.SelectedValue);
+                    dtqa = pbrBLL.GetPOQtyAmount(POID, ItemID);
+                    if(dtqa != null && dtqa.Rows.Count > 0)
+                    {
+                        hfAmount.Value = dtqa.Rows[0]["POAmount"].ToString();
+                        txtPOQuantity.Text = dtqa.Rows[0]["POQty"].ToString();
+                    }
+                    RecvQty = pbrBLL.GetPreReceivePOQty(POID, ItemID);
+                    txtpreReceiveQty.Text = RecvQty.ToString();
                 }
             }
             catch (Exception ex)

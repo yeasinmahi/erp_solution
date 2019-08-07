@@ -72,5 +72,26 @@ namespace BLL.PetBottle
 
             return dt;
         }
+        public decimal GetPreReceivePOQty(int POID, int ItemID)
+        {
+            decimal Qty = 0;
+            try
+            {
+                PreReceiveTableAdapter adapter = new PreReceiveTableAdapter();
+               object  _obj = adapter.GetPreReceiveQty(4, POID, ItemID,null, null, null, null, null, null,
+                    null, null, null, null, null, null, null, null, null, null, null, null, null,
+                    null, null, null, null);
+                if(_obj != null)
+                {
+                    Qty = Convert.ToDecimal(_obj.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return Qty;
+        }
     }
 }

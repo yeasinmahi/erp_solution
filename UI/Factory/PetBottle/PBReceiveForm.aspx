@@ -54,6 +54,7 @@
                                         <asp:DropDownList runat="server" ID="ddlPBItem" CssClass="ddl-field" 
                                             AutoPostBack="true" OnSelectedIndexChanged="ddlPBItem_SelectedIndexChanged">
                                         </asp:DropDownList>
+                                        <asp:HiddenField runat="server" ID="hfAmount" />
                                     </td>
                                 </tr>
                                 <tr>

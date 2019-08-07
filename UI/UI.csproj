@@ -341,6 +341,7 @@
     <Content Include="Content\CSS\CommonStyle.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
+    <Content Include="Content\CSS\mainsite.css" />
     <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
@@ -477,12 +478,16 @@
     <Content Include="Document Inventory\DocLocationConfigure.aspx" />
     <Content Include="Document Inventory\FileAndDocLocationCreate.aspx" />
     <Content Include="Factory\PetBottle\PBReceiveForm.aspx" />
+    <Content Include="Factory\PetBottle\PetBottleMRSummary.aspx" />
     <Content Include="Factory\PetBottle\PetBottlePaymentRpt.aspx" />
     <Content Include="Factory\PetBottle\PetBottleSortingSmryRpt.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="HR\Attendance\RealTimeAttendanceReport.aspx" />
     <Content Include="HR\Benifit\BenifitsEntry.aspx" />
+    <Content Include="HR\Benifit\Report\EmpBonusTopSheet.aspx" />
+    <Content Include="HR\Benifit\Report\jquery-ui.min.js" />
+    <Content Include="HR\Benifit\Report\jquery.min.js" />
     <Content Include="HR\Dispatch\DispatchExternalReceive.aspx" />
     <Content Include="HR\Dispatch\DispatchRequest.aspx" />
     <Content Include="HR\Dispatch\rptDispatchApproveReject.aspx" />
@@ -669,6 +674,7 @@
     <Content Include="Property\AGLandTrxGeneral.aspx" />
     <Content Include="Property\AGLandTrxGeneralED.aspx" />
     <Content Include="Property\AGLandTrxGeneralNew.aspx" />
+    <Content Include="Property\AGLandTrxGeneralUpdate.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
@@ -1480,6 +1486,7 @@
     <Content Include="SAD\Sales\NBR_DOEntry.aspx" />
     <Content Include="SAD\Sales\NBR_SalesChallan.aspx" />
     <Content Include="SAD\Sales\Report\AFBLCustTransProdRpt.aspx" />
+    <Content Include="SAD\Sales\Report\AFBLDistrbtrStockRpt.aspx" />
     <Content Include="SAD\Sales\Report\AfblPointStock.aspx" />
     <Content Include="SAD\Sales\Report\AFBLTransitProductStockRpt.aspx" />
     <Content Include="SAD\Sales\Report\All_Shipping_Point_Delivery_Report.aspx" />
@@ -1569,6 +1576,7 @@
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\Sales2.aspx" />
     <Content Include="SAD\Sales\Report\SalesItemPriceMismatch.aspx" />
+    <Content Include="SAD\Sales\Report\SalesVsManPowerAchvment.aspx" />
     <Content Include="SAD\Sales\Report\Sales_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
@@ -1660,6 +1668,8 @@
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionApproval.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
+    <Content Include="SCM\BOM\ProductionOrderApproveNreject.aspx" />
+    <Content Include="SCM\BOM\ProductionOrderNew.aspx" />
     <Content Include="SCM\BOM\ProductionReport.aspx" />
     <Content Include="SCM\BOM\ProfitCenter.aspx" />
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
@@ -3356,6 +3366,13 @@
     <Compile Include="Factory\PetBottle\PBReceiveForm.aspx.designer.cs">
       <DependentUpon>PBReceiveForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Factory\PetBottle\PetBottleMRSummary.aspx.cs">
+      <DependentUpon>PetBottleMRSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Factory\PetBottle\PetBottleMRSummary.aspx.designer.cs">
+      <DependentUpon>PetBottleMRSummary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Factory\PetBottle\PetBottlePaymentRpt.aspx.cs">
       <DependentUpon>PetBottlePaymentRpt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3383,6 +3400,13 @@
     </Compile>
     <Compile Include="HR\Benifit\BenifitsEntry.aspx.designer.cs">
       <DependentUpon>BenifitsEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Benifit\Report\EmpBonusTopSheet.aspx.cs">
+      <DependentUpon>EmpBonusTopSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Benifit\Report\EmpBonusTopSheet.aspx.designer.cs">
+      <DependentUpon>EmpBonusTopSheet.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Dispatch\DispatchExternalReceive.aspx.cs">
       <DependentUpon>DispatchExternalReceive.aspx</DependentUpon>
@@ -4545,6 +4569,13 @@
     </Compile>
     <Compile Include="Property\AGLandTrxGeneralNew.aspx.designer.cs">
       <DependentUpon>AGLandTrxGeneralNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralUpdate.aspx.cs">
+      <DependentUpon>AGLandTrxGeneralUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralUpdate.aspx.designer.cs">
+      <DependentUpon>AGLandTrxGeneralUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReceiveChallanUpload.aspx.cs">
       <DependentUpon>ReceiveChallanUpload.aspx</DependentUpon>
@@ -7634,6 +7665,13 @@
     <Compile Include="SAD\Sales\Report\AFBLCustTransProdRpt.aspx.designer.cs">
       <DependentUpon>AFBLCustTransProdRpt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\AFBLDistrbtrStockRpt.aspx.cs">
+      <DependentUpon>AFBLDistrbtrStockRpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\AFBLDistrbtrStockRpt.aspx.designer.cs">
+      <DependentUpon>AFBLDistrbtrStockRpt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\AfblPointStock.aspx.cs">
       <DependentUpon>AfblPointStock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8256,6 +8294,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\SalesItemPriceMismatch.aspx.designer.cs">
       <DependentUpon>SalesItemPriceMismatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\SalesVsManPowerAchvment.aspx.cs">
+      <DependentUpon>SalesVsManPowerAchvment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\SalesVsManPowerAchvment.aspx.designer.cs">
+      <DependentUpon>SalesVsManPowerAchvment.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Sales_Info_Report.aspx.cs">
       <DependentUpon>Sales_Info_Report.aspx</DependentUpon>
@@ -8893,6 +8938,20 @@
     </Compile>
     <Compile Include="SCM\BOM\ProductionOrder.aspx.designer.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionOrderApproveNreject.aspx.cs">
+      <DependentUpon>ProductionOrderApproveNreject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionOrderApproveNreject.aspx.designer.cs">
+      <DependentUpon>ProductionOrderApproveNreject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionOrderNew.aspx.cs">
+      <DependentUpon>ProductionOrderNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionOrderNew.aspx.designer.cs">
+      <DependentUpon>ProductionOrderNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\ProductionReport.aspx.cs">
       <DependentUpon>ProductionReport.aspx</DependentUpon>
@@ -10868,6 +10927,7 @@
     <Folder Include="Support\Data\" />
     <Folder Include="Transport\Data\" />
     <Folder Include="Transport\Uploads\" />
+    <Folder Include="UitlityManagement\" />
     <Folder Include="VAT_Management\Data\" />
     <Folder Include="Wastage\Data\" />
     <Folder Include="WoodPurchase\Data\" />
