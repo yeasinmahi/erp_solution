@@ -159,7 +159,10 @@ namespace UI.SCM.BOM
                         toTime = endTime.ToString();
                         CreateXml(item, itemid, fromtime, toTime, bomid, bomName, quantity, lineprocess, invoice, batch);
                     }
-                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true);
+                    }
                 }
 
             }

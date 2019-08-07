@@ -337,6 +337,7 @@
     <Content Include="Content\CSS\CommonStyle.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
+    <Content Include="Content\CSS\mainsite.css" />
     <Content Include="Content\CSS\morris.css" />
     <Content Include="Content\CSS\MyStyle.css" />
     <Content Include="Content\CSS\SettlementStyle.css" />
@@ -662,6 +663,7 @@
     <Content Include="Property\AGLandTrxGeneral.aspx" />
     <Content Include="Property\AGLandTrxGeneralED.aspx" />
     <Content Include="Property\AGLandTrxGeneralNew.aspx" />
+    <Content Include="Property\AGLandTrxGeneralUpdate.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
@@ -1647,6 +1649,8 @@
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionApproval.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
+    <Content Include="SCM\BOM\ProductionOrderApproveNreject.aspx" />
+    <Content Include="SCM\BOM\ProductionOrderNew.aspx" />
     <Content Include="SCM\BOM\ProductionReport.aspx" />
     <Content Include="SCM\BOM\ProfitCenter.aspx" />
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
@@ -4479,6 +4483,13 @@
     </Compile>
     <Compile Include="Property\AGLandTrxGeneralNew.aspx.designer.cs">
       <DependentUpon>AGLandTrxGeneralNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralUpdate.aspx.cs">
+      <DependentUpon>AGLandTrxGeneralUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Property\AGLandTrxGeneralUpdate.aspx.designer.cs">
+      <DependentUpon>AGLandTrxGeneralUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReceiveChallanUpload.aspx.cs">
       <DependentUpon>ReceiveChallanUpload.aspx</DependentUpon>
@@ -8785,6 +8796,20 @@
     </Compile>
     <Compile Include="SCM\BOM\ProductionOrder.aspx.designer.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionOrderApproveNreject.aspx.cs">
+      <DependentUpon>ProductionOrderApproveNreject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionOrderApproveNreject.aspx.designer.cs">
+      <DependentUpon>ProductionOrderApproveNreject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionOrderNew.aspx.cs">
+      <DependentUpon>ProductionOrderNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionOrderNew.aspx.designer.cs">
+      <DependentUpon>ProductionOrderNew.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\ProductionReport.aspx.cs">
       <DependentUpon>ProductionReport.aspx</DependentUpon>

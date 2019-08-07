@@ -49,7 +49,7 @@
                                 <asp:Label ID="lblMouzaName" runat="server" CssClass="lbl" Text="Mouza Name :"></asp:Label>
                             </td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtMouzaName" CssClass="txtBox1" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtMouzaName" CssClass="txtBox1" runat="server" AutoComplete="off"></asp:TextBox>
                                 <asp:HiddenField ID="hfMouzaID" runat="server" />
                             </td>
                             <td style="text-align: right; width: 15px;">
