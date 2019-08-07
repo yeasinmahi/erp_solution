@@ -133,7 +133,7 @@ namespace UI.SCM.BOM
 
                 if (ItemCosting.GetItemCogs(int.Parse(itemid)).Rows.Count <= 0)
                 {
-                    Toaster("Please Input Item COGS first");
+                    Toaster("Item COGS Missing; Please Contact With Accounts Department !");
                     return;
                 }
 
