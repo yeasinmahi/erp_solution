@@ -168,7 +168,10 @@ namespace UI.SCM.BOM
                         CreateXml(item, itemid, fromtime, toTime, bomid, bomName, quantity, lineprocess, invoice, batch);
                         Clear();
                     }
-                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true);
+                    }
                 }
 
             }

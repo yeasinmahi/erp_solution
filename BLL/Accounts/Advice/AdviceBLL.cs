@@ -184,6 +184,18 @@ namespace BLL.Accounts.Advice
             }
             catch { return new DataTable(); }
         }
+        public string SendEmail(string strSupplierName, string strEmailAddress, string strBankName, string strBranchName, string strBankAccNo, decimal monAmount, string strPONo, string strUnitName, string strDays, string strPaymentInfo, string strBillNo, int intSupplierID, int intUnitID)
+        {
+            string msg = "";
+            try
+            {
+                sprEmailCreateTableAdapter adp = new sprEmailCreateTableAdapter();
+                adp.SendData(strSupplierName,strEmailAddress,strBankName,strBranchName,strBankAccNo,monAmount,strPONo,strUnitName,strDays,strPaymentInfo,strBillNo,intSupplierID,intUnitID);
+                msg = "Email Send Successfully.";
+            }
+            catch (Exception ex) { return ex.Message; }
+            return msg;
+        }
         #endregion
         #region ================== Bank Receive ===========================
         public DataTable GetBankData (string intUnitID)

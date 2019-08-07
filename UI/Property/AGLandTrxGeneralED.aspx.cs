@@ -13,8 +13,11 @@ namespace UI.Property
 {
     public partial class AGLandTrxGeneralED : System.Web.UI.Page
     {
+        #region INIT
         private PropertyBLL pbll = new PropertyBLL();
         int PKID, MouzaID, Enroll, UnitID;
+        #endregion
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -66,11 +69,39 @@ namespace UI.Property
 
         protected void btnGVEdit_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                Label lblgvDeedNo = row.FindControl("lblgvDeedNo") as Label;
+                HiddenField hfUnitID = row.FindControl("hfUnitID") as HiddenField;
+                HiddenField hfLandGeneralPK = row.FindControl("hfLandGeneralPK") as HiddenField;
+                HiddenField hfMouzaID = row.FindControl("hfMouzaID") as HiddenField;
+                HiddenField hfPlotTypeID = row.FindControl("hfPlotTypeID") as HiddenField;
+                Label lblgvLDTR = row.FindControl("lblgvLDTR") as Label;
+                string DeedNo = lblgvDeedNo.Text;
+                string UnitID = hfUnitID.Value;
+                string PKID = hfLandGeneralPK.Value;
+                string MouzaID = hfMouzaID.Value;
+                string PlotTypeID = hfPlotTypeID.Value;
+                string LDTR = lblgvLDTR.Text;
+                ScriptManager.RegisterStartupScript
+                    (
+                    Page, typeof(Page), 
+                    "StartupScript",
+                   "Viewdetails('" + DeedNo + "','" + UnitID + "','" + MouzaID + "','" + PlotTypeID + "','" +LDTR + "','" + PKID + "');", 
+                   true
+                   );
+            }
+            catch (Exception ex)
+            {
+                string sms = "Edit Button : " + ex.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+            }
         }
         protected void btnDeedDataShow_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
+            int IsDoct = 0;
             try
             {
                 DateTime FromDate = !string.IsNullOrEmpty(txtFromDate.Text) ?
@@ -80,7 +111,9 @@ namespace UI.Property
                     DateTime.ParseExact(txtToDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture) :
                     DateTime.ParseExact("01/01/1901", "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 string DeedNo = !string.IsNullOrEmpty(txtShowDeedNo.Text) ? txtShowDeedNo.Text : "0";
-                dt = pbll.GetInsertedLandMainData(FromDate, ToDate, DeedNo);
+                IsDoct = chkLDocument.Checked == false ? 1 : 2;
+
+                dt = pbll.GetInsertedLandMainData(FromDate, ToDate, DeedNo, IsDoct);
                 if (dt != null && dt.Rows.Count > 0)
                 {
                     dgvDeedDataShow.DataSource = dt;

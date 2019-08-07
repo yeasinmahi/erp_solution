@@ -12563,13 +12563,14 @@ WHERE        (pm.intMouzaId = @MouzaID) AND (pm.ysnActive = 1)";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FromDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ToDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DeedNo", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsDocument", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual PropertyTDS.ShowLandInsertedMainDataDataTable GetLandExistsMainData(global::System.Nullable<global::System.DateTime> FromDate, global::System.Nullable<global::System.DateTime> ToDate, string DeedNo) {
+        public virtual PropertyTDS.ShowLandInsertedMainDataDataTable GetLandExistsMainData(global::System.Nullable<global::System.DateTime> FromDate, global::System.Nullable<global::System.DateTime> ToDate, string DeedNo, global::System.Nullable<int> IsDocument) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((FromDate.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(FromDate.Value));
@@ -12588,6 +12589,12 @@ WHERE        (pm.intMouzaId = @MouzaID) AND (pm.ysnActive = 1)";
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = ((string)(DeedNo));
+            }
+            if ((IsDocument.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(IsDocument.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             PropertyTDS.ShowLandInsertedMainDataDataTable dataTable = new PropertyTDS.ShowLandInsertedMainDataDataTable();
             this.Adapter.Fill(dataTable);
