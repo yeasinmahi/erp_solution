@@ -64,7 +64,31 @@
                                 </cc1:CalendarExtender>
                                 <img id="imgCal_1" src="../../../Content/images/img/calbtn.gif" style="border: 0px;
                                     width: 34px; height: 23px; vertical-align: bottom;" />
-                                <asp:DropDownList ID="ddlFHour" runat="server">                                                                        
+                                <asp:DropDownList ID="ddlFHour" runat="server"> 
+                                        <asp:ListItem Selected="True">12:00 AM</asp:ListItem>
+                                        <asp:ListItem>1:00 AM</asp:ListItem>
+                                        <asp:ListItem>2:00 AM</asp:ListItem>
+                                        <asp:ListItem>3:00 AM</asp:ListItem>
+                                        <asp:ListItem>4:00 AM</asp:ListItem>
+                                        <asp:ListItem>5:00 AM</asp:ListItem>
+                                        <asp:ListItem>6:00 AM</asp:ListItem>
+                                        <asp:ListItem>7:00 AM</asp:ListItem>
+                                        <asp:ListItem>8:00 AM</asp:ListItem>
+                                        <asp:ListItem>9:00 AM</asp:ListItem>
+                                        <asp:ListItem>10:00 AM</asp:ListItem>
+                                        <asp:ListItem>11:00 AM</asp:ListItem>
+                                        <asp:ListItem>12:00 PM</asp:ListItem>
+                                        <asp:ListItem>1:00 PM</asp:ListItem>
+                                        <asp:ListItem>2:00 PM</asp:ListItem>
+                                        <asp:ListItem>3:00 PM</asp:ListItem>
+                                        <asp:ListItem>4:00 PM</asp:ListItem>
+                                        <asp:ListItem>5:00 PM</asp:ListItem>
+                                        <asp:ListItem>6:00 PM</asp:ListItem>
+                                        <asp:ListItem>7:00 PM</asp:ListItem>
+                                        <asp:ListItem>8:00 PM</asp:ListItem>
+                                        <asp:ListItem>9:00 PM</asp:ListItem>
+                                        <asp:ListItem>10:00 PM</asp:ListItem>
+                                        <asp:ListItem>11:59 PM</asp:ListItem>
                                     <%--<asp:ListItem>06 AM</asp:ListItem>
                                     <asp:ListItem>08 AM</asp:ListItem>
                                     <asp:ListItem>10 AM</asp:ListItem>
@@ -77,7 +101,7 @@
                                     <asp:ListItem>12 PM</asp:ListItem>
                                     <asp:ListItem>02 PM</asp:ListItem>
                                     <asp:ListItem>04 PM</asp:ListItem>--%>
-                                    <asp:ListItem>06 AM</asp:ListItem>
+                                   <%-- <asp:ListItem>06 AM</asp:ListItem>
                                     <asp:ListItem>07 AM</asp:ListItem>
                                     <asp:ListItem>08 AM</asp:ListItem>
                                     <asp:ListItem>09 AM</asp:ListItem>
@@ -95,7 +119,7 @@
                                     <asp:ListItem>09 PM</asp:ListItem>
                                     <asp:ListItem>10 PM</asp:ListItem>
                                     <asp:ListItem>11 PM</asp:ListItem>
-                                    <asp:ListItem>12 AM</asp:ListItem>
+                                    <asp:ListItem>12 AM</asp:ListItem>--%>
                                 </asp:DropDownList>                                
                             </td>
                             <td>
@@ -109,8 +133,32 @@
                                 </cc1:CalendarExtender>
                                 <img id="imgCal_2" src="../../../Content/images/img/calbtn.gif" style="border: 0px;
                                     width: 34px; height: 23px; vertical-align: bottom;" />
-                                <asp:DropDownList ID="ddlTHour" runat="server">                                    
-                                    <asp:ListItem>06 AM</asp:ListItem>
+                                <asp:DropDownList ID="ddlTHour" runat="server"> 
+                                        <asp:ListItem>12:00 AM</asp:ListItem>
+                                        <asp:ListItem>1:00 AM</asp:ListItem>
+                                        <asp:ListItem>2:00 AM</asp:ListItem>
+                                        <asp:ListItem>3:00 AM</asp:ListItem>
+                                        <asp:ListItem>4:00 AM</asp:ListItem>
+                                        <asp:ListItem>5:00 AM</asp:ListItem>
+                                        <asp:ListItem>6:00 AM</asp:ListItem>
+                                        <asp:ListItem>7:00 AM</asp:ListItem>
+                                        <asp:ListItem>8:00 AM</asp:ListItem>
+                                        <asp:ListItem>9:00 AM</asp:ListItem>
+                                        <asp:ListItem>10:00 AM</asp:ListItem>
+                                        <asp:ListItem>11:00 AM</asp:ListItem>
+                                        <asp:ListItem>12:00 PM</asp:ListItem>
+                                        <asp:ListItem>1:00 PM</asp:ListItem>
+                                        <asp:ListItem>2:00 PM</asp:ListItem>
+                                        <asp:ListItem>3:00 PM</asp:ListItem>
+                                        <asp:ListItem>4:00 PM</asp:ListItem>
+                                        <asp:ListItem>5:00 PM</asp:ListItem>
+                                        <asp:ListItem>6:00 PM</asp:ListItem>
+                                        <asp:ListItem>7:00 PM</asp:ListItem>
+                                        <asp:ListItem>8:00 PM</asp:ListItem>
+                                        <asp:ListItem>9:00 PM</asp:ListItem>
+                                        <asp:ListItem>10:00 PM</asp:ListItem>
+                                        <asp:ListItem Selected="True">11:59 PM</asp:ListItem>
+                                    <%--<asp:ListItem>06 AM</asp:ListItem>
                                     <asp:ListItem>08 AM</asp:ListItem>
                                     <asp:ListItem>10 AM</asp:ListItem>
                                     <asp:ListItem>12 AM</asp:ListItem>
@@ -121,7 +169,7 @@
                                     <asp:ListItem>10 PM</asp:ListItem>
                                     <asp:ListItem>12 PM</asp:ListItem>
                                     <asp:ListItem>02 PM</asp:ListItem>
-                                    <asp:ListItem>04 PM</asp:ListItem>
+                                    <asp:ListItem>04 PM</asp:ListItem>--%>
                                 </asp:DropDownList>                               
                             </td>
                             <td align="right">
